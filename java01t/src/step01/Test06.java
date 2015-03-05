@@ -36,6 +36,8 @@ public class Test06 {
       int m = 30;
       System.out.println(i);
       //System.out.println(k);
+      
+      //아하...^^
     }
 
   }
