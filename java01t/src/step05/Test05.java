@@ -21,8 +21,20 @@ public class Test05 {
     System.out.printf("표준 몸무게와의 차이는 %.1f입니다.\n", weight - standardWeight);
   }
   
-  static void printScoreSum(String name, String tel, int... score) {
+  //가변 인자 사용법 (optional parameter)
+  // - 0개 이상의 값을 넘길 수 있다. 
+  // - 타입... 변수명
+  // - 맨 마지막에 위치해야 한다.
+  static void printScoreSum(String name, String tel, int... scores) {
+    System.out.printf("이름: %s\n", name);
+    System.out.printf("전화: %s\n", tel);
     
+    int sum = 0;
+    for (int score : scores) {
+      sum += score;
+    }
+    
+    System.out.printf("총점: %d\n", sum);
   }
   
   public static void main(String[] args) {
@@ -30,6 +42,9 @@ public class Test05 {
     System.out.println("-----------------------");
     
     printMyStandardWeight("홍길동", 178, 99.5f);
+    System.out.println("-----------------------");
+    
+    printScoreSum("홍길동", "111-1111", 100, 90, 50, 60, 90);
   }
 
 }
