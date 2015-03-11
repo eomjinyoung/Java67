@@ -6,27 +6,12 @@ package step06.ex7;
  * - 예) int : +, -, *, /, %, <<, >>, >>>, ...
  * - 예) boolean : &&, &, ||, |, ==, !=, 
  *           +, -, *, /, %, >>, 등은 정의되어 있지 않다. 
+ *           
+ * 연산자 없는 복합 자료형의 데이터를 다루는 예제이다.
  */
 
 public class Test {
 
-  /*
-  static void init(Score score, String name, int kor, int eng, int math) {
-    score.name = name;
-    score.kor = kor;
-    score.eng = eng;
-    score.math = math;
-  }
-  
-  static void summarize(Score score) {
-    score.sum = score.kor + score.eng + score.math;
-  }
-  
-  static void average(Score score) {
-    score.average = score.sum / 3f;
-  }
-  */
-  
   public static void main(String[] args) {
     int i = 10;
     int r = i << 2;
