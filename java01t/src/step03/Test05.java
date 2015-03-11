@@ -20,7 +20,6 @@ public class Test05 {
     System.out.printf("%x, %08x(%2$d), %08x(%3$d)\n", 
         v1 << 4, v1 >> 4, v1 >>> 4);
     
-    
     // 왼쪽 비트 이동 연산자는 값 * 2^이동비트수 와 결과가 같다.
     int v2 = 345;
     System.out.printf("%d, %d\n", v2 * 2, v2 << 1);
