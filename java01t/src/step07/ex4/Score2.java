@@ -13,6 +13,13 @@ public class Score2 {
   //다른 생성자를 호출하여 초기화 작업을 완료한다.
   public Score2() {
     this("홍길동");
+    
+    this.kor = 0;
+    this.eng = 0;
+    this.math = 0;
+    
+    summarize();
+    average();
   }
   
   //이름을 받는 생성자 => 다른 생성자를 호출한다.
