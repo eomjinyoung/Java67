@@ -1,6 +1,6 @@
 package step07.ex2;
 
-// 생성자 적용
+// 기본 생성자 적용
 public class Score {
   String name;
   int kor;
@@ -8,6 +8,10 @@ public class Score {
   int math;
   int sum;
   float average;
+  
+  //만약 클래스에 단 하나의 생성자도 없다면, 컴파일러가 다음과 같은
+  //기본 생성자를 추가한다.
+  //public Score() {}
   
   /* 예전에는 초기화 메서드를 별도로 정의했다.
   public void init(String name, int kor, int eng, int math) {
@@ -17,21 +21,15 @@ public class Score {
     this.math = math;
   }
   */
-  
-  // 초기화 메서드 대신 생성자를 정의한다.
-  // - 위에서 처럼 초기화 메서드를 별도로 정의하여 사용해도 되지만,
-  // - 생성자를 이용하면 훨씬 더 간결하고 안전한 코드를 작성할 수 있다.
-  // 안전?
-  // - init() 메서드의 호출은 선택사항이다. 즉, 호출하지 않아도 컴파일할 때 아무런 문제없다.
-  // - 생성자는 호출하지 않으면 컴파일 오류가 발생한다. 
-  //   따라서, 인스턴스의 값을 초기화시키는 것을 강제하고 싶으면 일반 메서드로 만들지 말고,
-  //   생성자를 이용하도록 하라!
+
+  /*
   public Score(String name, int kor, int eng, int math) {
     this.name = name;
     this.kor = kor;
     this.eng = eng;
     this.math = math;
   }
+  */
   
   // 인스턴스의 점수 합을 구하는 연산자 정의
   public void summarize() {
