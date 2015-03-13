@@ -1,4 +1,4 @@
-package step09.ex2;
+package step09.ex3;
 
 //Score 클래스에 캡슈화 문법 적용
 //1) sum 변수에 직접 적용하지 못하게 한다.
@@ -11,10 +11,18 @@ public class Test {
     Score s2 = new Score();
     
     s2.name = "임꺽정";
-    s2.kor = 90;
-    s2.eng = 90;
-    s2.math = 90;
-    s2.compute();
+    
+    //직접 접근할 수 없다.
+    //s2.kor = 90;
+    //s2.eng = 90;
+    //s2.math = 90;
+    //s2.compute();
+    
+    //어떻게 국,영,수 점수를 저장할 것인가? => 메서드를 호출하여 저장한다.
+    s2.setKor(90);
+    s2.setEng(90);
+    s2.setMath(90);
+    
     
     s1.print();
     s2.print();
@@ -36,9 +44,14 @@ public class Test {
     
     //문제상황2 아직 해결 안됨! => Score2와 Test2에서 해결함.
     //깜박 잊고 호출해야 할 메서드를 호출하지 못할 경우!
-    s2.kor = 50;
+    //s2.kor = 50;
     //s2.compute(); // 점수가 바뀔 때 마다 총점과 평균을 다시 산출하기 위해 호출해야 한다.
+    //문제 해결!
+    s2.setKor(50);
     s2.print();
+    
+    // 총점을 알고 싶으면, getSum()을 호출한다.
+    System.out.println("s1의 총점:" + s1.getSum());
   }
 
 }

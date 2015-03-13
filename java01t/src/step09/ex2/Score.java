@@ -1,45 +1,42 @@
 package step09.ex2;
 
-//캡슐화 적용 전
+//캡슐화 적용 후
+//접근 제어자(access modifier): private, (default), protected, public
+//1) private : 클래스 멤버만 접근 가능.
+//2) (default) : 패키지 멤버는 접근 가능.
+//3) protected : 패키지 멤버 + 자식 클래스 접근 가능.
+//4) public : 모두 접근 가능
+
+// sum 변수에 직접 접근해서 발생하는 문제를 해결함!
+
 public class Score {
-  String name;
-  int kor;
-  int eng;
-  int math;
-  int sum;
-  float aver;
+  // 복합 자료형의 인스턴스 변수는 자식 클래스가 접근할 수 있게 허용하는 것이 보통이다.
+  protected String name;
+  protected int kor;
+  protected int eng;
+  protected int math;
   
-  //0으로 초기화된 인스턴스를 생성할 수 있도록, 기본 생성자를 정의한다.
+  //총점과 평균은 계산한 값이어야 하기 때문에 직접 값을 할당하는 것을 막자!
+  //이전 예제의 경우처럼 sum 변수의 값을 직접 바꿔서 발생한 문제를 막을 수 있다.
+  private int sum;
+  private float aver;
+  
   public Score() {}
   
   public Score(String name, int kor, int eng, int math) {
-    //숨겨진 로컬 변수 this
-    //Score this = 새로 만든 인스턴스의 주소;
     this.name = name;
     this.kor = kor;
     this.eng = eng;
     this.math = math;
-    
-    //같은 멤버의 메서드를 호출할 때도, this를 생략할 수 있다.
-    //(같은 클래스에 소속되어 있는 메서드를 호출할 때도,)
-    //this.compute();
     compute();
   }
   
   public void compute() {
-    //Score this = 메서드를 호출할 때 넘겨준 인스턴스 주소
-    
-    //로컬 변수와 인스턴스 변수 사이에 혼동할 일이 없다. => this 생략 가능!
-    //this.sum = this.kor + this.eng + this.math;
     sum = kor + eng + math;
     aver = sum / 3f;
   }
   
-  // 혼동할게 없다면, this 레퍼런스는 생략할 수 있다.
-  // - 로컬 변수가 있는지 찾아보고 없다면, 인스턴스 변수로 간주한다. 
   public void print() {
-    //Score this = 메서드를 호출할 때 넘겨준 인스턴스 주소
-    
     System.out.printf("%s, %d, %d, %d, %d, %.1f\n",
         name, kor, eng, math, sum, aver);
   }
