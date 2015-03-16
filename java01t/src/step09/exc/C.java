@@ -6,6 +6,11 @@ public class C extends B {
     System.out.println("C.m().....");
   }
   
+  @Override
+  public void z() {
+    System.out.println("C.z().....");
+  }
+  
   public void test() {
     m(); // 자신의 m() 메서드 호출 
     super.m(); //=> 오버라이딩 하기 전에 메서드 호출
@@ -17,6 +22,8 @@ public class C extends B {
     y(); // 자신이 상속 받은 메서드 호출 => A.y()
     super.y(); // 자신은 오버라이딩을 하지 않았다. 따라서 상속 받은 메서드 호출.
     
+    z(); // 자신의 z() 메서드 호출 
+    super.z(); // 오버라이딩 하기 전의 A의 z()메서드
     //super 참조 변수
     //자신이 오버라이딩 한 메서드에 대해 사용할 수 있다.
     //자신이 오버라이딩 하지 않은 메서드에 대해 사용해봐야 무시된다.

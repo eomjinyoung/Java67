@@ -12,4 +12,8 @@ public class A {
   public void y() {
     System.out.println("A.y()....");
   }
+  
+  public void z() {
+    System.out.println("A.z()....");
+  }
 }
