@@ -7,7 +7,8 @@ package step10.ex3;
 public class Test {
 
   public static void main(String[] args) {
-    // TODO Auto-generated method stub
+    // 별도의 테스트 코드 없음. 
+    // A, B, C 각각의 클래스 파일을 확인할 것!
 
   }
 
