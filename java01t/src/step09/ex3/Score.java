@@ -80,7 +80,7 @@ public class Score {
     this.eng = eng;
     this.math = math;
     compute();
-  }
+  } 
   
   public void compute() {
     sum = kor + eng + math;

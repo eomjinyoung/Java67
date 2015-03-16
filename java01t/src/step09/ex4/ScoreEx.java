@@ -34,7 +34,10 @@ import java.net.*;
 //import 문은 바이트코드에 포함되지 않는다.
 //어차피 컴파일할 때 각각의 단축 클래스 이름은 패키지 명을 포함한 이름으로 변경되기 때문이다.
 
-
+// 용어정리!
+// 상속을 해주는 클래스 => super, parent 클래스
+// 상속을 받는 클래스 => sub, child 클래스 
+//
 public class ScoreEx extends /*step09.ex3.*/Score {
   //추가할 인스턴스 변수 선언
   protected int soc; //사회
