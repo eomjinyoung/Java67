@@ -1,4 +1,4 @@
-package step12.step01;
+package step12.ch01;
 
 //복합 자료형 정의
 public class User {
