@@ -2,6 +2,7 @@ package step11.ex1;
 
 // Object의 toString() 메서드 소개
 // Object의 hashCode() 메서드 소개
+// Object의 equals() 메서드 소개 
 //
 // 해시코드?
 // - 데이터를 구분하기 위해 특별한 공식(알고리즘)으로 뽑아낸 작은 값. 
@@ -35,6 +36,19 @@ public class Test {
     // - Object로부터 상속받은 hashCode() 메서드 호출
     System.out.printf("%x\n", m1.hashCode());
     System.out.printf("%x\n", m2.hashCode());
+    
+    //equals() 시험하자!
+    if (m1 == m2) { // m1에 저장된 인스턴스 주소와 m2의 주소를 비교한다.
+      System.out.println("m1 == m2");
+    } else {
+      System.out.println("m1 != m2");
+    }
+    
+    if (m1.equals(m2)) { // 인스턴스가 같은지 비교 
+      System.out.println("m1.equals(m2) : true");
+    } else {
+      System.out.println("m1.equals(m2) : false");
+    }
   }
 
 }
