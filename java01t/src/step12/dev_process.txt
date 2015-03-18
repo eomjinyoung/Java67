@@ -49,7 +49,15 @@
       4) MemberAdd : return Member
       5) MemberControl : insert(member) --> MemberDao
     . 구현 : App.java, MemberControl.java, MemberAdd.java, MemberDao.java          
-    
+  
+  => 작업4: 회원 목록조회 (ch05)
+    . 참여 객체: App, MemberControl, MemberList, User, MemberDao
+    . 시나리오
+      1) App: list() --> MemberControl
+      2) MemberControl: selectList() --> MemberDao
+      3) MemberDao: return User[]
+      4) MemberControl: execute(User[]) --> MemberList
+        
     
     
     
