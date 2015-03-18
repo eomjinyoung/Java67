@@ -21,8 +21,23 @@
       회원삭제 : MemberDelete.java
     . 데이터를 다루는 부분에 대해서 엔티티 객체를 정의한다. : MemberDao.java
     
-    
-    
+- 작업을 완성하기 위해 각 객체가 상호작용하는 방법을 설계한다. 
+  => 각 클래스가 가져야 할 메서드를 식별하게 된다.    
+  => 작업1: 프로그램의 초기 화면을 출력하기
+    . 참여 객체: MemberControl, MemberInit
+    . 객체 사이의 흐름
+      1) init() --> MemberControl
+      2) MemberControl --> execute() --> MemberInit
+    . 코드로 구현: App.java, MemberControl.java, MemberInit.java
+  
+  => 작업2: 사용자로부터 명령어를 입력 받기
+    . 참여 객체: App
+    . 객체 사이의 흐름
+      1) prompt() --> App
+      2) App --> ">" 출력 --> 키보드 입력 준비 
+      3) 사용자 --> "명령어를 입력 --> App
+      4) App --> 명령어 확인    
+           
     
     
     
