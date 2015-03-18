@@ -1,0 +1,38 @@
+[개발 과정]
+개발할 CRUD를 선정한다. 
+1. 분석 
+- UI 프로토타입 생성(v)
+- Domain 객체를 식별
+  => 화면에 다루는 데이터를 추상화 한다.
+  => 복합 자료형을 정의하라! : User.java
+2. 설계
+- 작업에 참여하는 객체를 식별
+  => UI를 처리하는 객체 식별 : Boundary
+  => 중간에서 조정하는 객체를 식별 : Control
+  => 데이터를 처리하는 객체 식별 : Entity
+  => 식별 방법
+    . CRUD 당 하나의 제어 객체를 정의한다. : MemberControl.java
+    . 사용자가 시스템을 사용하는 과정을 따라가면서 UI 객체를 정의한다.
+      초기화면 : MemberInit.java
+      회원목록 : MemberList.java
+      회원등록 : MemberAdd.java
+      회원상세보기 : MemberDetail.java
+      회원변경 : MemberChange.java
+      회원삭제 : MemberDelete.java
+    . 데이터를 다루는 부분에 대해서 엔티티 객체를 정의한다. : MemberDao.java
+    
+- 작업을 완성하기 위해 각 객체가 상호작용하는 방법을 설계한다. 
+  => 각 클래스가 가져야 할 메서드를 식별하게 된다.    
+  => 작업1: 프로그램의 초기 화면을 출력
+    . 참여 객체: MemberControl, MemberInit
+    . 객체 사이의 흐름
+      1) init() --> MemberControl
+      2) MemberControl --> execute() --> MemberInit
+    . 코드로 구현: App.java, MemberControl.java, MemberInit.java
+    
+           
+    
+    
+    
+    
+    
