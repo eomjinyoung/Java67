@@ -20,13 +20,20 @@ public class App {
       
       //3)사용자로부터 명령어를 입력 받는다.
       command = keyScan.nextLine();
+      String[] token = command.split(" ");
       
-      switch (command) {
+      switch (token[0]) {
       case "add":
         memberControl.add();
         break;
       case "list":
         memberControl.list();
+        break;
+      case "detail":
+        memberControl.detail( Integer.parseInt( token[1] ) );
+        break;
+      case "delete":
+        memberControl.delete(Integer.parseInt(token[1]));
         break;
       }
       

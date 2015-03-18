@@ -3,6 +3,8 @@ package step12.ch05.control;
 import step12.ch05.dao.MemberDao;
 import step12.ch05.domain.User;
 import step12.ch05.ui.MemberAdd;
+import step12.ch05.ui.MemberDelete;
+import step12.ch05.ui.MemberDetail;
 import step12.ch05.ui.MemberInit;
 import step12.ch05.ui.MemberList;
 
@@ -12,12 +14,16 @@ public class MemberControl {
   MemberInit memberInit;
   MemberAdd memberAdd;
   MemberList memberList;
+  MemberDetail memberDetail;
+  MemberDelete memberDelete;
   
   public MemberControl() {
     memberDao = new MemberDao();
     memberInit = new MemberInit();
     memberAdd = new MemberAdd();
     memberList = new MemberList();
+    memberDetail = new MemberDetail();
+    memberDelete = new MemberDelete();
   }
   
   public void init() {
@@ -36,6 +42,19 @@ public class MemberControl {
   public void list() {
     User[] users = memberDao.selectList();
     memberList.execute(users);
+  }
+
+  public void detail(int no) {
+    User user = memberDao.select(no);
+    memberDetail.execute(user);
+  }
+
+  public void delete(int no) {
+    boolean response = memberDelete.confirm();
+    if (response == true) {
+      memberDao.delete(no);
+      memberDelete.execute();
+    }
   }
 
 }

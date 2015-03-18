@@ -19,4 +19,22 @@ public class MemberDao {
     return temp;
   }
 
+  public User select(int no) {
+    return users[no];
+  }
+
+  public void delete(int no) {
+    length--;
+    for (int i = no; i < length; i++) {
+      users[i] = users[i + 1];
+    }
+  }
+
 }
+
+
+
+
+
+
+
