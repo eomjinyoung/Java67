@@ -35,6 +35,14 @@ public class App {
       case "delete":
         memberControl.delete(Integer.parseInt(token[1]));
         break;
+      case "change":
+        memberControl.change(Integer.parseInt(token[1]));
+        break; 
+      case "quit":
+        System.out.println("안녕히 가십시오.");
+        break;
+      default:
+        System.out.println("존재하지 않는 명령어입니다.");
       }
       
     //4)명령어에 따라 MemberControl을 실행한다.

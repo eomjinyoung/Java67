@@ -30,7 +30,15 @@ public class MemberDao {
     }
   }
 
+  public void update(int no, User changedUser) {
+    users[no] = changedUser;
+  }
+
 }
+
+
+
+
 
 
 

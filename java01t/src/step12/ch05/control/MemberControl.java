@@ -3,6 +3,7 @@ package step12.ch05.control;
 import step12.ch05.dao.MemberDao;
 import step12.ch05.domain.User;
 import step12.ch05.ui.MemberAdd;
+import step12.ch05.ui.MemberChange;
 import step12.ch05.ui.MemberDelete;
 import step12.ch05.ui.MemberDetail;
 import step12.ch05.ui.MemberInit;
@@ -16,6 +17,7 @@ public class MemberControl {
   MemberList memberList;
   MemberDetail memberDetail;
   MemberDelete memberDelete;
+  MemberChange memberChange;
   
   public MemberControl() {
     memberDao = new MemberDao();
@@ -24,6 +26,7 @@ public class MemberControl {
     memberList = new MemberList();
     memberDetail = new MemberDetail();
     memberDelete = new MemberDelete();
+    memberChange = new MemberChange();
   }
   
   public void init() {
@@ -54,6 +57,14 @@ public class MemberControl {
     if (response == true) {
       memberDao.delete(no);
       memberDelete.execute();
+    }
+  }
+
+  public void change(int no) {
+    User user = memberDao.select(no);
+    User changedUser = memberChange.execute(user);
+    if (changedUser != null) {
+      memberDao.update(no, changedUser);
     }
   }
 
