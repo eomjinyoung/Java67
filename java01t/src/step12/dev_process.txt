@@ -57,10 +57,26 @@
       2) MemberControl: selectList() --> MemberDao
       3) MemberDao: return User[]
       4) MemberControl: execute(User[]) --> MemberList
-        
+    . 구현 : App.java, MemberControl.java, MemberList.java, MemberDao.java
+  
+  => 작업5: 회원 정보 조회 (ch05)
+    . 참여 객체: App, MemberControl, MemberDao, User, MemberDetail      
+    . 시나리오
+      1) App: detail(번호) --> MemberControl
+      2) MemberControl: select(번호) --> MemberDao
+      3) MemberDao: return User
+      4) MemeberControl: execute(User) --> MemberDetail
+    . 구현: App.java, MemberControl.java, MemberDetail.java, MemberDao.java
     
-    
-    
+  => 작업6: 회원 삭제 (ch05)  
+    . 참여 객체: App, MemberControl, MemberDelete, MemberDao
+    . 시나리오
+      1) App: delete(번호) --> MemberControl
+      2) MemberControl: confirm() --> MemberDelete
+      3-1) MemberDelete: return true
+      4) MemberControl: delete(번호) --> MemberDao
+      5) MemberControl: execute() --> MemberDelete
+      
     
     
     
