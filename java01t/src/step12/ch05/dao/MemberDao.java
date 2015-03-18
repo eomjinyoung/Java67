@@ -11,4 +11,12 @@ public class MemberDao {
     users[length++] = user;
   }
 
+  public User[] selectList() {
+    User[] temp = new User[length];
+    for (int i = 0; i < length; i++) {
+      temp[i] = users[i];
+    }
+    return temp;
+  }
+
 }
