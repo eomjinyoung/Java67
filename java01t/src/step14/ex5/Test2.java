@@ -13,8 +13,10 @@ public class Test2 {
 
   public static void main(String[] args) {
     MyArrayList2 array = new MyArrayList2();
-    for (int i = 0; i < 101; i++) {
+    for (int i = 0; i < 200; i++) {
       array.add("홍길동" + i);
+      
+      // 만약 add()에서 오류가 발생했음을 알았다면, 반복을 진작에 멈췄을 것인데.헐...
     }
     
     array.print();
