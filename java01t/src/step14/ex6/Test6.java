@@ -6,15 +6,19 @@ package step14.ex6;
 // 자바에서는 예외를 구분할 때, 예외 메시지로 구분하는 것이 아니라, 타입으로 구분한다.
 // => 각각의 예외에 대해 별도의 예외 클래스를 정의한다.
 //
-class EmptyValueException extends Exception {}
-class InvalidIndexException extends Exception {}
-
-//엥? 아니 상속 받은 서브 클래스에 아무런 코딩을 하지 않네요?
-// => 이 클래스는 단지 오류를 구분하기 위한 용도로 사용.
-// => 특별히 Exception 클래스에 추가할 내용은 없다.
-// => 클래스 이름으로 오류 상황을 구분할 수 있게 도와준다.
 
 public class Test6 {
+  // 클래스 안에 선언되는 클래스 => inner 클래스 (중첩 클래스)
+  // static 메서드나 static 블록은 static으로 선언된 멤버만 접근 가능.
+  // 그래서 아래와 같이 클래스 선언 앞에 static을 붙였다.
+  static class EmptyValueException extends Exception {}
+  static class InvalidIndexException extends Exception {}
+  
+  //엥? 아니 상속 받은 서브 클래스에 아무런 코딩을 하지 않네요?
+  // => 이 클래스는 단지 오류를 구분하기 위한 용도로 사용.
+  // => 특별히 Exception 클래스에 추가할 내용은 없다.
+  // => 클래스 이름으로 오류 상황을 구분할 수 있게 도와준다.
+  
   static String[] names = new String[10];
   static int length;
   
