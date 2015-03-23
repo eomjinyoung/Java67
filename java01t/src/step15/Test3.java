@@ -32,6 +32,10 @@ public class Test3 {
     Address a2 = new Address("임꺽정", "111-2222", "leem@test.com");
     Address a3 = new Address("홍길동", "111-1111", "hong@test.com");
 
+    System.out.println(a1.hashCode());
+    System.out.println(a2.hashCode());
+    System.out.println(a3.hashCode());
+    
     HashSet set = new HashSet();
     set.add(a1);
     set.add(a2);
