@@ -22,6 +22,7 @@ public class Test {
     System.out.println(queue.get());
     
     System.out.println(queue.get()); //null 예상!
+    System.out.println(queue.get());
 
   }
 

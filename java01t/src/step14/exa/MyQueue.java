@@ -8,14 +8,29 @@ public class MyQueue {
   Item end;
   int length;
   
+  
+  public MyQueue() {
+    start = new Item();
+    end = start;
+  }
+  
   // 맨 마지막에 추가한다.
   public void put(Object value) {
-    
+    end.value = value;
+    end.next = new Item();
+    end = end.next;
+    length++;   
   }
   
   //무조건 첫 번째 값을 꺼낸다.  
   public Object get() {
-    return null;
+    if (start.next == null)
+      return null;
+      
+    Object value = start.value;
+    start = start.next;
+    length--;
+    return value;
   }
   
   public int size() {
