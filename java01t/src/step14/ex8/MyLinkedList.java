@@ -83,12 +83,12 @@ public class MyLinkedList {
     
     Item cursor = start;
     length--;
-    Item temp = null;
+    Object value = null;
 
     if (index == 0) {
-      temp = start;
+      value = start.value;
       start = start.next;
-      return temp;
+      return value;
 
     }
 
@@ -98,9 +98,9 @@ public class MyLinkedList {
       i++;
     }
 
-    temp = cursor.next;
+    value = cursor.next.value;
     cursor.next = cursor.next.next;
-    return temp;
+    return value;
   }
 
   public void set(int index, Object value) {
