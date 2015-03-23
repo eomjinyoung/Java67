@@ -24,6 +24,8 @@ public class Test {
     System.out.printf("%s, %d, %d, %d\n", 
         ll.get(4), ll.get(5), ll.get(6), ll.get(7));
     
+    System.out.println(ll.get(8));
+    
     // 배열 vs LinkedList
     // - 값 입력: LinkedList는 무한으로 값을 넣을 수 있다. 메모리를 효율적으로 관리.
     // - 조회: 배열이 훨씬 빠르다. LinkedList는 매번 조회할 때마다 처음부터 뒤져야 한다.
