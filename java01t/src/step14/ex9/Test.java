@@ -5,7 +5,7 @@ package step14.ex9;
 public class Test {
 
   public static void main(String[] args) {
-    MyStack stack = new MyStack();
+    MyQueue stack = new MyQueue();
     stack.push("홍길동"); System.out.println(stack.size());
     stack.push("임꺽정"); System.out.println(stack.size());
     stack.push("유관순"); System.out.println(stack.size());

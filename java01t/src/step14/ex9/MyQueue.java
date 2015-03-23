@@ -1,6 +1,6 @@
 package step14.ex9;
 
-public class MyStack {
+public class MyQueue {
   Item cursor;
   int length;
   
