@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 import step16.ch03.domain.User;
 
-//UIObject 상속 받기
+//UIObject 인터페이스 구현하기
 
-public class MemberChange extends UIObject {
+public class MemberChange implements UIObject {
   @Override
   public void execute(HashMap<String, Object> paramMap) {
     // MemberControl이 넘겨준 User 객체 꺼내기

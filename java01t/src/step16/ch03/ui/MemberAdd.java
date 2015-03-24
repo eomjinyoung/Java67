@@ -5,8 +5,12 @@ import java.util.Scanner;
 
 import step16.ch03.domain.User;
 
-//UIObject를 상속 받는다.
-public class MemberAdd extends UIObject {
+//UIObject 인터페이스를 구현한다.
+//= UIObject 규칙을 따른다.
+//= UIObject 규칙을 준수한다.
+//
+//
+public class MemberAdd implements UIObject {
 
   // MemberControl이 호출할 execute() 메서드를 오버라이딩한다.
   @Override

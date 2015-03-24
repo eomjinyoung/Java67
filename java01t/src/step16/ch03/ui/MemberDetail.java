@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 import step16.ch03.domain.User;
 
-//UIObject 상속 받기
-public class MemberDetail extends UIObject {
+//UIObject 인터페이스 구현하기
+public class MemberDetail implements UIObject {
   @Override
   public void execute(HashMap<String, Object> paramMap) {
     User user = (User) paramMap.get("user");

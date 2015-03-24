@@ -3,8 +3,8 @@ package step16.ch03.ui;
 import java.util.HashMap;
 import java.util.Scanner;
 
-//UIObject 상속 받기
-public class MemberDelete extends UIObject {
+//UIObject 인터페이스 구현하기
+public class MemberDelete implements UIObject {
   @Override
   public void execute(HashMap<String, Object> paramMap) {
     String command = (String) paramMap.get("command");
