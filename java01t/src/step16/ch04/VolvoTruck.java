@@ -3,7 +3,7 @@ package step16.ch04;
 
 public class VolvoTruck {
   String  model;
-  int     cc;
+  int     hp;
   int     speed; //km/h
   int     weight;
   
@@ -23,14 +23,25 @@ public class VolvoTruck {
   }
   
   public void accelerate() {
+    int rs = 0;
+    if (weight > 0 && weight < 10000) {
+      rs = 2;
+    } else if (weight >= 10000 && weight < 50000) {
+      rs = 4;
+    } else if (weight >= 50000) {
+      rs = 6;
+    } else {
+      rs = 0;
+    }
+    
     if (speed < 200)
-      speed += 5;
+      speed += (10 - rs);
     dashboard();
   }
   
   public void reduce() {
     if (speed > 0) 
-      speed -= 5;
+      speed -= 10;
     dashboard();
   }
   
@@ -44,11 +55,11 @@ public class VolvoTruck {
   public void setModel(String model) {
     this.model = model;
   }
-  public int getCc() {
-    return cc;
+  public int getHp() {
+    return hp;
   }
-  public void setCc(int cc) {
-    this.cc = cc;
+  public void setHp(int hp) {
+    this.hp = hp;
   }
   public int getWeight() {
     return weight;

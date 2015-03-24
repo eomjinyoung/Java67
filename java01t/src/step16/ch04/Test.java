@@ -24,6 +24,40 @@ public class Test {
     car1.reduce();
     car1.reduce();
 
+    System.out.println("----------------------");
+    
+    VolvoTruck car2 = new VolvoTruck();
+    car2.setModel("볼보FH");
+    car2.setHp(540);
+    car2.load(0);
+    
+    car2.accelerate();
+    car2.accelerate();
+    car2.accelerate();
+    car2.stop();
+    
+    car2.load(60000);
+    car2.accelerate();
+    car2.accelerate();
+    car2.accelerate();
+    
+    car2.reduce();
+    car2.reduce();
+    car2.reduce();
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
