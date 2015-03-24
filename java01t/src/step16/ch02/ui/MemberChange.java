@@ -1,13 +1,18 @@
 package step16.ch02.ui;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 import step16.ch02.domain.User;
 
-//회원 변경 화면을 다루는 클래스 : Boundary
-public class MemberChange {
+//UIObject 상속 받기
 
-  public User execute(User user) {
+public class MemberChange extends UIObject {
+  @Override
+  public void execute(HashMap<String, Object> paramMap) {
+    // MemberControl이 넘겨준 User 객체 꺼내기
+    User user = (User) paramMap.get("user");
+    
     Scanner keyScan = new Scanner(System.in);
     
     //0) 사용자가 입력한 값을 저장할 User 인스턴스를 준비한다.
@@ -65,17 +70,24 @@ public class MemberChange {
     String response = keyScan.nextLine();
     
     //7) 답변이 y이면, 안내 문구와 더불어 멤버 정보를 리턴한다.
-    //8) 답변이 n이면, 안내 문구와 더불어 null을 리턴한다.
     if (response.equals("y")) {
       System.out.println("변경하였습니다.");
-      return changedUser;
-    } else {
-      System.out.println("변경을 취소하였습니다.");
-      return null;
+      paramMap.put("changedUser", changedUser);
     }
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

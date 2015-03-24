@@ -1,11 +1,14 @@
 package step16.ch02.ui;
 
+import java.util.HashMap;
+
 import step16.ch02.domain.User;
 
-//회원 상세 정보 화면을 다루는 클래스 : Boundary
-public class MemberDetail {
-
-  public void execute(User user) {
+//UIObject 상속 받기
+public class MemberDetail extends UIObject {
+  @Override
+  public void execute(HashMap<String, Object> paramMap) {
+    User user = (User) paramMap.get("user");
     System.out.printf("이름: %s\n", user.getName());
     System.out.printf("이메일: %s\n", user.getEmail());
     System.out.printf("전화: %s\n", user.getTel());

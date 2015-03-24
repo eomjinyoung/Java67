@@ -33,8 +33,7 @@ public class MemberControl {
   }
   
   public void init() {
-    memberInit.execute();
-    
+    memberInit.execute(null);
   }
 
   public void add() {
@@ -54,25 +53,56 @@ public class MemberControl {
 
   public void list() {
     ArrayList<User> users = memberDao.selectList();
-    memberList.execute(users);
+    
+    HashMap<String,Object> box = new HashMap<String,Object>();
+    box.put("users", users);
+
+    // MemberList.bak01 소스
+    // 안타깝게도 MemberList의 execute() 메서드를 오버라이딩 하지 않았다.
+    // 그래서 다음은 UIObject에서 상속 받은 메서드를 호출하는 것이다.
+    // 당연히 아무런 일도 하지 않을 것이다.
+    //
+    // 상속 받은 메서드를 반드시 오버라이딩 해야 하는데, 
+    // MemberList처럼 개발자가 실수로 오버라이딩 하지 않는 경우가 있다.
+    // 그래도 컴파일에는 문제가 없다. 단지 실행에서 원하는대로 동작이 안될 뿐....
+    // 
+    // MemberList.java 소스 
+    // => 서브 클래스가 수퍼 클래스의 특정 메서드를 반드시 오버라이딩 하게끔 강제시키는 방법
+    //    "추상 메서드"
+    memberList.execute(box);
   }
 
   public void detail(int no) {
     User user = memberDao.select(no);
-    memberDetail.execute(user);
+
+    HashMap<String,Object> box = new HashMap<String,Object>();
+    box.put("user", user);
+    memberDetail.execute(box);
   }
 
   public void delete(int no) {
-    boolean response = memberDelete.confirm();
+    HashMap<String,Object> box = new HashMap<String,Object>();
+    box.put("command", "confirm");
+    memberDelete.execute(box); // confirm() 메서드를 호출할 것이다.
+    
+    boolean response = (Boolean)box.get("response");
     if (response == true) {
       memberDao.delete(no);
-      memberDelete.execute();
+      box.put("command", "deleteResult");
+      memberDelete.execute(box); // deleteResult() 메서드를 호출할 것이다.
     }
   }
 
   public void change(int no) {
     User user = memberDao.select(no);
-    User changedUser = memberChange.execute(user);
+    
+    HashMap<String,Object> box = new HashMap<String,Object>();
+    box.put("user", user);
+    
+    memberChange.execute(box);
+    
+    User changedUser = (User) box.get("changedUser");
+    
     if (changedUser != null) {
       memberDao.update(no, changedUser);
     }

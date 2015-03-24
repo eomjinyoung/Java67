@@ -11,12 +11,9 @@ import step16.ch02.domain.User;
 //=> 그러나, 이것은 이 클래스를 사용하는 MemberControl과의 암묵적인 약속과는 다르다.
 //   결국 이 클래스를 사용하는 MemberControl은 원하는 결과를 얻을 수 없을 것이다.
 //
-//UIObject의 추상 메서드 오버라이딩 하기 
-//=> 오버라이딩 하지 않으면 컴파일 오류 발생 => 추상 메서드를 사용하는 이유!
+//UIObject의 추상 메서드 오버라이딩 하기 전
 public class MemberList extends UIObject {
-  @Override
-  public void execute(HashMap<String, Object> paramMap) {
-    ArrayList<User> users = (ArrayList<User>) paramMap.get("users");
+  public void execute(User[] users) {
     int index = 0;
     // for (Object Item : 배열 또는 컬렉셕 객체)
     //=> 컬렉션 객체라 함은 Collection 인터페이스(규칙)에 따라 작성된 클래스

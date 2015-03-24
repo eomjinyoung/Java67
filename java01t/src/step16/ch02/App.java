@@ -2,7 +2,7 @@ package step16.ch02;
 
 import java.util.Scanner;
 
-import step16.ch01.control.MemberControl;
+import step16.ch02.control.MemberControl;
 
 /* 상속 : 일반화(Generalization)
  * 1) Specialization(특수화)
@@ -29,6 +29,14 @@ import step16.ch01.control.MemberControl;
  *    MemberAdd나 MemberList와 같이 UI를 처리하는 클래스를 만들 때 상속받기 위한 용도.
  *    곧 UIObject 클래스를 추상 클래스로 선언하는 것이 적합하다.
  * 
+ * 추상 메서드
+ * => 어떤 메서드는 이름이나 파라미터, 리턴 타입을 통일시키기 위해 수퍼 클래스에서 정의는 하지만,
+ *    실제적인 구현은 서브 클래스에서 해야 할 경우가 있다. 
+ *    이런 경우 수퍼 클래스에서 메서드를 구현해봐야 의미없다. 
+ *    서브 클래스에서 재정의할 것이기 때문이다.
+ * => 또는 수퍼 클래스의 특정 메서드를 서브 클래스에서 반드시 재정의하도록 강제해야 할 때가 있다.
+ * => 추상 메서드를 구현하지 않으면 서브 클래스는 추상 클래스가 되어야 한다.
+ *    인스턴스를 생성하여 사용할 수 없다.
  */
 
 public class App {
