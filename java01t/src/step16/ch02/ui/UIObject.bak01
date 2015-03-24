@@ -1,0 +1,7 @@
+package step16.ch02.ui;
+
+import java.util.HashMap;
+//추상 클래스 적용 전
+public class UIObject {
+  void execute(HashMap paramMap) {}
+}
