@@ -1,5 +1,7 @@
 package step16.ch01.control;
 
+import java.util.ArrayList;
+
 import step16.ch01.dao.MemberDao;
 import step16.ch01.domain.User;
 import step16.ch01.ui.MemberAdd;
@@ -43,7 +45,7 @@ public class MemberControl {
   }
 
   public void list() {
-    User[] users = memberDao.selectList();
+    ArrayList<User> users = memberDao.selectList();
     memberList.execute(users);
   }
 

@@ -1,37 +1,32 @@
 package step16.ch01.dao;
 
+import java.util.ArrayList;
+
 import step16.ch01.domain.User;
 
-//회원 데이터를 다루는 클래스 : Entity
+//자바 컬렉션 API 적용
+//=> ArrayList를 사용하여 사용자 목록을 다룬다.
 public class MemberDao {
-  User[] users = new User[100];
-  int length;
+  ArrayList<User> users = new ArrayList<User>();
   
   public void insert(final User user) {
-    users[length++] = user;
+    users.add(user);
   }
 
-  public User[] selectList() {
-    User[] temp = new User[length];
-    for (int i = 0; i < length; i++) {
-      temp[i] = users[i];
-    }
-    return temp;
+  public ArrayList<User> selectList() {
+    return users;
   }
 
   public User select(int no) {
-    return users[no];
+    return users.get(no);
   }
 
   public void delete(int no) {
-    length--;
-    for (int i = no; i < length; i++) {
-      users[i] = users[i + 1];
-    }
+    users.remove(no);
   }
 
   public void update(int no, User changedUser) {
-    users[no] = changedUser;
+    users.set(no,  changedUser);
   }
 
 }

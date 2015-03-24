@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 import step16.ch01.control.MemberControl;
 
+/* MemberDao에 자바 Collection API를 적용하기
+ * 
+ */
+
 public class App {
 
   public static void main(String[] args) {
