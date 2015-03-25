@@ -12,6 +12,9 @@ public class Test3 {
     void charge();
     void dashboard();
     void flush();
+    //int destory(); // Car의 메서드와 구분할 수 없다. 만약 하위 인터페이스에서 
+                   // Battery와 Car를 모두 상속 받으려 한다면 컴파일 오류가 발생할 것이다.
+   
   }
   
   static interface Car {
@@ -20,6 +23,7 @@ public class Test3 {
     void stop();
     void dashboard();
     void flush(int level); // Battery의 flush()와 다르다. 형식이 다르기 때문!
+    //float destory(); // Battery의 메서드와 구분할 수 없다.
   }
   
   // 인터페이스의 다중 상속!
