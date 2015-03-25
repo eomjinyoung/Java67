@@ -1,11 +1,7 @@
 package step17.ex1.domain;
 
 //복합 자료형 정의
-//=> 생성자 추가: CSV 문자열을 가지고 User 인스턴스 초기화.
-//   User(String csv)
-//=> CSV 문자열 출력 메서드 추가: User 인스턴스의 정보를 가지고 CSV 문자열을 생성.
-//   toCSV() 
-public class User {
+public class User01 {
   protected int no;
   protected String name;
   protected String email;
@@ -19,13 +15,9 @@ public class User {
         + tel + ", homepage=" + homepage + ", twitter=" + twitter + "]";
   }
 
-  public String toCSV() {
-    return name + "," + email + "," + tel + "," + homepage + "," + twitter;
-  }
+  public User01() {}
   
-  public User() {}
-  
-  public User(int no, String name, String email, String tel,
+  public User01(int no, String name, String email, String tel,
       String homepage, String twitter) {
     this.no = no;
     this.name = name;
@@ -33,16 +25,6 @@ public class User {
     this.tel = tel;
     this.homepage = homepage;
     this.twitter = twitter;
-  }
-  
-  public User(String csv) {
-    String[] attrs = csv.split(",");
-    this.no = 0;
-    this.name = attrs[0];
-    this.email = attrs[1];
-    this.tel = attrs[2];
-    this.homepage = attrs[3];
-    this.twitter = attrs[4];
   }
 
   public int getNo() {
