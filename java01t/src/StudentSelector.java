@@ -14,7 +14,7 @@ public class StudentSelector {
       System.out.print(".");
       Thread.sleep(200);
     }
-    Thread.sleep(2000);
+    Thread.sleep(60000);
     System.out.println(students[no]);
 
   }
