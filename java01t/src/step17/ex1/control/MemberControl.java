@@ -1,5 +1,7 @@
 package step17.ex1.control;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +14,10 @@ import step17.ex1.ui.MemberDetail;
 import step17.ex1.ui.MemberInit;
 import step17.ex1.ui.MemberList;
 
-//회원 CRUD 작업을 제어하는 클래스: Control
+//데이터 저장과 읽기를 수행하는 메서드 추가
+//=> save() : 데이터 저장
+//=> load() : 데이터 읽기
+//
 public class MemberControl {
   MemberDao memberDao;
   MemberInit memberInit;
@@ -32,7 +37,24 @@ public class MemberControl {
     memberChange = new MemberChange();
   }
   
+  public void save(File file) throws IOException {
+    memberDao.save(file);
+  }
+  
+  public void load(File file) throws IOException {
+    memberDao.load(file);
+  }
+  
   public void init() {
+    // 프로젝트 폴더를 가리킨다.
+    File file = new File("members.csv");
+
+    try {
+      load(file);
+    } catch (IOException e) {
+      System.out.println("데이터 로딩 중 오류 발생!");
+    }
+    
     memberInit.execute(null);
   }
 
@@ -105,6 +127,17 @@ public class MemberControl {
     
     if (changedUser != null) {
       memberDao.update(no, changedUser);
+    }
+  }
+
+  public void destroy() {
+    // 프로젝트 폴더를 가리킨다.
+    File file = new File("members.csv");
+    
+    try {
+      memberDao.save(file);
+    } catch (IOException e) {
+      System.out.println("파일 저장 중 오류 발생!");
     }
   }
 
