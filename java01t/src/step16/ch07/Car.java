@@ -1,11 +1,8 @@
-package step16.ch05;
+package step16.ch07;
 
-// 상속:일반화를 통해 뽑은 클래스
-// - Tico와 VolvoTruck의 공통 속성과 메서드를 추출하여 정의하였다.
-// 클래스 용어 정리
-// 1) concrete class: 인스턴스 생성 가능
-// 2) abstract class: 인스턴스 생성 불가!
-public class Car {
+// 이 클래스를 직접 사용하지 못하게 만든다.
+// => 추상 클래스로 선언한다.
+public abstract class Car {
   protected String model;
   protected int speed;
 
@@ -17,16 +14,13 @@ public class Car {
     System.out.printf("속도: %dkm/h\n", this.speed);
   }
   
-  public void accelerate() {
-    if (speed < 150)
-      speed += 10;
-    dashboard();
-  }
+  //서브 클래스에서 자신의 차종에 맞게끔 재정의해야 한다.
+  //=> 추상 메서드로 선언한다.
+  public abstract void accelerate();
 
   public void reduce() {
     if (speed > 0) 
       speed -= 10;
-    dashboard();
   }
 
   public void stop() {
