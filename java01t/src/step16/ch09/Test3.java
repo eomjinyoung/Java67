@@ -2,10 +2,16 @@ package step16.ch09;
 
 // 실습 목표: 다중 인터페이스 상속 받기, 다중 인터페이스 구현하기
 // => 인터페이스는 클래스와 달리 여러 개의 인터페이스를 상속 받을 수 있다.
+//
+// 용어 정리
+// 메서드의 형식 => 리턴타입, 메서드명, 파라미터 타입을 가리킴 
+// => 자바 언어: "method signature"
+// => C 언어: "function prototype" 
 public class Test3 {
   static interface Battery {
     void charge();
     void dashboard();
+    void flush();
   }
   
   static interface Car {
@@ -13,6 +19,7 @@ public class Test3 {
     void reduce();
     void stop();
     void dashboard();
+    void flush(int level); // Battery의 flush()와 다르다. 형식이 다르기 때문!
   }
   
   // 인터페이스의 다중 상속!
@@ -44,6 +51,8 @@ public class Test3 {
     @Override public void stop() {} // Car의 규칙
     @Override public void charge() {} // Battery 규칙
     @Override public void dashboard() {} // Battery 규칙, Car 규칙
+    @Override public void flush(int level) {}
+    @Override public void flush() {}
   }
 }
 
