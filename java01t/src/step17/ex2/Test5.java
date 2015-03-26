@@ -2,7 +2,7 @@ package step17.ex2;
 
 import java.io.File;
 
-// 실습 목표: 현재 디렉토의 모든 파일 및 디렉토리 정보를 출력하기 
+// 실습 목표: 재귀 호출을 통해 현재 디렉토의 모든 파일 및 디렉토리 정보를 출력하기 
 // - 하위 디렉토리 모두 포함.
 public class Test5 {
 
@@ -18,8 +18,15 @@ public class Test5 {
     printFileInfo(file);
   }
 
-  private static void printFileInfo(File file) {
+  private static void printFileInfo(File file) throws Exception {
+    System.out.println(file.getCanonicalPath());
     
+    if (file.isDirectory()) {
+      File[] subFiles = file.listFiles();
+      for (File temp : subFiles) {
+        printFileInfo(temp);
+      }
+    }
   }
 
 }
