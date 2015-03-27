@@ -1,5 +1,6 @@
 package step17.ex5;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 
 // 실습 목표: 버퍼 기능을 수행하는 데이터 프로세싱 스트림 클래스(데코레이터) 사용하기
@@ -26,12 +27,13 @@ public class Test2 {
     // PDF는 바이너리 파일이다. 왜? 기본 텍스트 편집기(메모장, vi)로 변경할 수 없다.
     FileInputStream in = new FileInputStream("temp/jls8.pdf");
     int b = 0;
+    int count = 0;
     long startTime = System.currentTimeMillis();
     while ((b = in.read()) != -1) {
-      // 계속 읽는다.
+      count++;
     }
     long endTime = System.currentTimeMillis();
-    System.out.printf("경과시간: %d 밀리초\n", endTime - startTime);
+    System.out.printf("경과시간: %d 밀리초, %d\n", endTime - startTime, count);
     in.close();
   }
   
@@ -40,22 +42,41 @@ public class Test2 {
     FileInputStream in = new FileInputStream("temp/jls8.pdf");
     byte[] buf = new byte[4096];
     int len = 0;
+    int count = 0;
     long startTime = System.currentTimeMillis();
     while ((len = in.read(buf)) != -1) {
-      // 계속 읽는다.
+      count++;
     }
     long endTime = System.currentTimeMillis();
-    System.out.printf("경과시간: %d 밀리초\n", endTime - startTime);
+    System.out.printf("경과시간: %d 밀리초, %d\n", endTime - startTime, count);
+    in.close();
+  }
+  
+  public static void testWithDecorator() throws Exception {
+    // 버퍼 사용 후 : BufferedInputStream 도입
+    FileInputStream in = new FileInputStream("temp/jls8.pdf");
+    BufferedInputStream in2 = new BufferedInputStream(in);
+    int b = 0;
+    int count = 0;
+    long startTime = System.currentTimeMillis();
+    while ((b = in2.read()) != -1) {
+      count++;
+    }
+    long endTime = System.currentTimeMillis();
+    System.out.printf("경과시간: %d 밀리초, %d\n", endTime - startTime, count);
+    in2.close();
     in.close();
   }
 
   public static void main(String[] args) throws Exception {
+    System.out.print("버퍼 사용 전: ");
+    testWithoutBuffer();
+
     System.out.print("버퍼 사용 후: ");
     testWithBuffer();
 
-    System.out.print("버퍼 사용 전: ");
-    testWithoutBuffer();
-    
+    System.out.print("버퍼 사용 후: BufferedInputStream 사용!");
+    testWithDecorator();
     
   }
 
