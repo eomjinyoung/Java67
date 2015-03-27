@@ -33,7 +33,7 @@ public class MemberDao {
       out.writeUTF(user.getTel());
       out.writeUTF(user.getHomepage());
       out.writeUTF(user.getTwitter());
-    }
+    } 
     
     out.close();
   }
