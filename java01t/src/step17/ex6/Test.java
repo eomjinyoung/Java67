@@ -10,7 +10,9 @@ import java.io.FileOutputStream;
 // 실습 목표: ObjectOutputStream/ObjectInputStream 사용하기
 // => 인스턴스의 내용을 출력하기
 //
-// 1단계: DataOutputStream/DataInputStream을 사용하여 출력하기
+// 1단계: DataOutputStream/DataInputStream을 사용하여 입출력하기
+// => 인스턴스를 출력할 때 마다 각 변수의 값을 꺼내서 출력하게 되니
+//    무척 번거롭다. => ex7 패키지에서 해결!
 public class Test {
   static void writeScore() throws Exception {
     Score[] scores = {

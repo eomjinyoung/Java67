@@ -12,6 +12,12 @@ import java.io.ObjectOutputStream;
 //
 // 2단계: ObjectOutputStream/ObjectInputStream을 사용하여 입출력하기
 // => writeObject() 메서드가 있다.^^
+// 
+// 용어 정리!
+// Serialization(직렬화, 바이트 배열화)
+// Serialize: 인스턴스 값을 바이트 배열로 출력하라 : marshaling
+// Deserialize : 바이트 배열의 값을 인스턴스로 생성하라 : unmarshaling
+//
 public class Test {
   static void writeScore() throws Exception {
     Score[] scores = {
