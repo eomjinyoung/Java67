@@ -7,7 +7,7 @@ public class StudentSelector {
         "김규현","김희인","이혜인","박정민",
         "장인순","우인규","김범준","정준호","김일권",
         "정병근","이서준"};
-    int no = 0;
+    int no = 0; 
     
     for (int i = 0; i < 10; i++) {
       no = (int)(Math.random() * 21);
