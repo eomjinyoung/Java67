@@ -34,7 +34,7 @@ CREATE TABLE test2 (
 INSERT INTO test2(tno, title, writer) VALUES(1, 'aaaa', 'hong');
 INSERT INTO test2(tno, title, writer) VALUES(2, 'bbbb', 'hong');
 INSERT INTO test2(tno, title, writer) VALUES(3, 'cccc', 'hong');
-
+ 
 /* 3. 데이터 조회하기
  * SELECT 컬럼명, 컬럼명, ... FROM 테이블명;
  * 
