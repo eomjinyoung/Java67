@@ -31,7 +31,9 @@ CREATE TABLE test2 (
  * 
  * 예1)
  */ 
-INSERT INTO TEST2(
+INSERT INTO test2(tno, title, writer) VALUES(1, 'aaaa', 'hong');
+INSERT INTO test2(tno, title, writer) VALUES(2, 'bbbb', 'hong');
+INSERT INTO test2(tno, title, writer) VALUES(3, 'cccc', 'hong');
  
 
 
