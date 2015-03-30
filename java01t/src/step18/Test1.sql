@@ -1,5 +1,3 @@
-package step18;
-
 /* 1. MySQL 서버 접속
  * 
  * > mysql -u 사용자ID -p
@@ -33,10 +31,3 @@ package step18;
  * > quit;
  * 
  */
-
-
-public class Test1 {
-
-  public static void main(String[] args) {}
-
-}
