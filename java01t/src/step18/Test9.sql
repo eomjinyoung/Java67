@@ -115,18 +115,120 @@ SELECT NAME
 FROM TRAINERS
 WHERE NAME LIKE '_길_';
 
+-- 날짜 다루기
+SELECT TITLE, ST_DATE, ED_DATE
+FROM LECTURES;
 
 
+SELECT TITLE, ST_DATE, ED_DATE
+FROM LECTURES
+WHERE ST_DATE = '2015-01-02';
+
+-- 0을 생략해도 된다.
+SELECT TITLE, ST_DATE, ED_DATE
+FROM LECTURES
+WHERE ST_DATE = '2015-1-2';
 
 
+-- BETWEEN A AND B
+SELECT TITLE, ST_DATE, ED_DATE
+FROM LECTURES
+WHERE ST_DATE BETWEEN '2015-2-1' AND '2015-3-15';
+
+SELECT TITLE, ST_DATE, ED_DATE
+FROM LECTURES
+WHERE ST_DATE >= '2015-2-1' AND ST_DATE <= '2015-3-15';
+
+-- IN : 자바, C, C++ 중 하나 이상을 강의하는 강사를 찾아라.
+SELECT TNO
+FROM SUB_TRAI
+WHERE SNO = 1 || SNO = 2 || SNO = 3;
+
+-- 오라클에서 || 연산자는 문자열을 연결하는 일을 한다.
+-- 가능한 OR 를 사용하라!
+SELECT TNO
+FROM SUB_TRAI
+WHERE SNO = 1 OR SNO = 2 OR SNO = 3;
+
+SELECT DISTINCT TNO
+FROM SUB_TRAI
+WHERE SNO = 1 OR SNO = 2 OR SNO = 3;
 
 
+SELECT DISTINCT TNO
+FROM SUB_TRAI
+WHERE SNO IN (1, 2, 3);
+
+-- 서브쿼리를 이용한 강사 이름 출력하기
+SELECT DISTINCT (SELECT NAME FROM TRAINERS T2 WHERE T2.TNO = T1.TNO)
+FROM SUB_TRAI T1
+WHERE SNO IN (1, 2, 3);
+
+-- 출력하는 값의 컬럼 제목이 너무 길다. => 줄인다 => 별명 사용!
+SELECT DISTINCT (SELECT NAME 
+                 FROM TRAINERS T2 
+                 WHERE T2.TNO = T1.TNO) AS '강사명'
+FROM SUB_TRAI T1
+WHERE SNO IN (1, 2, 3);
 
 
+-- 과목의 번호를 직접 기입하는 방식은 코드 해석을 어렵게 한다.
+SELECT DISTINCT (SELECT NAME 
+                 FROM TRAINERS T2 
+                 WHERE T2.TNO = T1.TNO) AS '강사명'
+FROM SUB_TRAI T1
+WHERE SNO IN (SELECT SNO 
+              FROM SUBJECTS 
+              WHERE TITLE IN ('HTML5','아두이노'));
 
 
+/* [UNION(합집합 연산자)]
+ * - SELECT 결과를 합치기 
+ */
+SELECT DISTINCT (SELECT NAME 
+                 FROM TRAINERS T2 
+                 WHERE T2.TNO = T1.TNO) AS '강사명'
+FROM SUB_TRAI T1
+WHERE SNO = 1 
+/* 결과: 홍길동 유관순 안중근 윤봉길 */
+UNION
+
+SELECT DISTINCT (SELECT NAME 
+                 FROM TRAINERS T2 
+                 WHERE T2.TNO = T1.TNO) AS '강사명'
+FROM SUB_TRAI T1
+WHERE SNO = 2;
+/* 결과: 홍길동 안중근 */
+/* 합집합 결과: 홍길동 유관순 안중근 윤봉길 => 집합은 데이터 중복을 허용하지 않는다! */
 
 
+/* UNION ALL : 합집합을 수행할 때 중복 데이터를 제거하지 않는다. */
+SELECT DISTINCT (SELECT NAME 
+                 FROM TRAINERS T2 
+                 WHERE T2.TNO = T1.TNO) AS '강사명'
+FROM SUB_TRAI T1
+WHERE SNO = 1 
+/* 결과: 홍길동 유관순 안중근 윤봉길 */
+UNION ALL
+
+SELECT DISTINCT (SELECT NAME 
+                 FROM TRAINERS T2 
+                 WHERE T2.TNO = T1.TNO) AS '강사명'
+FROM SUB_TRAI T1
+WHERE SNO = 2;
+/* 결과: 홍길동 안중근 */
+/* 합집합 결과: 홍길동 유관순 안중근 윤봉길 홍길동 안중근 => 중복 데이터 허용! */
+
+/* 용어 정리!
+ * Selection : WHERE 절을 통해 특정 조건을 갖는 행을 추출하는 것.
+ * Projection : SELECT 절을 통해 추출된 행 중에서 특정 컬럼의 값만 선택하는 것.
+ */
+SELECT NAME 
+FROM LECTURES 
+WHERE TITLE = '[자바%';
+/* Selection: 강의 명이 '[자바'로 시작하는 강의를 모두 추출한다.
+ * Projection : 추출된 결과에서 NAME 컬럼의 값만 선택한다.
+ */
 
 
 
