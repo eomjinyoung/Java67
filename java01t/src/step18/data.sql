@@ -112,6 +112,33 @@ UPDATE LECTURES SET CNO=5 WHERE LNO=2;
 /* [윈도우50]강의 : 종로 2호 */
 UPDATE LECTURES SET CNO=12 WHERE LNO=4;
 
+/* 매니저 데이터 */
+INSERT INTO MANAGERS(NAME,EMAIL,PWD,PHOTO)
+VALUES('이은주','lee@bit','1111','leebit.gif');
+
+INSERT INTO MANAGERS(NAME,EMAIL,PWD,PHOTO)
+VALUES('김용','kim@bit','1111','kimbit.gif');
+
+INSERT INTO MANAGERS(NAME,EMAIL,PWD,PHOTO)
+VALUES('장현진','jang@bit','1111','jangbit.gif');
+
+INSERT INTO MANAGERS(NAME,EMAIL,PWD,PHOTO)
+VALUES('권도혁','kwon@bit','1111','kwonbit.gif');
+
+INSERT INTO MANAGERS(NAME,EMAIL,PWD,PHOTO)
+VALUES('최종진','choi@bit','1111','choibit.gif');
+
+
+/* 강의에 매니저 배정 */
+UPDATE LECTURES SET MNO = 1 WHERE LNO = 1;
+UPDATE LECTURES SET MNO = 2 WHERE LNO = 2;
+UPDATE LECTURES SET MNO = 1 WHERE LNO = 4;
+
+
+
+
+
+
 
 
 
