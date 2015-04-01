@@ -1,23 +1,3 @@
-/* SELECT 문 사용
- * => 테이블의 데이터를 조회하는 명령. 
- */
-
--- 1) SELECT 컬럼명, 컬럼명, ... FROM 테이블명;
-SELECT title, content
-FROM board2;
-
--- 2) WHERE : 조회할 행에 대해 제한을 가함. 
--- 실행 순서: 
---  => board2 테이블을 선택한다. 
---  => WHERE 조건에 해당하는 행(레코드)을 결정한다.
---  => 결정된 행에서 SELECT에 지정된 컬럼 값을 꺼낸다.
-SELECT title, content
-FROM board2
-WHERE bno > 3 AND bno < 7;
-
-
-/* 복잡한 SELECT를 실습하기 위한 테이블 준비! */
-
 /* DB 모델링
  * => 모델링? 생각을 글과 그림으로 표현한 것.
  * => DB 모델링? 데이터와 데이터 간의 관계를 글과 그림으로 표현한 것.
