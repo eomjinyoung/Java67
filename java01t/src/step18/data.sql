@@ -106,7 +106,7 @@ INSERT INTO CR_PHOTO(PHOTO,CNO) VALUES('j004.gif',14);
 /* [자바70]강의 : 강남 301 */
 UPDATE LECTURES SET CNO=1 WHERE LNO=1;
 
-/* [자바71]강의 : 강남 503 */
+/* [자바71]강의 : 강남 403 */
 UPDATE LECTURES SET CNO=5 WHERE LNO=2;
 
 /* [윈도우50]강의 : 종로 2호 */
