@@ -37,7 +37,9 @@ public class T06_Statement_executeUpdate {
       // 세 번째 파라미터: 암호
       // 리턴 값: java.sql.Connection 구현체 
       Connection con = DriverManager.getConnection(
-          "jdbc:mysql://localhost:3306/java67db", /* DBMS 서버의 주소 및 데이터베이스 연결 정보 */  
+          //한글 깨지는 경우 다음과 같이 JDBC URL 뒤에 문자 집합에 대한 옵션을 추가한다.
+          //"jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8", 
+          "jdbc:mysql://localhost:3306/java67db", /* DBMS 서버의 주소 및 데이터베이스 연결 정보 */
           "java67", /* 로그인 아이디 */
           "java67"); /* 암호 */
       System.out.println("DBMS 접속 완료!");
