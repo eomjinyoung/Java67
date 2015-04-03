@@ -21,22 +21,18 @@ public class T10_delete {
           "java67");
       
       stmt = con.prepareStatement(
-          "UPDATE CLASSROOMS SET LOC = ?, ROOM = ? WHERE CNO = ?");
+          "DELETE FROM CLASSROOMS WHERE CNO = ?");
       
-      int no = 15;
-      String loc = "강릉";
-      String room = "401";
+      int no = 14;
       
-      stmt.setString(1, loc);
-      stmt.setString(2, room);
-      stmt.setInt(3, no);
+      stmt.setInt(1, no);
       
       int count = stmt.executeUpdate();
       
       if (count == 1) {
-        System.out.println("변경하였습니다.");
+        System.out.println("삭제하였습니다.");
       } else {
-        System.out.println("변경 실패입니다!");
+        System.out.println("삭제 실패입니다!");
       }
           
     } catch (SQLException e) {
