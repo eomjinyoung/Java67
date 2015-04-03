@@ -27,28 +27,33 @@ public class App {
       command = keyScan.nextLine();
       String[] token = command.split(" ");
       
-      switch (token[0]) {
-      case "add":
-        memberControl.add();
-        break;
-      case "list":
-        memberControl.list();
-        break;
-      case "detail":
-        memberControl.detail( Integer.parseInt( token[1] ) );
-        break;
-      case "delete":
-        memberControl.delete(Integer.parseInt(token[1]));
-        break;
-      case "change":
-        memberControl.change(Integer.parseInt(token[1]));
-        break; 
-      case "quit":
-        memberControl.destroy();
-        System.out.println("안녕히 가십시오.");
-        break;
-      default:
-        System.out.println("존재하지 않는 명령어입니다.");
+      try {
+        switch (token[0]) {
+        case "add":
+          memberControl.add();
+          break;
+        case "list":
+          memberControl.list();
+          break;
+        case "detail":
+          memberControl.detail( Integer.parseInt( token[1] ) );
+          break;
+        case "delete":
+          memberControl.delete(Integer.parseInt(token[1]));
+          break;
+        case "change":
+          memberControl.change(Integer.parseInt(token[1]));
+          break; 
+        case "quit":
+          memberControl.destroy();
+          System.out.println("안녕히 가십시오.");
+          break;
+        default:
+          System.out.println("존재하지 않는 명령어입니다.");
+        }
+      } catch (Exception e) {
+        System.out.println("오류 발생!");
+        System.out.println(e.getMessage());
       }
       
     //4)명령어에 따라 MemberControl을 실행한다.
