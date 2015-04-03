@@ -49,6 +49,9 @@ public class T08_ResultSet {
       
       // SELECT 문 실행하기
       // 리턴 값: DBMS에서 결과를 가져올 때 사용할 접근 정보
+      // 착각하지 말 것: SELECT를 실행한 결과를 리턴한 것이 아니다.
+      //              곧 SELECT한 결과를 ResultSet이 모두 갖고 있을 것이라 오해한다.
+      //              => 아니다! 결과를 가져올 준비를 한 것이다.
       rs = stmt.executeQuery(
           "SELECT CNO,LOC,ROOM FROM CLASSROOMS");
       
