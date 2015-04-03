@@ -1,7 +1,5 @@
 package step19.ex2.control;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,25 +35,12 @@ public class MemberControl {
     memberChange = new MemberChange();
   }
   
-  public void save(File file) throws IOException {
-    memberDao.save(file);
-  }
-  
-  public void load(File file) throws IOException {
-    memberDao.load(file);
-  }
-  
   public void init() {
-    // 프로젝트 폴더를 가리킨다.
-    File file = new File("members.csv");
-
-    try {
-      load(file);
-    } catch (IOException e) {
-      System.out.println("데이터 로딩 중 오류 발생!");
-    }
-    
-    memberInit.execute(null);
+    //특별히 초기화할 일이 없다. 당분간 비워둔다.
+  }
+  
+  public void destroy() {
+    //특별히 마무리할 일이 없다. 당분간 비워둔다.
   }
 
   public void add() {
@@ -130,16 +115,6 @@ public class MemberControl {
     }
   }
 
-  public void destroy() {
-    // 프로젝트 폴더를 가리킨다.
-    File file = new File("members.csv");
-    
-    try {
-      memberDao.save(file);
-    } catch (IOException e) {
-      System.out.println("파일 저장 중 오류 발생!");
-    }
-  }
 
 }
 

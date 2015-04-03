@@ -1,10 +1,5 @@
 package step19.ex2.domain;
 
-//복합 자료형 정의
-//=> 생성자 추가: CSV 문자열을 가지고 User 인스턴스 초기화.
-//   User(String csv)
-//=> CSV 문자열 출력 메서드 추가: User 인스턴스의 정보를 가지고 CSV 문자열을 생성.
-//   toCSV() 
 public class User {
   protected int no;
   protected String name;
