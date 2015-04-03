@@ -20,6 +20,12 @@ import java.sql.Statement;
  *       insert된 레코드 개수이다. update된 레코드 개수이다. 
  *       delete된 레코드 개수이다. 
  *       
+ * SQL 실행 메서드
+ * 1) executeUpdate() : INSERT, UPDATE, DELETE, CREATE, DROP, ...
+ * 2) executeQuery() : SELECT
+ * 3) execute() : 모두 
+ * 4) executeBatch() : 여러 개의 SQL을 한 번에 실행할 때.      
+ *       
  */
 public class T06_Statement_executeUpdate {
 
