@@ -9,6 +9,12 @@ public class MemberDetail implements UIObject {
   @Override
   public void execute(HashMap<String, Object> paramMap) {
     User user = (User) paramMap.get("user");
+    
+    if (user == null) {
+      System.out.println("해당 번호의 사용자를 찾을 수 없습니다.");
+      return;
+    }
+    
     System.out.printf("이름: %s\n", user.getName());
     System.out.printf("이메일: %s\n", user.getEmail());
     System.out.printf("전화: %s\n", user.getTel());
