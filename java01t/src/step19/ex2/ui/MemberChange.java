@@ -10,6 +10,33 @@ import step19.ex2.domain.User;
 public class MemberChange implements UIObject {
   @Override
   public void execute(HashMap<String, Object> paramMap) {
+    String command = (String) paramMap.get("command");
+    switch (command) {
+    case "form":
+      form(paramMap);
+      break;
+    case "successMessage":
+      successMessage();
+      break;
+    case "failMessage":
+      failMessage();
+      break;
+    }
+  }
+  
+  private void failMessage() {
+    System.out.println("해당 번호의 사용자를 찾을 수 없습니다.");
+    System.out.println();
+    
+  }
+
+  private void successMessage() {
+    System.out.println("사용자 정보를 변경하였습니다.");
+    System.out.println();
+    
+  }
+
+  public void form(HashMap<String, Object> paramMap) {
     // MemberControl이 넘겨준 User 객체 꺼내기
     User user = (User) paramMap.get("user");
     
@@ -17,6 +44,8 @@ public class MemberChange implements UIObject {
     
     //0) 사용자가 입력한 값을 저장할 User 인스턴스를 준비한다.
     User changedUser = new User();
+    changedUser.setNo(user.getNo());
+    
     String inputValue = null; //사용자가 입력한 값을 담을 변수
     
     //1) "이름: " 출력하고, 사용자로부터 이름을 입력 받는다.
@@ -71,7 +100,6 @@ public class MemberChange implements UIObject {
     
     //7) 답변이 y이면, 안내 문구와 더불어 멤버 정보를 리턴한다.
     if (response.equals("y")) {
-      System.out.println("변경하였습니다.");
       paramMap.put("changedUser", changedUser);
     }
   }

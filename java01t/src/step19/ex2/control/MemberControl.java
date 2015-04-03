@@ -94,8 +94,11 @@ public class MemberControl {
     
     boolean response = (Boolean)box.get("response");
     if (response == true) {
-      memberDao.delete(no);
-      box.put("command", "deleteResult");
+      if (memberDao.delete(no) == 1) {
+        box.put("command", "deleteResult");
+      } else {
+        box.put("command", "deleteFail");
+      }
       memberDelete.execute(box); // deleteResult() 메서드를 호출할 것이다.
     }
   }
@@ -104,14 +107,28 @@ public class MemberControl {
     User user = memberDao.select(no);
     
     HashMap<String,Object> box = new HashMap<String,Object>();
+    
+    if (user == null) {
+      box.put("command", "failMessage");
+      memberChange.execute(box);
+      return;
+    } 
+    
     box.put("user", user);
+    box.put("command", "form");
     
     memberChange.execute(box);
     
     User changedUser = (User) box.get("changedUser");
     
     if (changedUser != null) {
-      memberDao.update(no, changedUser);
+      box = new HashMap<String,Object>();
+      if (memberDao.update(changedUser) == 1) {
+        box.put("command", "successMessage");
+      } else {
+        box.put("command", "failMessage");
+      }
+      memberChange.execute(box);
     }
   }
 

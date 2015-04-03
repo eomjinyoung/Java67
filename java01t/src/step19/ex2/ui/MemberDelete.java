@@ -15,7 +15,16 @@ public class MemberDelete implements UIObject {
     case "deleteResult":
       deleteResult();
       break;
+    case "deleteFail":
+      deleteFail();
+      break;
     }
+  }
+
+  private void deleteFail() {
+    System.out.println("해당 번호의 회원을 찾을 수 없습니다.");
+    System.out.println();
+    
   }
 
   //다음 메서드처럼 내부에서만 사용되는 메서드라면, private으로 접근을 제한해야 한다.

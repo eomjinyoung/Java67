@@ -127,10 +127,61 @@ public class MemberDao {
     }
   }
 
-  public void delete(int no) {
+  public int delete(int no) {
+    Connection con = null;
+    PreparedStatement stmt = null;
+
+    try {
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mysql://localhost:3306/java67db?useUnicode=true&characterEncoding=utf8", 
+          "java67", 
+          "java67");
+
+      stmt = con.prepareStatement(
+          "DELETE FROM USERS WHERE UNO = ?");
+      stmt.setInt(1, no);
+      return stmt.executeUpdate();
+      
+    }catch (SQLException e) {
+      throw new DaoException(e); 
+
+    } finally {
+      try {stmt.close();} catch (Exception e) {}
+      try {con.close();} catch (Exception e) {}
+    }
   }
 
-  public void update(int no, User changedUser) {
+  public int update(User user) {
+    Connection con = null;
+    PreparedStatement stmt = null;
+
+    try {
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mysql://localhost:3306/java67db?useUnicode=true&characterEncoding=utf8", 
+          "java67", 
+          "java67");
+      stmt = con.prepareStatement(
+          "UPDATE USERS SET NAME = ?, EMAIL = ?, TEL = ?, HP = ?, TWIT = ?"
+          + " WHERE UNO = ?");
+      stmt.setString(1, user.getName());
+      stmt.setString(2, user.getEmail());
+      stmt.setString(3, user.getTel());
+      stmt.setString(4, user.getHomepage());
+      stmt.setString(5, user.getTwitter());
+      stmt.setInt(6, user.getNo());
+      
+      return stmt.executeUpdate();
+      
+    }catch (SQLException e) {
+      throw new DaoException(e); 
+
+    } finally {
+      try {stmt.close();} catch (Exception e) {}
+      try {con.close();} catch (Exception e) {}
+    }
+    
   }
 
 }
