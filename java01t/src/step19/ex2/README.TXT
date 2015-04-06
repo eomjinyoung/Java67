@@ -17,13 +17,13 @@ ALTER TABLE USERS
 
 2. 실습 순서
 1) 1단계: 메서드 당 1개의 Connection
-   => MemberDao01, MemberControl01
+   => MemberDao.01, MemberControl.01
 
 2) 2단계: Dao 당 1개의 Connection
-   => MemberDao02, MemberControl02
+   => MemberDao.02, MemberControl.02
    
 3) 3단계: DB 커넥션풀 도입
-   => util/DBConnectionPool, MemberDao03, 
+   => util/DBConnectionPool, MemberDao, MemberControl
 
 
 

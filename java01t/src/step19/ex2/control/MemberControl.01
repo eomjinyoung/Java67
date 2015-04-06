@@ -16,7 +16,7 @@ import step19.ex2.ui.MemberList;
 //=> save() : 데이터 저장
 //=> load() : 데이터 읽기
 //
-public class MemberControl01 {
+public class MemberControl {
   MemberDao memberDao;
   MemberInit memberInit;
   MemberAdd memberAdd;
@@ -25,7 +25,7 @@ public class MemberControl01 {
   MemberDelete memberDelete;
   MemberChange memberChange;
   
-  public MemberControl01() {
+  public MemberControl() {
     memberDao = new MemberDao();
     memberInit = new MemberInit();
     memberAdd = new MemberAdd();

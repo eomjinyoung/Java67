@@ -1,6 +1,7 @@
 package step19.ex2.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,27 +10,20 @@ import java.util.ArrayList;
 
 import step19.ex2.DaoException;
 import step19.ex2.domain.User;
-import step19.ex2.util.DBConnectionPool;
 
-// 커넥션 관리 기법:
-// 2단계. DBConnectionPool 도입
-// => SQL 작업을 수행할 때 마다 DBConnectionPool에서 커넥션을 빌린다.
-// => 사용 후 반납한다.
+// JDBC API를 이용하여 사용자 정보를 DB에서 관리한다.
 public class MemberDao {
-  DBConnectionPool dbPool;
-  
-  public MemberDao(DBConnectionPool dbPool) {
-    this.dbPool = dbPool;
-  }
-  
-  public void destroy() {}
-  
   public void insert(final User user) {
     Connection con = null;
     PreparedStatement stmt = null;
 
     try {
-      con = dbPool.getConnection(); // DBConnectionPool에서 커넥션 객체를 빌린다.
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mysql://localhost:3306/java67db?useUnicode=true&characterEncoding=utf8", 
+          "java67", 
+          "java67");
+
       stmt = con.prepareStatement(
           "INSERT INTO USERS (NAME,EMAIL,TEL,HP,TWIT) VALUES (?,?,?,?,?)");
 
@@ -42,11 +36,14 @@ public class MemberDao {
       stmt.executeUpdate();
 
     } catch (SQLException e) {
+      //RuntimeException 객체에 담아서 예외를 던진다. 이유?
+      //- 예외가 발생했다. 근데 너 편한 곳에서 처리해. 너 필요할 때 처리해. 
+      //  당장 이 메서드를 호출한 곳에서 처리할 필요는 없어. 
       throw new DaoException(e);
 
     } finally {
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con); //다른 SQL 작업에서 사용할 수 있도록 반납한다.
+      try {con.close();} catch (Exception e) {}
     }
   }
 
@@ -57,7 +54,11 @@ public class MemberDao {
     ResultSet rs = null;
 
     try {
-      con = dbPool.getConnection(); 
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mysql://localhost:3306/java67db?useUnicode=true&characterEncoding=utf8", 
+          "java67", 
+          "java67");
       stmt = con.createStatement();
 
       rs = stmt.executeQuery(
@@ -81,7 +82,7 @@ public class MemberDao {
     } finally {
       try {rs.close();} catch (Exception e) {}
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
 
   }
@@ -92,7 +93,11 @@ public class MemberDao {
     ResultSet rs = null;
 
     try {
-      con = dbPool.getConnection(); 
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mysql://localhost:3306/java67db?useUnicode=true&characterEncoding=utf8", 
+          "java67", 
+          "java67");
       stmt = con.prepareStatement(
           "SELECT uno,name,email,tel,hp,twit FROM users WHERE uno = ?");
       stmt.setInt(1, no);
@@ -118,7 +123,7 @@ public class MemberDao {
     } finally {
       try {rs.close();} catch (Exception e) {}
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
   }
 
@@ -127,7 +132,12 @@ public class MemberDao {
     PreparedStatement stmt = null;
 
     try {
-      con = dbPool.getConnection(); 
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mysql://localhost:3306/java67db?useUnicode=true&characterEncoding=utf8", 
+          "java67", 
+          "java67");
+
       stmt = con.prepareStatement(
           "DELETE FROM USERS WHERE UNO = ?");
       stmt.setInt(1, no);
@@ -138,7 +148,7 @@ public class MemberDao {
 
     } finally {
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
   }
 
@@ -147,7 +157,11 @@ public class MemberDao {
     PreparedStatement stmt = null;
 
     try {
-      con = dbPool.getConnection(); 
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      con = DriverManager.getConnection(
+          "jdbc:mysql://localhost:3306/java67db?useUnicode=true&characterEncoding=utf8", 
+          "java67", 
+          "java67");
       stmt = con.prepareStatement(
           "UPDATE USERS SET NAME = ?, EMAIL = ?, TEL = ?, HP = ?, TWIT = ?"
           + " WHERE UNO = ?");
@@ -165,7 +179,7 @@ public class MemberDao {
 
     } finally {
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
     
   }
