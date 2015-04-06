@@ -12,10 +12,11 @@ import step19.ex2.ui.MemberDetail;
 import step19.ex2.ui.MemberInit;
 import step19.ex2.ui.MemberList;
 
-//MemberDao 1단계 개선에 따른 변경.
-// => destroy() 메서드에서 MemberDao의 destroy() 호출하기. 
+//데이터 저장과 읽기를 수행하는 메서드 추가
+//=> save() : 데이터 저장
+//=> load() : 데이터 읽기
 //
-public class MemberControl {
+public class MemberControl01 {
   MemberDao memberDao;
   MemberInit memberInit;
   MemberAdd memberAdd;
@@ -24,7 +25,7 @@ public class MemberControl {
   MemberDelete memberDelete;
   MemberChange memberChange;
   
-  public MemberControl() {
+  public MemberControl01() {
     memberDao = new MemberDao();
     memberInit = new MemberInit();
     memberAdd = new MemberAdd();
@@ -39,7 +40,7 @@ public class MemberControl {
   }
   
   public void destroy() {
-    memberDao.destroy();
+    //특별히 마무리할 일이 없다. 당분간 비워둔다.
   }
 
   public void add() {
