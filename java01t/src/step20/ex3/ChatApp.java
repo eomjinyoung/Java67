@@ -73,13 +73,13 @@ public class ChatApp {
     String message = null;
         
     while (true) {
-      message = in.nextLine();
+      message = in.nextLine(); // 메시지 형식: 별명 + 메시지 
       System.out.println(message);
 
       input = keyScan.nextLine();
       out.println(alias + ":" + input);
       
-      if (message.equals("goodbye"))
+      if (message.endsWith("goodbye")) // 메시지가 goodbye로 끝나는 경우!
         break;
     }
     
