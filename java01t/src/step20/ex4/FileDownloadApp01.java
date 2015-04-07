@@ -11,7 +11,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class FileDownloadApp {
+// 실습 목표: 파일 전송하기
+// => 소켓에 버퍼 적용 전
+
+public class FileDownloadApp01 {
 
   public static void main(String[] args) throws Exception {
     if (args.length == 2) {
