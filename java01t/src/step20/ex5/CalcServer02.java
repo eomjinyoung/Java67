@@ -9,7 +9,7 @@ import java.util.Scanner;
 // 단 동시 처리가 불가능하다.
 // 연결된 순서대로 처리한다.
 
-public class CalcServer {
+public class CalcServer02 {
 
   public static void main(String[] args) throws Exception {
     ServerSocket ss = new ServerSocket(9999);
