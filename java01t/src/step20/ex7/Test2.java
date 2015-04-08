@@ -1,29 +1,12 @@
 package step20.ex7;
 
-// 실습 목표: 다중 스레드에 안전하지 않는 코드
-// => 여러 스레드에서 동시에 withdraw()를 호출한다.
-// => 여러 스레드가 동시에 balance 변수 값을 변경한다.
-// => 잘못된 결과를 만든다.
-// 
-// withdraw()처럼 동시에 여러 스레드가 호출했을 때 문제가 발생되는 것을
-// "스레드에 안전하지 않는 코드"라고 부른다.
-// => Critical Section(Region)(임계 구역) 이라고 한다.
-//    => 동시에 여러 스레드가 접근했을 때 잘못된 결과를 낼 수 있는 코드 블록.
-//
-// 해결책? 접근 개수의 관리가 필요하다.
-// 
-// 1) 세마포어(Semaphore)
-// => 크리티컬 섹션에 접근할 수 있는 스레드의 수를 지정한다.
-// => 지정된 개수를 초과하면 다른 스레드는 기다려야 한다.
-// => 화장실!
-//
-// 2) 뮤텍스(Mutex: Mutual Exclusion, 상호 배제)
-// => 1개짜리 세마포어를 말한다.
-//
-// Thread-Safe
-// => 동시에 여러 스레드가 접근하더라도 실행 결과에 문제가 없는 코드 
-// => 예) delayTime()
-public class Test1 {
+// 실습 목표: 크리티컬 섹션에 뮤텍스 적용하기
+// => 동기화(synchronize)라 부름.
+// => 동기화? 일치하게 만든다. 곧 변수의 값이 스레드 실행에 상관없이
+//    일치하게 만든다. 
+// => 문법
+//    크리티컬 섹션(특정 블록이나 메서드)에 대해 synchronized로 묶는다. 
+public class Test2 {
 
   static class Account {
     long balance;
@@ -32,7 +15,13 @@ public class Test1 {
       this.balance = balance;
     }
     
-    public int withdraw(int money) {
+    // withdraw() 메서드에 한 스레드만 진입할 수 있게 지정한다.
+    // => 진입하면 해당 블록 전체를 잠근다.(locking)
+    // => 블록을 나올 때 잠금을 해제한다.
+    // => 잠금이 해제되면 다른 스레드가 접근할 수 있다.
+    // => 크리티컬 섹션을 실행하다가 CPU를 뺏기더라도, 다른 스레드는 접근할 수 없다.
+    //    불쌍하게 CPU를 갖고 있는 스레드는 멀건히 기다려야 한다.
+    synchronized public int withdraw(int money) {
       long currBalance = this.balance;
       
       delayTime(); // CPU 뺏기고 싶어요!
