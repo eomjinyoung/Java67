@@ -44,7 +44,7 @@ public class ChatServer03 {
           //    바깥 클래스의 다른 멤버를 사용할 수 있다.
           broadcast(message);
           
-          if (message.equals("quit"));
+          if (message.equals("quit"))
             break;
         }
       } catch (Exception e) {
