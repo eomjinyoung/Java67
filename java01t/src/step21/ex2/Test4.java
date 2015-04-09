@@ -22,7 +22,7 @@ public class Test4 extends Frame {
   
   public Test4(String title) {
     super(title);
-    
+
     addWindowListener(listener);
     
     setSize(400, 300);
