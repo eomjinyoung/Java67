@@ -11,11 +11,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 // 실습 목표: 채팅 화면 만들기
-// => 서버에 연결하기 
+// => 서버에 연결하기.
+// => 서버에 연결되면, 메시지 창에 연결되었다는 안내 문구를 출력한다.
 //
 public class ChatApp08 extends Frame implements ActionListener {
   private static final long serialVersionUID = 1L;
@@ -25,13 +29,29 @@ public class ChatApp08 extends Frame implements ActionListener {
   TextArea taContent = new TextArea(10, 20);
   TextField tfMessage = new TextField(20);
   Button btnSend = new Button("Send");
-  
+
+  Socket socket;
+  Scanner in;
+  PrintStream out;
+      
   public ChatApp08() {
     super("비트챗");
     
     addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
+        try {
+          out.println("quit");
+          String response = in.nextLine();
+          taContent.append(response + "\n");
+          
+        } catch (Exception ex) {
+          // 연결 끊다가 오류 났는데 어쩌라고? 무시!
+        } finally {
+          try {in.close();} catch (Exception ex) {}
+          try {out.close();} catch (Exception ex) {}
+          try {socket.close();} catch (Exception ex) {}
+        }
         System.exit(0);
       }
     });
@@ -59,7 +79,16 @@ public class ChatApp08 extends Frame implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == btnConnect) {
-      JOptionPane.showMessageDialog(null, "오호라...연결연결..");
+      try {
+        socket = new Socket(tfServerAddress.getText(), 8888);
+        in = new Scanner(socket.getInputStream());
+        out = new PrintStream(socket.getOutputStream());
+        
+        taContent.append("서버와 연결되었습니다\n");
+        
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "서버 연결 실패!");
+      }
       
     } else if (e.getSource() == btnSend) {
       JOptionPane.showMessageDialog(null, "보내보내...");

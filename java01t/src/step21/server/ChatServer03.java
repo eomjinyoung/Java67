@@ -100,6 +100,7 @@ public class ChatServer03 {
     
     try {
       ss = new ServerSocket(port);
+      System.out.println("서버 실행 중...");
       
       ChatAgent agent = null;
       
