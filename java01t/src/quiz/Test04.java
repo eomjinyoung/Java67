@@ -1,6 +1,6 @@
 package quiz;
 
-//출처: codefights.com
+// 출처: codefights.com
 //
 // 숫자 배열이 있다.
 // 나누어 0이 떨어지는 수가 몇 쌍이 있는지 구하라!

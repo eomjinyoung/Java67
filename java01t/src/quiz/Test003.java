@@ -1,6 +1,6 @@
 package quiz;
 
-//출처: codefights.com
+// 출처: codefights.com
 //
 // 배열의 전체 길이를 L이라고 하자.
 // 배열을 절반(L/2)으로 나눌 때, 앞쪽 부분과 뒤쪽 부분의 위치를 바꿔라.
