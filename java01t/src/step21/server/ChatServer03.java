@@ -89,8 +89,8 @@ public class ChatServer03 {
   // 동기화 처리 필요 => mutex(뮤텍스) => 오직 한 스레드만이 진입 가능!
   synchronized public void broadcast(String message) {
     // 리스트에 보관된 ChatAgent를 꺼내서 메시지를 보내라고 명령한다.
-    for (ChatAgent agent : agents) {
-      agent.response(message);
+    for (int i = 0; i < agents.size(); i++) {
+      agents.get(i).response(message);
     }
     
   }
