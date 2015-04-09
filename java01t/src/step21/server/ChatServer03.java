@@ -69,13 +69,12 @@ public class ChatServer03 {
         System.out.println("클라이언트 데이터 송수신 오류!");
         e.printStackTrace();
         
-      } finally {
-        try {in.close();} catch (Exception e) {}
-        try {out.close();} catch (Exception e) {}
-        try {socket.close();} catch (Exception e) {}
+        try {in.close();} catch (Exception ex) {}
+        try {out.close();} catch (Exception ex) {}
+        try {socket.close();} catch (Exception ex) {}
         
         removeChatAgentFromList(this);
-      } 
+      }  
     }
   }
   
