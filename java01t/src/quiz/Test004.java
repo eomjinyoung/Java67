@@ -6,7 +6,7 @@ package quiz;
 // 나누어 0이 떨어지는 수가 몇 쌍이 있는지 구하라!
 //
 // 한 줄에 버그가 있다. 고쳐라! 
-public class Test04 {
+public class Test004 {
 
   public static int divisorsPairs(int[] sequence) {
 

@@ -8,7 +8,7 @@ package quiz;
 //
 // 한 줄에 버그가 있다. 고쳐라! 
 //
-public class Test05 {
+public class Test005 {
 
   static int countWaysToChangeDigit(int value) {
     int answer = 0;  

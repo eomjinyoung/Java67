@@ -19,7 +19,7 @@ array of integers
 true if sequence represents a geometric progression,
 */
 
-public class Test06 {
+public class Test006 {
   static boolean isGeometricProgression(int[] sequence) {
 
     for (int i = 2; i < sequence.length; i++) {
