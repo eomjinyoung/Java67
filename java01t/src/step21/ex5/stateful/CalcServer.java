@@ -28,6 +28,7 @@ public class CalcServer {
   
   public static void main(String[] args) throws Exception {
     ServerSocket ss = new ServerSocket(8888);
+    System.out.println("서버 실행 중...");
     
     while (true) {
       service(ss.accept());
@@ -36,6 +37,8 @@ public class CalcServer {
   }
   
   static void service(Socket socket) {
+    System.out.println("클라이언트가 연결되었음.");
+    
     DataInputStream in = null;
     DataOutputStream out = null;
     int v1 = 0, v2 = 0;

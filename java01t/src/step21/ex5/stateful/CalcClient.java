@@ -18,6 +18,8 @@ public class CalcClient {
     
     try {
       socket = new Socket("localhost", 8888);
+      System.out.println("서버와 연결되었음.");
+      
       in = new DataInputStream(socket.getInputStream());
       out = new DataOutputStream(socket.getOutputStream());
       
@@ -27,6 +29,7 @@ public class CalcClient {
       String op = null;
       
       do {
+        System.out.print("> ");
         input = keyScan.nextLine();
         tokens = input.split(" ");
         
