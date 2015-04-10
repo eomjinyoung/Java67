@@ -112,6 +112,7 @@ public class ChatApp09 extends Frame
         out.println(tfMessage.getText());
         tfMessage.setText("");
         tfMessage.requestFocus();
+
       } catch (Exception e2) {
         JOptionPane.showMessageDialog(null, "메시지 전송 실패!");
       }
