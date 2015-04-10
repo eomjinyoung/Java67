@@ -38,7 +38,7 @@ public class ChatServer03 {
       try {
         while (true) {
           message = in.nextLine();
-          
+          System.out.println(message);
           //서버의 broadcast() 호출
           // => 이너 클래스도 바깥 클래스 멤버이기 때문에, 
           //    바깥 클래스의 다른 멤버를 사용할 수 있다.
