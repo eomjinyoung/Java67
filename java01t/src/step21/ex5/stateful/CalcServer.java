@@ -1,4 +1,4 @@
-package step21.ex5.server;
+package step21.ex5.stateful;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
