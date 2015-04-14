@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test21</title>
+</head>
+<body>
+<!-- 입력폼 만들기
+=> action 속성 지정하기 
+=> method를 post로 지정하기. 지정하지 않으면 기본이 get이다.
+ -->
+<form action="http://www.naver.com" method="post">
+이름: <input type="text" name="name"><br>
+이메일: <input type="email" name="email"><br>
+아이디: <input type="text" name="id"><br>
+암호: <input type="password" name="pwd"><br>
+<input type="submit" value="회원가입">
+<input type="reset">  
+</form>
+
+
+<!-- 
+* GET 방식 데이터 전송 
+GET /?name=값&email=hong%40test.com&id=hong&pwd=111 HTTP/1.1 CRLF
+Host: www.naver.com CRLF
+헤더명: 값 CRLF
+... CRLF
+CRLF
+
+* POST 방식 데이터 전송
+POST / HTTP/1.1 CRLF
+Host: www.naver.com CRLF
+헤더명: 값 CRLF
+... CRLF
+CRLF
+name=값&email=hong%40test.com&id=hong&pwd=111  <== message-body
+
+* URI와 URL, URN
+Uniform Resource Identifier (서버의 자원을 가리키는 일반적인 용어)
+Uniform Resource Locator (웹에서 많이 사용하는 자원을 가리키는 표시법)
+Uniform Resource Name (거의 드물게 사용하는 서버 자원을 가리키는 표시법)
+URI는 URL 또는 URN을 가리키는 일반적인 용어임.
+
+* GET과 POST의 차이점
+1) 전송 데이터 위치
+=> GET 방식은 데이터를 Request-URI에 붙여서 보낸다.
+   프로토콜 예) GET Request-URI HTTP/1.1 CRLF
+=> POST 방식은 데이터를 Message-Body에 붙여서 보낸다.
+ 
+2) 전송 크기
+=> GET: Request-URI의 크기가 보통 웹 서버마다 제한을 둔다. 8KB정도.
+=> POST: Message-Body 부분은 크기에 제한이 없다. 대용량 데이터 전송에 많이 사용.
+
+3) 바이너리 데이터 전송
+=> GET: URI에 바이너리(그림파일 등) 데이터를 붙일 수 없다. 
+       (Base64로 인코딩 한다면 가능! 결국 크기에 제한될 수 밖에 없다.)
+=> POST: 바이너리 데이터 전송 가능. 파일 업로드에 많이 사용한다.
+
+4) 보안
+=> GET: 주소 창에 노출됨. 
+=> POST: 주소 창에 노출 안됨. 그렇다고 암호화를 시키는 것은 아니다. 
+         GET 보다는 노출이 안됨.
+5) 즐겨찾기
+=> GET: URL을 저장하기 때문에 서버에 보내는 데이터도 함께 저장한다.
+=> POST: URL에 데이터 저장되지 않기 때문에 즐겨찾기에 추가해봐야 소용없다.
+
+ 
+-->
+</body>
+</html>
+
+
+
+
+
+
+
+
+

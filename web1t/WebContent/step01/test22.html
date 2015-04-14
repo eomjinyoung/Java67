@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test22</title>
+</head>
+<body>
+<!-- 입력폼 만들기
+=> action 속성 지정하기 
+=> method를 get로 지정하기. 지정하지 않으면 기본이 get이다.
+ -->
+<form action="http://www.naver.com" method="get">
+이름: <input type="text" name="name"><br>
+이메일: <input type="email" name="email"><br>
+아이디: <input type="text" name="id"><br>
+암호: <input type="password" name="pwd"><br>
+<input type="submit" value="회원가입">
+<input type="reset">  
+</form>
+
+
+<!-- 
+* URL 분석 및 용어 정리 
+http://search.naver.com/search.naver?where=nexearch&query=%EC%97%84%EC%A7%84%EC%98%81&sm=top_hty&fbm=1&ie=utf8
+
+1) 프로토콜 이름
+http
+
+2) 서버 주소
+search.naver.com(:80 포트번호가 생략됨)
+ 
+3) 서버 애플리케이션 주소
+/search.naver
+
+4) Query String
+where=nexearch&query=%EC%97%84%EC%A7%84%EC%98%81&sm=top_hty&fbm=1&ie=utf8 
+ -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
