@@ -1,5 +1,5 @@
 package quiz;
-//출처: codefights.com
+//copyright by codefights.com
 //한 줄에 버그가 있다. 고쳐라!
 /*
 A round number is informally considered to be an integer that ends with one or more zeros.
