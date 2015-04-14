@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test21</title>
+</head>
+<body>
+<!-- 입력폼 만들기
+=> name 속성: 서버에 데이터를 보낼 때 사용할 파라미터 이름.
+             name 속성이 없으면 서버에 해당 데이터를 서버에 보내지 않는다.
+
+form 태그
+=> action 속성: 데이터를 제출할 서버 애플리케이션 주소를 지정.
+               주소를 지정하지 않으면 기본은 현재 URL이다. 
+=> method 속성: 서버에 데이터를 제출하는 방법을 지정.(get/post)
+               기본은 get.
+                             
+ -->
+<form>
+
+<!-- action과 method 속성을 지정하지 않았기 때문에 다음의 값을 기본으로 갖는다.
+action="/web01t/step01/test21.html" method="get" -->
+
+이름: <input type="text" name="name"><br>
+이메일: <input type="email" name="email"><br>
+아이디: <input type="text" name="id"><br>
+암호: <input type="password" name="pwd"><br>
+<input type="submit" value="회원가입"> <!-- 버튼인 경우 value는 버튼의 라벨이다. -->
+<input type="reset"> <!-- value 속성이 없으면 기본 값으로 출력. --> 
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
