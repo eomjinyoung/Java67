@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test03</title>
+<!-- 복합 셀렉터 -->
+
+<style>
+
+* {
+  border-style: dotted;
+  border-width: 1px;
+  border-color: red;
+  
+  /* border: red 1px dotted; */ /* 한번에 style과 width, color를 지정할 수 있다.*/
+  
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  
+  /* padding: 5px 10px 5px 10px; */ /* 시계 방향(top, right, bottom, left) */
+  /* padding: 5px 10px; */ /* top/bottom right/left */
+  /* padding: 10px; */ /* all */ 
+  
+}
+
+h1, h2 {
+  margin: 0; /* 0는 단위를 붙여도 되고, 붙이지 않아도 된다.*/
+}
+ 
+/* 특정 아이디를 갖는 태그
+     . 이미 아이디로 구분할 수 있기 때문에 쓸일이 거의 없다.
+     . 그러나 하나의 아이디를 페이지 마다 다른 태그에 적용하는 경우.
+ */ 
+ 
+nav#n01 { /* n01이라는 아이디를 갖는 nav를 찾아라!*/
+  background-color: gray;
+} 
+
+p.g2 { /* g2에 속해있는 p태그를 찾아라*/
+  color: blue;
+}
+</style>
+ 
+</head>
+<body>
+  <div>
+     <h1>div1111111</h1>
+     <nav id="n01">
+       <h2 class="g3 g1">제목 1</h2>
+       <p class="g1">내용 내용 내용 내용 내용</p>
+       <h2 class="g2">제목 2</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2</p>
+     </nav>
+     
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3</p>
+       <h2 class="g2 g3">제목 4</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5</p>
+  </div>
+  <p class="g2 g3">내용6 내용6 내용6 내용6 내용6</p>
+</body>
+</html>
