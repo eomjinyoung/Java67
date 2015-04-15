@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test31</title>
+<style>
+span {
+  border: 1px solid red;
+  font-weight: bold;
+  font-style: italic;
+  color: gray;
+  font-size: 50%;
+}
+
+div {
+  border: 2px dashed blue;
+}
+
+div#d1 {
+  background-color: yellow;
+  width: 350px;
+  float: right;
+}
+
+div#d2 {
+  background-color: olive;
+}
+
+</style>
+</head>
+<body>
+<!-- div와 span 사용하기
+1) div: UI를 블록 단위로 묶을 때 사용. block 유형이다. 곧 줄 전체를 점유한다.
+2) span: 콘텐츠를 분류할 때 사용. inline 유형이다. 곧 줄 안에 포함된다.
+ -->
+<div id="d1">
+<h1>게시물 입력</h1>
+<form>
+제목: <input type="text" name="title"><br>
+내용: <textarea name="content" rows="5" cols="50"></textarea><br>
+<input type="submit" value="등록">
+</form>
+</div> 
+
+<div id="d2">
+<h1>게시물 목록</h1>
+<table border="1">
+<tr><th>번호</th><th>제목</th><th>조회수</th></tr>
+<tr><td>1</td><td>aaaaaa(<span>홍길동</span>)</td><td>20</td></td>
+<tr><td>2</td><td>bbbbb(<span>임꺽정</span>)</td><td>0</td></td>
+<tr><td>3</td><td>cccccccccccccccc(<span>유관순</span>)</td><td>1320</td></td>
+</table>
+<a href="#">새 글</a>
+</div>
+ 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
