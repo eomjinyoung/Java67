@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test30</title>
+</head>
+<body>
+<form>
+	<!-- 콤보 박스 만들기
+	=> 기본으로 첫 번째 항목이 선택된다.
+	=> 서버에는 선택된 항목이 name 속성의 이름으로 보낸다.
+	=> option 태그에 value 속성이 없으면, option의 내용이 값으로 사용된다. 
+	-->
+	<select name="brand">
+	  <option>애플</option>
+	  <option>삼성</option>
+	  <option>LG</option>
+	  <option>MS</option>
+	</select>
+	<hr>
+	<!-- 기본 선택 항목을 지정하기
+	=> selected 속성을 추가하면 된다. 
+	=> selected 속성에 "selected" 값을 넣어도 되고, 그냥 속성 이름만 선언해도 된다.
+	-->
+	<select name="brand2">
+	  <option>애플</option>
+	  <option>삼성</option>
+	  <option selected="selected">LG</option>
+	  <option>MS</option>
+	</select>
+	<select name="brand3">
+	  <option>애플</option>
+	  <option>삼성</option>
+	  <option selected>LG</option>
+	  <option>MS</option>
+	</select>
+	<hr>
+	
+	<!-- 항목을 선택한 후 서버에 값을 보낼 때는 항목의 내용이 아닌 다른 값을 보낼 수 있다. 
+	=> option 태그의 value 속성에 서버에 보낼 값을 설정하면 된다.
+	-->
+	<select name="brand4">
+    <option value="b001">애플</option>
+    <option value="b002">삼성</option>
+    <option value="b003" selected>LG</option>
+    <option value="b004">MS</option>
+  </select>
+  <hr>
+  
+  <!-- 여러 개의 항목을 선택하기
+  => multiple 속성을 추가하면 여러 개의 항목을 선택할 수 있다.
+  => multiple="multiple" 또는 multiple
+  => 서버에 값을 보낼 때는 각 항목 당 하나의 파라미터 값을 만들어 보낸다.
+     예) ...&brand5=b001&brand5=b004
+   -->
+  <select name="brand5" multiple>
+    <option value="b001">애플</option>
+    <option value="b002">삼성</option>
+    <option value="b003" selected>LG</option>
+    <option value="b004">MS</option>
+  </select>
+  <hr>
+  
+  <!-- select의 항목을 여러 단위로 묶을 수 있다. 
+  => 여러 항목에 selected를 붙인 경우, 마지막 selected를 붙인 항목이 선택된다.
+  -->
+  <select name="brand6">
+    <optgroup label="해외">
+	    <option>애플</option>
+	    <option>MS</option>
+	    <option selected>IBM</option>
+	    <option>Oracle</option>
+    </optgroup>
+    <optgroup label="국내">
+	    <option>삼성</option>
+	    <option selected>LG</option>
+	    <option selected>Hynix</option>
+	    <option>Posco</option>
+    </optgroup>
+  </select>
+  <input type="submit">
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

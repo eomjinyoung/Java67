@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test29</title>
+</head>
+<body>
+<!-- 입력 상자에 어떤 값을 넣을지 안내하는 문구 출력
+=> value 속성을 사용할 경우. 값을 입력하지 않으면 value 속성의 값이 진짜로 사용된다.
+   값을 입력하기 위해 기존에 설정된 값을 사용자가 손수 없애야 한다.
+=> placeholder 속성은 안내 역할만 한다. 값을 입력하지 않으면 빈 문자열이 값이 된다.
+   값을 입력하는 순간 안내 문구가 자동으로 사라진다.
+ -->
+<form>
+제목: <input type="text" name="title" placeholder="제목을 입력하세요."><br>
+내용: <textarea name="content" rows="5" cols="80" placeholder="내용을 입력하세요."></textarea>
+<input type="submit" value="등록">
+</form>
+</body>
+</html>

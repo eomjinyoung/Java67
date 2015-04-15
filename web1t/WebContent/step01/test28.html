@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test28</title>
+</head>
+<body>
+<!-- 입력 항목의 초기 값 설정하기 
+=> input 태그는 value 속성을 사용하여 초기 값을 설정한다.
+=> textarea는 시작 태그와 끝 태그 사이에 초기 값을 설정한다.
+   주의! 시작 태그와 끝 태그 사이의 모든 공백은 값으로 취급한다. 공백 조심!
+-->
+<form>
+제목: <input type="text" name="title" value="제목을 입력하세요."><br>
+내용1: <textarea rows="5" cols="50">제목을 입력하세요.</textarea>
+내용1: <textarea rows="5" cols="50">제목을 입력하세요.
+제목을 입력하세요.</textarea>
+내용1: <textarea rows="5" cols="50">
+            제목을 입력하세요.
+            제목을 입려하세요.
+  </textarea>
+<input type="submit" value="등록">
+</form>
+</body>
+</html>
