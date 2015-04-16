@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex2-test02</title>
+<style>
+/* 폰트 크기 다루기
+1) font-size : 폰트의 높이 
+   단위: px, %(원래 높이를 기준으로 한 크기), em(몇 배)       
+ */
+
+body {
+  font-family: Verdana, Geneva, Arial, sans-serif;
+  font-size: 12px;
+}
+
+h1 {
+  /*font-size: 50px;*? 
+  /* 이렇게 엘리먼트에 대해 정확하게 크기를 설정하면 유지보수가 어려워진다.
+     전체적으로 폰트의 크기를 줄일 때 모든 태그의 모양을 고쳐야 한다.
+     [해결책?]
+     body에 기본 크기를 정확하게 지정하고, 
+     나머지는 body를 기준으로 크기에 대한 비율로 표시한다.
+   */  
+   
+  font-size: 300%; 
+} 
+
+h2 {
+  font-size: 1.5em; /* = 150%. 배수로 표현할 수 있다.*/
+}
+
+body {
+  font-size: small;
+  /* 웹브라우저 마다 적정 폰트의 크기가 있다. 
+     그 폰트를 상수 값으로 미리 정의해 두고 있는데, 가능한 body에서도 그것을 사용하는 것이 좋다.
+   */
+}
+ 
+</style>
+</head>
+<body>
+  <div>
+     <h1>div1111111</h1>
+     <nav id="n01">
+       <h2 class="g3 g1">제목 1</h2>
+       <p class="g1">내용 내용 내용 내용 내용</p>
+       <h2 class="g2">제목 2</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2</p>
+     </nav>
+     
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3</p>
+       <h2 class="g2 g3">제목 4</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5</p>
+  </div>
+  <p class="g2 g3">내용6 내용6 내용6 내용6 내용6</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
