@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex2-test03</title>
+<style>
+/* 폰트의 기타 특성 다루기
+1) font-style 
+2) font-weight
+ */
+
+body {
+  font-family: Monaco, Malgun Gothic, Noto Sans CJK KR, Apple SD Gothic Neo, Verdana, serif;
+}
+
+p:last-child {
+  font-weight: lighter;
+}
+
+#n01 > p.g1 {
+  font-weight: bold;
+}
+
+#n02 > p.g1 {
+  font-weight: bold;
+  color: blue;
+}
+
+nav#n01 > p:nth-child(4) { /* #n01로 해도 된다. 그러나 연습한다는 의미에서 해봤다.*/
+  font-weight: bolder;
+  color: red;
+}
+
+h2.g2.g3 { /* g2와 g3 모두에 속해있는 h2 태그를 선택하라!*/
+  font-style: italic;
+  /* font-style: oblique; */
+  background-color: yellow;
+  
+  /* italic : 폰트의 이탤릭체를 선택한다. 폰트에 이탤릭체가 없으면 기울어지지 않는다.
+     oblique: 폰트를 강제로 오른쪽으로 기울인다. 이탤릭체가 없어도 기울인다. 
+              프로그램에서 기울임을 처리하기 때문에 출력 글자가 거칠게 보인다.
+     현재 윈도우와 맥은 italic으로 선언해도 oblique처럼 동작한다.          
+     
+   */
+}
+
+div + p {
+  color: blue;
+  font-size: 300%;
+  font-weight: bold;
+  text-decoration: line-through;
+}
+
+nav:nth-child(4) > h2:first-child {
+  border: 2px dotted gray;
+  text-align: center;
+}
+ 
+</style>
+</head>
+<body>
+  <div>
+     <h1>div111111$$$</h1>
+     <nav id="n01">
+       <h2 class="g3 g1">제목 1 English</h2>
+       <p class="g1">내용 내용 내용 내용 내용 english</p>
+       <h2 class="g2">제목 2 English</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2 english</p>
+     </nav>
+     
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3 English</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3 english</p>
+       <h2 class="g2 g3">제목 4 English</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4 english</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5 english</p>
+  </div>
+  <p class="g2 g3">내용6 내용6 내용6 내용6 내용6</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
