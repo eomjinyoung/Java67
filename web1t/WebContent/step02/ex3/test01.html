@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test01</title>
+<style>
+/* 배경 다루기
+1) 색상의 표현
+- 미리 상수로 정의된 색상: aqua, black, white, gray, ...
+  더 많은 정보는 wikipedia의 "web color" 참고
+- rgb(%,%,%): rgb(100%,0%,0%), rgb(0%,0%,100%)
+- rgb(0 ~ 255, 0 ~ 255, 0 ~ 255): rgb(255,0,0)
+- #RRGGBB: #ff0000(red), #0000ff(blue), #00ff00(green)
+  => 단축 표현법: #RGB 예) #f47 ==> #ff4477
+  
+ */
+
+div nav > h2:first-child {
+  color: white;
+  background-color: IndianRed;
+}
+
+div p.g1 {
+  background-color: rgb(0%, 50%, 0%); 
+}
+
+#n02 > :nth-child(4) {
+  text-decoration: line-through;
+  color: rgb(255, 255, 0);
+} 
+
+div ~ p {
+  /* text-decoration: underline; */
+  font-size: x-large;
+  font-weight: 900;
+  color: #ff0000; 
+}
+
+p > span {
+  padding: 0px;
+  border-bottom: 2px blue dotted;
+  
+}
+
+#n01 > :nth-child(2n) {
+  background-color: #0f0;
+}
+
+* {
+  margin: 10px;
+  padding: 0;
+  border: 1px gray solid; 
+}
+
+</style>
+</head>
+<body>
+  <div>
+     <h1>div111111$$$</h1>
+     <nav id="n01">
+       <h2 class="g3 g1">제목 1 English</h2>
+       <p class="g1">내용 내용 내용 내용 내용 english</p>
+       <h2 class="g2">제목 2 English</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2 english</p>
+     </nav>
+     
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3 English</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3 english</p>
+       <h2 class="g2 g3">제목 4 English</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4 english</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5 english</p>
+  </div>
+  <p class="g2 g3">내용6 <span>내용6</span> 내용6 내용6 내용6</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
