@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test11</title>
+<style>
+/* nth-child(x)
+   => 순서를 가리키기 때문에 첫 번째 엘리먼트는 1이다.
+*/
+
+h2:nth-child(1) { border-left: 10px solid red;}
+h2:nth-child(4) { border-left: 10px solid red;}
+h2:nth-child(5) { border-left: 10px solid red;}
+
+h2:nth-child(2n + 1) {color: blue;}
+
+</style>
+</head>
+<body>
+<div>
+  <h2>aaaaa</h2>
+  <h2>aaaaa</h2>
+  <h2>aaaaa</h2>
+  <h2>aaaaa</h2>
+  <h2>aaaaa</h2>
+  <h2>aaaaa</h2>
+</div>
+<hr>
+<div>
+  <h2>bbbbb</h2>
+  <h3>bbbbb</h3>
+  <h3>bbbbb</h3>
+  <h3>bbbbb</h3>
+  <h2>bbbbb</h2>
+  <h2>bbbbb</h2>
+</div>
+</body>
+</html>
+
+
+
+
