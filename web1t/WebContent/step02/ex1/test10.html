@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test10</title>
+
+<style>
+/* 셀렉터 적용 순서(specificity 값 계산)
+   엘리먼트에 대해 적용할 수 있는 스타일이 여러 개 있을 경우, specificity 값을 계산하여 적용한다.
+   
+   specificity 계산법
+   1) *           : 0
+   2) 태그         : 1
+   3) 클래스        : 10
+   4) 아이디        : 100
+   5) 인라인 스타일   : 1000     
+ */
+
+* {  /* 0 */
+  color: red;
+}
+
+h2 { /* 1 */
+  color: blue;
+}
+
+.g1 { /* 10 */
+  color: green;
+}
+
+#id01 { /* 100 */
+  color: maroon;
+}
+
+nav h2.g1 {/* 1 + 1 + 10 = 12 */
+  border-left: 20px solid red;
+}
+
+nav h2 { /* 1 + 1 = 2 */
+  border-left: 5px solid black;
+}
+
+/*
+a(인라인 스타일), b(아이디), c(클래스), d(태그)
+
+ *            {}  => a=0 b=0 c=0 d=0 -> specificity = 0,0,0,0 
+ li            {} => a=0 b=0 c=0 d=1 -> specificity = 0,0,0,1 
+ li:first-line {} => a=0 b=0 c=0 d=2 -> specificity = 0,0,0,2 
+ ul li         {} => a=0 b=0 c=0 d=2 -> specificity = 0,0,0,2 
+ ul ol+li      {} => a=0 b=0 c=0 d=3 -> specificity = 0,0,0,3 
+ h1 + *[rel=up]{} => a=0 b=0 c=1 d=1 -> specificity = 0,0,1,1 
+ ul ol li.red  {} => a=0 b=0 c=1 d=3 -> specificity = 0,0,1,3 
+ li.red.level  {} => a=0 b=0 c=2 d=1 -> specificity = 0,0,2,1 
+ #x34y         {} => a=0 b=1 c=0 d=0 -> specificity = 0,1,0,0 
+ style=""         => a=1 b=0 c=0 d=0 -> specificity = 1,0,0,0 
+
+*/
+
+</style>
+ 
+</head>
+<body>
+  <div>
+     <h1>div111111122</h1>
+     <nav id="n01">
+       <h2 id="id01" class="g3 g1" style="color: gray;">제목 1</h2>
+       <p class="g1">내용 내용 내용 내용 내용</p>
+       <h2 class="g2">제목 2</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2</p>
+     </nav>
+     
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3</p>
+       <h2 class="g2 g3">제목 4</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5</p>
+  </div>
+  <p class="g2 g3">내용6 내용6 내용6 내용6 내용6</p>
+</body>
+</html>

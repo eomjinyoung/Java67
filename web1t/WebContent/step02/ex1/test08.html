@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test08</title>
+<style>
+/* 조건으로 엘리먼트 찾기
+E[foo]
+E[foo="selected"]  
+ */
+
+input[okok] {
+  border: 1px red solid;
+}
+
+input[type="text"] {
+  color: red;
+}
+
+input[level$="adm"] { /* 속성의 값이 adm으로 끝나는 엘리먼트를 선택한다.*/
+  color: blue;
+}
+
+input[level^="l01"] { /* 속성의 값이 l01로 시작하는 엘리먼트를 선택한다.*/
+  color: green;
+}
+
+</style>
+</head>
+<body>
+<form>
+<select>
+  <option>애플</option>
+  <option>삼성</option>
+  <option selected>LG</option>
+  <option>MS</option>
+</select>
+<input level="l01adm" okok type="text"><br>
+<input level="l02adm" type="text"><br>
+<input level="l01adm" type="password"><br>
+<input level="l02adm" okok type="checkbox"><br>
+<input level="l01adm" okok type="submit"><br>
+<input level="l02adm" type="reset"><br>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

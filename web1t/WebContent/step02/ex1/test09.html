@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test09</title>
+
+<style>
+/* 셀렉터 적용 순서(specificity 값 계산)
+1) 가장 가까운 조상의 스타일을 적용한다.(단 상속 받을 수 있는 스타일에 대해서만)
+   상속 받을 수 있는 속성의 예) 폰트
+   상속 받을 수 없는 속성의 예) 경계선
+2) 같은 대상에 지정하는 스타일이 여러 개일 경우, 이전 스타일과 다음에 나오는 스타일을 더한다.
+   단, 같은 속성 값은 가장 마지막에 지정하는 것을 사용한다. 
+ */
+nav {
+  color: blue;
+}
+
+h2 {
+  background-color: yellow;
+  color: green;
+}
+
+body {
+  border: 2px solid red;
+  color: red;
+}
+
+h2 {
+  color: olive;
+}
+
+
+</style>
+ 
+</head>
+<body>
+  <div>
+     <h1>div1111111</h1>
+     <nav id="n01">
+       <h2 class="g3 g1">제목 1</h2>
+       <p class="g1">내용 내용 내용 내용 내용</p>
+       <h2 class="g2">제목 2</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2</p>
+     </nav>
+     
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3</p>
+       <h2 class="g2 g3">제목 4</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5</p>
+  </div>
+  <p class="g2 g3">내용6 내용6 내용6 내용6 내용6</p>
+</body>
+</html>
