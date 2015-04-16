@@ -15,13 +15,37 @@
 }
 
 div {
-  /* border 안쪽에 그림을 바둑판 식으로 채운다.*/
   background-image: url('../../images/pic02.jpg');
+  background-repeat: no-repeat;
+  background-color: yellow;
+  /* 배경 그림의 위치 지정
+   . left top, left bottom, right top, right bottom
+   
+   */
+  /* background-position: right bottom; */
+  
+  /* 배경 그림의 위치를 left와 top을 기준으로 조정하기*/
+  background-position: -50px -100px; 
 }
 
+input {
+  width: 200px; /* 컨텐츠 너비(입력 가능한 영역의 너비) */
+  height: 40px;
+  font-size: large;
+  padding-left: 10px;
+  padding-right: 50px;
+  /*
+  background-image: url('../../images/facebook.png');
+  background-position: 210px -280px;
+  background-repeat: no-repeat;
+  */
+  /* 단축 속성을 사용하여 배경 그림 설정하기 */
+  background: yellow url('../../images/facebook.png') 210px -280px no-repeat;
+}
 </style>
 </head>
 <body>
+  <input type="text"><br>
   <div>
      <h1>div111111$$$</h1>
      <nav id="n01">
