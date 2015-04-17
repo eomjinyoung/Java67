@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex6 - test01</title>
+<style>
+/* 상자의 위치를 지정하기
+1) float  
+   . left, right  => center 없다.
+   . 원래 출력해야 할 줄에서 좌/우로 이동한다.
+   . 다음 순서의 엘리먼트가 치고 올라온다.
+     
+2) position: absolute
+   . absolute나 relative로 설정된 조상을 기준으로 엘리먼트의 위치를 지정한다.
+   . left/top 좌표를 기준으로 위치를 설정한다.
+   . 기준이 되는 엘리먼트가 이동하면 따라서 함께 이동한다.
+   
+3) position: relative
+   . 현재 위치를 고수하면서 좌/우/위/아래로 이동한다.
+
+4) position: fixed
+   . 웹 브라우저의 내용 창을 기준으로 위치를 지정한다.
+   . 화면 안의 내용이 위/아래/좌/우로 이동하더라도 해당 엘리먼트는 이동하지 않는다.
+   
+실습 목표 : 화면 준비            
+ */
+
+div {
+  border: 1px solid gray;
+} 
+</style>
+</head>
+<body>
+  <div class="header">
+    <img src="http://www.bitacademy.net/images/join_head/bit_logo.gif">
+    <span>세계 최고의 프로그래밍 전문 교육기관 "비트캠프"</span>
+  </div>
+  <div class="aside">
+    <ul>
+      <li>학생 관리</li>
+      <li>강사 관리</li>
+      <li>과정 관리</li>
+      <li>교육장 관리</li>
+      <li>수강신청 관리</li>
+    </ul>
+  </div>
+  
+  <div class="section">
+    <h1>회원목록</h1>
+    <table border='1'>
+	    <tr id="tr1"> <th>번호</th> <th>이름</th> <th>이메일</th> <th>전화번호</th>  </tr>
+	    <tr id="tr2"> <td>1</td> <td>홍길동</td> <td>hong@test.com</td> <td>111-1111</td> </tr>
+	    <tr id="tr3"> <td>2</td> <td>임꺽정</td> <td>leem@test.com</td> <td>111-2222</td> </tr>
+	    <tr id="tr4"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	  </table>
+  </div>
+  
+  <div class="footer">
+    <address>서울 서초구 비트 캠프</address>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
