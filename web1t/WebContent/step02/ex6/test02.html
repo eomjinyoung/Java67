@@ -2,15 +2,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ex6 - test01</title>
+<title>ex6 - test03</title>
 <style>
 /* float 사용
    . aside div를 왼쪽으로 놓고, section div를 오른쪽으로 놓는다. 
  */
 
+body {
+  background-color: LightGrey;
+}
+
 div {
-  border: 1px solid gray;
+  border: 1px solid red; 
 } 
+
+.header > img {
+  
+}
+
+.header > span {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 250%;
+  /* border: 1px blue solid; */
+  padding-top: 7px 
+}
 
 .aside {
   background-color: yellow;
@@ -23,7 +39,8 @@ div {
   height: 300px;
   
   margin-top: 5px;
-  margin-left: 5px;
+  margin-bottom: 5px;
+  
 }
 
 .section {
@@ -33,15 +50,21 @@ div {
      컨텐츠는 공중부양한 엘리먼트에 가려지지 않도록 자동으로 오른쪽 또는 왼쪽으로 이동한다.
      주의! 그렇다고 테두리까지 이동하는 것은 아니다.*/
   margin-top: 5px;
-  margin-left:185px;  
+  margin-left: 180px;  
   padding: 10px;   
+}
+
+.footer {
+  /* 왼쪽 또는 오른쪽에 공중부양한 엘리먼트가 있다면, 그 엘리먼트를 피하여 출력한다.*/
+  clear: left;
+  text-align: center;    
 }
 </style>
 </head>
 <body>
   <div class="header">
     <img src="http://www.bitacademy.net/images/join_head/bit_logo.gif">
-    <span>세계 최고의 프로그래밍 전문 교육기관 "비트캠프"</span>
+    <span id="title">프로그래밍 전문 교육 - "비트캠프"</span>
   </div>
   <div class="aside">
     <ul>
