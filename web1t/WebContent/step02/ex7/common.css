@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+body {
+  background-color: white;
+}
+
+div {
+  /* border: 1px solid red;  */
+} 
+
+.header > img {
+}
+
+.header > span {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 250%;
+  padding-top: 7px 
+}
+
+.aside {
+  background-color: yellow;
+  float: left;
+  width: 180px;
+  height: 300px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.section {
+  position: relative;
+  
+  background-color: Ivory;
+  margin-top: 5px;
+  margin-left: 180px;  
+  padding: 10px;  
+  
+}
+
+.footer {
+  clear: left;
+  text-align: center;    
+}
+
+.section > h1 {
+  /* border: 1px dashed blue; */
+  position: relative;
+  left: -20px; 
+  text-shadow: 5px 5px 5px gray, 5px 5px 5px yellow;
+}
