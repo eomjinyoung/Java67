@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex6 - test03</title>
+<style>
+/* absolute 사용
+   . 엘리먼트를 절대 좌표를 사용하여 위치를 지정한다.
+   . 단 조상 중에 absolute 또는 relative가 있다면 그 조상을 기준으로 위치를 지정한다.
+   . 만약 조상 중에 absolute나 relative 가 없다면 body를 기준으로 삼는다.
+   
+   z-index
+   . z축으로 출력 순서를 지정한다.
+   . z축 좌표가 높은 것이 위에 놓인다.
+ */
+
+body {
+  background-color: LightGrey;
+}
+
+div {
+  border: 1px solid red; 
+} 
+
+.header > img {
+}
+
+.header > span {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 250%;
+  padding-top: 7px 
+}
+
+.aside {
+  background-color: yellow;
+  float: left;
+  width: 180px;
+  height: 300px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.section {
+  background-color: Ivory;
+  margin-top: 5px;
+  margin-left: 180px;  
+  padding: 10px;   
+}
+
+.footer {
+  clear: left;
+  text-align: center;    
+}
+
+#popImage {
+  /* absolute, relative 조상을 기준으로 위치를 지정한다.
+     부모가 body이다. body를 기준으로 위치 지정.*/
+  position: absolute;
+  left: 160px;
+  top: 40px;
+  
+  width: 80px;
+  
+  z-index: 1;
+  
+}
+
+#popImage2 {
+  position: absolute;
+  left: 200px;
+  top: 60px;
+  width: 80px;
+  z-index: 2;
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    <img src="http://www.bitacademy.net/images/join_head/bit_logo.gif">
+    <span id="title">프로그래밍 전문 교육 - "비트캠프"</span>
+  </div>
+  <div class="aside">
+    <ul>
+      <li>학생 관리</li>
+      <li>강사 관리</li>
+      <li>과정 관리</li>
+      <li>교육장 관리</li>
+      <li>수강신청 관리</li>
+    </ul>
+  </div>
+  
+  <div class="section">
+    <h1>회원목록</h1>
+    <table border='1'>
+	    <tr id="tr1"> <th>번호</th> <th>이름</th> <th>이메일</th> <th>전화번호</th>  </tr>
+	    <tr id="tr2"> <td>1</td> <td>홍길동</td> <td>hong@test.com</td> <td>111-1111</td> </tr>
+	    <tr id="tr3"> <td>2</td> <td>임꺽정</td> <td>leem@test.com</td> <td>111-2222</td> </tr>
+	    <tr id="tr4"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr5"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr6"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr7"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr8"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr9"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr10"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr11"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr12"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	    <tr id="tr13"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	  </table>
+  </div>
+  
+  <div class="footer">
+    <address>서울 서초구 비트 캠프</address>
+  </div>
+  
+  <img id="popImage" src="../../images/pic02.jpg">
+  <img id="popImage2" src="../../images/pic03.jpg">
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
