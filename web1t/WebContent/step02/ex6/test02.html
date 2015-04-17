@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex6 - test01</title>
+<style>
+/* float 사용
+   . aside div를 왼쪽으로 놓고, section div를 오른쪽으로 놓는다. 
+ */
+
+div {
+  border: 1px solid gray;
+} 
+
+.aside {
+  background-color: yellow;
+  float: left;
+  
+  /* float 으로 공중부양시키면 높이와 너비가 컨텐츠의 크기에 따라 자동으로 계산한다.
+     일관되고 정확한 크기를 갖게 하려면 width, height를 지정하라.
+   */
+  width: 180px;
+  height: 300px;
+  
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.section {
+  background-color: Ivory;
+  /* 앞서 놓인 태그가 공중부양하면 뒤따르는 태그들은 앞으로 당겨진다. 그리고 겹쳐진다.
+     이때 웹 브라우저의 주요 작업은 컨텐츠를 출력하는 것이기 때문에,
+     컨텐츠는 공중부양한 엘리먼트에 가려지지 않도록 자동으로 오른쪽 또는 왼쪽으로 이동한다.
+     주의! 그렇다고 테두리까지 이동하는 것은 아니다.*/
+  margin-top: 5px;
+  margin-left:185px;  
+  padding: 10px;   
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    <img src="http://www.bitacademy.net/images/join_head/bit_logo.gif">
+    <span>세계 최고의 프로그래밍 전문 교육기관 "비트캠프"</span>
+  </div>
+  <div class="aside">
+    <ul>
+      <li>학생 관리</li>
+      <li>강사 관리</li>
+      <li>과정 관리</li>
+      <li>교육장 관리</li>
+      <li>수강신청 관리</li>
+    </ul>
+  </div>
+  
+  <div class="section">
+    <h1>회원목록</h1>
+    <table border='1'>
+	    <tr id="tr1"> <th>번호</th> <th>이름</th> <th>이메일</th> <th>전화번호</th>  </tr>
+	    <tr id="tr2"> <td>1</td> <td>홍길동</td> <td>hong@test.com</td> <td>111-1111</td> </tr>
+	    <tr id="tr3"> <td>2</td> <td>임꺽정</td> <td>leem@test.com</td> <td>111-2222</td> </tr>
+	    <tr id="tr4"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
+	  </table>
+  </div>
+  
+  <div class="footer">
+    <address>서울 서초구 비트 캠프</address>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
