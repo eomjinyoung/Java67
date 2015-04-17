@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test01</title>
+<style>
+/* 테두리 다루기
+ */
+
+div, body {
+  /* border: 1px red solid; */
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+  
+  /* 테두리 바깥쪽 여백 
+     주의! 위, 아래 여백이 만났을 때 둘 중 큰 여백으로 합쳐진다.
+          좌, 우 여백은 합쳐지지 않는다.
+  */
+  /*
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  */
+  /* margin 단축 표현: 시계 방향(12, 3, 6, 9) */
+  /*
+  margin: 20px 10px 20px 10px;
+  */
+  /* margin 단축 표현2: (위/아래) (오른쪽/왼쪽)*/
+  /*
+  margin: 40px 5px;
+  */
+  /* margin 단축 표현3: (모두) */
+  margin: 30px;  
+}
+
+div:nth-child(4) {
+  border-top-style: dashed;
+  border-top-color: blue;
+  border-top-width: 1px;
+  
+  /* 단축 표기 : 순서가 바뀌어도 상관없다.*/
+  border-bottom: white 10px dotted;
+  border-right:  solid 5px green;
+  border-left: 20px solid;
+  
+  background: yellow; 
+}
+
+.t1 {
+  display: inline; /* inline은 height 값을 무시한다. 오직 높이는 컨텐츠의 양으로 결정된다.*/
+  width: 200px;
+  height: 200px;
+}
+</style>
+</head>
+<body>
+  <div class="t1">오호라.... 푸헐..</div>
+  <div class="t1">내 옆의 여백은 어떻게 처리될까?</div>
+  <div>
+     <h1>div111111$$$</h1>
+     <nav id="n01">
+       <h2 class="g3 g1">제목 1 English</h2>
+       <p class="g1">내용 내용 내용 내용 내용 english</p>
+       <h2 class="g2">제목 2 English</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2 english</p>
+     </nav>
+  </div>
+  <div>   
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3 English</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3 english</p>
+       <h2 class="g2 g3">제목 4 English</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4 english</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5 english</p>
+  </div>
+  <p class="g2 g3">내용6 <span>내용6</span> 내용6 내용6 내용6</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
