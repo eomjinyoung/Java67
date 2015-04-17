@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test05</title>
+<style>
+/* 배경 다루기 : 배경 그림 여러 개 출력하기
+ */
+
+* {
+  margin: 10px;
+  padding: 0;
+  border: 1px gray solid; 
+}
+
+div {
+  background-repeat: no-repeat;
+  background-color: yellow;
+  
+  /*
+  background-image: 
+      url('../../images/pic02.jpg'), 
+      url('../../images/pic01.jpg');
+  */
+  /* 배경 그림은 position에 지정된 위치에 차례대로 출력한다.
+     배경 그림에 대한 위치를 한 개만 지정하면 그림들은 겹쳐진다.
+     겹쳐지는 순서는 속성 값에 나열된 역순으로 겹쳐진다.*/
+  /*background-position: left;*/
+  
+  /* 배경 그림 개수만큼 위치 정보를 제공한다.*/
+  /*background-position: bottom, left;*/
+  
+  background: 
+      url('../../images/pic02.jpg') right no-repeat, 
+      url('../../images/pic01.jpg') top no-repeat;
+}
+
+input {
+  width: 200px; 
+  height: 40px;
+  font-size: large;
+  padding-left: 50px;
+  padding-right: 50px;
+  background: url('../../images/facebook.png') 240px -280px no-repeat,
+             url('../../images/facebook.png') 0px -240px no-repeat;
+}
+</style>
+</head>
+<body>
+  <input type="text"><br>
+  <div>
+     <h1>div111111$$$</h1>
+     <nav id="n01">
+       <h2 class="g3 g1">제목 1 English</h2>
+       <p class="g1">내용 내용 내용 내용 내용 english</p>
+       <h2 class="g2">제목 2 English</h2>
+       <p class="g2">내용2 내용2 내용2 내용2 내용2 english</p>
+     </nav>
+     
+     <h1>div2222222</h1>
+     <nav id="n02">
+       <h2 class="g1 g3">제목 3 English</h2>
+       <p class="g1">내용3 내용3 내용3 내용3 내용3 english</p>
+       <h2 class="g2 g3">제목 4 English</h2>
+       <p class="g2">내용4 내용4 내용4 내용4 내용4 english</p>
+     </nav>
+     <p class="g1">내용5 내용5 내용5 내용5 내용5 english</p>
+  </div>
+  <p class="g2 g3">내용6 <span>내용6</span> 내용6 내용6 내용6</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

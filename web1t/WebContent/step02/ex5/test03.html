@@ -2,10 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ex5-test02</title>
+<title>ex5-test03</title>
 <style>
-/* 출력 다루기 
-  visibility: hidden, visible, collapse
+/* 박스 크기 다루기
+  box-sizing: content-box, border-box;
+  width 속성이 가리키는 크기가 컨텐츠의 크기인지 상자의 크기인지 지정한다. 
 */
 
 #d1 {
@@ -15,12 +16,13 @@
 }
 
 #d2 {
+  background-color: yellow;
   width: 150px;
   height: 150px;
   display: block; 
   border: 1px solid red;
-  /* collapse: 테이블의 행과 열에 대해서만 접기 기능 수행. 다른 엘리먼트는 hidden과 같다.*/
-  visibility: collapse;
+  padding: 20px;
+  box-sizing: content-box;
 }
 
 #d3 {
@@ -37,21 +39,13 @@
 }
 
 #d5 {
+  background-color: yellow;
   width: 150px;
   display: inline-block;
   border: 1px solid red;
   margin: 20px; 
-  padding: 20px;
-  
-  /* display:none => 엘리먼트의 출력을 완전히 배제한다.
-     visibility: hidden => 엘리먼트가 출력될 자리는 보존하고, 단지 보이지만 않는다.*/  
-  visibility: hidden;
-  
-}
-
-#tr2 {
-  /* collapse: 해당 엘리먼트가 보이지 않게 접는다. chrome에서는 hidden과 동일한 결과*/
-  visibility: collapse;
+  padding: 50px;
+  box-sizing: border-box;
 }
 </style>
 </head>
@@ -63,26 +57,8 @@
   <div id="d4">d4:교육 내용은 기업에서 사용하는 애플리케이션을 개발하는 방법을 배웁니다.</div>
   <div id="d5">d5:교육 내용은 기업에서 사용하는 애플리케이션을 개발하는 방법을 배웁니다.</div>
   비트캠프는 열정을 가진 IT 개발자를 배출합니다.
-  <hr>
-  <table border='1'>
-	  <tr id="tr1"> <th>번호</th> <th>이름</th> <th>이메일</th> <th>전화번호</th>  </tr>
-	  <tr id="tr2"> <td>1</td> <td>홍길동</td> <td>hong@test.com</td> <td>111-1111</td> </tr>
-	  <tr id="tr3"> <td>2</td> <td>임꺽정</td> <td>leem@test.com</td> <td>111-2222</td> </tr>
-	  <tr id="tr4"> <td>3</td> <td>유관순</td> <td>yoo@test.com</td> <td>111-3333</td> </tr>
-  </table>
-  테스트합니다.
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 
