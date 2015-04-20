@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test09</title>
+</head>
+<body>
+
+<script>
+// 실습 목표: 변수의 종류
+// 1) 글로벌 변수: 그냥 선언하는 변수. window 프로퍼티.
+var a = 10;
+var b = 100;
+
+console.log("------------------------");
+console.log(a);
+console.log(window.a);
+console.log(b);
+console.log(window.b);
+
+// 2) 로컬 변수: 함수 안에 선언하는 변수. 
+function f() {
+	var a = 20;
+	
+	console.log("------------------------");
+	console.log(a);
+	console.log(window.a);
+	console.log(b); // 로컬 변수에서 찾아보고 없으면 window 객체에서 찾는다.
+	console.log(window.b);
+	b = 1000;
+}
+f();
+
+console.log("------------------------");
+console.log(a);
+console.log(window.a);
+console.log(b);
+console.log(window.b);
+
+// 3) 객체 변수 : 특정 객체에 종속된 변수
+var obj = new Object();
+obj.a = 100;
+
+console.log("------------------------");
+console.log(a); //10
+console.log(window.a); //10 => 위와 같다.
+console.log(obj.a); // 100
+console.log(window.obj.a); //obj 변수는 window 객체에 종속되어 있다.
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

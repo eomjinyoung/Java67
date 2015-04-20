@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test08</title>
+</head>
+<body>
+
+<script>
+// 실습 목표: 변수와 블록
+// - 자바 언어와 달리 블록 변수를 허용하지 않는다.
+// - 단 함수는 별도의 변수로 인정한다.
+var a = 10;
+{
+	var b = 20;
+	console.log(a);
+	console.log(b);
+}
+console.log(a);
+console.log(b); // 자바 언어라면 블록 안에 선언된 변수는 블록이 끝나면 사용할 수 없다.
+                // 자바스크립트는 블록 변수를 지원하지 않느다. 
+                // 블록 안에 선언된 변수도 블록 밖에 선언된 변수랑 똑 같이 취급한다.
+
+function m() {
+	console.log("------------------------");
+	var a = 30;
+	{ 
+		var b = 40;
+	  console.log(a);
+	  console.log(b);
+	}
+	console.log(a)
+	console.log(b);
+	console.log("------------------------");
+}
+
+m();
+console.log(a);
+console.log(b);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
