@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test03</title>
+<script>
+//실습 목표: HTML 태그와 스크립트 태그의 실행순서
+//=> 위에서 아래로 태그가 선언된 순서대로 실행한다.
+//=> alert(값);  '값'을 출력하는 경고 창을 띄운다.
+console.log("111111");
+alert("첫 번째 스크립트");
+</script>
+</head>
+<body>
+
+<h1>제목1</h1>
+<script>
+console.log("22222");
+alert("두 번째 스크립트");
+</script>
+
+<h1>제목2</h1>
+<script>
+console.log("3333");
+alert("세 번째 스크립트");
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
