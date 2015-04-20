@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test12</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: undefined와 undeclared
+// 1) undefined: 값이 없으니 데이터의 종류를 알아낼 수 없다.
+var a;
+console.log(typeof a);  // 출력 값 "undefined"
+console.log(a);         // 출력 값 undefined 
+
+// 2) undeclared: 변수가 없다. 
+console.log(typeof b); // typeof의 결과는 undefined와 같다.
+
+// undeclared 변수는 사용할 수 없다. 예외 발생!
+try {
+	  console.log(b);
+} catch(e) {
+	console.log(e);
+}
+console.log("------------------------");
+
+// typeof 연산자의 리턴 값은 데이터 종류를 나타내는 문자열이다.
+if (typeof a == "undefined")
+	console.log("typeof a는 'undefined'");
+	
+if (a == "undefined") 
+	console.log("a는 'undefined'");
+
+if (a == undefined) 
+	  console.log("a는 undefined");
+	  
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
