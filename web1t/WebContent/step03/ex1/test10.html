@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test10</title>
+</head>
+<body>
+
+<script>
+// 실습 목표: strict 모드 (엄격한 문법 검사)
+//"use strict"; // 자바스크립트 엔진에게 문법을 엄격하게 검사할 것을 요구한다.
+              // 스트릭트 모드에서는 변수를 선언하지 않고 사용하면 오류가 발생한다.
+a = 10;
+
+function f() {
+	a = 20; // 로컬 변수를 찾아보고 없으면 window 객체에서 찾는다.
+	b = 30; // 로컬 변수에도 없고, window 객체에도 없으면 
+	        // 자동으로 window 객체에 b 변수를 추가한다. (비 스트릭트 모드)
+}
+f();
+
+console.log("------------------------");
+console.log(a);
+console.log(b);
+
+"use strict"; // 스크립트 태그의 중간에 선언해봐야 소용없다.
+c = 50;
+console.log(c);
+</script>
+
+<script>
+// strict 모드를 적용하고 싶으면 스크립트 태그의 첫 번째 명령으로 선언하라!
+"use strict"; // 스크립트 태그의 첫 번째로 와야 한다. 주석은 상관없음.
+d = 50;
+console.log(d);
+
+/* 결론!
+ * - 프로그램의 오류를 줄이려면 strict 모드를 사용하라!
+ */
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
