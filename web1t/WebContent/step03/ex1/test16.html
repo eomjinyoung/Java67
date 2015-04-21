@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test15</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: 배열2
+// 1) 배열에 저장하는 값
+var a = ["홍길동", 100, 80, 55];
+// 자바의 ArrayList처럼 사용한다.
+// 배열에 넣는 값은 다양한 타입이 가능하다.
+
+// 2) 배열은 자동 증가한다.
+a[4] = a[1] + a[2] + a[3];
+a[5] = a[4] / 3;
+for (var i = 0; i < a.length; i++) {
+	console.log(a[i]);
+}
+
+// 3) 배열의 값을 넣을 때 중간을 건너뛰고 넣는다면?
+var b = [10, 20, 30];
+b[7] = 80;
+console.log(b.length); //길이? 8 => 중간을 건너뛰면 자동으로 배열이 늘어난다.
+console.log(b[3], b[4], b[5], b[6]); // 중간 방의 값은? undefined => 자동 초기화 
+
+var c = ["홍길동", "임꺽정", "김구"];
+c[7] = "유관순";
+console.log(c.length); //길이? 8 => 중간을 건너뛰면 자동으로 배열이 늘어난다.
+console.log(c[3], c[4], c[5], c[6]); // 중간 방의 값은? undefined => 자동 초기화
+
+// 4) 배열 값을 꺼내기(remove)
+var d = [10, 20, 30];
+console.log(d.pop());
+console.log(d.pop());
+console.log(d.pop());
+console.log(d.pop()); // 결과? undefined
+console.log(d.length); // 결과?	0
+
+// 5) 다차원 배열 
+var score = [["홍길동", 100, 90, 80]
+            ,["임꺽정", 90, 80, 70]
+            ,["유관순", 80, 70, 60]];
+for (var i = 0; i < score.length; i++) {            
+	console.log(score[i][0], score[i][1], score[i][2], score[i][3]);
+}
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

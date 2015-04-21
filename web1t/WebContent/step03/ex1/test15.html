@@ -10,6 +10,34 @@
 "use strict";
 
 // 실습 목표: 배열
+// 1) 배열 생성
+var a = [90, 100, 80];
+for (var i = 0; i < a.length; i++) {
+	console.log(a[i]);
+}
+console.log("---------------------------");
+
+// 2) 배열 생성 : Array 함수 사용하여 배열 생성
+var a2 = new Array();
+a2.push(90);
+a2.push(100);
+a2.push(80);
+for (var i = 0; i < a2.length; i++) {
+  console.log(a2[i]);
+}
+console.log("---------------------------");
+
+// 3) [] vs new Array()
+console.log(typeof a);
+console.log(typeof a2);
+// 결론: [] => new Array()의 단축 문법이다.
+
+// 결국 a 변수에 저장된 것은 배열 객체이다. 따라서 배열 객체의 메서드를 호출할 수 있다.
+a.push(200);
+for (var i = 0; i < a.length; i++) {
+  console.log(a[i]);
+}
+console.log("---------------------------");
 
 </script>
 
