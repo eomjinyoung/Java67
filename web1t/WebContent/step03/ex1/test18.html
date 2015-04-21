@@ -10,7 +10,83 @@
 "use strict";
 
 // 실습 목표: 비교 연산자 ==  와 ===
+// 1) == 와 ===(strict 동등 비교) 차이점 (ECMA-262 규약의 11.9.3번)
+var a = 42;
+var b = "42";
 
+console.log(a === b); // false
+// === 연산자는 타입과 값이 같을 때만 true
+
+console.log(a == b);  // true
+// == 연산자 타입이 다르면 암시적으로 형변환을 한 다음 값을 비교한다.
+// b가 number 변환되었는가? 아니면 a가 string 변환되었는가?
+
+/* number와 string을 비교할 때 암시적 형변환의 기준은?
+ * => 문자열을 숫자로 변환한 다음 비교한다.		
+ */	
+console.log("-----------------------------");
+ 
+// 2) 어떤 값과 boolean 값의 비교
+// - boolean 값을 숫자로 바꾼다.
+// - string과 number를 비교할 때 string을 number로 바꾼다.
+console.log("42" == true); // false => 42 == 1
+console.log("1" == true); // true => 1 == 1
+
+// 3) null과 undefined 비교
+// - null과 undefined의 == 연산 결과는 무조건 true이다.
+// - null 또는 undefined를 다른 타입의 값과 비교할 때, 
+//   null이나 undefined를 다른 타입으로 변환하지 않느다.
+var x = null;
+var y;
+console.log(x == y); // true
+console.log(x == null); // true
+console.log(y == null); // true
+console.log(x == false); // false
+console.log(y == false); // false
+console.log(x == ""); // false
+console.log(y == ""); // false
+console.log(x == 0); // false
+console.log(y == 0); // false
+
+// 4) 객체와 비객체의 비교
+// - number 또는 string과 object를 비교할 때,
+//   object를 number 또는 string으로 바꾼다. 
+var x1 = 42; // number 타입 <= primitive type
+var x2 = "42"; // string 타입 <= primitive type
+var y1 = [42]; // object 타입 (배열 객체)
+var y2 = [43]; // object
+var y3 = [42,43]; // object
+var y4 = [43,42]; // object
+var y5 = ["42"]; // object
+var y6 = ["43"]; // object
+var y7 = new Number(42); // object
+var y8 = new String("42"); // object
+
+console.log(x1 == y1); // true => 42 == 42 
+console.log(x2 == y1); // true => "42" == "42"
+console.log(x1 == y2); // false => 42 == 43
+console.log(x2 == y2); // false => "42" == "43"
+console.log(x1 == y3); // false => 42 == 숫자로 변환 불가! 배열에 여러 개의 값이 있다.
+console.log(x2 == y3); // false => "42" == 문자로 변환 불가! 배열에 여러 개의 값이 있다.
+console.log(x1 == y4); // false => 42 == 숫자로 변환 불가! 배열에 여러 개의 값이 있다.
+console.log(x2 == y4); // false => "42" == 문자로 변환 불가! 배열에 여러 개의 값이 있다.
+console.log(x1 == y5); // true => 42 == 42
+console.log(x2 == y5); // true => "42" == "42"
+console.log(x1 == y6); // false => 42 == 43
+console.log(x2 == y6); // false => "42" == "43"
+console.log(typeof x1, typeof x2, typeof y7, typeof y8);
+console.log(x1 == y7); // true => 42 == 42
+console.log(x2 == y7); // true => "42" == "42"
+
+// 5) 랩퍼 객체
+// - primitive 변수에 대해 그 타입에 대응하는 객체의 함수를 그대로 호출할 수 있다.
+var a = "abcde"; // string 타입은 String 객체처럼 사용할 수 있다.
+var b = 1234; // number 타입은 Number 객체처럼 사용할 수 있다.
+
+console.log(typeof a, typeof b);
+console.log(a.substr(1, 3)); 
+// a에 대해 함수를 호출하면, 내부적으로 a를 String객체로 만들어 실행한다.
+console.log(typeof a); // 함수를 호출했다고 해서 기존 변수의 타입이 객체로 바뀐 것은 아니다.
 </script>
 
 </body>
