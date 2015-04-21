@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex2 - test02</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: 조건문
+// 1) if
+var a = "aaa";
+if (a != undefined) {
+	console.log("a는 정의되었다");
+}
+console.log("-----------------------");
+
+// 2) if ~ else
+var a = 21; // 기존에 이미 a라는 변수가 있다면 그냥 덮어쓴다. map.put("a", 값);
+if ((a % 2) == 0) {
+	console.log("짝수"); 
+} else {
+	console.log("홀수");
+}
+console.log("------------------------");
+
+// 3) if ~ else if ~ else if ~ else
+var a = 61;
+if (a < 19) {
+	console.log("미성년");
+} else {
+	if (a >= 19 && a < 35) {
+		console.log("청년");
+	} else {
+		if (a >= 35 && a < 50) {
+			console.log("장년");
+		} else {
+			if (a >= 50 && a < 60) {
+				console.log("중년");
+			} else {
+				console.log("노인");
+			}
+		}
+	}
+}
+
+// 위의 코드를 보기 좋게 정렬하자
+// 1단계:
+if (a < 19) {
+  console.log("미성년");
+} else {
+  if (a >= 19 && a < 35) {
+    console.log("청년");
+  } else {
+    if (a >= 35 && a < 50) {
+      console.log("장년");
+    } else    // if ~ else는 한문장이다. 따라서 {} 필요없다.
+      if (a >= 50 && a < 60) { 
+        console.log("중년");
+      } else {
+        console.log("노인");
+      }
+  }
+}
+//2단계:
+if (a < 19) {
+  console.log("미성년");
+} else {
+  if (a >= 19 && a < 35) {
+    console.log("청년");
+  } else  // if ~ else는 한문장이다. 따라서 {} 필요없다.
+    if (a >= 35 && a < 50) {
+      console.log("장년");
+    } else    // if ~ else는 한문장이다. 따라서 {} 필요없다.
+      if (a >= 50 && a < 60) { 
+        console.log("중년");
+      } else {
+        console.log("노인");
+      }
+  
+}
+
+//3단계:
+if (a < 19) {
+  console.log("미성년");
+} else  // if ~ else는 한문장이다. 따라서 {} 필요없다.
+  if (a >= 19 && a < 35) {
+    console.log("청년");
+  } else  // if ~ else는 한문장이다. 따라서 {} 필요없다.
+    if (a >= 35 && a < 50) {
+      console.log("장년");
+    } else    // if ~ else는 한문장이다. 따라서 {} 필요없다.
+      if (a >= 50 && a < 60) { 
+        console.log("중년");
+      } else {
+        console.log("노인");
+      }
+
+//4단계:
+if (a < 19) {
+  console.log("미성년");
+} else if (a >= 19 && a < 35) {
+    console.log("청년");
+  } else if (a >= 35 && a < 50) {
+      console.log("장년");
+    } else if (a >= 50 && a < 60) { 
+        console.log("중년");
+      } else {
+        console.log("노인");
+      }
+      
+//5단계: 코드의 열을 맞춘다.
+if (a < 19) {
+  console.log("미성년");
+} else if (a >= 19 && a < 35) {
+  console.log("청년");
+} else if (a >= 35 && a < 50) {
+  console.log("장년");
+} else if (a >= 50 && a < 60) { 
+  console.log("중년");
+} else {
+  console.log("노인");
+}
+      
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

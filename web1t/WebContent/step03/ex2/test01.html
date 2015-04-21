@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex2 - test01</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: 선택 연산자(||, &&)
+// - 논리 연산자를 선택 연산자로 활용
+// 1) || 선택 연산자 
+// - 앞의 값을 boolean으로 변환 후 테스트 해서 true이면 앞의 값을 리턴한다.
+// - flase 이면 다음 값을 리턴한다.        
+var a = 42;
+var b = "abc";
+var x;
+
+a || (x = "hahaha"); // 리턴 값: a -> (x = "hahaha") 문장은 수행하지 않음.
+console.log(x); // undefined
+
+x = a || b;
+console.log(x); // 42
+console.log("----------------------");
+
+console.log(0     || "hahaha"); // "hahaha" 
+console.log(42    || "hahaha"); // 42
+console.log(""    || "hahaha"); // "hahaha"
+console.log(" "    || "hahaha"); // " "
+console.log("true" || "hahaha"); // "true"
+console.log("false" || "hahaha"); // "false"
+console.log("abc" || "hahaha"); // "abc"
+console.log(true  || "hahaha"); // true
+console.log(false || "hahaha"); // "hahaha"
+console.log(null  || "hahaha"); // "hahaha"
+console.log(undefined || "hahaha"); // "hahaha"
+console.log(NaN   || "hahaha"); // "hahaha"
+console.log("----------------------");
+
+// 2) && 선택 연산자
+// - 첫 번째 값은 boolean 테스트 결과가 false이면, 첫 번째 결과가 놓인다.
+// - 첫 번째 값의 boolean 테스트 결과가 true이면, 두 번째 결과가 놓인다.
+// - 논리 AND는 두 값이 모두 true일 때 최종 결과가 true가 된다.
+//   따라서 첫 번째 값이 false이면 두 번째는 실행하나마나이기 때문이다.
+//   그래서 &&는 이 원리를 바탕으로 동작한다.
+console.log(0       && "hahaha"); // 0  
+console.log(42      && "hahaha"); // "hahaha"
+console.log(""      && "hahaha"); // ""
+console.log(" "     && "hahaha"); // "hahaha"
+console.log("true"  && "hahaha"); // "hahaha"
+console.log("false" && "hahaha"); // "hahaha"
+console.log("abc"   && "hahaha"); // "hahaha"
+console.log(true    && "hahaha"); // "hahaha"
+console.log(false   && "hahaha"); // false
+console.log(null    && "hahaha"); // null
+console.log(undefined && "hahaha"); // undefined
+console.log(NaN     && "hahaha"); // NaN
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

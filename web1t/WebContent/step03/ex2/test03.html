@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex2 - test02</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: 조건문2
+// else의 소속: 가장 가까운 if에 종속된다. 
+var a = 61;
+if (a < 19) 
+	if (a >= 19 && a < 35) {
+		console.log("청년");
+	} 
+else { // 바로 위의 if문에 묶인다.
+  console.log("노인");
+}
+console.log("------------------------");
+if (a < 19) { 
+  if (a >= 19 && a < 35) {
+    console.log("청년");
+  } 
+} else { // 첫 번째 if문에 묶인다.
+  console.log("노인");
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
