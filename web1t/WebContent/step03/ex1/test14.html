@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test14</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: 숫자 다루기
+// - 정수, 실수 값 모두 number 종류임.
+// - 8바이트 크기로 데이터 다룸.
+var a = 30;
+var b = 30.2;
+var c = 0.5;
+var d = .5; // 앞의 0 생략 가능.
+
+var e = 345.678;
+console.log(e.toFixed(0));
+console.log(e.toFixed(1));
+console.log(e.toFixed(2));
+console.log(e.toFixed(3));
+console.log(e.toFixed(4));
+console.log(e.toFixed(5));
+
+// 부동소수점의 연산 결과 
+var f1 = 0.1;
+var f2 = 0.2;
+var f3 = 0.3;
+
+console.log(f1);
+console.log(f2);
+console.log(f1 + f2); // 0.3000...4 가 결과이다. 부동소수점 계산 방법에 따라 어쩔 수 없는 결과.
+console.log(f1 + f2 == f3); 
+
+// 두 수 사이에 가장 작은 수를 표현해 보자!
+// Number는 자바스크립트에서 기본으로 제공하는 객체
+if (!Number.EPSILON) { // Number 객체에 EPSILON이라는 이름을 가진 프로퍼티가 없다면,
+	Number.EPSILON = Math.pow(2, -52); // 2의 -52승
+} else {
+	console.log("==>", Number.EPSILON);
+}
+
+/* 자바스크립트 객체?
+ * - 자바 언어의 Map 객체처럼 바라보면 된다.
+ * - 예)
+ *   var obj = new Object();  ==> Java: Map obj = new HashMap();
+ *   obj.name = "홍길동";       ==> Java: obj.put("name") = "홍길동";
+ */
+	
+var f4 = f1 + f2;
+console.log((f4 - f3) < Number.EPSILON);
+// 0.1 + 0.2의 결과에서 0.3을 뺏을 때 그 차이가 아주 작은 수라면, 두 수는 같다고 보자!
+
+// NaN(Not a Number) 상수 값
+var h = 2 / "ok";
+console.log(h); // 결과 => NaN
+
+var h2 = NaN; // 변수에 NaN를 할당할 수 있다.
+console.log(typeof NaN); // NaN의 타입은 number이다.
+console.log(h2 == NaN); //결과? false
+
+// 어떤 변수의 값이 NaN인지 아닌지 검사하려면, isNaN() 함수를 호출하라!
+console.log(window.isNaN(h2)); // 결과? true
+
+var i;
+console.log(i == undefined); // 결과? true => NaN는 undefined처럼 비교할 수 없다.
+
+// infinite
+var j1 = 1 / 0;
+var j2 = -1 / 0;
+console.log(j1); // 결과? Infinity
+console.log(j2); // 결과? -Infinity
+
+console.log(typeof Infinity);	// number
+console.log(typeof -Infinity); // number
+
+console.log(j1 == Infinity); // 결과? true
+console.log(j2 == -Infinity); // 결과? true		
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
