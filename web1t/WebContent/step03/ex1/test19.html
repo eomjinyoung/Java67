@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test19</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: 비교 연산자 == 연습
+// null의 타입은 object이지만, null 그대로 평가하라!
+console.log("0" == null); // string == null -> "0" == null -> false
+console.log("0" == undefined); // false
+console.log("0" == false); // string == number -> "0" == 0 -> 0 == 0 -> true
+console.log("1" == true); // string == number -> "1" == 1 -> 1 == 1 -> true
+console.log("0" == NaN); // string == number -> 0 == NaN -> false
+console.log("0" == 0); // string == number -> 0 == 0 -> true
+console.log("0" == ""); // string == string -> 그대로 비교 -> false
+console.log("--------------------------");
+
+console.log(false == null); // false ->  null을 다른 타입으로 변환하지 않는다.
+console.log(false == undefined); // false 
+console.log(false == NaN); // number == NaN -> 0 == NaN -> false
+console.log(false == 0); // number == 0 -> 0 == 0 -> true
+console.log(false == ""); // 0 == "" -> 0 == 0 -> true
+console.log(false == []); // 0 == [] -> 0 == 0 -> true
+console.log(true == "true") // 1 == NaN -> false
+console.log("--------------------------");
+
+console.log("" == null); // false
+console.log("" == undefined); // false
+console.log("" == NaN); // string == NaN -> false
+console.log("" == 0); // number == 0 -> 0 == 0 -> true
+console.log("" == []); // "" == string -> "" == "" -> true
+console.log("" == {}); // "" == string -> "" == "[object Object]" -> false
+console.log("--------------------------");
+
+console.log(0 == null); // false -> null 은 그대로 비교한다.
+console.log(0 == undefined); // false 
+console.log(0 == NaN); // false
+console.log(0 == []); // 0 == number -> 0 == 0 -> true
+console.log(0 == {}); // 0 == number -> 0 == NaN -> false
+console.log("--------------------------");
+
+console.log("0" == false); // "0" == 0 -> 0 == 0 -> true
+console.log(false == 0); // 0 == 0 -> true
+console.log(false == ""); // 0 == 0 -> true
+console.log(false == []); // 0 == 0 -> true
+console.log("" == 0); // 0 == 0 -> true
+console.log("" == []); // "" == "" -> true
+console.log(0 == []); // 0 == 0 -> true
+console.log("--------------------------");
+
+/* 참고!
+ * https://github.com/dorey/JavaScript-Equality-Table 사이트 참고하라!
+ */
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
