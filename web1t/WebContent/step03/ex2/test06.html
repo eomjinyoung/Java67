@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex2 - test06</title>
+</head>
+<body>
+
+<script>
+"use strict";
+
+// 실습 목표: for
+// 1) for
+var sum = 0;
+for (var a = 0; a < 10; a++) { 
+	sum += a;
+}
+console.log("sum=", sum);
+console.log("------------------------------");
+
+// 2) 배열 반복하기
+var list = [10, 20, 30];
+for (var i = 0; i < list.length; i++) {
+	console.log(list[i]);
+}
+console.log("------------------------------");
+
+// 3) for (var 인덱스 in 배열) { ... }
+for (var i in list) {
+	console.log(list[i]);
+}
+console.log("------------------------------");
+
+// 4) for (var 프로퍼티명 in 객체) { ... }
+var score = new Object(); // 자바의 맵 객체라고 생각하라!
+score.name = "홍길동";
+score.kor = 100;
+score.eng = 90;
+score.math = 80;
+score.sum = score.kor + score.eng + score.math;
+score.aver = sum / 3;
+
+for (var propName in score) {
+	console.log(propName, "=", score[propName]);
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
