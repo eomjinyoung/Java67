@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test02</title>
+</head>
+<body>
+<script>
+/* 실습 목표: 함수 레퍼런스
+ */
+
+function plus(a, b) {
+	return a + b;	 
+};
+ 
+function minus(a, b) {
+	return a - b;   
+}; 
+ 
+var multiple = function(a, b) {
+	return a * b;
+};
+
+var f1 = plus; 
+/* 함수 이름도 함수 주소를 보관하고 있는 변수이다.
+ * 다른 변수에 함수 주소를 복제할 수 있다.
+ */
+var f2 = minus;
+var f3 = multiple;
+
+var plus = function(a, b) {
+	return (a + b) * 2;
+};
+
+console.log( plus(10, 20) ); // 새로운 함수를 가리킨다.
+console.log( f1(10, 20) ); // 이전 함수를 가리킨다.
+
+console.log( minus(10, 20) );
+console.log( f2(10, 20) );
+
+console.log( multiple(10, 20) );
+console.log( f3(10, 20) );
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

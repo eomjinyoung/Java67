@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test02</title>
+</head>
+<body>
+<script>
+/* 실습 목표: 함수 선언2
+ * 
+ * 1) 익명 함수 정의 
+ * function (파라미터, ...) {}
+ * - 함수 이름이 없다.
+ * - 함수를 선언하자마자 바로 변수에 그 함수의 주소를 저장해야 한다.
+ */
+
+// 변수에 함수 주소를 저장하는 순간 해당 변수는 함수로서 사용할 수 있다.
+var plus = function(a, b) {
+	return a + b;	 
+};
+ 
+var minus = function(a, b) {
+	return a - b;   
+}; 
+ 
+console.log( plus(20, 30) );
+console.log( minus(20, 30) ); 
+ 
+// 할당문에서 함수를 정의 -> 스크립트 태그를 실행할 때 먼저 실행하지 않는다.
+// -> 익명함수는 반드시 만든 후, 호출해야 한다.
+//console.log( multiple(20, 30) ); // 오류!
+
+var multiple = function(a, b) {
+	return a * b;
+};
+
+// 만든 후 호출.
+console.log( multiple(20, 30) ); // OK!
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
