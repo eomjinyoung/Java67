@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex4-test03</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: 객체 생성 단축 표기법
+ *
+ */
+
+//1) new 연산자를 사용하여 객체 생성하기
+var score = new Object();
+score.name = "홍길동";
+score.kor = 100;
+score.eng = 100;
+score.math = 100;
+score.sum = score.kor + score.eng + score.math;
+score.aver = score.sum / 3;
+
+toString(score);
+	
+//2) 객체 생성 단축 표기법
+var score2 = {}; // new Object() 랑 같다.
+score2.name = "임꺽정";
+score2.kor = 100;
+score2.eng = 100;
+score2.math = 100;
+score2.sum = score2.kor + score2.eng + score2.math;
+score2.aver = score2.sum / 3;
+
+toString(score2);
+
+function toString(obj) {
+  console.log(obj.name, obj['kor'], obj["eng"], obj.math, obj['sum'], obj.aver);
+}
+
+//3) 단축 표기법2
+// - {프로퍼티명:값,프로퍼티명:값, ...}
+// - 프로퍼티 값으로 number, string, boolean 및 함수까지도 가능하다.
+var score3 = {
+	name: "유관순", 
+	kor: 90, 
+	eng: 90, 
+	math: 90,
+	sum: function() {
+		return this.kor + this.eng + this.math;
+	},
+	aver: function() {
+		return this.sum() / 3;
+	},
+	toString: function() {
+		return this.name + "," +
+		    	this.kor + "," +
+				this.eng + "," +
+				this.math + "," +  
+				this.sum() + "," +  
+				this.aver();
+	}
+};
+
+console.log(score3.toString());
+console.log(score3);
+
+console.log("-------------------------------");
+
+//4) 단축 표기법 응용
+// - 객체 안에 객체를 둘 수 있다. 어디까지 둘 수 있는지는 제한이 없다.
+var scores = {
+		"s01" : {name:"홍길동",age:20},
+		"s02" : {name:"임꺽정",age:30},
+		"s03" : {name:"유관순",age:40}
+}
+
+// - 객체의 프로퍼티 찾아가기 
+console.log(scores.s01.name);
+console.log(scores.s01.age);
+
+// - 대괄호를 이용하여 찾아가기
+console.log(scores["s02"].name);
+console.log(scores["s02"].age);
+
+
+console.log(scores["s03"]["name"]);
+console.log(scores["s03"]["age"]);
+
+// - 대괄호를 이용하면 프로퍼티명을 변수를 통해 제어할 수 있다.
+var studentId = prompt("조회를 원하는 학생의 번호를 입력하시오!");
+var attrName = prompt("학생의 어떤 정보를 원합니까?");
+console.log(scores[studentId][attrName]);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

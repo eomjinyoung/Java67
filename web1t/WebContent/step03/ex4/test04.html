@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex4-test04</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: 캡슐화 구현 방법(클로저 사용)
+ *
+ */
+
+//1) 캡슐화가 안된 객체 생성
+// - 생성자 함수? 객체를 준비시키는 함수!
+function Score(n, k, e, m) {
+	this.name = n;
+	this.kor = k;
+	this.eng = e;
+	this.math = m;
+	this.sum = 0;
+	this.aver = 0;
+	
+  this.compute = function() {
+	  this.sum = this.kor + this.eng + this.math;
+		this.aver = this.sum / 3;
+	};
+	
+	this.toString = function() {
+		// 자바스크립트는 인스턴스 변수를 가리킬 때 반드시 this를 명시해야 한다.
+		// 생략 불가!
+	  return this.name + "," + this.kor + "," + this.eng + "," + 
+	     this.math + "," + this.sum + "," + this.aver;
+	};
+	
+	this.compute();
+}
+
+var s1 = new Score("홍길동", 100, 100, 100);
+console.log(s1.toString());
+
+// - 객체의 모든 프로퍼티가 기본적으로 공개되어 있다.
+// - 마음대로 접근할 수 있다.
+s1.name = "우헤헤";
+s1.kor = 90;
+s1.compute();
+s1.sum = 10;
+console.log(s1.toString());
+
+
+
+//2) 생성자 함수와 클로저 기법을 이용해서 캡슐화 구현 
+function Score2(n, k, e, m) {
+  this.name = n;
+  this.kor = k;
+  this.eng = e;
+  this.math = m;
+  
+  // 객체 밖에서 임의로 접근하지 못하게 합계와 총점을 저장하는 변수는 로컬 변수로 선언한다.
+  var sum = 0; 
+  var aver = 0;
+  
+  this.compute = function() {
+    sum = this.kor + this.eng + this.math;
+    aver = sum / 3;
+  };
+  
+  this.toString = function() {
+    // 자바스크립트는 인스턴스 변수를 가리킬 때 반드시 this를 명시해야 한다.
+    // 생략 불가!
+    return this.name + "," + this.kor + "," + this.eng + "," + 
+       this.math + "," + sum + "," + aver;
+  };
+  
+  this.compute();
+}
+
+var s2 = new Score2("임꺽정", 100, 100, 100);
+console.log(s2.toString());
+
+s2.kor = 50;
+s2.compute();
+s2.sum = 40; // s2 인스턴스에 추가된다. compute()와 toString()이 사용하는 변수가 아니다. 
+console.log(s2.toString());
+console.log(s2.sum);
+
+
+/* 질문1. 
+ * toString() 또는 compute()에서 사용하는 변수는 바깥 함수의 로컬 변수이다.
+ * 바깥 함수의 호출이 끝나면 로컬 변수를 사라져야 하는게 아닌가?
+ * 어떻게 중첩함수에서 바깥 함수의 로컬 변수에 접근하는가?
+ *	 
+ * 답변 =>
+ * - 중첩 함수에서 사용하는 바깥 함수의 로컬 변수는
+ *   중첩 함수가 공유하는 메모리 영역(클로저 영역; closure scope)에 그 로컬 변수의 값을 복제한다.
+ * - 바깥 함수 호출이 종료되어 그 로컬 변수가 사라지더라도 중첩 클래스는 상관없이 
+ *   복제한 로컬 변수를 계속 사용할 수 있다.
+ */
+ 
+var s3 = new Score2("장국영", 100, 100, 100); 
+var s4 = new Score2("주윤발", 80, 80, 80);
+
+console.log(s3.toString());
+console.log(s4.toString());
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
