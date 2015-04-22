@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test05</title>
+</head>
+<body>
+<script>
+/* 실습 목표: 내장 파라미터 변수 "arguments"
+ * - 함수에 넘기는 모든 값은 arguments 배열에 보관된다.
+ *
+ */
+
+//1) arguments 배열 사용법
+function plus() {
+	return arguments[0] + arguments[1];	 
+}
+
+/* 모든 파라미터 값은 arguments에 보관되고, 그 중 첫 번째 값은 a에도 보관된다.
+ * 주의!
+ * 파라미터 변수가 선언된다 해서 그 개수만큼 빠지고 arguments에 보관되는 것은 아니다!
+ * 무조건 모든 파라미터 값은 arguments에 보관된다.
+ */
+function minus(a) {
+	if (a == arguments[0]) {
+		console.log("a와 arguments[0]는 같다.");
+	}
+	return a - arguments[1];    
+} 
+
+console.log( plus(10, 20) );
+console.log( minus(10, 20) );
+
+//2) 자바스크립트는 파라미터 보다 적거나 많은 개수의 값을 넘겨도 된다.
+function sum(a, b, c) {
+	var result = 0;
+	if (a != undefined) { result += a; }
+	if (b != undefined) { result += b; }
+	if (c != undefined) { result += c; }
+	return result;
+}
+
+console.log( sum(10, 20, 30) ); //파라미터 개수 만큼 정확하게 값을 넘긴다.
+console.log( sum(10, 20) ); // 파라미터 개수 보다 적게 넘긴다.
+console.log( sum(10) ); // 파라미터 개수 보다 적게 넘긴다.
+console.log( sum() ); // 파라미터 개수 보다 적게 넘긴다.
+console.log( sum(10, 20, 30, 40, 50, 60) ); // 파라미터 개수 보다 더 많이 넘긴다.
+
+/* 자바스크립트와 오버로딩
+ * - 함수 호출할 때 파라미터 개수와 다르게 값을 넘길 수 있다.
+ * - 함수 호출할 때 넘기는 값의 개수를 가지고 함수를 구별할 수 없다.
+ * - 파라미터의 타입을 구별하지 않는다.
+ * - 결론 -> 오버로딩이 불가하다!
+ */
+
+/* 자바에서는 다음과 같이 파라미터의 개수나 타입이 다를 경우, 
+ * 같은 이름을 가진 메서드를 여러 개 선언할 수 있다.
+int plus(int a, int b) {...} // A함수라고 하자!
+float plus(float a, float b) {...} // B함수라고 하자!
+int plus(int a) { ... } // C 함수라고 하자!
+
+ * 메서드를 호출할 때도 다음과 같이 파라미터의 개수나 데이터 형에 따라 메서드를 구분한다.
+plus(10, 20); // A함수 호출
+plus(10.0f, 20.0f); // B함수 호출
+plus(10); // C함수 호출
+ */
+
+console.log("-----------------------------");
+ 
+//3) arguments를 활용한 sum() 함수
+function sum2() {
+	var result = 0;
+	for (var i in arguments) {
+		result += arguments[i];
+	}
+	return result;
+}
+console.log( sum2() );
+console.log( sum2(10, 20, 30, 40, 50) );
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
