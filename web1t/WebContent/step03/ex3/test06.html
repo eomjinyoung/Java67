@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test06</title>
+</head>
+<body>
+<script>
+/* 실습 목표: 변수와 함수의 호이스팅(Hoisting)
+ * - 변수 선언이나 함수 정의는 스크립트 태그를 실행하기 전에
+ *   맨 위로 보낸다.
+ */
+
+//1) 변수의 호이스팅 테스트
+console.log(a);
+
+var a = 10;
+
+console.log(a);
+
+/* 결과 설명:
+ * - 호이스팅 규칙에 따라 var a = 10; 문장에서 변수 선언 부분은 스크립트 태그 위로 올라간다.
+ * - 소스 코드
+var a;  <-- 변수 선언부가 스크립트 태그 꼭대기로 온다.
+console.log(a);
+a = 10; <-- 일반적인 값 할당문으로 변경된다.
+console.log(a);
+ */
+
+//2) 함수의 호이스팅 테스트
+console.log( hello());
+
+function hello() { // 이 함수 정의는 스크립트 태그 꼭대기로 보내진다.
+	return "안녕하세요";
+}
+
+console.log("-------------------------");
+
+//3) 로컬 변수와 중첩 함수에 대해서도 호이스팅이 적용된다.
+function test() {
+	console.log(x);
+	
+	var x = 100; // 호이스팅 규칙에 따라, 변수 x를 선언한 문장이 test() 함수 꼭대기로 이동한다.
+	             // 단 값을 초기화하는 할당문은 그대로 둔다.
+	
+	console.log(x);
+	
+	console.log(hi());
+	
+	function hi() { // 호이스팅 규칙에 따라, hi()는 test() 함수 꼭대기로 이동한다.
+		return "반가워요";
+	}
+}
+test();
+
+//3)번의 호이스팅 결과
+/*
+function test() {
+	var x;
+  function hi() { 
+    return "반가워요";
+  }
+  console.log(x);
+  x = 100; 
+  console.log(x);
+  console.log(hi());
+}
+*/
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
