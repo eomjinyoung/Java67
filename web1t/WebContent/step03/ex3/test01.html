@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex3-test01</title>
+</head>
+<body>
+<script>
+/* 실습 목표: 함수 선언
+ * 
+ * 1) 함수 선언하기 
+ * function 함수명(파라미터, ...) {}
+ * - 리턴 타입이 없다 -> 자바스크립트는 명시적인 타입이 없다.
+ * - 파라미터 선언 시 타입을 var을 선언하지 않는다.
+ */
+ 
+function plus(a, b) {
+ return a + b;
+}
+
+var result = plus(10, 20);
+console.log("결과 = ", result);
+ 
+// 2) 함수 선언 위치와 호출 위치의 관계
+// - 함수를 선언하기 전에 호출할 수 있다?
+// - 가능하다. -> 이유: 스크립트 태그를 실행할 때 항상 함수 선언문을 먼저 찾아서 실행한다.
+result = minus(10, 20);
+console.log("a - b = ", result);
+
+function minus(a, b) {
+ return a - b;
+}
+ 
+// 다른 스크립트에 선언된 함수를 호출할 수 있는가?
+// - 아직 다음 스트립트 태그를 실행하기 전이기 때문에 mulitple()을 호출할 수 없다.
+// - 항상 스크립트 태그 실행을 완료해야만 다음 스크립트 태그를 실행할 수 있다.
+//result = multiple(10, 20); // 오류!
+//console.log("a * b = ", result);
+
+</script>
+
+<script>
+// 3) 이전 스크립트 태그에서 선언한 함수를 호출할 수 있는가?
+// - 있다. -> 스크립트 태그는 순차적으로 실행한다. 스크립트 태그 안에서 선언한 변수나 함수는
+//           window 객체에 프로퍼티가 된다.
+// - 한 페이지에 window 객체는 하나다. 
+
+result = plus(100, 200);
+console.log("a + b = ", result);
+
+// 증명: 스크립트 태그에 선언된 변수나 함수는 window 객체에 소속된다.
+//      -> window 객체의 프로퍼티가 된다.
+result = window.minus(1010, 10);
+console.log("a - b = ", result);
+
+function multiple(a, b) {
+	return a * b;
+}
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
