@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex4-test04</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: prototype 사용
+ * - 객체를 생성할 때 마다 매번 함수를 만들어야 한다면, 
+ *   메모리가 낭비된다. 속도도 지연된다.
+ * - 해결책
+ *   -> 객체들이 공유하는 공간(prototype 객체)에 함수를 두자!
+ */
+
+//1) 기존 방식 
+function Score(n, k, e, m) {
+  this.name = n;
+  this.kor = k;
+  this.eng = e;
+  this.math = m;
+  
+  var sum = 0; 
+  var aver = 0;
+  
+  this.compute = function() {
+    sum = this.kor + this.eng + this.math;
+    aver = sum / 3;
+  };
+  
+  this.toString = function() {
+    return this.name + "," + this.kor + "," + this.eng + "," + 
+       this.math + "," + sum + "," + aver;
+  };
+  
+  this.compute();
+}
+
+//2) 개선한 방식
+// - 생성자 함수에서는 프로퍼티만 준비한다.
+function Score2(n, k, e, m) {
+  this.name = n;
+  this.kor = k;
+  this.eng = e;
+  this.math = m;
+  this.sum = 0;
+  this.aver = 0;
+  
+  this.compute();
+}
+
+// - 객체가 공유하는 함수나 변수는 prototype 프로퍼티에 보관한다.
+// - 객체가 공유하는 변수? 자바 언어로 따지면 static 변수가 될 것이다.
+//
+// - 전제 지식 => "자바스크립트는 함수도 객체로 취급한다."
+//              "모든 객체는 prototype 프로퍼티가 있다."
+
+Object.prototype.compute = function() {
+	this.sum = this.kor + this.eng + this.math;
+	this.aver = this.sum / 3;
+};
+
+Score2.prototype.toString = function() {
+  return this.name + "," + this.kor + "," + this.eng + "," + 
+     this.math + "," + this.sum + "," + this.aver;
+}
+
+var s1 = new Score2("장국영", 100, 100, 100); 
+var s2 = new Score2("주윤발", 80, 80, 80);
+
+s1.kor = 80;
+s1.compute(); 
+/* compute()의 호출 과정
+ * 1) 현재 객체에서 compute()를 찾는다.
+ * 2) 없으면, __proto__가 가리키는 생성자 함수의 prototype에서 찾는다.
+ * 3) 없으면, 생성자 함수 객체의 __proto__가 가리키는 상위 생성자 함수의 prototype에서 찾는다.
+ * 
+ * s1.compute() 호출 과정
+ * 1) s1.compute() <-- 없다.
+ * 2) s1.__proto__.prototype.compute() <-- 없다.
+ *    ==> s1.__proto__는 s1 객체를 만들 때 사용한 생성자 함수를 가리킴.
+          따라서 s1.__proto__ 변수가 가리키는 것은 Score2 생성자 함수 객체이다.
+          위의 문장은 다음과 같다.
+ *        Score2.prototype.compute() <-- 없다.
+ * 3) Score2.__proto__.prototype.compute() <-- 있다. 이 함수가 호출된다.
+ *    ==> Score2.__proto__ == Object
+ *              Object.prototype.compute() <-- 있다. 이 함수가 호출된다.
+ */
+
+s2.kor = 50;
+s2.compute();
+
+console.log(s1.toString());
+console.log(s2.toString());
+
+console.log(s1);
+console.log(s2);
+
+// Object의 prototype에 마구잡이로 함수를 두지 말라!
+// 모든 객체가 공유하는 문제가 발생한다.
+var obj1 = new Object();
+obj1.compute(); // 위에서 Object 생성자에 compute()를 추가했기 때문에 호출할 수 있다.
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
