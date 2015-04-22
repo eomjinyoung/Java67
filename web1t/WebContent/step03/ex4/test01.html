@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex4-test01</title>
+</head>
+<body>
+<script>
+/* 실습 목표: 객체 생성
+ * - 빈 객체를 생성한 후 Object() 함수를 호출하여 기본 변수와 함수를 준비한다. 
+ * - 자바스크립트는 클래스가 없다!
+ *
+ */
+var obj1 = new Object();
+var obj2 = new Object; // 생성자 함수의 경우 넘겨줄 파라미터 값이 없으면 괄호()를 생략해도 된다.
+
+//1) 객체 프로퍼티 추가하기
+//- 자바스크립트는 객체에 언제든지 프로퍼티를 추가하거나 삭제할 수 있다.
+obj1.name = "홍길동";
+obj1.kor = 100;
+obj1.eng = 100;
+obj1.math = 100;
+obj1.sum = obj1.kor + obj1.eng + obj1.math;
+obj1.aver = obj1.sum / 3;
+
+//2) 객체에 프로퍼티를 추가하는 또 다른 방법
+//- 객체명["프로퍼티명"] = 값;
+obj2["name"] = "임꺽정";  
+obj2['kor'] = 100; // 문자열은 작은 따옴표를 사용할 수 있다.
+obj2['eng'] = 80;
+obj2['math'] = 70;
+obj2['sum'] = obj2["kor"] + obj2.eng + obj2['math'];
+obj2['aver'] = obj2.sum / 3;
+
+toString(obj1);
+toString(obj2);
+
+function toString(obj) {
+	console.log(obj.name, obj['kor'], obj["eng"], obj.math, obj['sum'], obj.aver);
+}
+
+//3) 프로퍼티를 추가할 때 "객체['프로퍼티명'] = 값" 방식으로 해야할 경우?
+// - 프로퍼티 이름에 특수 문자나 공백을 포함할 경우.
+// - "객체명.프로퍼티명 = 값" 문법으로는 프로퍼티명에 공백이나 특수 문자를 포함할 수 없다.
+var obj3 = new Object();
+//obj3.first name = "길동"; // 오류! 프로퍼티명에 공백이 포함되어 있다.
+//obj3.last name = "홍";   // 오류!
+//obj3.intro^^ = "나는 홍길동입니다."; // 오류! 프로퍼티명에 특수 문자가 포함되어 있다.
+obj3["first name"] = "길동"; // OK
+obj3["last name"] = "홍"; // OK
+obj3["intro^^"] = "나는 홍길동입니다."; // OK
+
+console.log (obj3['first name']);
+console.log (obj3['last name']);
+console.log (obj3['intro^^']);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
