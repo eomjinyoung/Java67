@@ -87,12 +87,13 @@ Object.defineProperties(obj2, { /* 프로퍼티 목록 */
 	_kor : {value:0, writable: true},
 	_eng : {value:0, writable: true},
 	_math : {value:0, writable: true},
+	_sum : {value:0, writable: true},
 	kor : {
 		get: function() {return this._kor;},
 		set: function(v) { 
 			if (v >= 0 && v <= 100) {
 				this._kor = v;
-				this.sum = this._kor + this._eng + this._math;
+				this._sum = this._kor + this._eng + this._math;
 			}
 		},
 		enumerable: true
@@ -102,7 +103,7 @@ Object.defineProperties(obj2, { /* 프로퍼티 목록 */
 	  set: function(v) { 
       if (v >= 0 && v <= 100) {
         this._eng = v;
-        this.sum = this._kor + this._eng + this._math;
+        this._sum = this._kor + this._eng + this._math;
       }
     },
     enumerable: true
@@ -112,12 +113,15 @@ Object.defineProperties(obj2, { /* 프로퍼티 목록 */
     set: function(v) { 
       if (v >= 0 && v <= 100) { 
         this._math = v;
-        this.sum = this._kor + this._eng + this._math;
+        this._sum = this._kor + this._eng + this._math;
       }
     },
     enumerable: true
   },
-	sum : {value: 0, enumerable: true, writable: true},
+	sum : {
+		get: function() { return this._sum; },
+		enumerable: true
+	},
 	aver : {
 		get: function() { return this.sum / 3; },
 		enumerable: true
@@ -132,6 +136,7 @@ obj2.eng = 50;
 console.log(obj2.name, obj2.kor, obj2.eng, obj2.math, obj2.sum, obj2.aver);
 
 obj2.math = 80;
+//obj2._sum = 10; //안타깝게도 _sum 등의 변수에 접근할 수 있다. 막는 방법? 종합편2를 보라!
 console.log(obj2.name, obj2.kor, obj2.eng, obj2.math, obj2.sum, obj2.aver);
 
 console.log("--------------------------------------");
@@ -139,6 +144,70 @@ console.log("--------------------------------------");
 for (var propName in obj2) {
 	console.log(propName);
 }
+
+//7) 종합편2
+//- 내부에서 사용하는 변수를 프로퍼티로 만들면 외부에서 접근할 수 있기 때문에
+//  완전한 캡슐화가 불가능하다.
+//- closure 기술을 사용하여 보완하자!
+//  => 내부에서 사용하는 변수를 로컬 변수로 만들자.
+function createScore() {
+	// 객체의 getter/setter 함수에서 사용하는 로컬 변수 
+	// => 곧 다음 로컬 변수는 클로저 영역에서 별도로 관리한다.
+	var kor = 0, eng = 0, math = 0, sum = 0;
+	
+	return Object.defineProperties(
+		{}, /* 빈 객체 준비 */
+		{ /* 프로퍼티 목록 */
+		  name : {writable: true, enumerable: true},
+		  kor : {
+		    get: function() {return kor;},
+		    set: function(v) { 
+		      if (v >= 0 && v <= 100) {
+		        kor = v;
+		        sum = kor + eng + math;
+		      }
+		    },
+		    enumerable: true
+		  },
+		  eng : {
+		    get: function() {return eng;},
+		    set: function(v) { 
+		      if (v >= 0 && v <= 100) {
+		        eng = v;
+		        sum = kor + eng + math;
+		      }
+		    },
+		    enumerable: true
+		  },
+		  math : {
+		    get: function() {return math;},
+		    set: function(v) { 
+		      if (v >= 0 && v <= 100) { 
+		        math = v;
+		        sum = kor + eng + math;
+		      }
+		    },
+		    enumerable: true
+		  },
+		  sum : {
+		    get: function() { return sum; },
+		    enumerable: true
+		  },
+		  aver : {
+		    get: function() { return sum / 3; },
+		    enumerable: true
+		  }
+	});
+}
+
+var obj3 = createScore();
+obj3.name = "오호라";
+obj3.kor = 70;
+obj3.eng = 40;
+obj3.math = 90;
+//obj3.sum = 10; // 오류! setter 가 없다.
+//obj3.aver = 20; // 오류! setter 가 없다.
+console.log(obj3.name, obj3.kor, obj3.eng, obj3.math, obj3.sum, obj3.aver);
 </script>
 </body>
 </html>
