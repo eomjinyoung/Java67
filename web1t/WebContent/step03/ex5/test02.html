@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex5-test02</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: 함수의 파라미터 검사
+ */
+
+function writeHead(statusCode, p1, p2) {
+	console.log("상태코드 = ", statusCode);
+	
+	var message;
+	var headers;
+	
+	if (p1 != undefined && (typeof p1 == 'string')) {
+		message = p1;
+	}
+	
+	if (p1 != undefined && (typeof p1 != 'string')) {
+	  headers = p1;	
+	}
+	
+	if (p2 != undefined) {
+		headers = p2;
+	}
+	
+	if (message != undefined) {
+		console.log("message = ", message);
+	}
+	
+	if (headers != undefined) {
+		for (var propName in headers) {
+			console.log(propName, " = ", headers[propName]);
+		}
+	}
+	
+}
+
+writeHead(200);
+console.log("---------------------------");
+
+writeHead(200, "ok");
+console.log("---------------------------");
+
+writeHead(200, {"Content-Type": "text/plain"});
+console.log("---------------------------");
+
+writeHead(200, "ok", {"Content-Type": "text/plain"});
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
