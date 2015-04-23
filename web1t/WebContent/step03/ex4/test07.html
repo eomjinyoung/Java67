@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex4-test07</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: 객체 프로퍼티의 특징 제어하기
+ */
+// 실습 객체 준비
+// Object를 복제 --> {kor:0, eng:0, math:0}를 복제 -> obj1
+var obj1 = Object.create({kor:0, eng:0, math:0});
+obj1.name = "임꺽정";
+obj1.age = 30;
+
+console.log(obj1.name, obj1.age, obj1.kor, obj1.eng, obj1.math, obj1.sum);
+console.log("--------------------------------");
+
+//1) 프로퍼티가 있는지 여부 알아내기
+console.log( obj1.hasOwnProperty("name") );
+console.log( obj1.hasOwnProperty("kor") );
+console.log("--------------------------------");
+
+//2) for..in을 통해 나열할 수 있는가?
+console.log( obj1.propertyIsEnumerable("name"));		
+console.log( obj1.propertyIsEnumerable("kor"));   
+console.log("--------------------------------");
+for (var propName in obj1) {
+	console.log(propName);
+}
+console.log("--------------------------------");
+//3) 프로퍼티 정의하기 
+//- Object.defineProperty(객체, "프로퍼티명", {프로퍼티 특징});
+console.log("sum 프로퍼티 추가 전 = ", obj1.sum);
+
+//obj1.sum = 0; // 프로퍼티를 이렇게 간단히 추가할 수도 있다. 
+// 프로퍼티의 특성을 상세하게 제어하고 싶으면 다음과 같이 추가하라.
+Object.defineProperty(
+		obj1, /* 프로퍼티를 추가할 객체 */ 
+		"sum", /* 프로퍼티 명 */
+		{ /* 프로퍼티 특징 */
+			value: 0, /* sum 프로퍼티의 초기 값 */
+			writable: true, /* 프로퍼티 변경 여부 지정. 기본은 false이다.*/
+			enumerable: true, /* for..in을 통해 조회할 수 있는가? 기본은 false이다.*/
+			configurable: true /* 프로퍼티 특징을 변경할 수 있는가? 기본은 false이다.*/ 
+		});
+
+console.log("sum 프로퍼티 추가 후 = ", obj1.sum);
+
+obj1.sum = 30; 
+console.log("sum = ", obj1.sum);
+
+console.log("--------------------------------");
+for (var propName in obj1) {
+  console.log(propName);
+}
+console.log("--------------------------------");
+
+// 기존 프로퍼티 특징을 변경하기
+// - defineProperty() 기존에 프로퍼티가 있으면 특징을 변경하고, 없으면 새로 만든다.
+Object.defineProperty(obj1, "name", {writable:false});
+//obj1.name = "유관순"; //name 프로퍼티를 read only로 변경하였기 때문에 값을 바꿀 수 없다.
+console.log(obj1.name);
+
+// 프로퍼티의 특징 중, configurable이 true일 때만 다음과 같이 특징을 변경할 수 있다.
+Object.defineProperty(obj1, "sum", {enumerable:false});
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

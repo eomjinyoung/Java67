@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex4-test06</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: Object.create()를 사용하여 객체 만들기
+ * - ECMAScript 5에 추가된 메서드.
+ */
+//1) new 연산자를 사용하여 객체 만들기
+Object.prototype.hello = function() {
+	console.log("안녕하세요.");
+};
+
+var obj1 = new Object();
+console.log(obj1);
+
+//2) Object Literal을 이용하여 객체 만들기
+var obj2 = {};
+console.log(obj2);
+
+//3) Object.create(원형객체) 함수를 이용하여 객체 만들기
+
+// - 원형 객체를 지정하지 않으면 순수 객체가 생성된다.
+// - Object의 prototype에 들어있는 자원을 사용할 수 없다.
+var obj3 = Object.create(null);
+obj3.name = "홍길동";
+obj3.age = 20;
+console.log(obj3);
+
+var obj4 = Object.create(Object.prototype);
+obj4.name = "임꺽정";
+obj4.age = 30;
+console.log(obj4);
+
+var obj5 = Object.create({name:"유관순"});
+obj5.age = 40;
+console.log(obj5);
+
+function MyObject() {
+	this.name = "안중근";
+}
+
+var obj6 = Object.create(MyObject.prototype);
+obj6.age = 50;
+console.log(obj6);
+
+obj1.hello();
+obj2.hello();
+//obj3.hello();
+obj4.hello();
+obj5.hello();
+ 
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
