@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex4-test09</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: 직렬화 
+ * - 자바스크립트에서는 객체를 문자열로 직렬화한다.
+ * - 문자열로 직렬화할 때 규칙 
+ *   1) 프로퍼티 명은 반드시 큰 따옴표를 사용하여 감싼다.
+ *   2) 직렬화 규칙을 JavaScript Object Notation(JSON) 이라 부른다.
+ */
+var obj1 = new Object();
+obj1.name = "임꺽정";
+obj1.age = 30;
+
+//1) 직력화하기 --> JSON 문자열로 만들기
+var jsonString = JSON.stringify(obj1); 
+console.log(jsonString);
+
+//2) JSON 문자열을 객체로 복원하기
+var obj2 = JSON.parse(jsonString);
+console.log(obj2);
+
+//3) JSON 응용
+var str = prompt("JSON 문자열을 입력하세요!");
+var obj3 = JSON.parse(str);
+console.log((obj3.kor + obj3.eng + obj3.math) / 3);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
