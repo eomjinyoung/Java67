@@ -1,5 +1,5 @@
 // 실습 목표
-console.log("실습목표", "mysql 서버에서 board2 select하기");
+console.log("실습목표", "board2 테이블에서 delete하기");
 
 var mysql = require('mysql');
 
@@ -14,16 +14,15 @@ var connection = mysql.createConnection({
 connection.connect();
 
 connection.query(
-  "select bno, title, content, date_format(cre_date,'%Y-%m-%d') as cdate from board2", 
-  function(err,rows){
+  'delete from board2 where bno = ?',
+  [13],
+  function(err, result){
 	if (err){
 	  console.log(err);
 	  return;
 	} 
 	
-	for (var i in rows) {
-	  console.log(rows[i].bno, rows[i].title, rows[i].cdate, rows[i].content);
-	}
+	console.log(result);
 		
 	connection.end();
 });
