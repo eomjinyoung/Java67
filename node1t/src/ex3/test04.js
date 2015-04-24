@@ -1,5 +1,6 @@
 var http = require('http');
-var url = require('url');
+var url = require('url'); //URL 분석 및 GET 요청의 데이터 분석
+var querystring = require('querystring'); //POST 요청의 message body 데이터 분석
 var mysql = require('mysql');
 
 // 실습 목표: 게시판 만들기
@@ -99,6 +100,19 @@ var urlMapper = {
 	'/board/delete.do': doDelete,
 };
 
+function callHandler(path, req, res, params) {
+	var handler = urlMapper[path];
+	if (handler) {
+		// req에 파라미터 값을 꺼내는 함수를 추가한다. 이 객체를 핸들러에게 전달한다.
+		req.getParameter = function(name) {
+			return params[name];
+		};
+		handler(req, res);
+	} else {
+		doError(req, res);
+	}
+}
+
 http.createServer(function(req, res) {
 	var urlInfo = url.parse(req.url, true);
 
@@ -107,21 +121,31 @@ http.createServer(function(req, res) {
 	var params;
 	if (req.method == 'GET') {
 		params = urlInfo.query;
+		callHandler(urlInfo.pathname, req, res, params);
+		
 	} else if (req.method == 'POST') {
-		params = req.body;
+		// POST 요청은 message body이 데이터를 읽어야 한다.
+		// 그런데 message body 데이터는 이벤트 처리하는 식으로 읽어야 한다.
+		// 1) 웹 브라우저가 보낸 데이터의 일부를 읽을 때 마다 data 이벤트가 발생한다.
+		//    이 이벤트가 발생할 때 마다 읽은 데이터를 임시 변수에 보관한다.
+		//    보내는 데이터 적다면 한 번 호출로 끝나겠지만, 
+		//    많다면 data 이벤트가 여러 번 발생할 것이다.
+		//    그래서 data 이벤트가 발생할 때마다 그 값을 임시 변수에 보관하는 것이다.
+		var messageBody = ''; // POST 요청의 message body 데이터를 임시 보관할 변수
+		req.on('data', function(data) { // data 이벤트가 발생했을 때 호출될 메서드 등록 
+ 			messageBody += data;
+ 		});
+ 		
+ 		// 언제까지 읽어야 하는가? message body 데이터를 모두 읽으면 end 이벤트가 발생한다.
+ 		req.on('end', function() {// end 이벤트가 발생했을 때 호출될 메서드 등록
+ 			// 지금까지 읽은 message body 데이터를 분석하여 params에 객체로 보관한다.
+ 			// 직접 분석할까? 미칬나! -> 도구 써라! -> querystring
+ 			params = querystring.parse(messageBody);
+ 			callHandler(urlInfo.pathname, req, res, params);
+ 		});
 	}
 	
-	var handler = urlMapper[urlInfo.pathname];
-	if (handler) {
-		// req에 파라미터 값을 꺼내는 함수를 추가한다. 이 객체를 핸들러에게 전달한다.
-		req.getParameter = function(name) {
-			return params[name];
-		};
-			
-		handler(req, res);
-	} else {
-		doError(req, res);
-	}
+	
 	
 }).listen(1337, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:1337/');
