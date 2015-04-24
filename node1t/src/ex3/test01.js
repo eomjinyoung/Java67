@@ -10,59 +10,76 @@ var url = require('url');
 // 5) 글 삭제: /board/delete.do?no=값
 //
 
-function compute(v1, v2, op) {
-  switch (op) {
-  case 'plus': return v1 + v2; 
-  case 'minus': return v1 - v2;
-  case 'multiple': return v1 * v2;
-  case 'divide': return v1 / v2;
-  case 'remainder': return v1 % v2;
-  default: throw "해당 연산자를 지원하지 않습니다.";
-  }
+function doForm(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+	res.write('<html><head><title>test10</title></head>\n');
+	res.write('<body>');
+	res.write('<h1>새 글</h1>');
+	res.end('</body></html>\n');
 }
 
-function fromOpToNotation(op) {
-  switch (op) {
-  case 'plus': return '+';
-  case 'minus': return '-';
-  case 'multiple': return '*'; 
-  case 'divide': return '/'; 
-  case 'remainder': return '%';
-  }
+function doAdd(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+	res.write('<html><head><title>test10</title></head>\n');
+	res.write('<body>');
+	res.write('<h1>등록 결과</h1>');
+	res.end('</body></html>\n');
+}
+
+function doList(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+	res.write('<html><head><title>test10</title></head>\n');
+	res.write('<body>');
+	res.write('<h1>게시글</h1>');
+	res.end('</body></html>\n');
+}
+
+function doDetail(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+	res.write('<html><head><title>test10</title></head>\n');
+	res.write('<body>');
+	res.write('<h1>상세정보</h1>');
+	res.end('</body></html>\n');
+}
+
+function doChange(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+	res.write('<html><head><title>test10</title></head>\n');
+	res.write('<body>');
+	res.write('<h1>변경 결과</h1>');
+	res.end('</body></html>\n');
+}
+
+function doDelete(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+	res.write('<html><head><title>test10</title></head>\n');
+	res.write('<body>');
+	res.write('<h1>삭제 결과</h1>');
+	res.end('</body></html>\n');
+}
+
+function doError(req, res) {
+	res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+	res.write('<html><head><title>test10</title></head>\n');
+	res.write('<body>');
+	res.write('<h1>요청 오류!</h1>');
+	res.write('<p>해당 URL을 지원하지 않습니다!</p>');
+	res.end('</body></html>\n');
 }
 
 http.createServer(function(req, res) {
 	var urlInfo = url.parse(req.url, true);
 	
-	res.writeHead(200, {
-		'Content-Type': 'text/html;charset=UTF-8',
-	});
-	res.write('<html><head><title>test10</title></head>\n');
-	res.write('<body>');
-
-	if (urlInfo.pathname == '/calc') {
-		var v1 = parseInt(urlInfo.query.v1);
-		var v2 = parseInt(urlInfo.query.v2);
-		
-
-		try {
-			var result = compute(v1, v2, urlInfo.query.op);
-			var notation = fromOpToNotation(urlInfo.query.op);
-			
-			res.write('<h1>test10</h1>\n');
-		    res.write(v1 + ' ' + notation + ' ' + v2 + ' = ' + result + '\n');
-		    
-		} catch (ex) {
-			res.write('<h1>예외 발생!</h1>\n');
-			res.write('<p>' + ex + '</p>\n');
-		}
-	    
-	} else {
-		res.write('<p>해당 URL을 지원하지 않습니다!</p>');
+	switch (urlInfo.pathname) {
+	case '/board/form.do': doForm(req, res); break;
+	case '/board/add.do': doAdd(req, res); break;
+	case '/board/list.do': doList(req, res); break;
+	case '/board/detail.do': doDetail(req, res); break;
+	case '/board/change.do': doChange(req, res); break;
+	case '/board/delete.do': doDelete(req, res); break;
+	default: doError(req, res);
 	}
 	
-	res.write('<p><a href="http://localhost:9999/web1t/step04/ex1/calcForm.html">다시 계산하기</a></p>\n');
-	res.end('</body></html>\n');
 }).listen(1337, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:1337/');
 
