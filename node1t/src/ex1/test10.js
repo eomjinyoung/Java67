@@ -17,6 +17,7 @@ function compute(v1, v2, op) {
   case 'multiple': return v1 * v2;
   case 'divide': return v1 / v2;
   case 'remainder': return v1 % v2;
+  default: throw "해당 연산자를 지원하지 않습니다.";
   }
 }
 
@@ -42,11 +43,19 @@ http.createServer(function(req, res) {
 	if (urlInfo.pathname == '/calc') {
 		var v1 = parseInt(urlInfo.query.v1);
 		var v2 = parseInt(urlInfo.query.v2);
-		var result = compute(v1, v2, urlInfo.query.op);
-		var notation = fromOpToNotation(urlInfo.query.op);
 		
-	    res.write('<h1>test10</h1>\n');
-	    res.write(v1 + ' ' + notation + ' ' + v2 + ' = ' + result + '\n');
+
+		try {
+			var result = compute(v1, v2, urlInfo.query.op);
+			var notation = fromOpToNotation(urlInfo.query.op);
+			
+			res.write('<h1>test10</h1>\n');
+		    res.write(v1 + ' ' + notation + ' ' + v2 + ' = ' + result + '\n');
+		    
+		} catch (ex) {
+			res.write('<h1>예외 발생!</h1>\n');
+			res.write('<p>' + ex + '</p>\n');
+		}
 	    
 	} else {
 		res.write('<p>해당 URL을 지원하지 않습니다!</p>');
