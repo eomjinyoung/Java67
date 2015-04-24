@@ -5,6 +5,7 @@ var mysql = require('mysql');
 
 // 실습 목표: 게시판 만들기
 // - 게시물 입력 요청 처리하기
+// - POST 데이터 처리하기
 //
 
 var connection = mysql.createConnection({
