@@ -6,5 +6,17 @@
 </head>
 <body>
 <h1>계산기</h1>
+<form action="http://localhost:1337/calc" method="get">
+<input type="text" name="v1" size="4">
+<select name="op">
+  <option value="plus">+</option>
+  <option value="minus">-</option>
+  <option value="multiple">*</option>
+  <option value="divide">/</option>
+  <option value="remainder">%</option>
+</select>
+<input type="text" name="v2" size="4">
+<input type="submit" value="=">
+</form>
 </body>
 </html>
