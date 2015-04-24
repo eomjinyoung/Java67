@@ -114,6 +114,7 @@ function callHandler(path, req, res, params) {
 }
 
 http.createServer(function(req, res) {
+	// URL? /board/add.do?title=...&content=....
 	var urlInfo = url.parse(req.url, true);
 
 	// GET 요청은 URL에서 파라미터 값을 추출하고,
