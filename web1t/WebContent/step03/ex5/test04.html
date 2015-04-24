@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex5-test04</title>
+</head>
+<body>
+<script>
+"use strict";
+/* 실습 목표: 예외 처리2
+ */
+
+//1) Error() 생성자를 사용하여 예외 처리 객체를 만들어 던지자!
+function divide(a, b) {
+	if (arguments.length < 2) 
+		throw new Error("두 개의 파라미터가 필요합니다.");
+	
+	return a / b;
+}
+
+console.log(divide(10, 2));
+
+try {
+	  console.log(divide(10));
+} catch (ex) {
+	console.log("=>", ex.name);
+	console.log("=>", ex.message);
+}
+console.log("okok"); 
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
