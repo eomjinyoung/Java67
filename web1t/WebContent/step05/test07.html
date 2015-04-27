@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test07</title>
+<style>
+* {
+  border: 1px solid red;
+  margin: 20px;
+}
+</style>
+</head>
+<body>body
+<h1>이벤트 처리</h1>
+<div id="d1">d1
+  <div id="d11">d11
+    <div id="d111">d111<button id="btn01" type="button">테스트1</button></div>
+  </div>
+  <div id="d12">d12
+    <div id="d121">d121<button id="btn02" type="button">테스트2</button></div>
+  </div>
+</div>
+<div id="d2">d2
+  <div id="d21">d21
+    <div id="d211">d211<button id="btn03" type="button">테스트3</button></div>
+  </div>
+  <div id="d22">d22
+    <div id="d222">d222<button id="btn04" type="button">테스트4</button></div>
+  </div>
+</div>
+<br>
+
+<script>
+//실습 목표: 캡쳐 단계에서 호출될 수 있도록 리스너 등록하기 
+// - addEventListener('이벤트명', 함수주소, true);
+// - 타켓 단계에 대해서도 호출된다.
+document.getElementById('btn01').onclick = function(event) {
+	alert('테스트1');
+};
+
+document.getElementById('d111').addEventListener(
+	'click', /* 이벤트 이름 */
+	function(event) { /* 리스너 */
+	  alert('d111');
+	}, 
+	true /* 캡쳐 단계인지 여부 */);
+
+document.getElementById('d11').addEventListener('click', function(event) {
+  alert('d11');
+}, true);
+
+document.getElementById('d1').addEventListener('click', function(event) {
+  alert('d1');
+}, true);
+
+document.body.addEventListener('click', function(event) {
+  alert('body');
+}, true);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

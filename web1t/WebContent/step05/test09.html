@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>step05-test06</title>
+<title>step05-test09</title>
 <style>
 * {
   border: 1px solid red;
@@ -31,19 +31,22 @@
 <br>
 
 <script>
-//실습 목표: 이벤트를 처리하는 원리 
-//1) capture phase: 이벤트 발생 -> 최상위 엘리먼트에게 전달 -> 하위 엘리먼트에게 전달 -> ...
-//2) target phase: 최종 목적지 엘리먼트에게 전달 
-//3) bubble phase: 상위 엘리먼트에게 전달 -> ... -> 최상위 엘리먼트에게 전달
+//실습 목표: 버블 차단하기
+//- 상위 엘리먼트로 이벤트가 전달되는 것을 막고 싶을 경우,
+//  event.stopPropagation();
 //
-//- addEventListener()로 함수를 등록하면, target 또는 bubble 단계에서 호출된다.
-//- onclick도 target 또는 bubble 단계에서 호출된다.
-// 
-//- capture 단계에서 호출되는 함수는 등록하는 방법은?
-//  addEventListener('이벤트명', 함수주소, true);
-document.getElementById('btn01').onclick = function(event) {
-	alert('테스트1');
-};
+//- 즉시 동료 리스너가 호출되는 것을 막는 경우,
+//  event.stopImmediatePropagation();
+//
+document.getElementById('btn01').addEventListener('click', function(event) {
+	alert('테스트1 하하하하...');
+	//event.stopPropagation(); // 같은 객체에 대해 추가로 등록된 리스너 호출을 승인함. 버블만 막는다.
+	event.stopImmediatePropagation(); // 다음 리스너 호출을 즉시 멈춘다.
+});
+
+document.getElementById('btn01').addEventListener('click', function(event) {
+  alert('테스트1 크하하하하....');
+});
 
 document.getElementById('d111').onclick = function(event) {
 	alert('d111');
