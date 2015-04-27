@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test01</title>
+</head>
+<body>
+<h1>이벤트 처리</h1>
+<button id="btn01" type="button">테스트</button>
+
+<script>
+//실습 목표: 이벤트 리스너 등록하기 1 
+//1) ID로 엘리먼트 객체 알아내기
+//- document 객체: DOM 트리를 다루는 도구이다.
+var btn = document.getElementById('btn01');
+
+//2) 버튼에 이벤트 리스너 등록하기
+//- onclick 프로퍼티는 클릭 이벤트가 발생했을 때 호출될 함수를 보관한다.
+//- 이벤트 리스너의 형식: function 이벤트리스너(이벤트정보를담은객체) {}
+btn.onclick = function(event) {
+	alert('오호라... 누렀냐?');
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test02</title>
+</head>
+<body>
+<h1>이벤트 처리</h1>
+<button id="btn01" type="button">addEventListener() 테스트</button><br>
+<button id="btn02" type="button">onclick 테스트</button><br>
+
+<script>
+//실습 목표: 이벤트 리스너 등록하기 3 - 웹 브라우저 호환시키기  
+var btn = document.getElementById('btn01');
+
+//IE 8 이하 버전은 DOM API 표준 함수 addEventListener() 지원하지 않는다.
+if (btn.addEventListener) {
+	btn.addEventListener('click', function(event) {
+		alert('오호라... 누렀냐?');
+	});
+} else {
+	btn.attachEvent('onclick', function() {
+		alert('IE 브라우저는 다르구나!!!');
+	});
+}
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

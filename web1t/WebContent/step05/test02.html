@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test02</title>
+</head>
+<body>
+<h1>이벤트 처리</h1>
+<button id="btn01" type="button">addEventListener() 테스트</button><br>
+<button id="btn02" type="button">onclick 테스트</button><br>
+
+<script>
+//실습 목표: 이벤트 리스너 등록하기 2 
+var btn = document.getElementById('btn01');
+
+//2) DOM API에서 제공하는 함수를 사용하여 이벤트 리스너 등록하기
+//- addEventListener('이벤트명', 함수주소);
+btn.addEventListener('click', function(event) {
+	alert('오호라... 누렀냐?');
+});
+
+//3) onclick과 addEventListener()의 차이
+//- addEventListener()는 여러 함수를 등록할 수 있다.
+//- IE 8에서는 addEventListener() 표준 함수를 지원하지 않는다.
+//  대신 IE 전용 attachEvent() 함수를 제공한다.
+btn.addEventListener('click', function(event) {
+  alert('이 함수가 또 호출되지!');
+});
+
+//- onclick은 오직 하나의 함수만 등록할 수 있다.
+var btn2 = document.getElementById('btn02');
+btn2.onclick = function(event) {alert('하하하');};
+btn2.onclick = function(event) {alert('이전의 함수 주소를 덮어 썼지롱!');};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
