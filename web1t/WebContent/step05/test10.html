@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test10</title>
+<style>
+* {
+  border: 1px solid red;
+  margin: 20px;
+}
+</style>
+</head>
+<body>body
+<h1>입력 폼 이벤트 처리</h1>
+<form id="form1" action='http://www.daum.net' method='post'>
+항목1*: <input type='text' name='item01' id='item01'><br>
+항목2*: <input type='text' name='item02' id='item02'><br>
+항목3: <input type='text' name='item03' id='item03'><br>
+항목4: <input type='text' name='item04' id='item04'><br>
+항목5: <input type='text' name='item06' id='item05'><br>
+<input type='submit' value='등록'>
+</form>
+
+<script>
+//실습 목표: 입력 폼의 필수 항목 검사하기
+//1) 필수 항목 검사하기
+document.getElementById('form1').addEventListener('submit', function(){
+	if (document.getElementById('item01').value == '' 
+			|| document.getElementById('item02').value == '') {
+		alert('필수 입력 항목이 비어 있습니다.');
+		event.preventDefault();
+		// submit 버튼을 클릭하면 기본적으로 서버에 요청을 보낸다. 이 기본 행동을 막는 함수이다.
+	}
+});
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
