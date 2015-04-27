@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step06-test07</title>
+</head>
+<body>
+<div id="d1">
+  <p id="e01">테스트1</p>
+  <p id="e02">테스트2</p>
+  <input id="e03" type="text"><br>
+</div>
+<script>
+//실습 목표: 자식 엘리먼트 다루기
+alert("잠시 멈춘다.");
+
+//1) 엘리먼트 만들기
+var element = document.createElement('h1');
+
+//2) 엘리먼트의 컨텐츠 만들기
+var content = document.createTextNode('하하하하하');
+
+//3) 컨텐츠를 엘리먼트에 붙이기
+element.appendChild(content);
+
+alert("태그를 붙여보자!");
+//4) DOM 트리에 존재하는 특정 엘리먼트의 자식으로 새로 만든 태그를 붙이기 
+document.querySelector('#d1').appendChild(element);
+
+
+// 태그의 컨텐츠를 설정하기 위해 반드시 createTextNode()를 호출할 필요는 없다.
+// innerHTML이나 textContext를 사용해도 된다.
+var element = document.createElement('h2');
+element.innerHTML = "아하... 그냥 예전 방식대로 컨텐츠 설정할 수 있네!";
+document.querySelector('#d1').appendChild(element);
+
+
+alert('기존 엘리먼트를 지워보자!');
+var element = document.querySelector('#e03'); // 삭제할 엘리먼트를 찾는다.
+document.querySelector('#d1').removeChild(element); // 부모를 통해 삭제한다.
+
+// 기존 태그를 지우기 
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
