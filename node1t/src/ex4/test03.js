@@ -2,10 +2,7 @@ var app = require('./miniExpress.js');
 
 var mysql = require('mysql');
 
-// 실습 목표: 공통 기능 분리하여 모듈로 만들기
-// - miniExpress.js를 사용하여 게시물 목록 요청 처리하기
-//
-
+// 실습 목표: 게시물 상세 정보 요청 처리
 //
 var connection = mysql.createConnection({
 	host    :'localhost',
@@ -81,11 +78,45 @@ app.get('/board/list.do', function(req, res) {
 		for (var i in rows) {
 			res.write('<tr>\n');
 			res.write('  <td>' + rows[i].bno + '</td>\n');
-			res.write('  <td>' + rows[i].title + '</td>\n');
+			res.write('  <td><a href="detail.do?no=' 
+					+ rows[i].bno + '">' + rows[i].title + '</a></td>\n');
 			res.write('  <td>' + rows[i].cdate + '</td>\n');
 			res.write('</tr>\n');
 		}
 		res.write('</table>\n');
+		res.end('</body></html>\n');
+	});
+});
+
+
+app.get('/board/detail.do', function(req, res) {
+	connection.query(
+	  "select bno, title, content," +
+	  " date_format(cre_date,'%Y-%m-%d') as cdate, views" +
+	  " from board2 where bno=?",
+	  [req.params['no']],
+	  function(err,result){
+		if (err){
+		  console.log(err);
+		  doError(req, res);
+		  return;
+		} 
+		
+		res.writeHead(200, {'Content-Type': 'text/html;charset=UTF-8'});
+		res.write('<html><head><title>test10</title></head>\n');
+		res.write('<body>\n');
+		res.write('<h1>게시글 상세정보</h1>\n');
+		res.write('<form action="change.do" method="post">\n');
+		res.write('번호: <input type="text" name="no" size="5" readonly value="'
+				+ result[0].bno + '"><br>\n');
+		res.write('제목: <input type="text" name="title" size="50" value="'
+				+ result[0].title + '"><br>\n');
+		res.write('내용: <textarea name="content" rows="6" cols="50">'
+				+ result[0].content + '</textarea><br>\n');
+		res.write('등록일: ' + result[0].cdate + '<br>\n');
+		res.write('조회수: ' + result[0].views + '<br>\n');
+		res.write('<input type="submit" value="변경"><br>\n');
+		res.write('</form>\n');
 		res.end('</body></html>\n');
 	});
 });
