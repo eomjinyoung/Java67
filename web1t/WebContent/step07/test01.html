@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-test01</title>
+</head>
+<body>
+<button id='btn1' type='button'>일반 요청</button><br>
+<button id='btn2' type='button'>별도의 요청</button><br>
+<div id='message' style='border:1px red solid;'>
+이 자리에 sub01.html 내용이 뿌려질 것이다.
+</div>
+
+<script>
+//실습 목표: 현재 웹 페이지를 변경하지 않고 서버에 별도로 요청하기
+//* 일반적인 요청: 서버에 요청하고 서버의 응답 결과를 받으면, 
+//               웹 브라우저는 기존 출력을 지우고 새로 받은 응답 결과를 출력한다.
+document.querySelector('#btn1').onclick = function(event) {
+	  location.href = 'http://www.daum.net';	
+};
+
+//* 별도의 서버 요청: 서버에 요청하고 서버의 응답 결과를 받아서 자바스크립트로 처리하기
+document.querySelector('#btn2').onclick = function(event) {
+    //1) HTTP 요청을 수행하는 객체 준비
+    var xhr = new XMLHttpRequest();
+    
+    //2) 서버 URL 지정
+    xhr.open('GET', 'sub01.html', false);
+    
+    //3) 서버에 요청하기
+    //- GET 방식은 send() 호출할 때 파라미터 값을 넘기지 않는다.
+    xhr.send(null); //서버가 응답을 완료할 때까지 리턴하지 않는다.  
+    
+    //4) 서버로부터 받은 결과를 처리하기
+    var element = document.querySelector('#message');
+    element.innerHTML = xhr.responseText;
+    
+};
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
