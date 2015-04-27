@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step06-test06</title>
+</head>
+<body>
+<p id="e01">테스트1</p>
+<p id="e02">테스트2</p>
+<input id="e03" type="text"><br>
+
+<script>
+//실습 목표: 엘리먼트의 스타일 다루기
+alert("잠시 멈춘다.");
+
+// 엘리먼트.style['스타일 속성 이름'] = '값';
+var firstElement = document.querySelector('#e01');
+firstElement.style['color'] = 'red';
+firstElement.style['background-color'] = '#0000ff';
+
+// 엘리먼트.style.속성명 = '값';
+// 속성명은 중간에 대시(-) 기호를 사용할 수 없다.
+// 그래서 별도로 마련한 프로퍼티 명을 사용하라. 
+// 보통 다음의 규칙을 따른다.
+// background-color ---> backgroundColor
+// padding-left ---> paddingLeft
+var firstElement = document.querySelector('#e02');
+firstElement.style.color = 'blue';
+firstElement.style.backgroundColor = '#ffff00';
+
+// 특정 엘리먼트를 안보이게 하기
+var firstElement = document.querySelector('#e03');
+firstElement.style.display = 'none';
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
