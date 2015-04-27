@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step06-test02</title>
+</head>
+<body>
+<h1 id="h01">테스트1</h1>
+<h1 id="h02">테스트2</h1>
+<h1 id="h03">테스트3</h1>
+<h1 id="h04">테스트4</h1>
+<script>
+//실습 목표: 엘리먼트 찾기 - 태그 이름으로 찾기
+alert("잠시 멈춘다.");
+
+// 태그 이름으로 찾을 경우 리턴 값은 엘리먼트 배열이다. 
+// 한 개를 찾든, 여러 개를 찾든, 아니면 하나도 못 찾든. 리턴 값은 배열이다.
+var list = document.getElementsByTagName('h1');
+
+//2) 엘리먼트의 컨텐츠 변경하기
+list[2].innerHTML = "우헤헤...";
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
