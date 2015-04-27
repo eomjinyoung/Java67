@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test04</title>
+</head>
+<body>
+<h1>이벤트 처리</h1>
+<button id="btn01" type="button" 
+     onclick="alert('오호라... 태그 안에 자바스크립트를 넣네.');">테스트1</button><br>
+<button id="btn02" type="button"
+     onclick="myClick();">테스트2</button><br>
+
+<script>
+//실습 목표: 이벤트 리스너 등록하기 4  
+var btn = document.getElementById('btn01');
+
+//1) inline 자바스크립트 사용! => 위의 태그를 보라!
+//- 태그에 이벤트를 처리하는 자바스크립트 코드를 직접 넣는다. 
+//  간단한 경우를 제외하고는 사용하지 말라! 유지보수 꽝이다.
+
+//2) 좀 더 긴 자바스크립트를 넣는 경우 => btn02를 보라!
+function myClick() {
+	alert('하하하');
+	alert('좀 더 긴 스크립트를 넣어야 할 경우 자주 사용한다.');
+	alert('사실 이렇게 할 바에는 \n addEventListener()를 사용하는 것이 좋다.')
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
