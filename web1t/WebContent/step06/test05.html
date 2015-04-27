@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step06-test05</title>
+</head>
+<body>
+<p id="e01">테스트1</p>
+<p id="e02">테스트2</p>
+<input id="e03" type="text"><br>
+
+<script>
+//실습 목표: 엘리먼트의 컨텐츠나 값 설정하기 
+alert("잠시 멈춘다.");
+
+//1) 컨텐츠의 내용 설정 - HTML을 처리하기 
+//- 컨텐츠에 자식 태그를 포함하고 싶을 때 
+//- innerHTML 내용에 HTML 태그가 있으면 모두 처리하여 자식 태그로 만든다.
+var firstElement = document.querySelector('#e01');
+firstElement.innerHTML = "여러분 모두가 <b>자신이 뜻한 바</b> 이루기를...";
+//var str = "여러분 모두가 <script>alert('okok')<" + "/" + "script> 이루기를...";
+//firstElement.innerHTML = str;
+
+//2) 컨텐츠의 내용 설정 - HTML을 처리하지 않기
+//- 컨텐츠에 자식 태그가 있어도 무시한다.
+//- 모두 일반 텍스트로 다룬다. => 이점? 해킹 방지!!!
+var firstElement = document.querySelector('#e02');
+firstElement.textContent = "여러분 모두가 <b>자신이 뜻한 바</b> 이루기를...";
+//var str = "여러분 모두가 <script>alert('okok')<" + "/" + "script> 이루기를...";
+//firstElement.textContent = str;
+
+//3) 폼 엘리먼트는 value를 사용하여 값을 설정한다.
+var firstElement = document.querySelector('#e03');
+firstElement.value = "오호라...";
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
