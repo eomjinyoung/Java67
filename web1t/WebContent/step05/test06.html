@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test06</title>
+<style>
+* {
+  border: 1px solid red;
+  margin: 20px;
+}
+</style>
+</head>
+<body>body
+<h1>이벤트 처리</h1>
+<div id="d1">d1
+  <div id="d11">d11
+    <div id="d111">d111<button id="btn01" type="button">테스트1</button></div>
+  </div>
+  <div id="d12">d12
+    <div id="d121">d121<button id="btn02" type="button">테스트2</button></div>
+  </div>
+</div>
+<div id="d2">d2
+  <div id="d21">d21
+    <div id="d211">d211<button id="btn03" type="button">테스트3</button></div>
+  </div>
+  <div id="d22">d22
+    <div id="d222">d222<button id="btn04" type="button">테스트4</button></div>
+  </div>
+</div>
+<br>
+
+<script>
+//실습 목표: 이벤트를 처리하는 원리 
+//1) capture phase: 이벤트 발생 -> 최상위 엘리먼트에게 전달 -> 하위 엘리먼트에게 전달 -> ...
+//2) target phase: 최종 목적지 엘리먼트에게 전달 
+//3) bubble phase: 상위 엘리먼트에게 전달 -> ... -> 최상위 엘리먼트에게 전달
+//
+//- addEventListener()로 함수를 등록하면, target 또는 bubble 단계에서 호출된다.
+//- onclick도 target 또는 bubble 단계에서 호출된다.
+// 
+//- capture 단계에서 호출되는 함수는 등록하는 방법은?
+//  addEventListener('이벤트명', 함수주소, true);
+var btn = document.getElementById('btn01');
+
+btn.addEventListener('click', function(event) {
+	alert('okok2');
+});
+
+btn.onclick = function(event) {
+	alert('okok1');
+};
+
+btn.addEventListener('click', function(event) {
+  alert('okok3');
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

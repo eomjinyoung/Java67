@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step05-test05</title>
+</head>
+<body>
+<h1>이벤트 처리</h1>
+<button id="btn01" type="button">테스트1</button><br>
+<button id="btn02" type="button">테스트2</button><br>
+
+<script>
+//실습 목표: 이벤트 리스너 등록하기 5 - onclick과 addEventListener() 섞어 쓰기
+//- 실행 순서대로 호출한다.
+var btn = document.getElementById('btn01');
+
+btn.addEventListener('click', function(event) {
+	alert('okok2');
+});
+
+btn.onclick = function(event) {
+	alert('okok1');
+};
+
+btn.addEventListener('click', function(event) {
+  alert('okok3');
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
