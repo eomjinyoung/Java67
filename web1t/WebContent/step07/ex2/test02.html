@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-ex2-test02</title>
+</head>
+<body>
+<button id='btn1' type='button'>일반 요청</button><br>
+<button id='btn2' type='button'>별도의 요청</button><br>
+<div id='message' style='border:1px red solid;'>
+이 자리에 sub01.html 내용이 뿌려질 것이다.
+</div>
+
+<script>
+//실습 목표: 비동기 방식으로 요청하기 
+document.querySelector('#btn1').onclick = function(event) {
+    location.href = 'http://www.daum.net';  
+};
+
+document.querySelector('#btn2').onclick = function(event) {
+    var xhr = new XMLHttpRequest();
+    
+    // 비동기 설정: open()의 세 번째 파리미터를 true 로 설정하라!
+    xhr.open('GET', 'sub01.jsp', true);
+    
+    // 비동기 방식
+    // - 서버에 요청한 후 즉시 리턴한다.
+    xhr.send(null);   
+    var element = document.querySelector('#message');
+    element.innerHTML = xhr.responseText;
+    
+    var helloElement = document.createElement('p');
+    helloElement.innerHTML = '안녕하세요!';
+    document.body.appendChild(helloElement);
+};
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
