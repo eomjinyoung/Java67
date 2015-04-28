@@ -32,7 +32,6 @@
 	<button id="addBtn" type="button" class="new-items">등록</button>
 	<button id="changeBtn" type="button" class="detail-items">변경</button>
 	<button id="deleteBtn" type="button" class="detail-items">삭제</button>
-	<button id="cancelBtn" type="reset" class="detail-items">취소</button>
 </div>
 </form>
 
@@ -41,7 +40,9 @@
 
 // 실습 목표: 상세 정보 가져오기 
 // - 서버측 코드: node01t/src/ex6/test04.js
-// - 취소 버튼 추가. 취소 버튼 클릭할 때 새 글 등록폼으로 변경하기
+// - 입력폼을 상세보기 폼으로 변경한다.
+// - 번호, 등록일, 조회수도 출력한다.
+// - 등록 버튼 감춘다.
 // 
 alert("데이터 가져오기!");
 
@@ -83,25 +84,6 @@ document.querySelector('#addBtn').onclick = function(event) {
 	xhr.send(params);
 };
 
-document.querySelector('#cancelBtn').onclick = function(event) {
-	var elementList = document.querySelectorAll('.new-items');
-    for (var i = 0; i < elementList.length; i++) {
-        if (elementList[i] instanceof HTMLDivElement) {
-          elementList[i].style.display = 'block';
-        } else {
-          elementList[i].style.display = 'inline';
-        }
-    }
-    var elementList = document.querySelectorAll('.detail-items');
-    for (var i = 0; i < elementList.length; i++) {
-      elementList[i].style.display = 'none';
-    }
-    
-    //기존에 입력된 데이터 지우기 --> reset 타입의 버튼인 경우 자동으로 입력폼의 값을 초기화 한다.
-    //document.querySelector("#title").value = '';
-    //document.querySelector("#content").value = '';
-};
-	
 function detailInfo(event) {
 	var no = event.target.getAttribute('data-no');
 

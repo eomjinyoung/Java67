@@ -39,9 +39,8 @@
 
 <script>
 
-// 실습 목표: 상세 정보 가져오기 
-// - 서버측 코드: node01t/src/ex6/test04.js
-// - 취소 버튼 추가. 취소 버튼 클릭할 때 새 글 등록폼으로 변경하기
+// 실습 목표: 게시물 삭제하기 
+// - 서버측 코드: node01t/src/ex6/test05.js
 // 
 alert("데이터 가져오기!");
 
@@ -69,7 +68,6 @@ document.querySelector('#addBtn').onclick = function(event) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 	  if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
-	    alert('등록 성공입니다.');
 	    location.reload(); // 현재 페이지 갱신
 	  }
 	};
@@ -100,6 +98,18 @@ document.querySelector('#cancelBtn').onclick = function(event) {
     //기존에 입력된 데이터 지우기 --> reset 타입의 버튼인 경우 자동으로 입력폼의 값을 초기화 한다.
     //document.querySelector("#title").value = '';
     //document.querySelector("#content").value = '';
+};
+
+document.querySelector('#deleteBtn').onclick = function(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+      location.reload(); // 현재 페이지 갱신
+    }
+  };
+  var no = document.querySelector('#bno').textContent;
+  xhr.open('GET', 'http://localhost:1337/board/delete.do?no=' + no, true);
+  xhr.send(null);
 };
 	
 function detailInfo(event) {
