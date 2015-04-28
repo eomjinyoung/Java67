@@ -29,9 +29,9 @@ document.querySelector('#btn2').onclick = function(event) {
     	  console.log(xhr.readyState);
       
       // readystatechange의 상태
-      // 1 : 서버와 연결되었다.
-      // 2 : 서버에 요청을 보냈다.
-      // 3 : 서버에서 요청을 처리 중이다.
+      // 1 : open() 호출 후. 서버와 연결되었다. 
+      // 2 : send() 호출 후. 서버에서 헤더와 상태 정보를 받았다. 
+      // 3 : 서버로부터 데이터를 받는 중이다.
       // 4 : 서버로부터 응답을 받았다.
       
       // 요청 상태 중에서 우리가 관심을 가져야하는 상태는 서버로부터 응답을 받은 상태이다. 
