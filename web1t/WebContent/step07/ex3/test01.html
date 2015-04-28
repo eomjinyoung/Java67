@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-ex3-test01</title>
+</head>
+<body>
+<h1>비동기 POST 요청</h1>
+<form method="get"> <!-- action 속성의 값이 없으면 현재 URL로 요청한다. -->
+이름: <input id="name" type="text" name="name"><br>
+나이: <input id="age" type="text" name="age"><br>
+<button>일반 submit 요청</button> <!-- type을 지정하지 않으면 submit 버튼이다. -->
+<button id="btn1" type="button">POST 요청</button> 
+</form>
+
+<script>
+//실습 목표: 비동기로 POST 요청하기 
+document.querySelector('#btn1').onclick = function(event) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(event) {
+    	  if (xhr.readyState == 4) { // 서버로부터 응답을 받았다면,
+    		  alert(xhr.responseText);
+    	  }
+    };
+   
+    xhr.open('POST', 'hello.jsp', true);
+    
+    // POST 요청은 반드시 다음 요청 헤더를 설정해야 한다.
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    
+    // POST 요청은 서버에 보낼 값을 "이름=값&이름=값" 형태로 만들어 send()에 넘겨야 한다.
+    // - 한글 데이터의 경우 URL 인코딩 하지 않으면 서버에서 받을 때 깨진 데이터를 받는다.
+    // - 해결방법: test02.html을 보라!
+    // - 현재 로컬에서 테스트 할 때는 한글이 깨지지 않을 것이다.
+    //   그러나 해외에서 우리 서버로 접속하여 테스트 할 때는 깨지는 경우가 있다.
+    //   그러니 로컬에서 테스트할 때 깨지지 않았다고 안심하지 말고 반드시 test02.html처럼 처리하라!
+    var params = "name=" + document.querySelector('#name').value + 
+                 "&age=" + document.querySelector('#age').value;
+    
+    xhr.send(params);   
+};
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

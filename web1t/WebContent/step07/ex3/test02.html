@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-ex3-test01</title>
+</head>
+<body>
+<h1>비동기 POST 요청</h1>
+<form method="get"> <!-- action 속성의 값이 없으면 현재 URL로 요청한다. -->
+이름: <input id="name" type="text" name="name"><br>
+나이: <input id="age" type="text" name="age"><br>
+<button>일반 submit 요청</button> <!-- type을 지정하지 않으면 submit 버튼이다. -->
+<button id="btn1" type="button">POST 요청</button> 
+</form>
+
+<script>
+//실습 목표: 비동기로 POST 요청하기 --> 한글 데이터를 URL 인코딩 하기 
+document.querySelector('#btn1').onclick = function(event) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(event) {
+    	  if (xhr.readyState == 4) { // 서버로부터 응답을 받았다면,
+    		  alert(xhr.responseText);
+    	  }
+    };
+   
+    xhr.open('POST', 'hello.jsp', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    
+    // 한글 데이터를 포함하는 파라미터 값은 URL 인코딩 해서 서버에 보내야 한다.
+    // --> encodeURIComponent(한글 데이터)
+    var params = "name=" + encodeURIComponent(
+    		                       document.querySelector('#name').value) + 
+                 "&age=" + document.querySelector('#age').value;
+    
+    console.log(params); // URL 인코딩 상태를 확인해 보자!
+    
+    xhr.send(params);   
+};
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
