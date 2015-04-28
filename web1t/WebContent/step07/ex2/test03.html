@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-ex2-test03</title>
+</head>
+<body>
+<button id='btn1' type='button'>일반 요청</button><br>
+<button id='btn2' type='button'>별도의 요청</button><br>
+<div id='message' style='border:1px red solid;'>
+이 자리에 sub01.html 내용이 뿌려질 것이다.
+</div>
+
+<script>
+//실습 목표: 비동기 방식으로 요청할 때, 요청 상태 검사하기
+document.querySelector('#btn1').onclick = function(event) {
+    location.href = 'http://www.daum.net';  
+};
+
+document.querySelector('#btn2').onclick = function(event) {
+    var xhr = new XMLHttpRequest();
+    
+    // 비동기 방식에서 서버의 응답 결과를 가져오려면 
+    // 응답 상태를 계속 감시하고 있다가, 응답이 완료되었을 때 결과를 사용해야 한다.
+    // --> 요청 상태를 감시하는 함수를 등록해라!
+    xhr.onreadystatechange = function(event) {
+    	  // XMLHttpRequest 객체는 요청 상태가 바뀔 때 마다 readystatechange 이벤트를 발생시킨다.
+      // --> 따라서 이 이벤트를 감시하면 된다.
+    	  console.log(xhr.readyState);
+      
+      // readystatechange의 상태
+      // 1 : 서버와 연결되었다.
+      // 2 : 서버에 요청을 보냈다.
+      // 3 : 서버에서 요청을 처리 중이다.
+      // 4 : 서버로부터 응답을 받았다.
+      
+      // 요청 상태 중에서 우리가 관심을 가져야하는 상태는 서버로부터 응답을 받은 상태이다. 
+    };
+   
+    xhr.open('GET', 'sub01.jsp', true);
+    xhr.send(null);   
+    var element = document.querySelector('#message');
+    element.innerHTML = xhr.responseText;
+    
+    var helloElement = document.createElement('p');
+    helloElement.innerHTML = '안녕하세요!';
+    document.body.appendChild(helloElement);
+};
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

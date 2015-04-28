@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>step07-ex2-test02</title>
+<title>step07-ex2-test04</title>
 </head>
 <body>
 <button id='btn1' type='button'>일반 요청</button><br>
@@ -12,27 +12,23 @@
 </div>
 
 <script>
-//실습 목표: 비동기 방식으로 요청할 때 문제점
-//- send() 호출 후에 responseText를 바로 사용할 수 없다.
+//실습 목표: 비동기 방식으로 요청할 때, 응답 결과 가져오기
 document.querySelector('#btn1').onclick = function(event) {
     location.href = 'http://www.daum.net';  
 };
 
 document.querySelector('#btn2').onclick = function(event) {
     var xhr = new XMLHttpRequest();
-    
-    // 비동기 설정: open()의 세 번째 파리미터를 true 로 설정하라!
+    xhr.onreadystatechange = function(event) {
+    	  if (xhr.readyState == 4) { // 서버로부터 응답을 받았다면,
+    		  // 그 응답 결과를 가지고 수행할 작업을 여기 놓는다.
+    		  var element = document.querySelector('#message');
+    		  element.innerHTML = xhr.responseText;
+    	  }
+    };
+   
     xhr.open('GET', 'sub01.jsp', true);
-    
-    // 비동기 방식
-    // - 서버에 요청한 후 즉시 리턴한다.
     xhr.send(null);   
-    var element = document.querySelector('#message');
-    
-    // 비동기 방식으로 요청하면, 서버에서 결과를 받기 전에 send() 함수가 리턴한다.
-    // 그러므로 responseText 프로퍼티에 서버의 응답 결과가 있는 것을 보장할 수 없다.
-    // 실행결과를 보면 <div>태그에 빈 문자열이 할당될 것이다.
-    element.innerHTML = xhr.responseText;
     
     var helloElement = document.createElement('p');
     helloElement.innerHTML = '안녕하세요!';
