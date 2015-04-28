@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-ex2-test01</title>
+</head>
+<body>
+<button id='btn1' type='button'>일반 요청</button><br>
+<button id='btn2' type='button'>별도의 요청</button><br>
+<div id='message' style='border:1px red solid;'>
+이 자리에 sub01.html 내용이 뿌려질 것이다.
+</div>
+
+<script>
+//실습 목표: 동기 방식 요청의 문제점을 이해한다.
+document.querySelector('#btn1').onclick = function(event) {
+    location.href = 'http://www.daum.net';  
+};
+
+document.querySelector('#btn2').onclick = function(event) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'sub01.jsp', false);
+    
+    // 동기 방식
+    // - 서버가 응답을 완료할 때까지 리턴하지 않는다.
+    // - 서버의 응답 시간이 짧은 경우는 문제가 되지 않는다.
+    // - 그러나 서버의 응답 시간이 오래 걸리는 경우 send() 다음 줄을 실행하지 못하기 때문에
+    //   사용자 이벤트(마우스 클릭, 텍스트 입력 등)에 응답하지 못하는 현상이 발생한다.
+    // - sub01.jsp는 작업을 처리하는데 10초 정도 걸린다. 그동안 send() 이후의 코드는
+    //   실행하지 않는다.
+    xhr.send(null);   
+    var element = document.querySelector('#message');
+    element.innerHTML = xhr.responseText;
+    
+    var helloElement = document.createElement('p');
+    helloElement.innerHTML = '안녕하세요!';
+    document.body.appendChild(helloElement);
+};
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
