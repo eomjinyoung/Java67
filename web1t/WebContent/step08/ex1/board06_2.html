@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+</head>
+<body>
+<h1>게시글</h1>
+<table id="boardTable" border="1">
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>등록일</th>
+</tr>
+</table>
+
+<hr>
+
+<h2>게시물 상세정보</h2>
+<form id="boardForm">
+제목: <input id="title" type="text" size="50"><br>
+내용: <textarea id="content" rows="6" cols="50"></textarea><br>
+<button id="addBtn" type="button">등록</button>
+</form>
+
+
+<script>
+
+// 실습 목표: 상세 정보 가져오기 
+// - 서버측 코드: node01t/src/ex6/test04.js
+// - 게시물 제목을 클릭했을 때 게시물 번호를 출력하기
+//
+alert("데이터 가져오기!");
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function(){
+	if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+		var rows = JSON.parse(xhr.responseText);
+	  var table = document.querySelector('#boardTable');
+	  var tr;
+	  for (var i in rows) {
+		  tr = document.createElement('tr');
+		  
+		  // 제목을 클릭했을 때 게시물 번호를 가져오기 위해 
+		  // a 태그에 사용자 정의 속성(data-no)을 추가한다.
+		  // 참고! HTML5 규약에서는 사용자 정의 속성을 추가할 때,
+		  // 속성의 이름을 "data-"라 시작할 것을 권고하고 있다.
+		  tr.innerHTML = '<td>' + rows[i].bno + '</td>\n' +
+		     '<td><a href="#" onclick="detailInfo(event);" data-no="' + 
+		     rows[i].bno + '">' + 
+		     rows[i].title + '</a></td>\n' +
+		     '<td>' + rows[i].cdate + '</td>\n';
+		  table.appendChild(tr);
+	  }
+	}
+};
+xhr.open('GET', 'http://localhost:1337/board/list.do', true);
+xhr.send(null);
+
+document.querySelector('#addBtn').onclick = function(event) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+	  if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+	    alert('등록 성공입니다.');
+	    location.reload(); // 현재 페이지 갱신
+	  }
+	};
+	xhr.open('POST', 'http://localhost:1337/board/add.do', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	
+	var params = 'title=' + encodeURIComponent(
+			                      document.querySelector('#title').value) + 
+	             '&content=' + encodeURIComponent(
+	            		            document.querySelector('#content').value); 
+	xhr.send(params);
+};
+
+function detailInfo(event) {
+	// a 태그의 data-no 속성의 값을 꺼내는 방법
+	// 1) 이벤트을 발생시킨 a태그 객체 얻기
+	var a = event.target;
+	
+	// 2) a 태그의 data-no 속성 값 꺼내기
+	//var value = a['data-no']; // 사용자 정의 속성은 일반적인 프로퍼티 값 꺼내는 방식으로
+	                            // 조회할 수 없다.
+	var value = a.getAttribute('data-no'); // <-- 이렇게 getAttribute()를 호출해야 한다.
+	alert(value);
+}
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
