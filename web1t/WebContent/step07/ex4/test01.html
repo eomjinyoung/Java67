@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-ex4-test01</title>
+</head>
+<body>
+<button id='btn1' type='button'>NodeJS로 만든 웹서버에 요청</button><br>
+<div id='message' style='border:1px red solid;'>
+이 자리에 sub01.html 내용이 뿌려질 것이다.
+</div>
+
+<script>
+//실습 목표: HTML을 다운로드 받은 서버가 아닌 다른 서버로 비동기 요청하기
+//- 서버측 소스 --> node01t/src/ex5/test01.js, miniExpress.js
+//
+//- 비동기 요청을 실행하면 다음과 같이 오류가 발생한다.
+//  XMLHttpRequest cannot load http://localhost:1337/hello?name=hong. 
+//		No 'Access-Control-Allow-Origin' header is present 
+//  on the requested resource. 
+//  Origin 'http://localhost:9999' is therefore not allowed access.
+//
+//- 비동기 요청의 제약 조건
+//  . HTML을 다운로드 받은 서버로만 비동기 요청을 실행할 수 있다.
+//  . 이유? 사용자의 의지와 상관없는 임의의 요청을 막기 위해.
+//  . 웹 브라우저로 서버에 접속하면, 서버로부터 HTML, CSS, JavaScript등을 다운로드 받는다.
+//    다운로드 받은 JavaScript를 자동으로 실행한다.
+//    이때 다른 사이트에 비동기 요청을 무한 반복하는 자바스크립트 코드가 있다면,
+//    사용자의 의지와 상관없이 다른 사이트를 DDOS 공격하는데 참여하게 된다.
+document.querySelector('#btn1').onclick = function(event) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(event) {
+    	  if (xhr.readyState == 4) { 
+    		  var element = document.querySelector('#message');
+    		  element.innerHTML = xhr.responseText;
+    	  }
+    };
+   
+    xhr.open('GET', 'http://localhost:1337/hello?name=hong', true);
+    xhr.send(null);   
+};
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

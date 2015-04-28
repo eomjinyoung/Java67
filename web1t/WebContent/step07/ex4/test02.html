@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step07-ex4-test01</title>
+</head>
+<body>
+<button id='btn1' type='button'>NodeJS로 만든 웹서버에 요청</button><br>
+<div id='message' style='border:1px red solid;'>
+이 자리에 sub01.html 내용이 뿌려질 것이다.
+</div>
+
+<script>
+//실습 목표: HTML을 다운로드 받은 서버가 아닌 다른 서버로 비동기 요청하기
+//- 서버측 소스 --> node01t/src/ex5/test02.js
+//- 다른 서버의 요청 결과를 받는 방법!
+//  요청 받은 서버에서 응답 결과를 보낼 때 응답 헤더에 다음을 포함하면,
+//  자바스크립트에서는 결과를 꺼낼 수 있다.
+//  Access-Control-Allow-Origin: 접근 허용 범위
+//  예) Access-Control-Allow-Origin: *
+//  * 는 모든 클라이언트의 요청을 허락한다는 의미.
+// - 서버에서 응답 헤더에 요청을 승인하는 정보를 보내야 한다.
+document.querySelector('#btn1').onclick = function(event) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(event) {
+    	  if (xhr.readyState == 4) { 
+    		  var element = document.querySelector('#message');
+    		  element.innerHTML = xhr.responseText;
+    	  }
+    };
+   
+    xhr.open('GET', 'http://localhost:1337/hello?name=hong', true);
+    xhr.send(null);   
+};
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
