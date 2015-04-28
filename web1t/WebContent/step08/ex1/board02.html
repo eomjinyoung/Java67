@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+</head>
+<body>
+<h1>게시글</h1>
+<table border="1">
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>등록일</th>
+</tr>
+<tr>
+  <td>1</td>
+  <td><a href="detail.do?no=1">AAAAA</a></td>
+  <td>2015-04-24</td>
+</tr>
+</table>
+
+<script>
+
+// 실습 목표: 서버로부터 받은 JSON 형식의 문자열을 자바스크립트 객체로 바꿔 사용한다.
+// - 서버측 코드: node01t/src/ex6/test02.js
+//
+alert("데이터 가져오기!");
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function(){
+	if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+		var rows = JSON.parse(xhr.responseText);
+	  for (var i in rows) {
+		  console.log(rows[i]);
+	  }
+	}
+};
+xhr.open('GET', 'http://localhost:1337/board/list.do', true);
+xhr.send(null);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
