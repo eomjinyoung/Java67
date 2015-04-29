@@ -5,6 +5,7 @@ var mysql = require('mysql');
 // 실습 목표: AJAX 요청 처리하기
 // - 클라이언트 코드: web01t/WebContent/step08/ex1/board08.html
 // - /board/change.do 요청 처리
+// - /board/detail.do 요청에 대해 조회수 증가시키기
 //
 var connection = mysql.createConnection({
 	host    :'localhost',
@@ -58,6 +59,15 @@ app.get('/board/list.do', function(req, res) {
 
 
 app.get('/board/detail.do', function(req, res) {
+	connection.query(
+	  "update board2 set views=views + 1 where bno=?",
+	  [req.params['no']],
+	  function(err,result){
+		  // 조회수 증가시킨 후 굳이 기다릴 필요가 없이 바로 상세정보를 가져와서
+		  // 클라이언트로 보내면 된다.
+		  // 따라서 여기에 특별히 코딩할게 없다.
+	});
+	
 	connection.query(
 	  "select bno, title, content," +
 	  " date_format(cre_date,'%Y-%m-%d') as cdate, views" +
