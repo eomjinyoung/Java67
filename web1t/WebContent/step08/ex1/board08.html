@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style>
+.detail-items {
+  display: none;
+}
+</style>
+</head>
+<body>
+<h1>게시글</h1>
+<table id="boardTable" border="1">
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>등록일</th>
+</tr>
+</table>
+
+<hr>
+
+<h2>게시물 상세정보</h2>
+<form id="boardForm">
+<div class="detail-items">번호: <span id="bno"></span></div>
+<div>제목: <input id="title" type="text" size="50"></div>
+<div>내용: <textarea id="content" rows="6" cols="50"></textarea></div>
+<div class="detail-items">등록일: <span id="cdate"></span></div>
+<div class="detail-items">조회수: <span id="views"></span></div>
+<div>
+	<button id="addBtn" type="button" class="new-items">등록</button>
+	<button id="changeBtn" type="button" class="detail-items">변경</button>
+	<button id="deleteBtn" type="button" class="detail-items">삭제</button>
+	<button id="cancelBtn" type="reset" class="detail-items">취소</button>
+</div>
+</form>
+
+
+<script>
+
+// 실습 목표: 게시물 변경하기 
+// - 서버측 코드: node01t/src/ex6/test06.js
+// 
+alert("데이터 가져오기!");
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function(){
+	if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+		var rows = JSON.parse(xhr.responseText);
+	  var table = document.querySelector('#boardTable');
+	  var tr;
+	  for (var i in rows) {
+		  tr = document.createElement('tr');
+		  tr.innerHTML = '<td>' + rows[i].bno + '</td>\n' +
+		     '<td><a href="#" onclick="detailInfo(event);" data-no="' + 
+		     rows[i].bno + '">' + 
+		     rows[i].title + '</a></td>\n' +
+		     '<td>' + rows[i].cdate + '</td>\n';
+		  table.appendChild(tr);
+	  }
+	}
+};
+xhr.open('GET', 'http://localhost:1337/board/list.do', true);
+xhr.send(null);
+
+document.querySelector('#addBtn').onclick = function(event) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+	  if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+	    location.reload(); // 현재 페이지 갱신
+	  }
+	};
+	xhr.open('POST', 'http://localhost:1337/board/add.do', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	
+	var params = 'title=' + encodeURIComponent(
+			                      document.querySelector('#title').value) + 
+	             '&content=' + encodeURIComponent(
+	            		            document.querySelector('#content').value); 
+	xhr.send(params);
+};
+
+document.querySelector('#changeBtn').onclick = function(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+      location.reload(); // 현재 페이지 갱신
+    }
+  };
+  xhr.open('POST', 'http://localhost:1337/board/change.do', true);
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  
+  var params = 'title=' + encodeURIComponent(
+                            document.querySelector('#title').value) + 
+               '&content=' + encodeURIComponent(
+                              document.querySelector('#content').value) +
+               '&no=' + document.querySelector('#bno').textContent; 
+  xhr.send(params);
+};
+
+document.querySelector('#cancelBtn').onclick = function(event) {
+	var elementList = document.querySelectorAll('.new-items');
+    for (var i = 0; i < elementList.length; i++) {
+        if (elementList[i] instanceof HTMLDivElement) {
+          elementList[i].style.display = 'block';
+        } else {
+          elementList[i].style.display = 'inline';
+        }
+    }
+    var elementList = document.querySelectorAll('.detail-items');
+    for (var i = 0; i < elementList.length; i++) {
+      elementList[i].style.display = 'none';
+    }
+    
+    //기존에 입력된 데이터 지우기 --> reset 타입의 버튼인 경우 자동으로 입력폼의 값을 초기화 한다.
+    //document.querySelector("#title").value = '';
+    //document.querySelector("#content").value = '';
+};
+
+document.querySelector('#deleteBtn').onclick = function(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+      location.reload(); // 현재 페이지 갱신
+    }
+  };
+  var no = document.querySelector('#bno').textContent;
+  xhr.open('GET', 'http://localhost:1337/board/delete.do?no=' + no, true);
+  xhr.send(null);
+};
+	
+function detailInfo(event) {
+	var no = event.target.getAttribute('data-no');
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+	  if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
+	    var rows = JSON.parse(xhr.responseText);
+	    document.querySelector('#bno').innerHTML = rows[0].bno;
+	    document.querySelector('#title').value = rows[0].title;
+	    document.querySelector('#content').value = rows[0].content;
+	    document.querySelector('#cdate').innerHTML = rows[0].cdate;
+	    document.querySelector('#views').innerHTML = rows[0].views;
+	    
+	    //detail-items 클래스에 속해 있는 모든 엘리먼트를 찾아서, 화면에 보이게 한다.
+	    //주의! querySelectAll()이 리턴하는 것은 배열이 아니라 NodeList 객체이다.
+	    //따라서 for..in 문법을 사용하지 말라!
+	    var elementList = document.querySelectorAll('.detail-items');
+	    for (var i = 0; i < elementList.length; i++) {
+	    	  //참고! 태그의 이름 알아내기: elementList[i].localName
+	    	  if (elementList[i] instanceof HTMLDivElement) {
+	    		  elementList[i].style.display = 'block';
+	    	  } else {
+	    		  elementList[i].style.display = 'inline';
+	    	  }
+	    }
+	    var elementList = document.querySelectorAll('.new-items');
+	    for (var i = 0; i < elementList.length; i++) {
+        elementList[i].style.display = 'none';
+      }
+	  }
+	};
+	xhr.open('GET', 'http://localhost:1337/board/detail.do?no=' + no, true);
+	xhr.send(null);
+}
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
