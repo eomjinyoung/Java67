@@ -41,14 +41,21 @@
 
 // 실습 목표: 서버쪽에서 오류가 발생했을 때 클라이언트에서 적절한 조치 취하기
 // - 서버측 코드: node01t/src/ex6/test07.js
-// - 기존에는 서버에서 ok 또는 오류 HTML을 받았다면,
+// - 기존에는 서버로부터 ok 또는 오류 HTML을 받았다면,
 //   이번에는 적절한 형식을 갖춘 성공, 실패 메시지를 받는다.
-alert("데이터 가져오기!");
-
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
 	if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
-		var rows = JSON.parse(xhr.responseText);
+		var result = JSON.parse(xhr.responseText);
+	
+	  if (result.status == 'failure') {
+		  alert('작업을 완료할 수 없습니다.\n' + 
+		            '잠시 후 다시 시도하세요.\n' +
+		            '계속 창이 뜬다면, 관리자에 문의하세요.(사내번호:1112)');
+		  return;
+	  }
+	  
+	  var rows = result.data;
 	  var table = document.querySelector('#boardTable');
 	  var tr;
 	  for (var i in rows) {
@@ -69,8 +76,15 @@ document.querySelector('#addBtn').onclick = function(event) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 	  if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
-	    alert(xhr.responseText);
-		  location.reload(); // 현재 페이지 갱신
+		  var result = JSON.parse(xhr.responseText);
+		  if (result.status == 'success') {
+			  location.reload(); // 현재 페이지 갱신
+		  } else {
+			  alert('작업을 완료할 수 없습니다.\n' + 
+					  '잠시 후 다시 시도하세요.\n' +
+					  '계속 창이 뜬다면, 관리자에 문의하세요.(사내번호:1112)');
+			  //개발 담당자에게 메일을 쏜다!
+		  }
 	  }
 	};
 	xhr.open('POST', 'http://localhost:1337/board/add.do', true);
@@ -87,7 +101,15 @@ document.querySelector('#changeBtn').onclick = function(event) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
     if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
-      location.reload(); // 현재 페이지 갱신
+    	  	var result = JSON.parse(xhr.responseText);
+    	  if (result.status == 'success') {
+        location.reload(); // 현재 페이지 갱신
+      } else {
+        alert('작업을 완료할 수 없습니다.\n' + 
+            '잠시 후 다시 시도하세요.\n' +
+            '계속 창이 뜬다면, 관리자에 문의하세요.(사내번호:1112)');
+        //개발 담당자에게 메일을 쏜다!
+      }
     }
   };
   xhr.open('POST', 'http://localhost:1337/board/change.do', true);
@@ -124,7 +146,15 @@ document.querySelector('#deleteBtn').onclick = function(event) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
     if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
-      location.reload(); // 현재 페이지 갱신
+    	  var result = JSON.parse(xhr.responseText);
+    	  if (result.status == 'success') {
+        location.reload(); // 현재 페이지 갱신
+      } else {
+        alert('작업을 완료할 수 없습니다.\n' + 
+            '잠시 후 다시 시도하세요.\n' +
+            '계속 창이 뜬다면, 관리자에 문의하세요.(사내번호:1112)');
+        //개발 담당자에게 메일을 쏜다!
+      }
     }
   };
   var no = document.querySelector('#bno').textContent;
@@ -138,7 +168,16 @@ function detailInfo(event) {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 	  if (xhr.readyState == 4) { // 서버로부터 응답 결과를 받았다.
-	    var rows = JSON.parse(xhr.responseText);
+	    var result = JSON.parse(xhr.responseText);
+	  
+	    if (result.status == 'failure') {
+        alert('작업을 완료할 수 없습니다.\n' + 
+                  '잠시 후 다시 시도하세요.\n' +
+                  '계속 창이 뜬다면, 관리자에 문의하세요.(사내번호:1112)');
+        return;
+      }
+	  
+	    var rows = result.data;
 	    document.querySelector('#bno').innerHTML = rows[0].bno;
 	    document.querySelector('#title').value = rows[0].title;
 	    document.querySelector('#content').value = rows[0].content;

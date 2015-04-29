@@ -24,7 +24,7 @@ app.post('/board/add.do', function(req, res) {
 		function(err, result){
 			if (err){
 				console.log(err);
-				doError(req, res);
+				doError(req, res, err);
 				return;
 			} 
 			
@@ -48,14 +48,16 @@ app.get('/board/list.do', function(req, res) {
 		  doError(req, res, err);
 		  return;
 		} 
-		
-		// 웹 브라우저로 JSON 문자열을 보낸다.
-		// - Content-Type을 변경한다.
+
 		res.writeHead(200, {
 			'Content-Type': 'text/plain;charset=UTF-8',
 			'Access-Control-Allow-Origin': '*'
 		});
-		res.end(JSON.stringify(rows));
+
+		res.end(JSON.stringify({
+			  status: 'success',
+			  data: rows
+		}));
 	});
 });
 
@@ -78,7 +80,7 @@ app.get('/board/detail.do', function(req, res) {
 	  function(err,result){
 		if (err){
 		  console.log(err);
-		  doError(req, res);
+		  doError(req, res, err);
 		  return;
 		} 
 		
@@ -86,7 +88,10 @@ app.get('/board/detail.do', function(req, res) {
 			'Content-Type': 'text/plain;charset=UTF-8',
 			'Access-Control-Allow-Origin': '*'
 		});
-		res.end(JSON.stringify(result));
+		res.end(JSON.stringify({
+			  status: 'success',
+			  data: result
+		}));
 	});
 });
 
@@ -97,7 +102,7 @@ app.post('/board/change.do', function(req, res) {
 		function(err, result){
 			if (err){
 				console.log(err);
-				doError(req, res);
+				doError(req, res, err);
 				return;
 			} 
 			
@@ -105,27 +110,31 @@ app.post('/board/change.do', function(req, res) {
 				'Content-Type': 'text/plain;charset=UTF-8',
 				'Access-Control-Allow-Origin': '*'
 			});
-			res.end('ok');
+			res.end(JSON.stringify({
+				  status: 'success'
+			}));
 		});
 });
 
 app.get('/board/delete.do', function(req, res) {
 	connection.query(
-			'delete from board2 where bno=?',
-			[req.params['no']],
-			function(err, result){
-				if (err){
-					console.log(err);
-					doError(req, res);
-					return;
-				} 
-				
-				res.writeHead(200, {
-					'Content-Type': 'text/plain;charset=UTF-8',
-					'Access-Control-Allow-Origin': '*'
-				});
-				res.end('ok');
+		'delete from board2 where bno=?',
+		[req.params['no']],
+		function(err, result){
+			if (err){
+				console.log(err);
+				doError(req, res, err);
+				return;
+			} 
+			
+			res.writeHead(200, {
+				'Content-Type': 'text/plain;charset=UTF-8',
+				'Access-Control-Allow-Origin': '*'
 			});
+			res.end(JSON.stringify({
+				  status: 'success'
+			}));
+		});
 });
 
 function doError(req, res, err) {
