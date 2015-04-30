@@ -1,4 +1,4 @@
-/* 실습 목표: 공통 함수를 별도의 파일로 분리한다.
+/* 실습 목표: bit()에 소속된 ajax() 함수 사용하기
  * 서버측 코드: node01t/src/ex6/test07.js
  */
 refreshBoardTable();
