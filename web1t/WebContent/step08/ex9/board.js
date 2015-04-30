@@ -1,10 +1,11 @@
 /* 실습 목표: jQuery API 사용 
  * 서버측 코드: node01t/src/ex6/test07.js
  */
+var ip = '192.168.103.67';
 refreshBoardTable();
 
 $('#addBtn').click(function(event) {
-	$.ajax('http://localhost:1337/board/add.do', {
+	$.ajax('http://' + ip + ':1337/board/add.do', {
 		method: 'POST',
 		dataType: 'json',
 		data: {
@@ -24,7 +25,7 @@ $('#addBtn').click(function(event) {
 });
 
 $('#changeBtn').click(function(event) {
-	$.ajax('http://localhost:1337/board/change.do', {
+	$.ajax('http://' + ip + ':1337/board/change.do', {
 		method: 'POST',
 		dataType: 'json',
 		data: {
@@ -50,7 +51,7 @@ $('#cancelBtn').click(function(event) {
 
 $('#deleteBtn').click(function(event) {
 	var no = $('#bno').text();
-	$.ajax('http://localhost:1337/board/delete.do?no=' + no, {
+	$.ajax('http://' + ip + ':1337/board/delete.do?no=' + no, {
 		method: 'GET',
 		dataType: 'json',
 		success: function(result) {
@@ -67,7 +68,7 @@ $('#deleteBtn').click(function(event) {
 	
 function detailInfo(event) {
 	var no = event.target.getAttribute('data-no');
-	$.ajax('http://localhost:1337/board/detail.do?no=' + no, {
+	$.ajax('http://' + ip + ':1337/board/detail.do?no=' + no, {
 		method: 'GET',
 		dataType: 'json',
 		success: function(result) {
@@ -89,7 +90,7 @@ function detailInfo(event) {
 }
 
 function refreshBoardTable() {
-	$.ajax('http://localhost:1337/board/list.do', {
+	$.ajax('http://' + ip + ':1337/board/list.do', {
 		method: 'GET',
 		dataType: 'json',
 		success: function(result) {
