@@ -1,3 +1,6 @@
+/* 실습 목표: HTML로부터 자바스크립트 분리
+ * 서버측 코드: node01t/src/ex6/test07.js
+ */
 refreshBoardTable();
 
 document.querySelector('#addBtn').onclick = function(event) {

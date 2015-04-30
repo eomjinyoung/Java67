@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style>
+.detail-items {
+  display: none;
+}
+</style>
+</head>
+<body>
+<h1>게시글</h1>
+<table id="boardTable" border="1">
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>등록일</th>
+</tr>
+</table>
+
+<hr>
+
+<h2>게시물 상세정보</h2>
+<form id="boardForm">
+<div class="detail-items">번호: <span id="bno"></span></div>
+<div>제목: <input id="title" type="text" size="50"></div>
+<div>내용: <textarea id="content" rows="6" cols="50"></textarea></div>
+<div class="detail-items">등록일: <span id="cdate"></span></div>
+<div class="detail-items">조회수: <span id="views"></span></div>
+<div>
+	<button id="addBtn" type="button" class="new-items">등록</button>
+	<button id="changeBtn" type="button" class="detail-items">변경</button>
+	<button id="deleteBtn" type="button" class="detail-items">삭제</button>
+	<button id="cancelBtn" type="reset" class="detail-items">취소</button>
+</div>
+</form>
+
+<!-- 실습 목표: 자바스크립트 코드 정리 -->
+<script type="text/javascript" src="board.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,14 +1,14 @@
-/* 실습 목표: AJAX 호출 부분을 별도의 함수로 정의하여 단순화 하자. 
+/* 실습 목표: 엘리먼트를 찾는 코드를 단순화하자. 
  * 서버측 코드: node01t/src/ex6/test07.js
  */
 refreshBoardTable();
 
-document.querySelector('#addBtn').onclick = function(event) {
+bit('#addBtn')[0].onclick = function(event) {
 	ajax('http://localhost:1337/board/add.do', {
 		method: 'POST',
 		data: {
-			title: document.querySelector('#title').value,
-			content: document.querySelector('#content').value
+			title: bit('#title')[0].value,
+			content: bit('#content')[0].value
 		},
 		success: function(result) {
 			refreshBoardTable();
@@ -22,13 +22,13 @@ document.querySelector('#addBtn').onclick = function(event) {
 	});
 };
 
-document.querySelector('#changeBtn').onclick = function(event) {
+bit('#changeBtn')[0].onclick = function(event) {
 	ajax('http://localhost:1337/board/change.do', {
 		method: 'POST',
 		data: {
-			no: document.querySelector('#bno').textContent,
-			title: document.querySelector('#title').value,
-			content: document.querySelector('#content').value
+			no: bit('#bno')[0].textContent,
+			title: bit('#title')[0].value,
+			content: bit('#content')[0].value
 		},
 		success: function(result) {
 			refreshBoardTable();
@@ -42,12 +42,12 @@ document.querySelector('#changeBtn').onclick = function(event) {
 	});
 };
 
-document.querySelector('#cancelBtn').onclick = function(event) {
+bit('#cancelBtn')[0].onclick = function(event) {
 	toNewForm();
 };
 
-document.querySelector('#deleteBtn').onclick = function(event) {
-	var no = document.querySelector('#bno').textContent;
+bit('#deleteBtn')[0].onclick = function(event) {
+	var no = bit('#bno')[0].textContent;
 	ajax('http://localhost:1337/board/delete.do?no=' + no, {
 		method: 'GET',
 		success: function(result) {
@@ -68,11 +68,11 @@ function detailInfo(event) {
 		method: 'GET',
 		success: function(result) {
 			var rows = result.data;
-		    document.querySelector('#bno').innerHTML = rows[0].bno;
-		    document.querySelector('#title').value = rows[0].title;
-		    document.querySelector('#content').value = rows[0].content;
-		    document.querySelector('#cdate').innerHTML = rows[0].cdate;
-		    document.querySelector('#views').innerHTML = rows[0].views;
+		    bit('#bno')[0].innerHTML = rows[0].bno;
+		    bit('#title')[0].value = rows[0].title;
+		    bit('#content')[0].value = rows[0].content;
+		    bit('#cdate')[0].innerHTML = rows[0].cdate;
+		    bit('#views')[0].innerHTML = rows[0].views;
 		    
 		    toDetailForm();
 		},
@@ -90,9 +90,9 @@ function refreshBoardTable() {
 		success: function(result) {
 			var rows = result.data;
 		    var tr;
-		    var table = document.querySelector('#boardTable');
+		    var table = bit('#boardTable')[0];
 		    
-		    var trList = document.querySelectorAll('.dataRow');
+		    var trList = bit('.dataRow');
 		    for (var i = 0; i < trList.length; i++) {
 		      table.removeChild(trList[i]);
 		    }
@@ -117,7 +117,7 @@ function refreshBoardTable() {
 }
 
 function toDetailForm() {
-	var elementList = document.querySelectorAll('.detail-items');
+	var elementList = bit('.detail-items');
     for (var i = 0; i < elementList.length; i++) {
     	  if (elementList[i] instanceof HTMLDivElement) {
     		  elementList[i].style.display = 'block';
@@ -125,15 +125,14 @@ function toDetailForm() {
     		  elementList[i].style.display = 'inline';
     	  }
     }
-    var elementList = document.querySelectorAll('.new-items');
+    var elementList = bit('.new-items');
     for (var i = 0; i < elementList.length; i++) {
         elementList[i].style.display = 'none';
     }
 }
 
 function toNewForm() {
-	// 폼을 새 글 입력 폼으로 변경한다.
-  var elementList = document.querySelectorAll('.new-items');
+  var elementList = bit('.new-items');
   for (var i = 0; i < elementList.length; i++) {
       if (elementList[i] instanceof HTMLDivElement) {
         elementList[i].style.display = 'block';
@@ -141,24 +140,19 @@ function toNewForm() {
         elementList[i].style.display = 'inline';
       }
   }
-  var elementList = document.querySelectorAll('.detail-items');
+  var elementList = bit('.detail-items');
   for (var i = 0; i < elementList.length; i++) {
     elementList[i].style.display = 'none';
   }
 }
 
 function clearForm() {
-  // 폼의 입력 항목을 초기화시킨다.
-  // 직접 코드로 초기화시키지 않고, reset 버튼을 눌렀다고 강제로 클릭 이벤트를 발생시킨다.
-  // 1) 이벤트 정보를 담은 객체를 만든다.
   var clickEvent = new MouseEvent('click', { /* 이벤트 옵션 설정 */
 	  bubbles: true,
 	  cancelable: true,
 	  view: window
   });
-  
-  // 2) 임의로 생성한 click 이벤트를 reset 버튼에 보낸다.
-  document.querySelector('#cancelBtn').dispatchEvent(clickEvent);
+  bit('#cancelBtn')[0].dispatchEvent(clickEvent);
 }
 
 // 공통함수: 여러 프로젝트에 사용할 수 있는 함수
@@ -199,7 +193,10 @@ function ajax(url, settings) {
 	}
 }
 
-
+function bit(selector) {
+	var elementList = document.querySelectorAll(selector);
+	return elementList;
+}
 
 
 
