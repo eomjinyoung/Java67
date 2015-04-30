@@ -1,5 +1,4 @@
-/* 실습 목표: bit()의 도우미 함수를 연속해서 호출할 수 있게 만든다.
- * - 연속해서 호출한다 --> chaining 
+/* 실습 목표: bit()에 자식 태그를 추가하고 제거하는 함수 추가하기
  * 서버측 코드: node01t/src/ex6/test07.js
  */
 
@@ -93,19 +92,20 @@ function refreshBoardTable() {
 		method: 'GET',
 		success: function(result) {
 			var rows = result.data;
+		    var tr;
 		    var table = $('#boardTable');
 		    
 		    $('.dataRow').remove();
 		    
 		    for (var i in rows) {
-		      $('<tr>')
-		      		.attr('class', 'dataRow')
-		      		.html('<td>' + rows[i].bno + '</td>\n' +
-		      				'<td><a href="#" onclick="detailInfo(event);" data-no="' + 
-		      				rows[i].bno + '">' + 
-		      				rows[i].title + '</a></td>\n' +
-		      				'<td>' + rows[i].cdate + '</td>\n')
-		      		.appendTo(table);
+		      tr = document.createElement('tr');
+		      tr.setAttribute('class', 'dataRow');
+		      tr.innerHTML = '<td>' + rows[i].bno + '</td>\n' +
+		         '<td><a href="#" onclick="detailInfo(event);" data-no="' + 
+		         rows[i].bno + '">' + 
+		         rows[i].title + '</a></td>\n' +
+		         '<td>' + rows[i].cdate + '</td>\n';
+		      table.append(tr);
 		    }
 		},
 		error: function(err) {
@@ -170,17 +170,8 @@ function ajax(url, settings) {
 	}
 }
 
-function bit(str) {
-	var elementList;
-	
-	if (str.charAt(0) == '<') { //예) str --> <tr> 라면, 
-		var endIndex = str.indexOf('>');
-		var tagName = str.substring(1, endIndex);
-		elementList = [document.createElement(tagName)];
-		
-	} else {
-		elementList = document.querySelectorAll(str);
-	}
+function bit(selector) {
+	var elementList = document.querySelectorAll(selector);
 	
 	// 엘리먼트의 값을 설정하거나 꺼내기 
 	elementList.val = function(value) {
@@ -188,7 +179,6 @@ function bit(str) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].value = value;
 			}
-			return this;
 		} else { // 파라미터 값이 없다는 것은 값을 달라는 의미! getter로서 동작해야 한다.
 			// 첫 번째 엘리먼트의 값을 리턴한다.
 			return this[0].value;
@@ -202,7 +192,6 @@ function bit(str) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].setAttribute(propName, value);
 			}
-			return this;
 		} else if (arguments.length == 1){ // 속성 이름만 주어진다면 그 속성의 값을 리턴한다.
 			return this[0].getAttribute(propName);
 		}
@@ -215,7 +204,6 @@ function bit(str) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].style[propName] = value;
 			}
-			return this;
 		} else if (arguments.length == 1){ // 속성 이름만 주어진다면 그 속성의 값을 리턴한다.
 			return this[0].style[propName];
 		}
@@ -227,7 +215,6 @@ function bit(str) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].textContent = value;
 			}
-			return this;
 		} else if (arguments.length == 0){ 
 			return this[0].textContent;
 		}
@@ -239,7 +226,6 @@ function bit(str) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].innerHTML = value;
 			}
-			return this;
 		} else if (arguments.length == 0){ 
 			return this[0].innerHTML;
 		}
@@ -251,7 +237,6 @@ function bit(str) {
 			for (var i = 0; i < this.length; i++) {
 				this[i].addEventListener('click', listener);
 			}
-			return this;
 		} else { // 리스너 없이 click()을 호출한다면 click 이벤트를 발생시킨다. 
 			var clickEvent = new MouseEvent('click', { /* 이벤트 옵션 설정 */
 			  bubbles: true,
@@ -266,27 +251,14 @@ function bit(str) {
 	
 	elementList.append = function(child) {
 		for (var i = 0; i < this.length; i++) {
-			for (var j = 0; j < child.length; j++) {
-				this[i].appendChild(child[j]);
-			}
+			this[i].appendChild(child);
 		}
-		return this;
 	};
 	
 	elementList.remove = function() {
 		for (var i = 0; i < this.length; i++) {
 			this[i].parentElement.removeChild(this[i]);
 		}
-		return this;
-	}
-	
-	elementList.appendTo = function(parent) {
-		for (var i = 0; i < this.length; i++) {
-			for (var j = 0; j < parent.length; j++) {
-				parent[j].appendChild(elementList[i]);
-			}
-		}
-		return this;
 	}
 	
 	return elementList;
