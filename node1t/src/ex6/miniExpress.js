@@ -44,7 +44,7 @@ exports.listen = function(port) {
 				}
 	 		});
 		}
-	}).listen(port, '192.168.103.67');
+	}).listen(port);
 	console.log('Server running');
 };
 
