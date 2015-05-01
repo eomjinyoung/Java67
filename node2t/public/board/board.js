@@ -1,7 +1,7 @@
 /* 실습 목표: jQuery API 사용 
  * 서버측 코드: node01t/src/ex6/test07.js
  */
-var ip = '192.168.103.67:3000';
+var ip = '127.0.0.1:3000';
 refreshBoardTable();
 
 $('#addBtn').click(function(event) {

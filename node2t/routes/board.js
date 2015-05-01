@@ -20,7 +20,7 @@ connection.connect();
 router.post('/add.do', function(req, res) {
 	connection.query(
 		'insert into board2(title,content,cre_date) values(?,?,now())',
-		[req.query['title'], req.query['content']],
+		[req.body['title'], req.body['content']],
 		function(err, result){
 			if (err){
 				console.log(err);
