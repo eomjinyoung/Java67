@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var example = require('./routes/example');
+var board = require('./routes/board');
 var classroom = require('./routes/classroom')
 var crphoto = require('./routes/crphoto')
 var lecappl = require('./routes/lecappl')
@@ -17,6 +18,7 @@ var teachsub = require('./routes/teachsub')
 //- 만약 가상폴더를 지정하지 않으면 기본 경로는 루트(/) 이다.
 app.use(express.static('public'));
 app.use('/example', example);
+app.use('/board', board);
 app.use('/classroom', classroom);
 app.use('/crphoto', crphoto);
 app.use('/lecappl', lecappl);
