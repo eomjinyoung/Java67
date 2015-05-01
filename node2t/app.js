@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var example = require('./routes/example');
 var board = require('./routes/board');
 var classroom = require('./routes/classroom')
@@ -12,6 +13,8 @@ var student = require('./routes/student')
 var subject = require('./routes/subject')
 var teacher = require('./routes/teacher')
 var teachsub = require('./routes/teachsub')
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //정적 파일이 있는 폴더를 등록한다.
 //- app.use('/가상폴더', express.static('진짜폴더'));

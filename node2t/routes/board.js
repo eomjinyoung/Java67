@@ -20,7 +20,7 @@ connection.connect();
 router.post('/add.do', function(req, res) {
 	connection.query(
 		'insert into board2(title,content,cre_date) values(?,?,now())',
-		[req.params['title'], req.params['content']],
+		[req.query['title'], req.query['content']],
 		function(err, result){
 			if (err){
 				console.log(err);
@@ -65,7 +65,7 @@ router.get('/list.do', function(req, res) {
 router.get('/detail.do', function(req, res) {
 	connection.query(
 	  "update board2 set views=views + 1 where bno=?",
-	  [req.params['no']],
+	  [req.query['no']],
 	  function(err,result){
 	});
 	
@@ -73,14 +73,13 @@ router.get('/detail.do', function(req, res) {
 	  "select bno, title, content," +
 	  " date_format(cre_date,'%Y-%m-%d') as cdate, views" +
 	  " from board2 where bno=?",
-	  [req.params['no']],
+	  [req.query['no']],
 	  function(err,result){
 		if (err){
 		  console.log(err);
 		  doError(req, res, err);
 		  return;
 		} 
-		
 		res.writeHead(200, {
 			'Content-Type': 'text/plain;charset=UTF-8',
 			'Access-Control-Allow-Origin': '*'
@@ -95,7 +94,7 @@ router.get('/detail.do', function(req, res) {
 router.post('/change.do', function(req, res) {
 	connection.query(
 		'update board2 set title=?,content=? where bno=?',
-		[req.params['title'], req.params['content'], req.params['no']],
+		[req.body['title'], req.body['content'], req.body['no']],
 		function(err, result){
 			if (err){
 				console.log(err);
@@ -116,7 +115,7 @@ router.post('/change.do', function(req, res) {
 router.get('/delete.do', function(req, res) {
 	connection.query(
 		'delete from board2 where bno=?',
-		[req.params['no']],
+		[req.query['no']],
 		function(err, result){
 			if (err){
 				console.log(err);
