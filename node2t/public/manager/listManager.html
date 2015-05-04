@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manger</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+<style>
+body {
+	font-size: small;
+}
+
+.container {
+	/* border: 1px red solid; */
+	width: 600px;
+}
+
+.detail-items {
+	display: none;
+}
+
+.btn-margin {
+	margin-left: 10px;
+}
+table {
+        width: 100%;
+    }
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th {
+    height: 30px;
+
+    /*text-align: left;*/
+}
+
+tbody {
+    height: 200px;
+    overflow-y: auto;
+}
+
+thead {
+    /* fallback */
+}
+
+
+tbody td, thead th {
+    width: 24.2%;
+    float: left;
+}
+</style>
+</head>
+<body>
+	<!-- 실습 목표: 부트스트랩 적용 -->
+	<div class="container">
+		<h1>매니저 목록</h1>
+		<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+    </tr>
+    </thead>
+    <tbody id = "tbody">
+    
+    </tbody>
+    </table>
+
+
+		<div class="col-sm-9">
+    <button type="button" class="btn btn-default" id="addBtn">새로운매니저 추가</button>
+    </div>
+	</div>
+	<!-- container -->
+
+	<script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript" src="listManager.js"></script>
+
+</body>
+</html>

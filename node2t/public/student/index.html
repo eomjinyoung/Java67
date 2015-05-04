@@ -2,9 +2,194 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>학생 관리</title>
+<title>게시판</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+<style>
+body {
+  font-size: small;
+  overflow: auto;
+  width: 1100px;
+}
+
+.container {
+  float: left;
+  width: 900px;
+}
+
+.aside {
+  float: left;
+  width: 150px;
+}
+
+.side2 {
+  float: left;
+  display: inline;
+}
+
+.main {
+  float: left;
+  width: 550px;
+  margin-left: 10px;
+}
+
+.detail-items {
+  display: none;
+}
+
+.input-group {
+  width: 150px;
+}
+
+.col-lg-6 {
+  padding-left: 0px;
+}
+</style>
 </head>
 <body>
-<h1>학생 관리</h1>
+  <!-- 실습 목표: 부트 스트랩 적용 -->
+  <h1>학생 관리</h1>
+  <div class="aside">
+    <div class="col-lg-6">
+      <form id="searchForm">
+        <div class="input-group">
+          <input type="text" class="form-control" id="search"
+            placeholder="학생명 검색"
+            onkeypress="if(event.keyCode==13) {enterBtn(); return false;}">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="searchBtn">Go!</button>
+          </span>
+        </div>
+    </div>
+    </form>
+    <table id="boardTable" class="table table-hover">
+      <tr>
+        <th>번호</th>
+        <th>이름</th>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="container">
+    <h2>학생 상세정보</h2>
+    <form id="boardForm" class="form-horizontal">
+
+      <div class="side2">
+        <img id="photo1" alt="사진이 등록되지 않았습니다." src="http://golftour114.kr/img/no_image.jpg" width="300px">
+      </div>
+      <div class="main">
+        <div class="form-group detail-items">
+          <label for="sno" class="col-sm-2 control-label">번호</label>
+          <div class="col-sm-10">
+            <p id="sno" class="form-control-static"></p>
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="name" class="col-sm-2 control-label">학생이름 *</label>
+          <div class="col-sm-10">
+            <input id="name" type="text" class="form-control"
+              placeholder="이름을 입력하세요.">
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="photo" class="col-sm-2 control-label">학생사진</label>
+          <div class="col-sm-10">
+            <input id="photo" type="text" class="form-control"
+              placeholder="사진 경로를 입력하세요.">
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="tel" class="col-sm-2 control-label">전화 *</label>
+          <div class="col-sm-10">
+            <input id="tel" type="text" class="form-control"
+              placeholder="전화번호를 입력하세요.">
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="email" class="col-sm-2 control-label">이메일 *</label>
+          <div class="col-sm-10">
+            <input id="email" type="text" class="form-control"
+              placeholder="이메일 입력하세요.">
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="pwd" class="col-sm-2 control-label"> 암호 *</label>
+          <div class="col-sm-10">
+            <input id="pwd" type="text" class="form-control"
+              placeholder="암호 입력하세요.">
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="addr" class="col-sm-2 control-label">학생주소</label>
+          <div class="col-sm-10">
+            <input id="addr" type="text" class="form-control"
+              placeholder="주소를 입력하세요.">
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="degree" class="col-sm-2 control-label">학력</label>
+          <div class="col-sm-10">
+            <select id="degree" type="text" class="form-control">
+              <option value="1" selected="selected">고졸</option>
+              <option value="2">학사</option>
+              <option value="3">석사</option>
+              <option value="4">박사</option>
+             </select>
+          </div>
+        </div>
+        <div class="form-group ">
+          <label for="work" class="col-sm-2 control-label">직장인 *</label>
+          <div class="col-sm-10">
+            <select id="work" type="text" class="form-control">
+              <option value="Y" selected="selected">직장인</option>
+              <option value="N">학생</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button id="addBtn" type="button"
+              class="new-items btn btn-info btn-sm">등록</button>
+            <button id="changeBtn" type="button"
+              class="detail-items btn btn-info btn-sm">변경</button>
+            <button id="deleteBtn" type="button"
+              class="detail-items btn btn-info btn-sm">삭제</button>
+            <button id="cancelBtn" type="reset"
+              class="detail-items btn btn-info btn-sm">취소</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- container -->
+
+  <script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.js"></script>
+  <script type="text/javascript" src="students.js"></script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,9 +2,86 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의실 사진 관리</title>
+<title>강의장 둘러보기</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+<style>
+body {
+  font-size: small;
+}
+
+.container {
+  /* border: 1px red solid; */
+  width: 600px;
+
+}
+
+.carousel-inner {
+  width: 600px;
+  height: 400px;
+}
+
+.form-group {
+  position: absolute;
+}
+
+.col-sm-offset-2 {
+  position: absolute;
+  left: 480px;
+  width: 200px;
+}
+ 
+</style>
 </head>
 <body>
-<h1>강의실 사진 관리</h1>
+<!-- 실습 목표: 부트스트랩 적용 -->
+<h1>강의장 둘러보기</h1>
+
+<div class="container">
+<h2 id = 'classname'></h2>
+
+
+
+<div id="carousel-example-generic" class="carousel slide">
+
+  <ol class="carousel-indicators">
+	
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+  
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
+
+</div>
+
+
+<hr>
+<form id="boardForm" class="form-horizontal">
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="addBtn" type="button" 
+              class="btn btn-primary btn-sm">등록</button>
+      <button id="deleteBtn" type="button" 
+              class="btn btn-primary btn-sm">삭제</button>
+    </div>
+  </div>
+</form>
+</div> <!-- container -->
+
+<script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="crphoto.js"></script>
 </body>
 </html>

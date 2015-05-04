@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>매니저 상세 정보</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+
+</head>
+<body>
+<div class="container text-center">
+<h1>매니저 상세 정보</h1>
+<br>
+</div>
+<div class="row">
+
+  <div class="col-md-3  col-md-offset-3">
+    <div class="thumbnail">
+      <img id=photo src="" alt="...">     
+    </div>
+    
+</div>
+
+<div class="col-md-3">
+<form class="navbar-form navbar-left form-horizontals" role="search" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="label-name" class="col-sm-6 control-label">번호</label>
+    <div class="col-sm-9">
+      <p  class="form-control col-sm-10" id="no" ></p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="label-name" class="col-sm-6 control-label">이름</label>
+    <div class="col-sm-9">
+    <input type="text" class="form-control col-sm-10" id="name" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="label-name" class="col-sm-6 control-label">password</label>
+    <div class="col-sm-9">
+    <input type="password" class="form-control col-sm-10" id="password" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="label-name" class="col-sm-6 control-label">Email</label>
+    <div class="col-sm-9">
+    <input type="text"  class="form-control col-sm-10" id="email" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="label-name" class="col-sm-6 control-label">전화번호</label>
+    <div class="col-sm-9">
+    <input type="text"  class="form-control col-sm-10" id="tel" >
+    </div>
+  </div>
+  
+  <div class="form-group">
+  <label for="label-button" class="col-sm-6 control-label">_________________________</label>
+  <div class="col-sm-9">
+    <button type="button" class="btn btn-success" id ="updateBtn">변경</button>
+    <button type="reset" class="btn btn-default">취소</button>
+    </div>
+   
+    <div class="col-sm-9">
+    <button type="button" class="btn btn-danger"id="deleteBtn">삭제</button>    
+    <button type="button" class="btn btn-info" id="listBtn">목록</button>
+    </div>
+  
+  
+  </div>
+  
+</form>
+
+</div>
+
+
+</div>
+<script src ="../js/jquery-1.11.2.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src ="detailManager.js"></script>
+</body>
+</html>

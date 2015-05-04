@@ -1,10 +1,128 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의 관리</title>
+<title>강의</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+
+<style>
+
+.detail-items {
+  display: none;
+}
+button#cancelBtn {
+  display: none;
+}
+#accordion{
+  width: 80%;
+  margin: auto;
+}
+
+
+
+</style>
 </head>
 <body>
-<h1>강의 관리</h1>
+<h1 align="center"><b>강의 목록</b></h1>
+<div id="accordion">
+</div>
+
+<br>
+<div align="center">
+
+</div>
+<br>
+
+<form>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">강의 등록</h3>
+      </div>
+      
+      <div class="modal-body">
+        <div class="detail-items">번호: <span id="lno"></span></div>
+            <div class="new-items detail-items">강의명: <input id="title" type="text" size="20"></div>
+            <div class="new-items detail-items">시작일: <input id="start_lec" type="date"> </div>
+            <div class="new-items detail-items">종료일: <input id="end_lec" type="date"> </div>
+            <div class="new-items detail-items">총 강의시간(시간): <input id="lec_hours" type="number" size="5"></div>
+            <div class="new-items detail-items">총 강의일수(일): <input id="lec_days" type="number" size="5"></div>
+        <div class="new-items detail-items">총 인원: <input id="total" type="number"></div>
+
+                  <!-- 강사/ 매니저/ 강의실 -->
+                  <div class="detail-items">강  사: <span id="trainer"></span></div>
+                  <div class="detail-items">매니저: <span id="manager"></span>
+                  <select id="managerSelct"></select>
+                  <!-- <button id="managerBtn" type="button">등록/변경</button>  -->
+                  </div>
+                  <div class="detail-items">강의실: <span id="classroom"></span>
+                  <select id="classSelct"></select>
+                  <!-- <button id="classBtn" type="button">등록/변경</button>  -->
+                  </div>
+                  <!--  매니저/ 강의실 끝 -->
+
+            <div class="new-items detail-items">강의 내용: 
+            <br><textarea id="intro" rows="10" cols="75"></textarea></div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary new-items" id="addBtn">등록</button>
+        <button type="button" class="btn btn-primary detail-items" id="changeBtn">수정</button>
+        <button type="button" class="btn btn-primary detail-items" id="deleteBtn">삭제</button>
+        <button type="button" class="btn btn-default new-items detail-items" data-dismiss="modal">닫기</button>
+        <button id="cancelBtn" type="reset">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+<div class ="bottom" align="center">
+  <button type="button" class="btn btn-primary btn-lg btn-danger" data-toggle="modal" data-target="#myModal" id="myModal2">
+  새 강의 등록하기
+  </button>
+  <button class="btn btn-primary btn-primary btn-lg" id="lecApplBtn" type="button"> 수강신청 </button>
+</div>
+
+  <!-- button id="addBtn" type="button" class="new-items">등록</button>
+  <button id="changeBtn" type="button" class="detail-items">변경</button>
+  <button id="deleteBtn" type="button" class="detail-items">삭제</button>
+  <button id="cancelBtn" type="reset" class="detail-items">취소</button>-->
+</div>
+</form>
+
+<!-- 실습 목표: 자바스크립트 코드 정리 -->
+<script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="lecture.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

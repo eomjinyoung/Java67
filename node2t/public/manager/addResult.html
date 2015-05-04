@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Result</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+
+</head>
+<body>
+
+
+
+<script language="JavaScript">
+var countDownInterval=5;
+var c_reloadwidth=200
+</script>
+<script>
+//****************************************************************
+var ip='localhost';
+getParameter = function(name){
+    search=location.search;
+    if(!search){
+        //파라미터가 하나도 없을때
+        document.write("에러 출력 텍스트");
+        return false;
+    }
+ 
+    search=search.split("?");
+    data=search[1].split("=");
+    if(search[1].indexOf(name)==(-1) || data[0]!=name){
+        //해당하는 파라미터가 없을때.
+        return "";
+        return;
+    }
+    if(search[1].indexOf("&")==(-1)){
+        //한개의 파라미터일때.
+        data=search[1].split("=");
+        return data[1];
+    }else{
+    //여러개의 파라미터 일때.
+    data=search[1].split("&"); //엠퍼센트로 자름.
+    for(i=0;i<=data.length-1;i++){
+        l_data=data[i].split("=");
+        if(l_data[0]==name){
+            return l_data[1];
+            break;
+        }else continue;
+        }
+    }
+}
+var status = getParameter("status");
+
+
+
+</script>
+
+
+<ilayer id="c_reload" width=&{c_reloadwidth}; ><layer id="c_reload2" width=&{c_reloadwidth}; left=0 top=0></layer></ilayer>
+<script>
+
+
+
+var countDownTime=countDownInterval+1;
+function countDown(){
+countDownTime--;
+if (countDownTime <=0){
+countDownTime=countDownInterval;
+clearTimeout(counter)
+//***************************************************************
+window.location.replace('/manager/listManager.html');
+//***************************************************************
+return
+}
+
+else if (document.getElementById) // NS6+ 이상일때
+document.getElementById("countDownText").innerHTML=countDownTime+" "
+
+counter=setTimeout("countDown()", 1000);
+}
+
+function startit(){
+	
+  document.write('<div class="jumbotron">');
+  document.write('<div class="container">'); 
+  switch (status) {
+case 'addok':
+	  document.write('<h1>추가 성공</h1>');  
+	  document.write('<p>매니저 추가에 성공하였습니다.\n</p>')
+	break;
+case 'addfail':
+	document.write('<h1>추가 실패</h1>');  
+	  document.write('<p>매니저 추가에 실패하였습니다.\n</p>')
+	break;
+case 'deleteok':
+	document.write('<h1>삭제 성공</h1>');  
+	  document.write('<p>매니저 삭제에 성공하였습니다.\n</p>')
+	break;
+case 'deletefail':
+	document.write('<h1>삭제 실패</h1>');  
+	  document.write('<p>매니저 삭제에 실패하였습니다.\n</p>')
+	break;
+case 'upok':
+	document.write('<h1>수정 성공</h1>');  
+	  document.write('<p>매니저 정보 수정에 성공하였습니다.\n</p>')
+	break;
+case 'upfail':
+	document.write('<h1>수정 실패</h1>');  
+	  document.write('<p>매니저 정보 수정에 실패하였습니다.\n</p>')
+	break;
+
+default:
+	document.write('<h1>잘못된 접근입니다.</h1>');  
+document.write('<p>접근입니다.\n</p>')
+	break;
+}
+
+
+  document.write('<p><b id="countDownText">'+countDownTime+' </b>'+' 초뒤에 목록으로 돌아갑니다.</p>');  
+  document.write('<p><a class="btn btn-primary btn-lg" href="http://'+ip+':3000/manager/listManager.html" role="button">리스트로 돌아가기</a></p>');
+  
+  
+  document.write('</div>');
+  document.write('</div>');
+
+
+countDown()
+}
+
+if (document.all||document.getElementById)
+startit()
+else
+window.onload=startit
+
+frmUrl = location.href;
+varCut = frmUrl.indexOf("?");
+varCheck = frmUrl.substring(varCut+1);
+var varList = varCheck.split("&");
+forCount = varList.length;
+for(i=0; i < forCount; i++) {
+ eval(varList[i]);
+}
+alert(status);
+ 
+
+</script>
+
+<script src ="../js/jquery-1.11.2.js"></script>
+<script src="../js/bootstrap.js"></script>
+</body>
+</html>

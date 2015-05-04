@@ -2,9 +2,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의 과목 관리</title>
+<title>게시판</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+<style>
+body {
+	font-size: small;
+}
+
+.container {
+	/* border: 1px red solid; */
+	width: 600px;
+}
+
+.detail-items {
+	display: none;
+}
+</style>
 </head>
 <body>
-<h1>강의 과목 관리</h1>
+	<!-- 실습 목표: 부트스트랩 적용 -->
+	<div class="container">
+		<h1>강의과목</h1>
+		<form id="boardForm" class="form-horizontal">
+			<table id="boardTable" class="table table-hover">
+				<tr>
+					<th>강의과목번호</th>
+					<th>과목명</th>
+					<th></th>
+				</tr>
+				<tfoot>
+					<tr>
+						<td>과목명</td>
+						<td><input id="title" type="text" class="form-control"
+							placeholder="과목명을 입력하세요."
+						></td>
+						<td><button id="addBtn" type="button"
+								class="btn btn-primary btn-sm new-items"
+							>+</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</form>
+		<hr>
+	</div>
+	<!-- container -->
+	<script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<script type="text/javascript" src="subject.js"></script>
 </body>
 </html>

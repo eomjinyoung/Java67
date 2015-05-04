@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>교육센터 관리 시스템</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-theme.css">
+<link href="css/jquery-ui.css" rel="stylesheet">
+<style>
+body {
+  font-size: small;
+}
+
+.container {
+  /* border: 1px red solid; */
+  width: 600px;
+}
+
+.detail-items {
+  display: none;
+}
+
+.ui-menu { width: 150px; }
+</style>
+</head>
+<body>
+<div class="container">
+<header><h1>교육센터 관리 시스템</h1></header>
+
+<aside>
+<ul id='menu'>
+  <li><a href='./student'>학생</a></li>
+  <li><a href=''>강사</a></li>
+  <li><a href=''>강의신청</a></li>
+  <li><a href='./subject'>강의과목</a></li>
+  <li><a href=''>강사강의과목</a></li>
+  <li><a href='./lecture'>강의</a></li>
+  <li><a href=''>강사배정</a></li>
+  <li><a href=''>강의실</a></li>
+  <li><a href='./crphoto'>강의실사진</a></li>
+  <li><a href='./manager/listManager.html'>매니저</a></li>
+  <li><a href=''>회원가입</a></li>
+</ul>
+</aside>
+
+<footer>
+이 사이트의 모든 권리는 Java67기에 있습니다.
+</footer>
+</div> <!-- container -->
+
+<script src="js/jquery-1.11.2.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script>
+  $(function() {
+    $( "#menu" ).menu();
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

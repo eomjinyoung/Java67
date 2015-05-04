@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var multer = require('multer');
+
+
 var example = require('./routes/example');
 var board = require('./routes/board');
 var classroom = require('./routes/classroom')
@@ -21,6 +24,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //- app.use('/가상폴더', express.static('진짜폴더'));
 //- 만약 가상폴더를 지정하지 않으면 기본 경로는 루트(/) 이다.
 app.use(express.static('public'));
+
+//노드 모듈 사용 설정
+app.use(multer({
+    dest: "./public/manager/img"
+}));
 
 //GET, POST 요청을 처리할 자바스크립트를 지정 
 app.use('/example', example);
