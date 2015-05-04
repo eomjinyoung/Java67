@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>step09-ex1-test01</title>
+</head>
+<body>
+<button class="mybtn">오호라</button>
+<button id="addbtn">추가</button>
+
+
+<!-- 실습 목표: 동적으로 추가된 엘리먼트에 이벤트 리스너 등록하기 -->
+<script type="text/javascript" src="../../js/jquery-1.11.2.js"></script>
+<script>
+/* 이 스크립트를 실행하는 시점에 존재하는 엘리먼트에 대해서 리스너를 등록한다.*/
+ 
+/*
+$('.mybtn').click(function(event){
+	alert('okok');
+});
+*/
+
+/* body의 자손들 중에서 "현재 mybtn에 소속되어 있는 엘리먼트" 및 
+ * "앞으로 소속될 엘리먼트"에 대해 
+ * 리스너를 추가한다.
+ */
+$('body').on('click', '.mybtn', function(event){
+  alert('okok');
+});
+
+$('#addbtn').click(function(event){
+  $('<button>').text('오호라^^')
+              .addClass('mybtn')
+              .appendTo('body');
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
