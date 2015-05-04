@@ -96,7 +96,7 @@ function refreshBoardTable() {
 		success: function(result) {
 			var rows = result.data;
 		    var table = $('#boardTable');
-		    
+
 		    $('.dataRow').remove();
 		    
 		    for (var i in rows) {
