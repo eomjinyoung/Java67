@@ -9,6 +9,7 @@ var lecappl = require('./routes/lecappl')
 var lecteach = require('./routes/lecteach')
 var lecture = require('./routes/lecture')
 var manager = require('./routes/manager')
+var signup = require('./routes/signup')
 var student = require('./routes/student')
 var subject = require('./routes/subject')
 var teacher = require('./routes/teacher')
@@ -20,6 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //- app.use('/가상폴더', express.static('진짜폴더'));
 //- 만약 가상폴더를 지정하지 않으면 기본 경로는 루트(/) 이다.
 app.use(express.static('public'));
+
+//GET, POST 요청을 처리할 자바스크립트를 지정 
 app.use('/example', example);
 app.use('/board', board);
 app.use('/classroom', classroom);
@@ -28,6 +31,7 @@ app.use('/lecappl', lecappl);
 app.use('/lecteach', lecteach);
 app.use('/lecture', lecture);
 app.use('/manager', manager);
+app.use('/signup', signup);
 app.use('/student', student);
 app.use('/subject', subject);
 app.use('/teacher', teacher);
