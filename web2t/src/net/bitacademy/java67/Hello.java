@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 // 1. 서블릿 클래스 만들기
 //    - javax.servlet.Servlet 인터페이스를 구현해야 한다.
 //    - 왜? 서블릿 컨테이너는 Servlet 인터페이스에 정의된 메서드를 호출한다.
-//
+// 
 // 2. 서블릿을 톰캣 서버에 배치하기
 //    1) 웹 애플리케이션 디렉토리를 생성한다.
 //      => $tomcat_home/webapps/myapp
