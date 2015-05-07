@@ -15,8 +15,9 @@ import javax.servlet.annotation.WebServlet;
   - b = 정수 값
   - op = +, -, *, /, %
   - 요청 URL: http://localhost:9999/web2/step01/Test06
+  - 요청 방식: post
   - 입력 화면: [ input  ] [ + |V] [ input  ] ( = 버튼 )
-  - 출력결과: 20 / 5 = 4 입니다.
+  - 출력 화면: 20 / 5 = 4 입니다.
   - 작업파일 
      /WebContent/step01/Test06.html
      /src/net/bitacademy/java67/step01/Test06.java
