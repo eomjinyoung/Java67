@@ -24,6 +24,23 @@ import javax.servlet.ServletResponse;
 //
 // 참고! 
 // web.xml을 변경하면, 서블릿 컨테이너를 재 시작해야만 변경된 내용이 적용된다.
+//
+// javax.servlet.Servlet 인터페이스 메서드
+// 1) init() 
+//        => 최소 요청 시 호출됨. 
+//        => 서비스에 필요한 자원을 준비하는 작업.
+// 2) service()
+//        => 클라이언트가 요청할 때마다 호출됨.
+//        => 클라이언트 요청을 처리하는 작업.
+// 3) destroy()
+//        => 웹 애플리케이션을 종료하거나 서블릿 컨테이너를 종료할 때 호출됨.
+//        => 서비스를 위해 준비한 자원을 해제하는 작업.
+// 4) getServletInfo()
+//        => 서블릿 컨테이너의 관리 메뉴에서 주로 이용한다.
+// 5) getServletConfig()
+//        => 서블릿 설정 정보를 참고할 때 이용.
+// 서블릿 컨테이너가 호출하는 메서드는 init(), service(), destroy()이다.
+// => lifecycle method라 부른다.
 public class Test01 implements Servlet {
 
   public Test01() {
