@@ -74,8 +74,8 @@ public class BoardDao {
     }
 
   }
-  /*
-  public User select(int no) {
+  
+  public BoardVo select(int no) {
     Connection con = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
@@ -83,19 +83,18 @@ public class BoardDao {
     try {
       con = dbPool.getConnection(); 
       stmt = con.prepareStatement(
-          "SELECT uno,name,email,tel,hp,twit FROM users WHERE uno = ?");
+          "SELECT bno,title,content,cre_date,views FROM board2 WHERE bno=?");
       stmt.setInt(1, no);
       rs = stmt.executeQuery();
 
       if (rs.next()) {
-        User user = new User();
-        user.setNo(rs.getInt("uno"));
-        user.setName(rs.getString("name"));
-        user.setEmail(rs.getString("email"));
-        user.setTel(rs.getString("tel"));
-        user.setHomepage(rs.getString("hp"));
-        user.setTwitter(rs.getString("twit")); 
-        return user;
+        BoardVo board = new BoardVo();
+        board.setNo(rs.getInt("bno"));
+        board.setTitle(rs.getString("title"));
+        board.setContent(rs.getString("content"));
+        board.setCreateDate(rs.getDate("cre_date"));
+        board.setViews(rs.getInt("views"));
+        return board;
         
       } else {
         return null;
@@ -111,6 +110,7 @@ public class BoardDao {
     }
   }
 
+  /*
   public int delete(int no) {
     Connection con = null;
     PreparedStatement stmt = null;

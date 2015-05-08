@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: 제목에 상세보기 링크 걸기
+/* 실습 목표: DAO를 사용하여 게시물 목록 가져오기
  *          
  */
-@WebServlet("/step03/list")
-public class BoardListServlet extends HttpServlet {
+//@WebServlet("/step03/list")
+public class BoardListServlet03 extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
@@ -45,9 +45,8 @@ public class BoardListServlet extends HttpServlet {
     
     for (BoardVo board : list) {
       out.println("  <tr> <td>"
-          + board.getNo() + "</td> <td><a href='detail?no=" 
-          + board.getNo() + "'>"
-          + board.getTitle() + "</a></td> <td>"
+          + board.getNo() + "</td> <td>"
+          + board.getTitle() + "</td> <td>"
           + board.getCreateDate() + "</td> <td>"
           + board.getViews() + "</td> </tr>");
     }
