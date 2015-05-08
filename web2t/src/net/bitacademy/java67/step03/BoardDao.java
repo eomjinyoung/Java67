@@ -1,6 +1,7 @@
 package net.bitacademy.java67.step03;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,21 +15,17 @@ public class BoardDao {
     this.dbPool = dbPool;
   }
   
-  /*
-  public void insert(final User user) {
+  public void insert(final BoardVo board) {
     Connection con = null;
     PreparedStatement stmt = null;
 
     try {
-      con = dbPool.getConnection(); // DBConnectionPool에서 커넥션 객체를 빌린다.
+      con = dbPool.getConnection(); 
       stmt = con.prepareStatement(
-          "INSERT INTO USERS (NAME,EMAIL,TEL,HP,TWIT) VALUES (?,?,?,?,?)");
+          "INSERT INTO board2 (title,content,cre_date) VALUES (?,?,now())");
 
-      stmt.setString(1, user.getName());
-      stmt.setString(2, user.getEmail());
-      stmt.setString(3, user.getTel());
-      stmt.setString(4, user.getHomepage());
-      stmt.setString(5, user.getTwitter());
+      stmt.setString(1, board.getTitle());
+      stmt.setString(2, board.getContent());
 
       stmt.executeUpdate();
 
@@ -37,10 +34,10 @@ public class BoardDao {
 
     } finally {
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con); //다른 SQL 작업에서 사용할 수 있도록 반납한다.
+      dbPool.returnConnection(con);
     }
   }
-  */
+  
   public List<BoardVo> selectList() {
     ArrayList<BoardVo> list = new ArrayList<BoardVo>();
     Connection con = null;
