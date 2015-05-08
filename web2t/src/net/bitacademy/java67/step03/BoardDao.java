@@ -110,7 +110,7 @@ public class BoardDao {
     }
   }
 
-  /*
+  
   public int delete(int no) {
     Connection con = null;
     PreparedStatement stmt = null;
@@ -118,7 +118,7 @@ public class BoardDao {
     try {
       con = dbPool.getConnection(); 
       stmt = con.prepareStatement(
-          "DELETE FROM USERS WHERE UNO = ?");
+          "DELETE FROM board2 WHERE bno=?");
       stmt.setInt(1, no);
       return stmt.executeUpdate();
       
@@ -130,22 +130,19 @@ public class BoardDao {
       dbPool.returnConnection(con);
     }
   }
-
-  public int update(User user) {
+  
+  public int update(BoardVo board) {
     Connection con = null;
     PreparedStatement stmt = null;
 
     try {
       con = dbPool.getConnection(); 
       stmt = con.prepareStatement(
-          "UPDATE USERS SET NAME = ?, EMAIL = ?, TEL = ?, HP = ?, TWIT = ?"
-          + " WHERE UNO = ?");
-      stmt.setString(1, user.getName());
-      stmt.setString(2, user.getEmail());
-      stmt.setString(3, user.getTel());
-      stmt.setString(4, user.getHomepage());
-      stmt.setString(5, user.getTwitter());
-      stmt.setInt(6, user.getNo());
+          "UPDATE board2 SET title=?, content=?"
+          + " WHERE bno=?");
+      stmt.setString(1, board.getTitle());
+      stmt.setString(2, board.getContent());
+      stmt.setInt(3, board.getNo());
       
       return stmt.executeUpdate();
       
@@ -158,7 +155,7 @@ public class BoardDao {
     }
     
   }
-  */
+  
 
 }
 

@@ -9,21 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: doGet(), doPost() 사용하기
- * - HttpServlet 클래스는 내부적으로 GET, POST, PUT, DELETE 등의 
- *   클라이언트의 요청 방법에 따라 호출될 메서드를 정의하고 있다.
- *   doXXX() 메서드이다.
+/* 실습 목표: 게시물 상세정보 출력하기
  */
 
-@WebServlet("/step03/detail")
-public class BoardDetailServlet extends HttpServlet {
+//@WebServlet("/step03/detail")
+public class BoardDetailServlet01 extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  protected void doGet(
+  protected void service(
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
+    
+    BoardDao boardDao = new BoardDao();
+    boardDao.setDBConnectionPool(new DBConnectionPool());
+    BoardVo board = boardDao.select(
+        Integer.parseInt(request.getParameter("no")));
+    
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     
@@ -34,15 +37,9 @@ public class BoardDetailServlet extends HttpServlet {
     out.println("<title>게시판</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>게시물 상세정보2</h1>");
-    
-    BoardDao boardDao = new BoardDao();
-    boardDao.setDBConnectionPool(new DBConnectionPool());
-    BoardVo board = boardDao.select(
-        Integer.parseInt(request.getParameter("no")));
-    
+    out.println("<h1>게시물 상세정보</h1>");
     out.println("<form action=\"change\" method=\"post\">");
-    out.println("번호: <input type='text' name='no' readonly value='"
+    out.println("번호: <input type='text' readonly value='"
         + board.getNo() + "'><br>");
     out.println("제목: <input type='text' name='title' value='"
         + board.getTitle() + "'><br>");
@@ -55,7 +52,6 @@ public class BoardDetailServlet extends HttpServlet {
         + " onclick=\"location.href='delete?no=" + board.getNo() + "'\">");
     out.println("<input type='button' value='취소' onclick=\"location.href='list';\">");
     out.println("</form>");
-    
     out.println("</body>");
     out.println("</html>");
   }
