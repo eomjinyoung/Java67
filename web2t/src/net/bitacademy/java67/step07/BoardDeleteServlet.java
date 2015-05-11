@@ -9,11 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: 컨텍스트 초기화 파라미터 사용
- * 
- */
-
-@WebServlet("/step06/delete")
+@WebServlet("/step07/delete")
 public class BoardDeleteServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

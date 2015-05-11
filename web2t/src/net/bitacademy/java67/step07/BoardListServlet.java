@@ -11,11 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: 컨텍스트 초기화 파라미터 사용
- * - 먼저, ServletContext 객체를 얻는다.
- * - 그리고, getInitParameter("파라미터이름") 호출한다.        
- */
-@WebServlet("/step06/list")
+@WebServlet("/step07/list")
 public class BoardListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -65,6 +61,7 @@ public class BoardListServlet extends HttpServlet {
     out.println("  </body>");
     out.println("</html>");
     
+    System.out.println("서블릿 실행 완료!");
   }
 
 }

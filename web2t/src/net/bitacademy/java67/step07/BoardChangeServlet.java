@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: 컨텍스트 초기화 파라미터 사용
+/* 실습 목표: 한글 처리 필터 적용
+ * - request.setCharacterEncoding() 제거.
  * 
  */
 
-@WebServlet("/step06/change")
+@WebServlet("/step07/change")
 public class BoardChangeServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -23,8 +24,6 @@ public class BoardChangeServlet extends HttpServlet {
     
     // ServletContext : 웹 애플리케이션 정보를 다루는 도구
     ServletContext ctx = this.getServletContext();
-    
-    request.setCharacterEncoding("UTF-8");
     
     BoardVo board = new BoardVo();
     board.setNo(Integer.parseInt(request.getParameter("no")));

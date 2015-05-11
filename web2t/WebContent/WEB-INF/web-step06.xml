@@ -26,18 +26,6 @@
   </context-param>
   
   
-  <!-- 필터 선언 -->
-  <filter>
-    <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>net.bitacademy.java67.step07.CharacterEncodingFilter</filter-class>
-  </filter>
-  
-  
-  <!-- 필터에 URL 연결 -->
-  <filter-mapping>
-    <filter-name>CharacterEncodingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
 </web-app>
 
 
