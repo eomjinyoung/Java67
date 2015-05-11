@@ -30,8 +30,11 @@
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
     <filter-class>net.bitacademy.java67.step07.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
   </filter>
-  
   
   <!-- 필터에 URL 연결 -->
   <filter-mapping>
