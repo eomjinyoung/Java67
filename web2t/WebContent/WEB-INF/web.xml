@@ -5,141 +5,26 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
   version="3.1" >
 
-  <!-- 서블릿을 웹 애플리케이션에 등록하기
-    1) 서블릿 정보를 등록
-    2) 서블릿에 URL을 연결
-   -->
-  <!-- 서블릿 정보를 등록한다. -->
-  <servlet>
-    <servlet-name>BoardListServlet</servlet-name>
-    <servlet-class>net.bitacademy.java67.step05.BoardListServlet</servlet-class>
-    <!-- 서블릿 초기화 파라미터 설정 -->
-    <init-param>
-      <param-name>url</param-name>
-      <param-value>jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>driver</param-name>
-      <param-value>com.mysql.jdbc.Driver</param-value>
-    </init-param>
-    <init-param>
-      <param-name>user</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-    <init-param>
-      <param-name>password</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-  </servlet>
+  <!-- 컨텍스트 초기화 파라미터 선언 
+  => 컨텍스트 초기화 파라미터는 모든 서블릿들이 접근하여 사용할 수 있다.
+  -->
+  <context-param>
+    <param-name>url</param-name>
+    <param-value>jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8</param-value>
+  </context-param>
+  <context-param>
+    <param-name>driver</param-name>
+    <param-value>com.mysql.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>user</param-name>
+    <param-value>java67</param-value>
+  </context-param>
+  <context-param>
+    <param-name>password</param-name>
+    <param-value>java67</param-value>
+  </context-param>
   
-  <servlet>
-    <servlet-name>BoardAddServlet</servlet-name>
-    <servlet-class>net.bitacademy.java67.step05.BoardAddServlet</servlet-class>
-    <init-param>
-      <param-name>url</param-name>
-      <param-value>jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>driver</param-name>
-      <param-value>com.mysql.jdbc.Driver</param-value>
-    </init-param>
-    <init-param>
-      <param-name>user</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-    <init-param>
-      <param-name>password</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>BoardDetailServlet</servlet-name>
-    <servlet-class>net.bitacademy.java67.step05.BoardDetailServlet</servlet-class>
-    <init-param>
-      <param-name>url</param-name>
-      <param-value>jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>driver</param-name>
-      <param-value>com.mysql.jdbc.Driver</param-value>
-    </init-param>
-    <init-param>
-      <param-name>user</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-    <init-param>
-      <param-name>password</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>BoardDeleteServlet</servlet-name>
-    <servlet-class>net.bitacademy.java67.step05.BoardDeleteServlet</servlet-class>
-    <init-param>
-      <param-name>url</param-name>
-      <param-value>jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>driver</param-name>
-      <param-value>com.mysql.jdbc.Driver</param-value>
-    </init-param>
-    <init-param>
-      <param-name>user</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-    <init-param>
-      <param-name>password</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-  </servlet>
-  
-  <servlet>
-    <servlet-name>BoardChangeServlet</servlet-name>
-    <servlet-class>net.bitacademy.java67.step05.BoardChangeServlet</servlet-class>
-    <init-param>
-      <param-name>url</param-name>
-      <param-value>jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>driver</param-name>
-      <param-value>com.mysql.jdbc.Driver</param-value>
-    </init-param>
-    <init-param>
-      <param-name>user</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-    <init-param>
-      <param-name>password</param-name>
-      <param-value>java67</param-value>
-    </init-param>
-  </servlet>
-  <!-- 서블릿에 URL을 연결한다. -->
-  <servlet-mapping>
-    <servlet-name>BoardListServlet</servlet-name>
-    <url-pattern>/step05/list</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>BoardAddServlet</servlet-name>
-    <url-pattern>/step05/add</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>BoardDetailServlet</servlet-name>
-    <url-pattern>/step05/detail</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>BoardDeleteServlet</servlet-name>
-    <url-pattern>/step05/delete</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>BoardChangeServlet</servlet-name>
-    <url-pattern>/step05/change</url-pattern>
-  </servlet-mapping>
   
 </web-app>
 
