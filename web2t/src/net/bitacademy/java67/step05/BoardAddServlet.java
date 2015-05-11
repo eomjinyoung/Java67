@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: 게시물 등록후 목록 화면으로 이동하기3
- *          단, 등록 성공 결과 화면을 출력하지 말고 바로 목록 화면으로 이동하라. 
+/* 실습 목표: 초기화 파라미터 사용 
  * 
  */
 
-@WebServlet("/step03/add")
+//@WebServlet("/step05/add")
 public class BoardAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -29,7 +28,12 @@ public class BoardAddServlet extends HttpServlet {
     board.setContent(request.getParameter("content"));
     
     BoardDao boardDao = new BoardDao();
-    boardDao.setDBConnectionPool(new DBConnectionPool());
+    DBConnectionPool dbPool = new DBConnectionPool(
+        this.getInitParameter("driver"), // web.xml의 서블릿 초기화 파라미터 가져오기
+        this.getInitParameter("url"),
+        this.getInitParameter("user"),
+        this.getInitParameter("password"));
+    boardDao.setDBConnectionPool(dbPool);
     boardDao.insert(board);
     
     response.sendRedirect("list");

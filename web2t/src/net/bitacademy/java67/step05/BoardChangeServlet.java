@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: 게시글 변경하기
+/* 실습 목표: 서블릿 초기화 파라미터 사용
  * 
  */
 
-@WebServlet("/step03/change")
+//@WebServlet("/step05/change")
 public class BoardChangeServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,12 @@ public class BoardChangeServlet extends HttpServlet {
     board.setContent(request.getParameter("content"));
     
     BoardDao boardDao = new BoardDao();
-    boardDao.setDBConnectionPool(new DBConnectionPool());
+    DBConnectionPool dbPool = new DBConnectionPool(
+        this.getInitParameter("driver"), // web.xml의 서블릿 초기화 파라미터 가져오기
+        this.getInitParameter("url"),
+        this.getInitParameter("user"),
+        this.getInitParameter("password"));
+    boardDao.setDBConnectionPool(dbPool);
     boardDao.update(board);
     
     response.sendRedirect("list");

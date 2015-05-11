@@ -9,13 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/* 실습 목표: doGet(), doPost() 사용하기
- * - HttpServlet 클래스는 내부적으로 GET, POST, PUT, DELETE 등의 
- *   클라이언트의 요청 방법에 따라 호출될 메서드를 정의하고 있다.
- *   doXXX() 메서드이다.
+/* 실습 목표: 서블릿 초기화 파라미터 사용
  */
 
-@WebServlet("/step03/detail")
+//@WebServlet("/step05/detail")
 public class BoardDetailServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -37,7 +34,12 @@ public class BoardDetailServlet extends HttpServlet {
     out.println("<h1>게시물 상세정보2</h1>");
     
     BoardDao boardDao = new BoardDao();
-    boardDao.setDBConnectionPool(new DBConnectionPool());
+    DBConnectionPool dbPool = new DBConnectionPool(
+        this.getInitParameter("driver"), // web.xml의 서블릿 초기화 파라미터 가져오기
+        this.getInitParameter("url"),
+        this.getInitParameter("user"),
+        this.getInitParameter("password"));
+    boardDao.setDBConnectionPool(dbPool);
     BoardVo board = boardDao.select(
         Integer.parseInt(request.getParameter("no")));
     
