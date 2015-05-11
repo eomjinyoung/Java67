@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>강의실 관</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body style='width: 500px; margin: 20px 40px'>
+
+<div>
+  <h1 align="center">추가</h1>
+  <div>
+   <form action='classrooms/add' method="post"> 
+		<fieldset class="form-inline">
+		  <div class="form-group" style='width: 269px;'>
+		    <label for="exampleInputName2">장소</label>
+		    <input name='LOC' type="text" class="form-control" 
+		            id="LOC" placeholder="입력 해주세요.">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputName2">호실</label>
+		    <input name='ROOM' type="text" class="form-control" 
+		            id="ROOM" placeholder="입력 해주세요.">
+		  </div>
+		</fieldset>
+		<fieldset>	
+			<div style="margin: 15px 0 0 0;">
+			  <label for="exampleInputName2">내용</label>	
+				<textarea name='CONTENT' class="form-control" rows="8" 
+				            id="CONTENT"></textarea>
+			</div>
+		</fieldset>
+		<div align="right">
+		  <button id = 'addBtn' type="submit" class="btn btn-default" 
+		            style='margin: 10px'>완료</button>
+		  <a id = 'cancleBtn' href='classrooms/classrooms' class="btn btn-default" 
+		             role="button" style='margin: 10px'>취소</a>		
+		</div>
+		</form> 
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+</head>
+<body>
+<h1>게시물 입력</h1>
+<form action="add" method="post">
+이름: <input type="text" name="name"><br>
+학생사진: <input type="text" name="photo"><br>
+전화번호: <input type="text" name="tel"><br>
+이메일: <input type="text" name="email"><br>
+암호: <input type="text" name="pwd"><br>
+주소: <input type="text" name="addr"><br>
+
+학력: <select name="degree" class="form-control">
+        <option value="1" selected="selected">고졸</option>
+        <option value="2">학사</option>
+        <option value="3">석사</option>
+        <option value="4">박사</option>
+      </select><br>
+
+직장인: <select name="work" class="form-control">
+          <option value="Y" selected="selected">직장인</option>
+          <option value="N">학생</option>
+        </select><br>
+<input type="submit" value="등록">
+<input type="button" value="취소" onclick="location.href='list';"> 
+</form>
+</body>
+</html>
