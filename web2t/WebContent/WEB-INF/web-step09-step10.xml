@@ -26,7 +26,7 @@
   <!-- 필터 선언 -->
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>net.bitacademy.java67.step11.CharacterEncodingFilter</filter-class>
+    <filter-class>net.bitacademy.java67.step09.CharacterEncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
@@ -42,9 +42,14 @@
 
   <!-- 리스너 선언 -->
   <listener>
-    <listener-class>net.bitacademy.java67.step11.ContextLoaderListener</listener-class>
+    <listener-class>net.bitacademy.java67.step09.ContextLoaderListener</listener-class>
   </listener>
   
+  <listener>
+    <listener-class>net.bitacademy.java67.step09.RequestMonitoringListener</listener-class>
+  </listener>
+  
+
 </web-app>
 
 
