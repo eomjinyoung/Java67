@@ -3,6 +3,7 @@ package net.bitacademy.java67.step10;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,13 +53,27 @@ public class Test02 extends HttpServlet {
     out.println("<body>");
     out.println("<div class='menu'>");
     out.println("  <ul>");
-    out.println("    <li>강사관리</li>");
-    out.println("    <li>수강생관리</li>");
+    out.println("    <li><a href='test02?page=teacher'>강사관리</a></li>");
+    out.println("    <li><a href='test02?page=student'>수강생관리</a></li>");
     out.println("  </ul>");
     out.println("</div>");
     out.println("<div class='content'>");
+    
+    String page = request.getParameter("page");
+    RequestDispatcher rd = null;
+    
+    if (page != null) {
+      rd = request.getRequestDispatcher(
+          "/step10/" + page);
+      rd.include(request, response);
+    }
+    
     out.println("</div>");
     out.println("<div class='footer'>");
+    
+    rd = request.getRequestDispatcher("/step10/footer");
+    rd.include(request, response);
+    
     out.println("</div>");
     out.println("</body>");
     out.println("</html>");
