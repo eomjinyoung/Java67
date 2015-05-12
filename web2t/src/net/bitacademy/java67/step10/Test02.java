@@ -3,7 +3,6 @@ package net.bitacademy.java67.step10;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +32,11 @@ public class Test02 extends HttpServlet {
     out.println("    .menu {");
     out.println("      float: left;");
     out.println("      border: 1px solid red;");
-    out.println("      width: 80px;");
+    out.println("      width: 150px;");
     out.println("      height: 200px;");
     out.println("    }");
     out.println("    .content {");
-    out.println("      margin-left: 85px;");
+    out.println("      margin-left: 155px;");
     out.println("      height: 400px;");
     out.println("      border: 1px solid blue;");
     out.println("    }");
