@@ -5,6 +5,9 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
   version="3.1" >
 
+  <!-- 컨텍스트 초기화 파라미터 선언 
+  => 컨텍스트 초기화 파라미터는 모든 서블릿들이 접근하여 사용할 수 있다.
+  -->
   <context-param>
     <param-name>url</param-name>
     <param-value>jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8</param-value>
@@ -26,11 +29,16 @@
   <!-- 필터 선언 -->
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>net.bitacademy.java67.step09.CharacterEncodingFilter</filter-class>
+    <filter-class>net.bitacademy.java67.step07.CharacterEncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
     </init-param>
+  </filter>
+  
+  <filter>
+    <filter-name>MyFilter</filter-name>
+    <filter-class>net.bitacademy.java67.step08.MyFilter</filter-class>
   </filter>
   
   <!-- 필터에 URL 연결 -->
@@ -39,16 +47,26 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <filter-mapping>
+    <filter-name>MyFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
 
   <!-- 리스너 선언 -->
   <listener>
-    <listener-class>net.bitacademy.java67.step09.ContextLoaderListener</listener-class>
+    <listener-class>net.bitacademy.java67.step08.MyServletContextListener</listener-class>
   </listener>
   
   <listener>
-    <listener-class>net.bitacademy.java67.step09.RequestMonitoringListener</listener-class>
+    <listener-class>net.bitacademy.java67.step08.MyServletRequestListener</listener-class>
   </listener>
   
+  <listener>
+    <listener-class>net.bitacademy.java67.step08.MyHttpSessionListener</listener-class>
+  </listener>
+
 
 </web-app>
 
