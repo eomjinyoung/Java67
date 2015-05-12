@@ -35,6 +35,17 @@ public class BoardDetailServlet extends HttpServlet {
     out.println("<head>");
     out.println("<meta charset='UTF-8'>");
     out.println("<title>게시판</title>");
+    out.println("    <style>");
+    out.println("      body {");
+    out.println("        font-size: small;");
+    out.println("      }");
+    out.println("      footer {");
+    out.println("        border-top: 1px solid gray;");
+    out.println("        margin: 10px 0;");
+    out.println("        padding: 10px;");
+    out.println("        background-color: yellow;");
+    out.println("      }");
+    out.println("    </style>");
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>게시물 상세정보2</h1>");
@@ -56,6 +67,12 @@ public class BoardDetailServlet extends HttpServlet {
         + " onclick=\"location.href='delete?no=" + board.getNo() + "'\">");
     out.println("<input type='button' value='취소' onclick=\"location.href='list';\">");
     out.println("</form>");
+    
+    //꼬리말 추가
+    out.println("  <footer>");
+    out.println("    <p>이 사이트의 모든 권리는 Java67기에 있습니다. "
+        + "문의(java67@test.com)</p>");
+    out.println("  </footer>");
     
     out.println("</body>");
     out.println("</html>");
