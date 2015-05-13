@@ -29,6 +29,63 @@ JSP란?
     
 4) 해당 서블릿의 service() 메서드를 호출한다.
    
+[JSP 컴파일 규약]
+JSP 파일을 가지고 서블릿 클래스를 생성할 때 지켜야할 규약.
+HttpJspPage 인터페이스를 구현하라!
+Servlet <--------------- JspPage <--------- HttpJspPage
+.init()                 .jspInit()          ._jspService()
+.destroy()              .jspDestroy()
+.getServletInfo()
+.getServletConfig()
+.service()
+
+
+1) HttpServlet을 상속 받든, GenericServlet을 상속 받든, 
+   Servlet 인터페이스를 직접 구현하던지, 세가지 방법을 동원하여
+   서블릿 클래스를 정의한다.   
+
+2) JspPage 인터페이스를 구현해야 한다.
+=> jspInit() : init()에서 jspInit()를 호출하도록 작성한다.
+=> jspDestroy() : destroy()에서 jspDestroy()를 호출하도록 작성한다.
+
+3) HttpJspPage 인터페이스를 구현해야 한다.
+=> _jspService) : service()에서 _jspService()를 호출하도록 작성한다.
+   
+예)
+public class MyJspServlet 
+  extends HttpServlet
+  implements HttpJspPage {
+  
+  @Override
+  public void init(ServletConfig config) {
+    super.init();
+    jspInit();  // 규약을 만족시킴.
+  }
+  
+  @Override
+  public void destroy() {
+    super.destroy();
+    jspDestroy(); // 규약을 만족시킴.
+  }
+  
+  public void jspInit() {}
+  public void jspDestroy() {}
+  public void _jspService(HttpServletRequest req, HttpServletResponse rep) {
+    ...
+  }
+}   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
    
