@@ -24,7 +24,11 @@ public int plus(int a, int b) {
 
 10 + 20 = <%= result %>
 
-
+<%!
+{ // 인스턴스 블록 <-- 클래스 멤버이다.
+  System.out.println("JSP 객체가 생성되었음.");
+}
+%>
 
 
 
