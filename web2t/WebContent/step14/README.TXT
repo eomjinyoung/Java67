@@ -28,7 +28,6 @@ cookie: getCookies() --> ${cookie.쿠키이름}
 initParam: getInitParameter("xxx") --> {initParam.파라미터명}
 
 
-
 * 보관소를 지정하지 않으면 다음 순서대로 객체를 찾는다.
 PageContext -> ServletRequest -> HttpSession -> ServletContext
 
