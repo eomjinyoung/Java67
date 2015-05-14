@@ -20,7 +20,19 @@
 
 =>${searchUrl}
 
+[c:import]
+- HTTP 요청을 수행한다.
+- url: 서버에 요청할 URL
+- var: 서버의 응답 결과를 보관소에 저장할 때 사용할 이름. 
+       만약, var 속성을 생략하면 현재 위치에 응답 결과를 출력한다.
+<c:import url="http://www.daum.net" var="result"/>
 
+[c:redirect]
+- 리다이렉트를 수행한다.
+
+<c:if test="${param.server == 'daum'}">
+  <c:redirect url="http://www.daum.net"/>
+</c:if>
 
 
 

@@ -1,8 +1,7 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="board" scope="request" 
-  class="net.bitacademy.java67.step13.BoardVo"/>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +12,14 @@
 <body>
 	<h1>게시물 상세정보(with JSP)</h1>
 	<form action="change" method="post">
-	번호: <input type='text' name='no' readonly value='<%=board.getNo()%>'><br>
-	제목: <input type='text' name='title' value='<%=board.getTitle()%>'><br>
-	내용: <textarea cols='50' rows='10' name='content'><%=board.getContent()%></textarea><br>
-	조회수: <%=board.getViews()%><br>
-	생성일: <%=board.getCreateDate()%><br>
+	번호: <input type='text' name='no' readonly value='${board.no}'><br>
+	제목: <input type='text' name='title' value='${board.title}'><br>
+	내용: <textarea cols='50' rows='10' name='content'>${board.content}</textarea><br>
+	조회수: ${board.views}<br>
+	생성일: ${board.createDate}<br>
 	<input type='submit' value='변경'>
 	<input type='button' value='삭제' 
-	       onclick="location.href='delete?no=<%=board.getNo()%>'">
+	       onclick="location.href='delete?no=${board.no}'">
 	<input type='button' value='취소' 
 	       onclick="location.href='list';">
   </form>
