@@ -8,15 +8,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.bitacademy.java67.DBConnectionPool;
+import javax.sql.DataSource;
+
 import net.bitacademy.java67.DaoException;
 import net.bitacademy.java67.domain.BoardVo;
 
+/* 실습 내용: DBConnectionPool 대신 JDBC 공식 커넥션풀(DataSource)을 사용한다. */
+
 public class BoardDao {
-  DBConnectionPool dbPool;
+  DataSource dataSource;
   
-  public void setDBConnectionPool(DBConnectionPool dbPool) {
-    this.dbPool = dbPool;
+  public void setDataSource(DataSource dataSource) {
+    this.dataSource = dataSource;
   }
   
   public void insert(final BoardVo board) {
@@ -24,7 +27,7 @@ public class BoardDao {
     PreparedStatement stmt = null;
 
     try {
-      con = dbPool.getConnection(); 
+      con = dataSource.getConnection(); 
       stmt = con.prepareStatement(
           "INSERT INTO board2 (title,content,cre_date) VALUES (?,?,now())");
 
@@ -38,7 +41,10 @@ public class BoardDao {
 
     } finally {
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      // DataSource로부터 얻은 커넥션 객체는 
+      // close()를 호출하더라도 서버와의 연결을 끊지 않는다.
+      // close()가 하는 일은 자신을 만들어준 DataSource로 반환하는 일을 한다.
+      try {con.close();} catch (Exception e) {}
     }
   }
   
@@ -49,7 +55,7 @@ public class BoardDao {
     ResultSet rs = null;
 
     try {
-      con = dbPool.getConnection(); 
+      con = dataSource.getConnection(); 
       stmt = con.createStatement();
 
       rs = stmt.executeQuery(
@@ -74,7 +80,7 @@ public class BoardDao {
     } finally {
       try {rs.close();} catch (Exception e) {}
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
 
   }
@@ -85,7 +91,7 @@ public class BoardDao {
     ResultSet rs = null;
 
     try {
-      con = dbPool.getConnection(); 
+      con = dataSource.getConnection(); 
       stmt = con.prepareStatement(
           "SELECT bno,title,content,cre_date,views FROM board2 WHERE bno=?");
       stmt.setInt(1, no);
@@ -110,7 +116,7 @@ public class BoardDao {
     } finally {
       try {rs.close();} catch (Exception e) {}
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
   }
 
@@ -120,7 +126,7 @@ public class BoardDao {
     PreparedStatement stmt = null;
 
     try {
-      con = dbPool.getConnection(); 
+      con = dataSource.getConnection(); 
       stmt = con.prepareStatement(
           "DELETE FROM board2 WHERE bno=?");
       stmt.setInt(1, no);
@@ -131,7 +137,7 @@ public class BoardDao {
 
     } finally {
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
   }
   
@@ -140,7 +146,7 @@ public class BoardDao {
     PreparedStatement stmt = null;
 
     try {
-      con = dbPool.getConnection(); 
+      con = dataSource.getConnection(); 
       stmt = con.prepareStatement(
           "UPDATE board2 SET title=?, content=?"
           + " WHERE bno=?");
@@ -155,7 +161,7 @@ public class BoardDao {
 
     } finally {
       try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {con.close();} catch (Exception e) {}
     }
     
   }
