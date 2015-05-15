@@ -104,10 +104,31 @@ Framework: 어느 정도 애플리케이션의 골격을 준비한 다음, 필�
   java.lang.Long          -> long
   java.lang.String        -> string
   ... 
+
+[mybatis 주요 컴포넌트]
+1. SqlSessionFactoryBuilder
+- mybatis 설정 파일에 따라 동작을 수행하는 SqlSessionFactory 객체를 생성한다.
+
+2. SqlSessionFactory
+- SqlSessionFactory 객체를 생성한다.
+
+3. SqlSession
+- SQL문을 실행한다.
+
  
 [BoardDao 클래스에 mybatis 적용]
 1. 의존 객체 SqlSessionFactory를 담을 변수와 셋터 메서드를 준비한다.
 - 기존의 DataSource 변수 및 셋터 메서드는 제거한다. 
+2. SqlSessionFactory로부터 SqlSession 객체를 얻는다.
+3. SqlSession 객체를 사용하여 SQL문을 실행한다.
+
+[ContextLoaderListener에서 mybatis 객체 준비하기]
+1. mybatis 문서에서 getting started를 찾는다.
+2. SqlSessionFactory 객체를 얻는 코드를 가져온다.
+3. BoardDao 객체에 주입한다.
+
+
+
  
  
  

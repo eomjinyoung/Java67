@@ -1,19 +1,12 @@
 package net.bitacademy.java67.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.sql.DataSource;
-
-import org.apache.ibatis.session.SqlSessionFactory;
 
 import net.bitacademy.java67.DaoException;
 import net.bitacademy.java67.domain.BoardVo;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 /* 실습 내용: mybatis 사용 */
 
@@ -25,145 +18,88 @@ public class BoardDao {
   }
 
   public void insert(final BoardVo board) {
-    Connection con = null;
-    PreparedStatement stmt = null;
-
+    SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      con = dataSource.getConnection(); 
-      stmt = con.prepareStatement(
-          "INSERT INTO board2 (title,content,cre_date) VALUES (?,?,now())");
-
-      stmt.setString(1, board.getTitle());
-      stmt.setString(2, board.getContent());
-
-      stmt.executeUpdate();
-
-    } catch (SQLException e) {
+      sqlSession.insert("net.bitacademy.java67.dao.BoardDao.insert", board);
+      // 첫 번째 파라미터 -> SQL ID : 네임스페이스이름.SQL아이디
+      // 두 번째 파라미터 -> 데이터를 담고 있는 객체. 오직 한 개만 넘길 수 있다.
+      // 만약 여러 개의 값을 전달하고 싶으면, Map이나 Value Object에 담아서 전달하라.
+      
+      // 서버에 입력 작업을 적용할 것을 요구한다.
+      // 만약 commit을 요구하지 않으면, 임시 테이블에 저장된 작업 결과는 버려진다.
+      sqlSession.commit();
+      
+    } catch (Exception e) {
       throw new DaoException(e);
 
     } finally {
-      try {stmt.close();} catch (Exception e) {}
-      // DataSource로부터 얻은 커넥션 객체는 
-      // close()를 호출하더라도 서버와의 연결을 끊지 않는다.
-      // close()가 하는 일은 자신을 만들어준 DataSource로 반환하는 일을 한다.
-      try {con.close();} catch (Exception e) {}
+      sqlSession.close();
     }
   }
   
   public List<BoardVo> selectList() {
-    ArrayList<BoardVo> list = new ArrayList<BoardVo>();
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
-      con = dataSource.getConnection(); 
-      stmt = con.createStatement();
+      return sqlSession.selectList(
+          "net.bitacademy.java67.dao.BoardDao.selectList");
 
-      rs = stmt.executeQuery(
-          "SELECT bno,title,cre_date,views FROM board2");
-
-      BoardVo board = null;
-      while (rs.next()) {
-        board = new BoardVo();
-        board.setNo(rs.getInt("bno"));
-        board.setTitle(rs.getString("title"));
-        board.setCreateDate(rs.getDate("cre_date"));
-        board.setViews(rs.getInt("views"));
-
-        list.add(board);
-      }
-
-      return list;
-
-    } catch (SQLException e) {
-      throw new DaoException(e); 
+    } catch (Exception e) {
+      throw new DaoException(e);
 
     } finally {
-      try {rs.close();} catch (Exception e) {}
-      try {stmt.close();} catch (Exception e) {}
-      try {con.close();} catch (Exception e) {}
+      sqlSession.close();
     }
 
   }
   
   public BoardVo select(int no) {
-    Connection con = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
-      con = dataSource.getConnection(); 
-      stmt = con.prepareStatement(
-          "SELECT bno,title,content,cre_date,views FROM board2 WHERE bno=?");
-      stmt.setInt(1, no);
-      rs = stmt.executeQuery();
-
-      if (rs.next()) {
-        BoardVo board = new BoardVo();
-        board.setNo(rs.getInt("bno"));
-        board.setTitle(rs.getString("title"));
-        board.setContent(rs.getString("content"));
-        board.setCreateDate(rs.getDate("cre_date"));
-        board.setViews(rs.getInt("views"));
-        return board;
-        
-      } else {
-        return null;
-      }
+      return sqlSession.selectOne(
+          "net.bitacademy.java67.dao.BoardDao.selectOne", no);
       
-    } catch (SQLException e) {
-      throw new DaoException(e); 
+    } catch (Exception e) {
+      throw new DaoException(e);
 
     } finally {
-      try {rs.close();} catch (Exception e) {}
-      try {stmt.close();} catch (Exception e) {}
-      try {con.close();} catch (Exception e) {}
+      sqlSession.close();
     }
   }
 
   
   public int delete(int no) {
-    Connection con = null;
-    PreparedStatement stmt = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
-      con = dataSource.getConnection(); 
-      stmt = con.prepareStatement(
-          "DELETE FROM board2 WHERE bno=?");
-      stmt.setInt(1, no);
-      return stmt.executeUpdate();
+      int count = sqlSession.delete(
+          "net.bitacademy.java67.dao.BoardDao.delete", no);
+      sqlSession.commit();
+      return count;
       
-    }catch (SQLException e) {
-      throw new DaoException(e); 
+    } catch (Exception e) {
+      throw new DaoException(e);
 
     } finally {
-      try {stmt.close();} catch (Exception e) {}
-      try {con.close();} catch (Exception e) {}
+      sqlSession.close();
     }
   }
   
   public int update(BoardVo board) {
-    Connection con = null;
-    PreparedStatement stmt = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
-      con = dataSource.getConnection(); 
-      stmt = con.prepareStatement(
-          "UPDATE board2 SET title=?, content=?"
-          + " WHERE bno=?");
-      stmt.setString(1, board.getTitle());
-      stmt.setString(2, board.getContent());
-      stmt.setInt(3, board.getNo());
+      int count = sqlSession.update(
+          "net.bitacademy.java67.dao.BoardDao.update", board);
+      sqlSession.commit();
+      return count;
       
-      return stmt.executeUpdate();
-      
-    }catch (SQLException e) {
-      throw new DaoException(e); 
+    } catch (Exception e) {
+      throw new DaoException(e);
 
     } finally {
-      try {stmt.close();} catch (Exception e) {}
-      try {con.close();} catch (Exception e) {}
+      sqlSession.close();
     }
     
   }
