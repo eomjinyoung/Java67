@@ -50,10 +50,50 @@ Framework: 어느 정도 애플리케이션의 골격을 준비한 다음, 필�
   => 대표 제품: hibernate, toplink
   
 [mybatis 프레임워크 사용 준비]
+1. mybatis 라이브러리 다운로드  
+- mybatis.org 사이트에 접속한다.
+- 파일 다운로드
+
+2. 라이브러리를 웹 애플리케이션에 추가
+- mybatis-xxx.jar 과 lib 폴더에 있는 모든 JAR파일을 
+  /WEB-INF/lib 폴더에 복사한다.
+
+3. mybatis 설정 파일을 준비한다.
+- dao 패키지에 mybatis-config.xml 파일을 생성한다.
+- mybatis 문서에서 getting started에 설명한 대로 설정파일을 작성한다.
+
+4. SQL 파일 준비
+- dao 패키지에 BoardDao.xml 파일을 생성한다.
+- getting started에 설명한 대로 루트 태그를 준비한다.
+  <mapper> 태그
+  namespace: SQL문을 찾을 때 사용할 패키지 이름이다.
+             가능한 유지보수하기 좋게 Dao 클래스 이름(패키지명 포함)과 같게하라!  
+- BoardDao 클래스의 SQL문을 BoardDao.xml 파일로 옮긴다.   
+  insert 문은 <insert> 태그에 작성한다.
+  select --> <select>
+  update --> <update>
+  delete --> <delete>
+  유지보수하기 좋게 각 SQL문의 ID는 메서드 이름과 같게 하라!
+
+- SQL 태그 작성 규칙
+  id : SQL을 구분하는 식별자이고, 해당 네임스페이스에서 유일해야 한다.
+  parameterType: SQL의 입력 파라미터(in-parameter)에 넣을 값을 갖고 있는 객체이다. 
+                 Fully-qualified name 이어야 한다.       
+  resultType: SELECT 결과의 한 레코드 값을 담을 객체를 지정한다.
+              레코드가 여러 개일 경우 mybatis는 List 객체를 만들어 저장한다.
+                 
+- in-parameter는 JDBC의 물음표(?) 대신 #{프로퍼티명} 형태로 지정한다.
+  주의1) 문자열이라고 해서 다음과 같이 따옴표를 붙여서는 안된다.
+        '#{title}' <-- 무조건 따옴표 안의 내용은 값이 된다.
+  주의2) in-parameter는 테이블 이름이나 컬럼 이름을 받을 수는 없다.
+        SQL 문의 일부분을 넣고 싶다면 ${SQL문}를 사용해야 한다.
+        => 보안을 위협한다. mysql에서도 사용하지 말 것을 권고하고 있다.
+           정부 프로젝트는 이것을 사용을 허용하지 않는다. 
+           보안 검사를 통과하지 못한다. 
   
-          
-     
- 
+- 결과 값을 객체에 담는 규칙
+  컬럼명과 일치하는 프로퍼티를 찾는다. 있으면 setter를 호출하여 담는다. 없으면 안 담는다.
+  만약 컬럼명과 프로퍼터명이 같지 않다면, 컬럼에 프로퍼티 이름과 같게 별명을 부여하라!  
  
  
  

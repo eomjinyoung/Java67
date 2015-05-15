@@ -13,7 +13,7 @@
         maxTotal="100" maxIdle="30" maxWaitMillis="10000"
         username="java67" password="java67" 
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/java67db"/>
+        url="jdbc:mysql://localhost:3306/java67db?useUnicode=true&amp;characterEncoding=utf8"/>
 
 name: DataSource 객체를 서버에 저장할 때 이름. JNDI 이름.
       나중에 애플리케이션에서 찾을 때도 사용한다.
