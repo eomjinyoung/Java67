@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 변경 사항: mybatis-config.xml에 선언한 별명을 사용한다. -->
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java67.dao.BoardDao">
+  
+  <insert id="insert" parameterType="BoardVo">
+      INSERT INTO board2 (title,content,cre_date) 
+      VALUES (#{title},#{content},now())
+  </insert>
+  
+  <select id="selectList" resultType="BoardVo">
+      SELECT 
+        bno as no
+        ,title
+        ,cre_date as createDate
+        ,views 
+      FROM board2
+      ORDER BY bno DESC
+  </select>
+  
+  <select id="selectOne" parameterType="int" resultType="BoardVo">
+      SELECT 
+          bno as no
+          ,title
+          ,content
+          ,cre_date as createDate
+          ,views 
+      FROM board2 
+      WHERE bno=#{no}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+      DELETE FROM board2 WHERE bno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="BoardVo">
+      UPDATE board2 SET 
+        title=#{title} 
+        ,content=#{content}
+      WHERE bno=#{no}
+  </update>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
