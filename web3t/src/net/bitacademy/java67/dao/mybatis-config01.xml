@@ -3,10 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <!-- 타입에 별명을 부여하기 -->
-  <typeAliases>
-    <typeAlias type="net.bitacademy.java67.domain.BoardVo" alias="BoardVo"/>
-  </typeAliases>
 
   <!-- 접속할 DBMS 서버 정보 -->
   <environments default="study2">

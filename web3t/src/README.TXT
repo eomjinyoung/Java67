@@ -128,10 +128,38 @@ Framework: 어느 정도 애플리케이션의 골격을 준비한 다음, 필�
 3. BoardDao 객체에 주입한다.
 
 
+[mybatis 설정 파일: 타입에 별명을 부여하기]
+1. mybatis-config.xml에 별명을 추가한다.
+<typeAliases>
+  <typeAlias type="net.bitacademy.java67.domain.BoardVo" alias="BoardVo"/>
+</typeAliases>
+  
+2. BoardDao.xml에서 해당 별명을 사용한다.
 
+
+
+[SQL 맵퍼 파일: 컬럼과 프로퍼티를 연결하기]
+- select 할 때 마다 컬럼에 별명을 지정할 필요가 없다.
+- 맵퍼 파일에 정의된 대로 컬럼과 프로퍼티가 자동 연결된다.
+
+1. BoardDao.xml 파일에 컬럼-프로퍼티 연결 정보를 추가한다. 
+<resultMap type="BoardVo" id="BoardVoMap">
+  <id     column="bno"      property="no" />
+  <result column="title"    property="title" />
+  <result column="content"  property="content" />
+  <result column="cre_date" property="createDate" />
+  <result column="views"    property="views" />
+</resultMap> 
  
- 
- 
+2. 각 SELECT 문에 적용한다.
+- resultType 대신에 resultMap 속성을 사용한다.
+- resultMap 속성에는 resultMap 태그의 id 값을 넣는다.
+- 컬럼에 부여한 별명을 제거한다.
+<select id="selectList" resultMap="BoardVoMap">
+    SELECT bno, title, cre_date, views 
+    FROM board2
+    ORDER BY bno DESC
+</select> 
  
  
  
