@@ -1,90 +1,73 @@
 [실습 목표]
-- 패키지를 구조화하여 소스 코드를 정리한다
-- JDBC에서 제공하는 DB 커넥션 풀(DataSource) 사용.
-- 보통 서블릿 컨테이너나 WAS에 DataSource를 관리하는 기능이다. 
-  따라서 서버의 관리 기능을 이용하여 DataSource를 사용하라!
+- mybatis 퍼시스턴스(persistence) 프레임워크 적용
   
-[DataSource 사용법]
-- 톰캣 서블릿 컨테이너의 경우는 다음과 같이 DataSource를 설정한다.
-1.context.xml 파일에 다음 태그를 넣는다.
-  <Resource name="jdbc/java67db" 
-        auth="Container" 
-        type="javax.sql.DataSource"
-        maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-        username="java67" password="java67" 
-        driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/java67db"/>
+[OOP vs CBD vs Framework]
+클래스: 변수와 메서드의 묶음. 
+컴포넌트: 한 개 이상의 클래스의 묶음. 업무 로직의 기능을 수행.
+설계 패턴: 특정 문제를 해결할 때 널리 사용되는 설계 방법론. 검증된 설계 기법. 
 
-name: DataSource 객체를 서버에 저장할 때 이름. JNDI 이름.
-      나중에 애플리케이션에서 찾을 때도 사용한다.
-auth: 객체 관리의 주체를 지정한다. Container는 서블릿 컨테이너가 DataSource 객체를 생성하고
-      소멸시킴을 의미한다.
-type: 생성할 객체의 클래스명이다.
-maxTotal: DB 커넥션의 최대 개수이다.
-maxIdle: DB 커넥션이 사용되지 않을 때 유지해야 할 최대 커넥션 수이다.
-maxWaitMillis: DBMS에 커넥션을 요청했을 때 기다리는 최대 시간(예: 10초)
-               설정된 시간이 지났는데도 커넥션을 완성하지 못하면 오류가 발생한다.
-username, password, driverClassName, url: DB 연결 정보이다. 
+OOP: 클래스를 조립하여 애플리케이션 만들자!
+CBD(Component-based Development): 중간 부품을 조립하여 애플리케이션을 만들자.
+Framework: 어느 정도 애플리케이션의 골격을 준비한 다음, 필요한 부품을 꼽아서 애플리케이션을 만들자.
  
-2. DataSource를 사용하는 웹 애플리케이션 설정하기.
-- JSTL에서 서버의 DataSource 객체를 사용하려면 web.xml에 그 자원 정보를 등록해야 한다.
-- 자바에서 DataSource를 사용한다면 이 태그를 필요없다.
-- web.xml에 다음 태그를 추가하라!
-  <resource-ref>
-      <description>DB Connection</description>
-      <res-ref-name>jdbc/java67db</res-ref-name>
-      <res-type>javax.sql.DataSource</res-type>
-      <res-auth>Container</res-auth>
-  </resource-ref> 
+
+          [OOP]                [CBD]               [Framework]
+기본 단위:  클래스                 컴포넌트              클래스 + 컴포넌트 + 설계 패턴
+
+생활 개념:  다이오드, 저장, 납,      메인보드, 랜카드,       베어본(프레임워크),        
+          나사, 칩, 트랜지스터 등   VGA 카드, 모듈램,       CPU(클래스),
+                               케이스, 전원공급기 등    모듈램(컴포넌트) 등 
+                               
+속도:      가장 느리다             빠르다               가장 빠르다
+
+난이도:    가장 어렵다             중간                 쉽다
+  
+개발자:     고급                 중급, 초급             초급
+
+안정성:     개발자의 역량에 영향     중간, 컴포넌트 별로      최소한의 품질을 보장한다.
+                              테스트 완료 했음.                          
+                              
+[퍼시스턴스 프레임워크]
+- 데이터의 보관을 처리하는 기능을 수행.
+1) SQL 맵퍼
+  => SQL을 별도의 파일로 분리해놓고, 프레임워크에서 제공하는 클래스를 사용하여 
+     SQL문을 실행한다.
+  => SQL문을 개발자가 직접 작성한다. 
+     단점: 개발자가 SQL문을 알아야 한다. DBMS 마다 SQL문을 따로 관리해야 한다.
+     장점: DBMS 고유의 기능을 100% 활용할 수 있어, 최적화된 질의를 수행할 수 있다.
+          기존의 시스템(레거시 시스템)이 사용하는 테이블을 직접 활용하기 쉽다. 
+  => 대표 제품: mybatis
+          
+2) OR 맵퍼                              
+  => 테이블의 데이터를 객체로 다룬다.
+  => 객체 질의 전용 문법이 제공된다. 예) HQL(Hibernate Query Language)
+  => SQL문과 유사하다.
+  => 실제 실행할 때는 프레임워크에서 객체 질의어를 SQL문으로 자동 변환한 다음에 실행한다.
+     장점: 개발자가 SQL문을 몰라도 된다. DBMS마다 SQL문을 따로 관리하지 않아도 된다.
+     단점: DBMS 고유 기능을 100% 활용할 수 없다. 
+          객체로 다룰 수 있도록 DB의 정규화가 잘 되어 있어야 한다.
+          기존 시스템이 사용하는 테이블과의 연동이 어렵다.
+  => 대표 제품: hibernate, toplink
+  
+[mybatis 프레임워크 사용 준비]
+  
+          
+     
  
-description: 선택사항. 자원에 대한 설명.
-res-ref-name: 서블릿 컨테이너에 설정한 자원의 이름.JNDI 이름. 
-res-type: 서블릿 컨테이너가 리턴해 줄 자원의 타입. 
-res-auth: 자원 관리의 주체.
-
-*JNDI(Java Naming and Directory Interface)
-- 서버에서 객체를 관리할 때 이름을 짓는 형식이다.
-- 보통 디렉토리 경로를 지정하듯이 짓는다.
-예) jdbc/java67db
-예) comp/env/jdbc/java67db 
-- 자주 사용하는 이름
-java:comp/env/xxxx              -> 응용 프로그램 환경 변수 이름
-java:comp/env/jdbc/xxxx         -> JDBC 데이터소스 이름
-java:comp/ejb/xxx               -> EJB 컴포넌트 이름 
-java:comp/UserTransaction/xxxx  -> UserTransaction 객체 이름
-java:comp/env/mail/xxxx         -> JavaMail 객체 이름
-java:comp/env/url/xxxx          -> URL 정보 이름
-java:comp/env/jms/xxxx          -> JMS 연결 객체의 이름
  
-3. BoardDao 클래스를 변경한다.
-- DBConnectionPool 클래스 대신 DataSource로 변경한다.
-
-
-4. ContextLoaderListener 클래스를 변경한다.
-- 이 클래스에서 Dao와 DBConnectionPool을 준비하였다.
-- DataSource를 사용하도록 변경한다.
-
-5. web.xml에서 DB 연결 정보를 제거하라.
-- 컨텍스트 초기화 파라미터로 설정한 DB 연결 정보를 제거한다.
-
-
-[서블릿 컨테이너에서 DB 커넥션을 관리할 때 얻을 수 있는 이점?]
-- 웹 애플리케이션 개발자는 더 이상 DB 관련 정보를 다룰 필요가 없다.
-- 그것은 서버 관리자에게 맡기면 된다.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
