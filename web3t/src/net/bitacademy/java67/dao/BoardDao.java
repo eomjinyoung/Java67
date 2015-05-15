@@ -10,18 +10,20 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import net.bitacademy.java67.DaoException;
 import net.bitacademy.java67.domain.BoardVo;
 
-/* 실습 내용: DBConnectionPool 대신 JDBC 공식 커넥션풀(DataSource)을 사용한다. */
+/* 실습 내용: mybatis 사용 */
 
 public class BoardDao {
-  DataSource dataSource;
+  SqlSessionFactory sqlSessionFactory;
   
-  public void setDataSource(DataSource dataSource) {
-    this.dataSource = dataSource;
+  public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+    this.sqlSessionFactory = sqlSessionFactory;
   }
-  
+
   public void insert(final BoardVo board) {
     Connection con = null;
     PreparedStatement stmt = null;

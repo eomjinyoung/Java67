@@ -21,6 +21,31 @@
       ORDER BY bno DESC
   </select>
   
+  <select id="selectOne" 
+          parameterType="int" 
+          resultType="net.bitacademy.java67.domain.BoardVo">
+      SELECT 
+          bno as no
+          ,title
+          ,content
+          ,cre_date as createDate
+          ,views 
+      FROM board2 
+      WHERE bno=#{no}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+      DELETE FROM board2 WHERE bno=#{value}
+  </delete>
+  
+  <update id="update" 
+          parameterType="net.bitacademy.java67.domain.BoardVo">
+      UPDATE board2 SET 
+        title=#{title} 
+        ,content=#{content}
+      WHERE bno=#{no}
+  </update>
+  
 </mapper>
 
 
