@@ -21,10 +21,11 @@
       VALUES (#{title},#{content},now())
   </insert>
   
-  <select id="selectList" resultMap="BoardVoMap">
+  <select id="selectList" parameterType="map" resultMap="BoardVoMap">
       SELECT bno, title, cre_date, views 
       FROM board2
       ORDER BY bno DESC
+      LIMIT #{startIndex}, #{pageSize}
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="BoardVoMap">

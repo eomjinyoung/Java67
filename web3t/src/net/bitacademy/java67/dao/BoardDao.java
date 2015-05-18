@@ -1,5 +1,6 @@
 package net.bitacademy.java67.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import net.bitacademy.java67.DaoException;
@@ -8,7 +9,7 @@ import net.bitacademy.java67.domain.BoardVo;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-/* 실습 내용: mybatis 사용 */
+/* 실습 내용: 페이징 처리 추가 */
 
 public class BoardDao {
   SqlSessionFactory sqlSessionFactory;
@@ -37,12 +38,16 @@ public class BoardDao {
     }
   }
   
-  public List<BoardVo> selectList() {
+  public List<BoardVo> selectList(int startIndex, int pageSize) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
-
+    
+    HashMap<String,Integer> paramMap = new HashMap<String,Integer>();
+    paramMap.put("startIndex", startIndex);
+    paramMap.put("pageSize", pageSize);
+    
     try {
       return sqlSession.selectList(
-          "net.bitacademy.java67.dao.BoardDao.selectList");
+          "net.bitacademy.java67.dao.BoardDao.selectList", paramMap);
 
     } catch (Exception e) {
       throw new DaoException(e);

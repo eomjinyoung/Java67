@@ -26,11 +26,22 @@ public class BoardListServlet extends HttpServlet {
   public void service(
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    int startIndex = 0;
+    int pageSize = 3;
+    
+    if (request.getParameter("pageSize") != null) {
+      pageSize = Integer.parseInt(request.getParameter("pageSize"));
+    }
+
+    if (request.getParameter("pageNo") != null) {
+      int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+      startIndex = (pageNo - 1) * pageSize;
+    }
     
     ServletContext ctx = this.getServletContext();
     BoardDao boardDao = (BoardDao) ctx.getAttribute("boardDao");
     
-    List<BoardVo> list = boardDao.selectList();
+    List<BoardVo> list = boardDao.selectList(startIndex, pageSize);
     request.setAttribute("list", list);
     
     response.setContentType("text/html;charset=UTF-8");
