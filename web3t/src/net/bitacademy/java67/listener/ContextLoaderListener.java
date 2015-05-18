@@ -7,47 +7,41 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import net.bitacademy.java67.dao.BoardDao;
+import net.bitacademy.java67.web.BoardListController;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+/* 실습 목표: 페이지 컨트롤러 객체를 준비한다.
+ * 
+ */
+
 public class ContextLoaderListener implements ServletContextListener {
    
   @Override
   public void contextInitialized(ServletContextEvent event) {
-    // 웹 애플리케이션을 실행하는 동안 사용할 기본 객체 준비
     ServletContext ctx = event.getServletContext();
     
     try {
-      // mybatis 객체 준비
-      // - FileInputStream을 사용하면 안되는가?
-      //   답변: mybatis-config.xml 파일 경로를 지정하기가 번거롭다. 
-      
-      // 1. FileInputStream을 사용하는 경우,
-      // 1) 현재 웹 애플리케이션의 경로를 알아낸다.
-      //String path = ctx.getRealPath("/WEB-INF/classes");
-      // 2) 실제 배치한 폴더 경로를 바탕으로 mybatis-config.xml 파일이 있는 위치를 알아낸다. 
-      //FileInputStream mybatisConfigInputStream = new FileInputStream(
-      //        path + "/net/bitacademy/java67/dao/mybatis-config.xml");
-      // 결론: mybatis-config.xml 파일의 경로를 알아내는게 번거롭다.
-      
-      // 2. Resources.getResourceAsStream() 메서드 사용,
-      // - 이 메서드는 자바 클래스 경로(classpath)를 기준으로 파일을 찾는 
-      //   입력 스트림 객체를 리턴한다.
       InputStream mybatisConfigInputStream = Resources.getResourceAsStream(
           "net/bitacademy/java67/dao/mybatis-config.xml");
-      
-      // SqlSessionFactoryBuilder는 mybatis 설정 파일을 읽는다.
-      // - 설정 파일의 내용에 따라 동작하는 SqlSessionFactory를 생성한다.
-      // - 그 객체를 리턴한다.
       SqlSessionFactory sqlSessionFactory = 
           new SqlSessionFactoryBuilder().build(mybatisConfigInputStream);
       
       BoardDao boardDao = new BoardDao();
+      //의존 객체 주입(Dependency Injection; DI)
       boardDao.setSqlSessionFactory(sqlSessionFactory);
       
-      ctx.setAttribute("boardDao", boardDao);
+      //페이지 컨트롤러 객체 준비
+      BoardListController boardListController = new BoardListController();
+      boardListController.setBoardDao(boardDao); // 의존 객체 주입
+      
+      //페이지 컨트롤러를 ServletContext 보관소에 저장한다.
+      //- 저장할 때 이름은 서블릿 경로를 사용한다.
+      //- 왜? 프론트 컨트롤러가 서블릿 경로로 페이지 컨트롤러를 꺼낼 수 있도록 하기 위해.
+      ctx.setAttribute("/board/list.do", boardListController);
+      
 
     } catch (Exception e) {
       e.printStackTrace();

@@ -1,42 +1,35 @@
 [실습 목표]
-- 페이징 처리
-- 검색 구현
-- 정렬 구현
+- Front Controller 패턴 적용(<-- Facade 패턴의 응용)
   
-1. 페이징 처리
-1) BoardDao.xml에서 selectList 질의문을 변경한다.
-<select id="selectList" parameterType="map" resultMap="BoardVoMap">
-    SELECT bno, title, cre_date, views 
-    FROM board2
-    ORDER BY bno DESC
-    LIMIT #{startIndex}, #{pageSize}
-</select>
-- LIMIT 문을 추가한다.
-- startIndex와 pageSize 값을 받을 parameterType을 선언한다.
+1. 프론트 컨틀롤러 생성
+- DispatcherServlet 클래스 작성
 
-2) BoardDao.java에서 selectList() 메서드 변경
-- 파라미터 선언
+2. 프론트 컨트롤러와 페이지 컨트롤로 사이에 호출 규칙을 정의
+- Controller 인터페이스 정의
 
-3) BoardListServlet.java 변경
+3. 페이지 컨트롤러 생성  
+- Controller 인터페이스를 구현한 BoardListController 클래스 작성
+ 
+4. 페이지 컨트로러 준비
+- ContextLoaderListener 클래스를 변경한다. 
 
-4) BoardList.jsp 변경
-- [이전], [다음] 링크 추가
+5. JSP 변경
+- BoardList.jsp의 모든 링크에 .do를 붙인다.
 
-2. 검색 구현
-1) BoardList.jsp 페이지에 검색 입력폼 추가
-2) BoardListServlet.java 변경
-3) BoardDao.java, BoardDao.xml 변경
-
-3. 정렬 구현
-1) BoardList.jsp의 테이블 헤더에 정렬을 위한 링크를 붙인다.
-2) BoardListServlet.java, BoardDao.java, BoardDao.xml  변경.
+5. Error.jsp 생성
+- 프론트 컨트롤러에서 작업을 수행하는 중에 오류가 발생했을 때 실행될 JSP이다.
  
- 
- 
- 
- 
- 
- 
+[의존 객체 주입(Dependench Injection)]
+- 사용할 객체를 직접 준비하지 않고, 외부에서 주입 받는 방식.
+- 이점: 의존 객체를 관리하리 쉽다. 대체하기 쉽다. 단위 테스트가 쉽다.
+- 예) BoardDao와 SqlSessionFactory의 관계
+  => ContextLoaderListener에서 BoardDao가 필요로하는 객체를 생성하여 주입한다.
+  
+  
+  
+  
+  
+   
  
  
  
