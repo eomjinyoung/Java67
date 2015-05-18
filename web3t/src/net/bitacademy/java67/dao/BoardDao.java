@@ -58,6 +58,22 @@ public class BoardDao {
 
   }
   
+  public int countAll() {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    
+    try {
+      return sqlSession.selectOne(
+          "net.bitacademy.java67.dao.BoardDao.countAll");
+
+    } catch (Exception e) {
+      throw new DaoException(e);
+
+    } finally {
+      sqlSession.close();
+    }
+
+  }
+  
   public BoardVo select(int no) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 

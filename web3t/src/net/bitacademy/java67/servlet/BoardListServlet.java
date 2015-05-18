@@ -42,15 +42,22 @@ public class BoardListServlet extends HttpServlet {
     ServletContext ctx = this.getServletContext();
     BoardDao boardDao = (BoardDao) ctx.getAttribute("boardDao");
     
+    //JSP가 화면을 준비할 때 사용할 값을 ServletRequest에 담는다.
     List<BoardVo> list = boardDao.selectList(startIndex, pageSize);
     request.setAttribute("list", list);
-    
-    response.setContentType("text/html;charset=UTF-8");
-
-    //JSP가 화면을 준비할 때 사용할 값을 ServletRequest에 담는다.
     request.setAttribute("pageNo", pageNo);
     request.setAttribute("pageSize", pageSize);
     
+    //총 페이지 수 구하기
+    int countAll = boardDao.countAll();
+    int maxPage = countAll / pageSize;
+    if (countAll % pageSize > 0) {
+      maxPage++;
+    }
+    request.setAttribute("maxPage", maxPage);
+    
+    
+    response.setContentType("text/html;charset=UTF-8");
     RequestDispatcher rd = request.getRequestDispatcher("/board/BoardList.jsp");
     rd.include(request, response);
     

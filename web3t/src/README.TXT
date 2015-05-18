@@ -19,6 +19,7 @@
 3) BoardListServlet.java 변경
 
 4) BoardList.jsp 변경
+- [이전], [다음] 링크 추가
 
  
  

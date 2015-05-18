@@ -28,6 +28,11 @@
       LIMIT #{startIndex}, #{pageSize}
   </select>
   
+  <select id="countAll" resultType="int">
+      SELECT count(bno) 
+      FROM board2
+  </select>
+  
   <select id="selectOne" parameterType="int" resultMap="BoardVoMap">
       SELECT bno, title, content, cre_date, views 
       FROM board2 

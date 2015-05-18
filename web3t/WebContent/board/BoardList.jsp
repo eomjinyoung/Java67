@@ -25,9 +25,19 @@
 </c:forEach>
   </table>
   <div>
-    <a href='list?pageNo=${pageNo-1}&pageSize=${pageSize}'>[이전]</a> 
-    ${pageNo} 
-    <a href='list?pageNo=${pageNo+1}&pageSize=${pageSize}'>[다음]</a>
+    <c:choose>
+      <c:when test="${pageNo > 1}">
+        <a href='list?pageNo=${pageNo-1}&pageSize=${pageSize}'>[이전]</a>   
+      </c:when>
+      <c:otherwise>[이전]</c:otherwise>
+    </c:choose>
+    ${pageNo}
+    <c:choose>
+      <c:when test="${pageNo < maxPage}">
+        <a href='list?pageNo=${pageNo+1}&pageSize=${pageSize}'>[다음]</a>
+      </c:when>
+      <c:otherwise>[다음]</c:otherwise>
+    </c:choose>
   </div>  
   <jsp:include page="/Footer.jsp"/>
 </body>
