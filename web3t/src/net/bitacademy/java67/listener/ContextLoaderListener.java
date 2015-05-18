@@ -7,7 +7,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import net.bitacademy.java67.dao.BoardDao;
+import net.bitacademy.java67.web.BoardAddController;
 import net.bitacademy.java67.web.BoardChangeController;
+import net.bitacademy.java67.web.BoardDeleteController;
 import net.bitacademy.java67.web.BoardDetailController;
 import net.bitacademy.java67.web.BoardListController;
 
@@ -51,6 +53,14 @@ public class ContextLoaderListener implements ServletContextListener {
       BoardChangeController boardChangeController = new BoardChangeController();
       boardChangeController.setBoardDao(boardDao);
       ctx.setAttribute("/board/change.do", boardChangeController);
+      
+      BoardDeleteController boardDeleteController = new BoardDeleteController();
+      boardDeleteController.setBoardDao(boardDao);
+      ctx.setAttribute("/board/delete.do", boardDeleteController);
+      
+      BoardAddController boardAddController = new BoardAddController();
+      boardAddController.setBoardDao(boardDao);
+      ctx.setAttribute("/board/add.do", boardAddController);
 
     } catch (Exception e) {
       e.printStackTrace();
