@@ -28,13 +28,14 @@ public class BoardListServlet extends HttpServlet {
       throws ServletException, IOException {
     int startIndex = 0;
     int pageSize = 3;
-    
+    int pageNo = 1;
+        
     if (request.getParameter("pageSize") != null) {
       pageSize = Integer.parseInt(request.getParameter("pageSize"));
     }
 
     if (request.getParameter("pageNo") != null) {
-      int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+      pageNo = Integer.parseInt(request.getParameter("pageNo"));
       startIndex = (pageNo - 1) * pageSize;
     }
     
@@ -46,6 +47,10 @@ public class BoardListServlet extends HttpServlet {
     
     response.setContentType("text/html;charset=UTF-8");
 
+    //JSP가 화면을 준비할 때 사용할 값을 ServletRequest에 담는다.
+    request.setAttribute("pageNo", pageNo);
+    request.setAttribute("pageSize", pageSize);
+    
     RequestDispatcher rd = request.getRequestDispatcher("/board/BoardList.jsp");
     rd.include(request, response);
     

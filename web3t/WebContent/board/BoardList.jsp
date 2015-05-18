@@ -11,7 +11,7 @@
   <jsp:include page="/CommonStyle.jsp"/>
 </head>
 <body>
-  <h1>게시물 목록3</h1>
+  <h1>게시물 목록</h1>
   <p><a href='form.html'>새 글</a></p>
   <table border='1'>
     <tr> <th>번호</th> <th>제목</th> <th>작성일</th> <th>조회수</th></tr> 
@@ -24,6 +24,11 @@
     </tr>
 </c:forEach>
   </table>
+  <div>
+    <a href='list?pageNo=${pageNo-1}&pageSize=${pageSize}'>[이전]</a> 
+    ${pageNo} 
+    <a href='list?pageNo=${pageNo+1}&pageSize=${pageSize}'>[다음]</a>
+  </div>  
   <jsp:include page="/Footer.jsp"/>
 </body>
 </html>

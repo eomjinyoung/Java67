@@ -13,8 +13,13 @@
 - LIMIT 문을 추가한다.
 - startIndex와 pageSize 값을 받을 parameterType을 선언한다.
 
- 
-2)  
+2) BoardDao.java에서 selectList() 메서드 변경
+- 파라미터 선언
+
+3) BoardListServlet.java 변경
+
+4) BoardList.jsp 변경
+
  
  
  
