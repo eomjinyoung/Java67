@@ -1,6 +1,7 @@
 [실습 목표]
 - 페이징 처리
 - 검색 구현
+- 정렬 구현
   
 1. 페이징 처리
 1) BoardDao.xml에서 selectList 질의문을 변경한다.
@@ -21,6 +22,13 @@
 4) BoardList.jsp 변경
 - [이전], [다음] 링크 추가
 
+2. 검색 구현
+1) BoardList.jsp 페이지에 검색 입력폼 추가
+2) BoardListServlet.java 변경
+3) BoardDao.java, BoardDao.xml 변경
+
+3. 정렬 구현
+1) BoardList.jsp의 테이블 헤더에 정렬을 위한 링크를 붙인다.
  
  
  

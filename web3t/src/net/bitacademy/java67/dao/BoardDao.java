@@ -38,12 +38,14 @@ public class BoardDao {
     }
   }
   
-  public List<BoardVo> selectList(int startIndex, int pageSize) {
+  public List<BoardVo> selectList(
+      int startIndex, int pageSize, String word) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     
-    HashMap<String,Integer> paramMap = new HashMap<String,Integer>();
+    HashMap<String,Object> paramMap = new HashMap<String,Object>();
     paramMap.put("startIndex", startIndex);
     paramMap.put("pageSize", pageSize);
+    paramMap.put("word", word);
     
     try {
       return sqlSession.selectList(
@@ -58,12 +60,12 @@ public class BoardDao {
 
   }
   
-  public int countAll() {
+  public int countAll(String word) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     
     try {
       return sqlSession.selectOne(
-          "net.bitacademy.java67.dao.BoardDao.countAll");
+          "net.bitacademy.java67.dao.BoardDao.countAll", word);
 
     } catch (Exception e) {
       throw new DaoException(e);

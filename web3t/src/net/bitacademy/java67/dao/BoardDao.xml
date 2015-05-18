@@ -24,13 +24,21 @@
   <select id="selectList" parameterType="map" resultMap="BoardVoMap">
       SELECT bno, title, cre_date, views 
       FROM board2
+    <if test="word != null and word != ''">
+      WHERE title like CONCAT('%', #{word}, '%') OR
+            content like CONCAT('%', #{word}, '%')
+    </if>
       ORDER BY bno DESC
       LIMIT #{startIndex}, #{pageSize}
   </select>
   
-  <select id="countAll" resultType="int">
-      SELECT count(bno) 
+  <select id="countAll" parameterType="string" resultType="int">
+      SELECT count(bno)  
       FROM board2
+    <if test="value != null and value != ''">
+      WHERE title like CONCAT('%', #{value}, '%') OR
+            content like CONCAT('%', #{value}, '%')
+    </if>
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="BoardVoMap">
