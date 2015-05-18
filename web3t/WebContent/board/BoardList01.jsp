@@ -20,13 +20,13 @@
   </p>
   <table border='1'>
     <tr> 
-      <th><a href='list?order=bno&seq=DESC&word=${param.word}'>번호
-          <c:if test="${param.order == 'bno'}">*</c:if></a></th> 
-      <th><a href='list?order=title&seq=ASC&word=${param.word}'>제목
+      <th><a href='list?order=no&word=${param.word}'>번호
+          <c:if test="${param.order == 'no'}">*</c:if></a></th> 
+      <th><a href='list?order=title&word=${param.word}'>제목
           <c:if test="${param.order == 'title'}">*</c:if></a></th> 
-      <th><a href='list?order=cre_Date&seq=ASC&word=${param.word}'>작성일
-          <c:if test="${param.order == 'cre_Date'}">*</c:if></a></th> 
-      <th><a href='list?order=views&seq=DESC&word=${param.word}'>조회수
+      <th><a href='list?order=createDate&word=${param.word}'>작성일
+          <c:if test="${param.order == 'createDate'}">*</c:if></a></th> 
+      <th><a href='list?order=views&word=${param.word}'>조회수
           <c:if test="${param.order == 'views'}">*</c:if></a></th>
     </tr> 
 <c:forEach items="${list}" var="board">
@@ -42,14 +42,14 @@
     <a href='form.html'>새 글</a>
     <c:choose>
       <c:when test="${pageNo > 1}">
-        <a href='list?pageNo=${pageNo-1}&pageSize=${pageSize}&word=${param.word}&order=${param.order}&seq=${param.seq}'>[이전]</a>   
+        <a href='list?pageNo=${pageNo-1}&pageSize=${pageSize}&word=${param.word}&order=${param.order}'>[이전]</a>   
       </c:when>
       <c:otherwise>[이전]</c:otherwise>
     </c:choose>
     ${pageNo}
     <c:choose>
       <c:when test="${pageNo < maxPage}">
-        <a href='list?pageNo=${pageNo+1}&pageSize=${pageSize}&word=${param.word}&order=${param.order}&seq=${param.seq}'>[다음]</a>
+        <a href='list?pageNo=${pageNo+1}&pageSize=${pageSize}&word=${param.word}&order=${param.order}'>[다음]</a>
       </c:when>
       <c:otherwise>[다음]</c:otherwise>
     </c:choose>

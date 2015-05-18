@@ -29,6 +29,7 @@
 
 3. 정렬 구현
 1) BoardList.jsp의 테이블 헤더에 정렬을 위한 링크를 붙인다.
+2) BoardListServlet.java, BoardDao.java, BoardDao.xml  변경.
  
  
  

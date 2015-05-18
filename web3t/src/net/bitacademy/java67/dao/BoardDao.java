@@ -39,13 +39,14 @@ public class BoardDao {
   }
   
   public List<BoardVo> selectList(
-      int startIndex, int pageSize, String word) {
+      int startIndex, int pageSize, String word, String order) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     
     HashMap<String,Object> paramMap = new HashMap<String,Object>();
     paramMap.put("startIndex", startIndex);
     paramMap.put("pageSize", pageSize);
     paramMap.put("word", word);
+    paramMap.put("order", order);
     
     try {
       return sqlSession.selectList(

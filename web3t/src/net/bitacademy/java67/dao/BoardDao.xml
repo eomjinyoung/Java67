@@ -28,7 +28,12 @@
       WHERE title like CONCAT('%', #{word}, '%') OR
             content like CONCAT('%', #{word}, '%')
     </if>
-      ORDER BY bno DESC
+    <choose>
+      <when test="order == 'title'">ORDER BY title ASC</when>
+      <when test="order == 'createDate'">ORDER BY cre_date ASC</when>
+      <when test="order == 'views'">ORDER BY views DESC</when>
+      <otherwise>ORDER BY bno DESC</otherwise>
+    </choose>
       LIMIT #{startIndex}, #{pageSize}
   </select>
   

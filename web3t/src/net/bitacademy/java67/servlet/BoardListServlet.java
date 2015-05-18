@@ -41,11 +41,14 @@ public class BoardListServlet extends HttpServlet {
     
     String word = request.getParameter("word");
     
+    String order = request.getParameter("order");
+    
     ServletContext ctx = this.getServletContext();
     BoardDao boardDao = (BoardDao) ctx.getAttribute("boardDao");
     
     //JSP가 화면을 준비할 때 사용할 값을 ServletRequest에 담는다.
-    List<BoardVo> list = boardDao.selectList(startIndex, pageSize, word);
+    List<BoardVo> list = boardDao.selectList(
+                              startIndex, pageSize, word, order);
     request.setAttribute("list", list);
     request.setAttribute("pageNo", pageNo);
     request.setAttribute("pageSize", pageSize);
