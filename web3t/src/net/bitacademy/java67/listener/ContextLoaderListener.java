@@ -7,6 +7,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import net.bitacademy.java67.dao.BoardDao;
+import net.bitacademy.java67.web.BoardChangeController;
+import net.bitacademy.java67.web.BoardDetailController;
 import net.bitacademy.java67.web.BoardListController;
 
 import org.apache.ibatis.io.Resources;
@@ -42,6 +44,13 @@ public class ContextLoaderListener implements ServletContextListener {
       //- 왜? 프론트 컨트롤러가 서블릿 경로로 페이지 컨트롤러를 꺼낼 수 있도록 하기 위해.
       ctx.setAttribute("/board/list.do", boardListController);
       
+      BoardDetailController boardDetailController = new BoardDetailController();
+      boardDetailController.setBoardDao(boardDao);
+      ctx.setAttribute("/board/detail.do", boardDetailController);
+      
+      BoardChangeController boardChangeController = new BoardChangeController();
+      boardChangeController.setBoardDao(boardDao);
+      ctx.setAttribute("/board/change.do", boardChangeController);
 
     } catch (Exception e) {
       e.printStackTrace();
