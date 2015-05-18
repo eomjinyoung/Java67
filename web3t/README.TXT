@@ -1,39 +1,12 @@
-[실습 목표]
-- Front Controller 패턴 적용(<-- Facade 패턴의 응용)
-- 프론트 컨트롤러
-  . 서블릿의 공통 기능을 담당
-    1) 입력 파라미터 가공
-    2) JSP 페이지로 인클루딩/포워딩 
-    3) 예외처리
-    ...
-  . 페이지 컨트롤러를 서블릿으로 만들 필요가 없다.
+[실습 목표: 객체 생성 자동화]
+- properties 파일을 이용하여 객체를 생성하고 의존 객체를 주입하는 부분을 자동화하자!
+- 생성할 객체의 클래스 정보를 외부 파일(application-context.properties)에 둔다.
+- 새로운 객체를 추가하더라도 ContextLoaderListener를 변경할 필요가 없다.
+
+
+1. 페이지 컨트롤러의 배치 정보를 담은 properties 파일을 생성한다.
+- /WEB-INF/config/application-context.properties  
   
-  
-1. 프론트 컨틀롤러 생성
-- DispatcherServlet 클래스 작성
-
-2. 프론트 컨트롤러와 페이지 컨트롤로 사이에 호출 규칙을 정의
-- Controller 인터페이스 정의
-
-3. 페이지 컨트롤러 생성  
-- Controller 인터페이스를 구현한 BoardListController 클래스 작성
- 
-4. 페이지 컨트로러 준비
-- ContextLoaderListener 클래스를 변경한다. 
-
-5. JSP 변경
-- BoardList.jsp의 모든 링크에 .do를 붙인다.
-
-6. Error.jsp 생성
-- 프론트 컨트롤러에서 작업을 수행하는 중에 오류가 발생했을 때 실행될 JSP이다.
-
-7. 나머지 서블릿에 대해서도 프론트 컨트롤러를 적용한다.
- 
-[의존 객체 주입(Dependench Injection)]
-- 사용할 객체를 직접 준비하지 않고, 외부에서 주입 받는 방식.
-- 이점: 의존 객체를 관리하리 쉽다. 대체하기 쉽다. 단위 테스트가 쉽다.
-- 예) BoardDao와 SqlSessionFactory의 관계
-  => ContextLoaderListener에서 BoardDao가 필요로하는 객체를 생성하여 주입한다.
   
   
   

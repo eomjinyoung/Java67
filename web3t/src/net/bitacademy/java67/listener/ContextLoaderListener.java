@@ -1,6 +1,10 @@
 package net.bitacademy.java67.listener;
 
+import java.io.FileReader;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -28,39 +32,36 @@ public class ContextLoaderListener implements ServletContextListener {
     ServletContext ctx = event.getServletContext();
     
     try {
+      HashMap<String,Object> objectPool = new HashMap<String,Object>();
+      
       InputStream mybatisConfigInputStream = Resources.getResourceAsStream(
           "net/bitacademy/java67/dao/mybatis-config.xml");
       SqlSessionFactory sqlSessionFactory = 
           new SqlSessionFactoryBuilder().build(mybatisConfigInputStream);
       
-      BoardDao boardDao = new BoardDao();
-      //의존 객체 주입(Dependency Injection; DI)
-      boardDao.setSqlSessionFactory(sqlSessionFactory);
+      objectPool.put("sqlSessionFactory", sqlSessionFactory);
       
-      //페이지 컨트롤러 객체 준비
-      BoardListController boardListController = new BoardListController();
-      boardListController.setBoardDao(boardDao); // 의존 객체 주입
+      // 1. application-context.properties 파일을 읽고, 
+      //    선언된 클래스의 객체를 생성한다.
+      FileReader reader = new FileReader(
+          ctx.getRealPath("/WEB-INF/config/application-context.properties"));
+      Properties props = new Properties();
+      props.load(reader);
+
+      Class<?> clazz = null; // 클래스 정보를 다루는 객체
+      for (Map.Entry<Object, Object> entry : props.entrySet()) {
+        //System.out.println(entry.getKey() + "=" + entry.getValue());
+        
+        //1.1 클래스 이름(패키지명 반드시 포함)을 주면서, 클래스를 로딩할 것을 명령한다.
+        clazz = Class.forName((String)entry.getValue());
+        
+        //1.2 클래스 정보를 다루는 도구를 사용해서 객체를 생성한다.
+        objectPool.put((String)entry.getKey(), clazz.newInstance());
+      }
       
-      //페이지 컨트롤러를 ServletContext 보관소에 저장한다.
-      //- 저장할 때 이름은 서블릿 경로를 사용한다.
-      //- 왜? 프론트 컨트롤러가 서블릿 경로로 페이지 컨트롤러를 꺼낼 수 있도록 하기 위해.
-      ctx.setAttribute("/board/list.do", boardListController);
       
-      BoardDetailController boardDetailController = new BoardDetailController();
-      boardDetailController.setBoardDao(boardDao);
-      ctx.setAttribute("/board/detail.do", boardDetailController);
+      // 2. 각 객체에 대해 의존 객체를 찾아서 주입한다.
       
-      BoardChangeController boardChangeController = new BoardChangeController();
-      boardChangeController.setBoardDao(boardDao);
-      ctx.setAttribute("/board/change.do", boardChangeController);
-      
-      BoardDeleteController boardDeleteController = new BoardDeleteController();
-      boardDeleteController.setBoardDao(boardDao);
-      ctx.setAttribute("/board/delete.do", boardDeleteController);
-      
-      BoardAddController boardAddController = new BoardAddController();
-      boardAddController.setBoardDao(boardDao);
-      ctx.setAttribute("/board/add.do", boardAddController);
 
     } catch (Exception e) {
       e.printStackTrace();
