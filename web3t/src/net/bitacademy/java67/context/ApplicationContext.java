@@ -7,7 +7,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+/* 역할: 객체 생성 및 의존 객체 주입 */
+
 public class ApplicationContext {
+  // Singleton 패턴 적용
+  // 1) 생성자를 private으로 선언하여 외부에서 직접 객체를 생성하지 못하도록 한다.
+  private ApplicationContext() {}
+  
+  // 2) 인스턴스 주소를 저장할 static 변수를 준비한다.
+  private static ApplicationContext instance;
+  
+  // 3) 인스턴스를 리턴하는 static 메서드를 준비한다.
+  public static ApplicationContext getInstance() {
+    if (instance == null) {
+      instance = new ApplicationContext();
+    }
+    return instance;
+  }
+  // Singleton 패턴 끝!
+  
   HashMap<String,Object> objectPool = new HashMap<String,Object>();
   
   // 이 인터페이스에 선언된 메서드는 forSetter()에서 호출한다.

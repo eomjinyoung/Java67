@@ -29,7 +29,7 @@ public class ContextLoaderListener implements ServletContextListener {
       SqlSessionFactory sqlSessionFactory = 
           new SqlSessionFactoryBuilder().build(mybatisConfigInputStream);
       
-      ApplicationContext beanContainer = new ApplicationContext();
+      ApplicationContext beanContainer = ApplicationContext.getInstance();
       beanContainer.addBean("sqlSessionFactory", sqlSessionFactory);
       
       beanContainer.init(new File(ctx.getRealPath(

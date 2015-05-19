@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.bitacademy.java67.listener.ContextLoaderListener;
+import net.bitacademy.java67.context.ApplicationContext;
 import net.bitacademy.java67.web.Controller;
 
-/* 실습 목표: ContextLoaderListener에서 페이지 컨트롤러 찾기
+/* 실습 목표: ApplicationContext에서 페이지 컨트롤러 찾기
  */
 
 @WebServlet("*.do")
@@ -26,9 +26,10 @@ public class DispatcherServlet extends HttpServlet {
     try {
       String servletPath = request.getServletPath();
       
-      // 이제 페이지 컨트롤러는 ContextLoaderListener에서 찾는다.
+      // 이제 페이지 컨트롤러는 ApplicationContext에서 찾는다.
+      ApplicationContext beanContainer = ApplicationContext.getInstance();
       Controller pageController = 
-          (Controller)ContextLoaderListener.getBean(servletPath);
+          (Controller)beanContainer.getBean(servletPath);
       
       if (pageController == null) {
         throw new Exception("해당 URL의 자원을 찾을 수 없습니다!");

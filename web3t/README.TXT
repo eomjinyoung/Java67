@@ -4,7 +4,9 @@
 
 1. ApplicationContext 클래스 정의
 - ...java67.context.AppliationContext 클래스 생성
+- ContextLoaderListener의 객체 생성 코드를 ApplicationContext로 옮긴다.
 
+2. ContextLoaderListener 클래스에 Singleton 패턴을 적용한다.
 
 
    
