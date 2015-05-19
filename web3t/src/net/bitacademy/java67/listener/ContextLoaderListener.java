@@ -2,6 +2,8 @@ package net.bitacademy.java67.listener;
 
 import java.io.FileReader;
 import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -9,13 +11,6 @@ import java.util.Properties;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import net.bitacademy.java67.dao.BoardDao;
-import net.bitacademy.java67.web.BoardAddController;
-import net.bitacademy.java67.web.BoardChangeController;
-import net.bitacademy.java67.web.BoardDeleteController;
-import net.bitacademy.java67.web.BoardDetailController;
-import net.bitacademy.java67.web.BoardListController;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -26,14 +21,17 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  */
 
 public class ContextLoaderListener implements ServletContextListener {
+  static HashMap<String,Object> objectPool = new HashMap<String,Object>();
+  
+  public static Object getBean(String name) {
+    return objectPool.get(name);
+  }
    
   @Override
   public void contextInitialized(ServletContextEvent event) {
     ServletContext ctx = event.getServletContext();
     
     try {
-      HashMap<String,Object> objectPool = new HashMap<String,Object>();
-      
       InputStream mybatisConfigInputStream = Resources.getResourceAsStream(
           "net/bitacademy/java67/dao/mybatis-config.xml");
       SqlSessionFactory sqlSessionFactory = 
@@ -61,7 +59,34 @@ public class ContextLoaderListener implements ServletContextListener {
       
       
       // 2. 각 객체에 대해 의존 객체를 찾아서 주입한다.
-      
+      // 1) objectPool에서 객체 목록 얻기
+      Method[] methods = null;
+      Class<?> paramType = null;
+      Collection<Object> objList = objectPool.values();
+      for (Object obj : objList) {
+        // 2) 각 객체에 대해 Class 도구 얻기
+        clazz = obj.getClass();
+        
+        // 3) Class 도구를 통해 셋터 메서드 추출
+        methods = clazz.getMethods();
+        for (Method m : methods) {
+          if (m.getName().startsWith("set") 
+              && m.getParameterCount() == 1) {
+            // 4) 셋터 메서드의 파라미터 타입 추출
+            paramType = m.getParameters()[0].getType();
+            
+            // 5) objectPool에서 해당 타입의 객체가 있는지 찾는다.
+            for (Object dependency : objectPool.values()) {
+              if (paramType.isInstance(dependency)) {
+                // 6) 셋터 메서드의 파라미터 타입과 같은 의존 객체를 찾았다면,
+                //    셋터 메서드를 호출하여 의존 객체를 주입한다.
+                m.invoke(obj, dependency);
+                break;
+              }
+            }
+          }
+        }
+      }
 
     } catch (Exception e) {
       e.printStackTrace();

@@ -7,7 +7,15 @@
 1. 페이지 컨트롤러의 배치 정보를 담은 properties 파일을 생성한다.
 - /WEB-INF/config/application-context.properties  
   
-  
+2. ContextLoaderListener 클래스 변경
+- DispatcherServlet(프론트 컨트롤러)에서 사용할 객체를 준비한다.
+- application-context.properties 파일을 읽어서 그 파일에 선언된 대로
+  객체를 생성하여 objectPool(HashMap)에 저장한다.
+- 각 객체에 대해 의존 객체를 주입한다.  
+- DispatcherServlet에서 준비한 객체를 꺼낼 수 있도록 getBean() 메서드를 정의한다.
+
+3. DipatcherServlet 변경
+- 페이지 컨트롤러를 ServletContext가 아닌, ContextLoaderListener를 통해 찾는다.
   
   
   
