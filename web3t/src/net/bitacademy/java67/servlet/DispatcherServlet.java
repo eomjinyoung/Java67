@@ -2,6 +2,9 @@ package net.bitacademy.java67.servlet;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +19,7 @@ import net.bitacademy.java67.context.ApplicationContext;
 
 import org.reflections.ReflectionUtils;
 
-/* 실습 목표: ApplicationContext에서 페이지 컨트롤러 찾기
+/* 실습 목표: 메서드의 파라미터 분석하여 원하는 값을 자동으로 넣어주기
  */
 
 @WebServlet("*.do")
@@ -30,7 +33,6 @@ public class DispatcherServlet extends HttpServlet {
     try {
       String servletPath = request.getServletPath();
       
-      // 이제 페이지 컨트롤러는 ApplicationContext에서 찾는다.
       ApplicationContext beanContainer = ApplicationContext.getInstance();
       Object controller = beanContainer.getBean(servletPath);
       if (controller == null) {
@@ -46,8 +48,14 @@ public class DispatcherServlet extends HttpServlet {
       
       // @RequestMapping 애노테이션이 붙은 메서드를 호출한다.
       String viewUrl = null;
+      List<Object> paramValues = null;
       for (Method m : methodList) {
-        viewUrl = (String)m.invoke(controller, request);
+        // 메서드를 호출하기 전에 메서드의 파라미터를 분석한다.
+        // 분석한 결과에 맞춰서 파라미터 값을 준비한다.
+        paramValues = analyzeMethodParameter(m, request, response);
+        
+        // 준비한 파라미터 값을 가지고 메서드를 호출한다.
+        viewUrl = (String)m.invoke(controller, paramValues.toArray());
         break;
       }
       
@@ -68,6 +76,76 @@ public class DispatcherServlet extends HttpServlet {
     }
   }
 
+  private List<Object> analyzeMethodParameter(Method m,
+      HttpServletRequest request, HttpServletResponse response) 
+          throws Exception {
+    
+    // 파라미터 값을 저장할 컬렉션(Collection)을 준비한다.
+    ArrayList<Object> paramValues = new ArrayList<Object>();
+    
+    /* m이 가리키는 메서드의 시그너처(signature)가 다음과 같다고 가정하자!
+     * 예) String list(
+     *          HttpServletRequest request, 
+     *          int pageNo, 
+     *          int pageSize, 
+     *          String word,
+     *          String order)
+     * 
+     * getParameters()의 리턴 값?
+     * HttpServletRequest --> Parameter[0]
+     * int                --> Parameter[1]
+     * int                --> Parameter[2]
+     * String             --> Parameter[3]
+     * String             --> Parameter[4]
+     */
+    
+    Parameter[] params = m.getParameters();
+    Class<?> paramType = null;
+    String value = null;
+    for (Parameter param : params) {
+      paramType = param.getType();
+      
+      if (paramType.isInstance(request)) {
+        paramValues.add(request);
+      } else if (paramType.isInstance(response)) {
+        paramValues.add(response);
+      } else if (paramType.isPrimitive() || paramType.equals(String.class)) {
+        value = request.getParameter(param.getName());
+        if (value != null) {
+          switch (paramType.getSimpleName()) {
+          case "boolean": 
+            paramValues.add(Boolean.parseBoolean(value)); break;
+          case "byte": 
+            paramValues.add(Byte.parseByte(value)); break;
+          case "short": 
+            paramValues.add(Short.parseShort(value)); break;
+          case "int": 
+            paramValues.add(Integer.parseInt(value)); break;
+          case "long": 
+            paramValues.add(Long.parseLong(value)); break;
+          case "float": 
+            paramValues.add(Float.parseFloat(value)); break;
+          case "double": 
+            paramValues.add(Double.parseDouble(value)); break;
+          case "char": 
+            paramValues.add(value.charAt(0)); break;
+          default: //"String" 
+            paramValues.add(value);  
+          }
+        } else {
+          switch (paramType.getSimpleName()) {
+          case "boolean": paramValues.add(false); break;
+          case "String": paramValues.add(null); break;
+          default: //byte, char, short, int, long, float, double 
+            paramValues.add(0);  
+          }
+        }
+      }
+    }
+    
+    return paramValues;
+  }
+  
 }
 
 

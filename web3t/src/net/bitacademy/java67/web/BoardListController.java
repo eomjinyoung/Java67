@@ -22,24 +22,19 @@ public class BoardListController {
   }
 
   @RequestMapping
-  public String list(HttpServletRequest request) throws Exception {
-    System.out.println("우하라라라~~~~~~~~~~~~~");
+  public String list(int pageNo, int pageSize, 
+      String word, String order, 
+      HttpServletRequest request) throws Exception {
+
     int startIndex = 0;
-    int pageSize = 3;
-    int pageNo = 1;
-        
-    if (request.getParameter("pageSize") != null) {
-      pageSize = Integer.parseInt(request.getParameter("pageSize"));
+    if (pageSize == 0) {
+      pageSize = 3;
     }
 
-    if (request.getParameter("pageNo") != null) {
-      pageNo = Integer.parseInt(request.getParameter("pageNo"));
-      startIndex = (pageNo - 1) * pageSize;
+    if (pageNo == 0) {
+      pageNo = 1;
     }
-    
-    String word = request.getParameter("word");
-    
-    String order = request.getParameter("order");
+    startIndex = (pageNo - 1) * pageSize;
     
     //JSP가 화면을 준비할 때 사용할 값을 ServletRequest에 담는다.
     List<BoardVo> list = boardDao.selectList(
