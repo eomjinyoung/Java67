@@ -1,20 +1,17 @@
 package net.bitacademy.java67.context;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileReader;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import net.bitacademy.java67.annotation.Component;
 
-import org.reflections.Reflections;
-
 /* 역할: 객체 생성 및 의존 객체 주입
  * - @Component 애노테이션이 붙은 클래스를 찾아서 객체를 생성한다. 
- * - 오픈 소스 라이브러리를 이용하여 애노테이션이 붙은 클래스를 쉽게 찾자!
  */
 
 public class ApplicationContext {
@@ -27,6 +24,7 @@ public class ApplicationContext {
     return instance;
   }
   
+  String baseDir;
   HashMap<String,Object> objectPool = new HashMap<String,Object>();
   
   // 이 인터페이스에 선언된 메서드는 forSetter()에서 호출한다.
@@ -35,28 +33,58 @@ public class ApplicationContext {
   }
   
   public void init(File configPropFile) throws Exception {
-    findAndCreateClassWithAnnotation();
+    findAndCreateClassWithAnnotation(new File(baseDir), "");
 
     createObjectsByProperties(configPropFile);
     
     injectDependencies();
   }
 
-  private void findAndCreateClassWithAnnotation() throws Exception {
-    Reflections reflections = new Reflections("net.bitacademy.java67");
-    Set<Class<?>> compSet = 
-        reflections.getTypesAnnotatedWith(Component.class);
-    
+  private void findAndCreateClassWithAnnotation(File path, String className) throws Exception {
+    //1. /WEB-INF/classes 폴더와 그 하위 폴더까지 모두 뒤진다.
+    //2. @Component 애노테이션이 붙은 클래스를 알아낸다.
+    //3. 그 클래스 목록을 가지고 인스턴스를 생성하여 objectPool 저장한다.
+
+    // 현재 폴더부터 파일이나 하위 폴더가 있는지 뒤진다.
+    String currClassName = className;
+    if (className.length() > 0) { 
+      currClassName += ".";
+    }
+
+    File[] files = path.listFiles(new FileFilter(){
+      public boolean accept(File pathname) {
+        if (pathname.isDirectory() 
+            || pathname.getName().endsWith(".class"))
+          return true;
+        else
+          return false;
+      }
+    });
+
+    Class<?> clazz = null;
     Component compAnno = null;
     String objectName = null;
     
-    for (Class<?> clazz : compSet) {
-      compAnno = clazz.getAnnotation(Component.class);
-      objectName = compAnno.value(); 
-      if (objectName.length() == 0) {
-        objectName = clazz.getName(); 
+    for (File f : files) {
+      if (f.isFile()) { // 클래스 파일일 경우,
+        //1) 클래스를 로딩한다.
+        clazz = Class.forName(currClassName 
+            + f.getName().replace(".class", ""));
+        
+        //2) 해당 클래스에 @Component 애노테이션이 붙었는지 조사한다.
+        compAnno = clazz.getAnnotation(Component.class);
+        if (compAnno != null) {
+          objectName = compAnno.value(); // 객체 이름을 알아낸다.
+          if (objectName.length() == 0) {
+            objectName = clazz.getName(); // 이름을 지정하지 않았으면 클래스 이름을 사용한다.
+          }
+          //3) 객체 생성하여 objectPool에 저장한다.
+          objectPool.put(objectName, clazz.newInstance());
+        }
+        
+      } else { // 디렉토리일 경우,
+        findAndCreateClassWithAnnotation(f, currClassName + f.getName());
       }
-      objectPool.put(objectName, clazz.newInstance());
     }
   }
 
@@ -117,6 +145,10 @@ public class ApplicationContext {
   
   public Object getBean(String name) {
     return objectPool.get(name);
+  }
+
+  public void setBaseDir(String baseDir) {
+    this.baseDir = baseDir;
   }
 }
 
