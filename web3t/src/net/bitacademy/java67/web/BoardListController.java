@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.bitacademy.java67.annotation.Component;
 import net.bitacademy.java67.dao.BoardDao;
 import net.bitacademy.java67.domain.BoardVo;
 
-/* 실습 목표: 페이지 컨트롤러 작성
+/* 실습 목표: 애노테이션 적용
  */
-
+@Component("/board/list.do")
 public class BoardListController implements Controller {
   // BoardListController가 작업을 수행하기 위해 사용할 객체 선언
   // => Dependency Object: 의존(하는) 객체

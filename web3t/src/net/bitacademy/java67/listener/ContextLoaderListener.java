@@ -32,6 +32,9 @@ public class ContextLoaderListener implements ServletContextListener {
       ApplicationContext beanContainer = ApplicationContext.getInstance();
       beanContainer.addBean("sqlSessionFactory", sqlSessionFactory);
       
+      // 애노테이션이 붙은 클래스를 찾기 위해 뒤져야할 디렉토리 경로를 설정한다.
+      beanContainer.setBaseDir(ctx.getRealPath("/WEB-INF/classes"));
+      
       beanContainer.init(new File(ctx.getRealPath(
           "/WEB-INF/config/application-context.properties")));
 

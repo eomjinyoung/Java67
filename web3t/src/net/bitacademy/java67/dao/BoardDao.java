@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.bitacademy.java67.DaoException;
+import net.bitacademy.java67.annotation.Component;
 import net.bitacademy.java67.domain.BoardVo;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-/* 실습 내용: 페이징 처리 추가 */
+/* 실습 내용: 애노테이션 적용 */
 
+@Component
 public class BoardDao {
   SqlSessionFactory sqlSessionFactory;
   
