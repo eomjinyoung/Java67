@@ -3,12 +3,13 @@ package net.bitacademy.java67.web;
 import javax.servlet.http.HttpServletRequest;
 
 import net.bitacademy.java67.annotation.Component;
+import net.bitacademy.java67.annotation.RequestMapping;
 import net.bitacademy.java67.dao.BoardDao;
 
 /* 실습 목표: 애노테이션 적용
  */
 @Component("/board/delete.do")
-public class BoardDeleteController implements Controller {
+public class BoardDeleteController {
   //의존 객체 주입을 위한 변수와 셋터 선언
   BoardDao boardDao;
   
@@ -16,8 +17,8 @@ public class BoardDeleteController implements Controller {
     this.boardDao = boardDao;
   }
   
-  @Override
-  public String execute(HttpServletRequest request) throws Exception {
+  @RequestMapping
+  public String delete(HttpServletRequest request) throws Exception {
     boardDao.delete(Integer.parseInt(request.getParameter("no")));
     
     return "redirect:list.do";

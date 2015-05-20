@@ -5,13 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import net.bitacademy.java67.annotation.Component;
+import net.bitacademy.java67.annotation.RequestMapping;
 import net.bitacademy.java67.dao.BoardDao;
 import net.bitacademy.java67.domain.BoardVo;
 
 /* 실습 목표: 애노테이션 적용
  */
 @Component("/board/list.do")
-public class BoardListController implements Controller {
+public class BoardListController {
   // BoardListController가 작업을 수행하기 위해 사용할 객체 선언
   // => Dependency Object: 의존(하는) 객체
   BoardDao boardDao;
@@ -20,8 +21,9 @@ public class BoardListController implements Controller {
     this.boardDao = boardDao;
   }
 
-  @Override
-  public String execute(HttpServletRequest request) throws Exception {
+  @RequestMapping
+  public String list(HttpServletRequest request) throws Exception {
+    System.out.println("우하라라라~~~~~~~~~~~~~");
     int startIndex = 0;
     int pageSize = 3;
     int pageNo = 1;
