@@ -1,6 +1,7 @@
 package step23;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 
 
@@ -22,6 +23,11 @@ public class Test06 {
     Class clazz = p.getClass();
     Method m = clazz.getMethod("plus", int.class, int.class);
     System.out.println(m.invoke(p, new Object[]{30, 20}));
+    
+    ArrayList<Object> list = new ArrayList<Object>();
+    list.add(100);
+    list.add(200);
+    System.out.println(m.invoke(p, list.toArray()));
   }
 
 }
