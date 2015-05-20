@@ -111,39 +111,35 @@ public class DispatcherServlet extends HttpServlet {
         paramValues.add(response);
       } else if (paramType.isPrimitive() || paramType.equals(String.class)) {
         value = request.getParameter(param.getName());
-        if (value != null) {
-          switch (paramType.getSimpleName()) {
-          case "boolean": 
-            paramValues.add(Boolean.parseBoolean(value)); break;
-          case "byte": 
-            paramValues.add(Byte.parseByte(value)); break;
-          case "short": 
-            paramValues.add(Short.parseShort(value)); break;
-          case "int": 
-            paramValues.add(Integer.parseInt(value)); break;
-          case "long": 
-            paramValues.add(Long.parseLong(value)); break;
-          case "float": 
-            paramValues.add(Float.parseFloat(value)); break;
-          case "double": 
-            paramValues.add(Double.parseDouble(value)); break;
-          case "char": 
-            paramValues.add(value.charAt(0)); break;
-          default: //"String" 
-            paramValues.add(value);  
-          }
-        } else {
-          switch (paramType.getSimpleName()) {
-          case "boolean": paramValues.add(false); break;
-          case "String": paramValues.add(null); break;
-          default: //byte, char, short, int, long, float, double 
-            paramValues.add(0);  
-          }
-        }
+        paramValues.add(convertToPrimitiveValue(value, paramType));
       }
     }
     
     return paramValues;
+  }
+  
+  private Object convertToPrimitiveValue(String value, Class<?> targetType) {
+    String typeName = targetType.getSimpleName(); 
+    if (value != null) {
+      switch (typeName) {
+      case "boolean": return Boolean.parseBoolean(value);
+      case "byte": return Byte.parseByte(value);
+      case "short": return Short.parseShort(value);
+      case "int": return Integer.parseInt(value);
+      case "long": return Long.parseLong(value);
+      case "float": return Float.parseFloat(value);
+      case "double": return Double.parseDouble(value);
+      case "char": return value.charAt(0);
+      default: return value;  
+      }
+    } else {
+      switch (typeName) {
+      case "boolean": return false;
+      case "String": return null;
+      default: //byte, char, short, int, long, float, double 
+        return 0;  
+      }
+    }
   }
   
 }
