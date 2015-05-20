@@ -109,7 +109,7 @@ public class DispatcherServlet extends HttpServlet {
         paramValues.add(request);
       } else if (paramType.isInstance(response)) {
         paramValues.add(response);
-      } else if (paramType.isPrimitive() || paramType.equals(String.class)) {
+      } else if (paramType.isPrimitive() || paramType == String.class) {
         value = request.getParameter(param.getName());
         paramValues.add(convertToPrimitiveValue(value, paramType));
       }
