@@ -1,0 +1,2 @@
+// 사용할 도구 임포트
+apply plugin: "java"
