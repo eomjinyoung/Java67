@@ -10,5 +10,17 @@
 export GROOVY_HOME=/Users/eomjinyoung/bit/eclipse/plugins/org.codehaus.groovy_2.3.10.xx-201502281941-e44
 export CLASSPATH=$GROOVY_HOME/lib/groovy-all-2.3.10.jar:$CLASSPATH
    
+[Groovy 클래스 실행하기]
+- Groovy 컴파일러가 생성한 .class 파일은 
+
+windows: java -cp .\bin;%CLASSPATH% step01.Test01
+unix: java -cp ./bin:$CLASSPATH step01.Test01
+
+
+
+
+
+
+
   
  
