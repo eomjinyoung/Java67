@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /* 실습 목표: 스프링 애노테이션 적용 */
 
-@Controller("/board/change.do")
+@Controller
 public class BoardChangeController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping
+  @RequestMapping("/board/change.do")
   public String change(BoardVo board) throws Exception {
     boardDao.update(board);
     

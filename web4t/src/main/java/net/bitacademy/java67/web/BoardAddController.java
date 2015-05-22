@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /* 실습 목표: 스프링 애노테이션 적용 */
 
-@Controller("/board/add.do") 
+@Controller 
 public class BoardAddController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping
+  @RequestMapping("/board/add.do")
   public String add(BoardVo board) throws Exception {
     boardDao.insert(board);
     

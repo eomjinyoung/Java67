@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /* 실습 목표: 스프링 애노테이션 적용 */
 
-@Controller("/board/detail.do")
+@Controller
 public class BoardDetailController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping
+  @RequestMapping("/board/detail.do")
   public String detail(int no, HttpServletRequest request) throws Exception {
     request.setAttribute("board", boardDao.select(no));
     

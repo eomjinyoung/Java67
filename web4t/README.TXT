@@ -47,7 +47,8 @@ org.springframework.web.filter.CharacterEncodingFilter
   메서드를 호출하지 않는다.
 
 
-
+7. @RequestParam 애노테이션
+- 파라미터 변수에 대해 상세하게 설정하고 싶을 때 이 애노테이션을 붙여라!
 
 
 

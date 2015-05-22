@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /* 실습 목표: 스프링 애노테이션 적용 */
 
-@Controller("/board/delete.do")
+@Controller
 public class BoardDeleteController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping
+  @RequestMapping("/board/delete.do")
   public String delete(int no) throws Exception {
     boardDao.delete(no);
     

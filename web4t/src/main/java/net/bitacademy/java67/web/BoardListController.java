@@ -10,28 +10,24 @@ import net.bitacademy.java67.domain.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /* 실습 목표: 스프링 애노테이션 적용 */
 
-@Controller("/board/list.do")
+@Controller
 public class BoardListController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping
-  public String list(int pageNo, int pageSize, 
-      String word, String order, 
+  @RequestMapping("/board/list.do")
+  public String list(
+      @RequestParam(required=false,defaultValue="1") int pageNo, 
+      @RequestParam(required=false,defaultValue="3") int pageSize, 
+      @RequestParam(required=false) String word, 
+      @RequestParam(required=false) String order, 
       HttpServletRequest request) throws Exception {
 
-    int startIndex = 0;
-    if (pageSize == 0) {
-      pageSize = 3;
-    }
-
-    if (pageNo == 0) {
-      pageNo = 1;
-    }
-    startIndex = (pageNo - 1) * pageSize;
+    int startIndex = (pageNo - 1) * pageSize;
     
     //JSP가 화면을 준비할 때 사용할 값을 ServletRequest에 담는다.
     List<BoardVo> list = boardDao.selectList(

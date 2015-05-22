@@ -54,7 +54,6 @@ dependencies {
 
   // compile : 컴파일 할 때도 사용하고 배치할 때도 함께 복사된다.
   //           /WEB-INF/lib 폴더에 복사된다.
-  compile 'org.reflections:reflections:0.9.10'
   compile 'org.mybatis:mybatis:3.2.8'
   compile 'javax.servlet:jstl:1.2'
   compile 'mysql:mysql-connector-java:5.1.35'
