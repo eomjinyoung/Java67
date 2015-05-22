@@ -1,0 +1,73 @@
+// 사용할 도구 임포트
+// "eclipse" 플러그인
+// - 이클립스 관련 파일을 생성하거나 제거한다.
+// - "java" 플러그인을 추가하면,
+//   자바와 관련된 이클립스 파일을 추가하거나 제거할 수 있다.
+//apply plugin: "eclipse"
+
+// "eclipse-wtp" 플러그인
+// - 웹 애플리케이션 관련 설정 파일을 생성하거나 제거한다.
+// - "war" 플러그인과 짝으로 사용하라!
+apply plugin: "eclipse-wtp"
+apply plugin: "war"
+
+// "java" 플러그인
+// - 컴파일, jar 파일, 단위테스트, 업로드 등의 작업을 수행할 수 있다.
+apply plugin: "java"
+
+
+// compileJava 작업을 수행할 때 참고할 정보를 설정한다.
+compileJava {
+  // 소스 코드의 문자 집합을 지정한다.
+  options.encoding = "UTF-8"
+  
+  // 컴파일할 때 소스의 자바 버전을 검사한다.
+  sourceCompatibility = 1.8
+}
+
+// WTP 플러그인과 관련된 설정 파일의 내용을 변경하기
+// - .settings/org.eclipse.wst.common.project.facet.core.xml 파일의 값을 설정한다.
+eclipse {
+  wtp {
+    facet {
+      facet name: 'jst.web', version: '3.1'
+      facet name: 'jst.java', version: '1.8'
+    }
+  }
+}
+
+// 의존 라이브러리를 가져올 서버 지정
+repositories {
+  // 메이븐 중앙서버(https://repo1.maven.org/maven2/)에서 다운로드 받는다. 
+  mavenCentral() 
+}
+
+// 가져올 의존 라이브러리를 지정
+// 참고! 
+// - 의존 라이브러리 이름은 www.mvnrepository.com에서 검색해보라!
+dependencies {
+  // providedCompile : 컴파일 할 때만 사용하고, 배치에 포함하지 않는다.
+  //                   /WEB-INF/lib 폴더에 배치하지 않는다.
+  // 문법
+  // providedCompile '그룹명:라이브러리명:버전'
+  providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+
+  // compile : 컴파일 할 때도 사용하고 배치할 때도 함께 복사된다.
+  //           /WEB-INF/lib 폴더에 복사된다.
+  compile 'org.reflections:reflections:0.9.10'
+  compile 'org.mybatis:mybatis:3.2.8'
+  compile 'javax.servlet:jstl:1.2'
+  compile 'mysql:mysql-connector-java:5.1.35'
+
+}
+
+
+
+
+
+
+
+
+
+
+
