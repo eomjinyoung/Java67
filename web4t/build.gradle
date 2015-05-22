@@ -59,6 +59,15 @@ dependencies {
   compile 'javax.servlet:jstl:1.2'
   compile 'mysql:mysql-connector-java:5.1.35'
 
+  // Spring MVC 프레임워크 관련 라이브러리
+  compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+  
+  // mybatis를 스프링 프레임워크에서 사용할 수 있도록 특별히 추가로 만든 클래스 라이브러리
+  compile 'org.mybatis:mybatis-spring:1.2.2'
+
+
+
+
 }
 
 
