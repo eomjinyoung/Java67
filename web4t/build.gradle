@@ -65,6 +65,8 @@ dependencies {
   // mybatis를 스프링 프레임워크에서 사용할 수 있도록 특별히 추가로 만든 클래스 라이브러리
   compile 'org.mybatis:mybatis-spring:1.2.2'
 
+  // Spring jdbc 관련 라이브러리
+  compile 'org.springframework:spring-jdbc:4.1.6.RELEASE'
 
 
 

@@ -4,23 +4,20 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.bitacademy.java67.annotation.Component;
-import net.bitacademy.java67.annotation.RequestMapping;
 import net.bitacademy.java67.dao.BoardDao;
 import net.bitacademy.java67.domain.BoardVo;
 
-/* 실습 목표: 애노테이션 적용
- */
-@Component("/board/list.do")
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/* 실습 목표: 스프링 애노테이션 적용 */
+
+@Controller("/board/list.do")
 public class BoardListController {
-  // BoardListController가 작업을 수행하기 위해 사용할 객체 선언
-  // => Dependency Object: 의존(하는) 객체
+  @Autowired
   BoardDao boardDao;
   
-  public void setBoardDao(BoardDao boardDao) {
-    this.boardDao = boardDao;
-  }
-
   @RequestMapping
   public String list(int pageNo, int pageSize, 
       String word, String order, 

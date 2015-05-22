@@ -39,6 +39,11 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/config/application-context.xml</param-value>
 		</init-param>
+		
+		<!-- 웹 애플리케이션을 시작할 때 서블릿을 자동 생성하게 하려면,
+		     다음 태그를 추가하라! 보통은 요청이 들어와야만 생성된다.
+	  -->
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>

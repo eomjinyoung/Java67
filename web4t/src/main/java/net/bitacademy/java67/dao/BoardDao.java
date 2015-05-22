@@ -4,22 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.bitacademy.java67.DaoException;
-import net.bitacademy.java67.annotation.Component;
 import net.bitacademy.java67.domain.BoardVo;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-/* 실습 내용: 애노테이션 적용 */
+/* 실습 내용: 스프링 애노테이션 적용 */
 
 @Component
 public class BoardDao {
+  @Autowired
   SqlSessionFactory sqlSessionFactory;
   
-  public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-    this.sqlSessionFactory = sqlSessionFactory;
-  }
-
   public void insert(final BoardVo board) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {

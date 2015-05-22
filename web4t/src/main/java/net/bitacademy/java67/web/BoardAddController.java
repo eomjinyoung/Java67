@@ -1,20 +1,18 @@
 package net.bitacademy.java67.web;
 
-import net.bitacademy.java67.annotation.Component;
-import net.bitacademy.java67.annotation.RequestMapping;
 import net.bitacademy.java67.dao.BoardDao;
 import net.bitacademy.java67.domain.BoardVo;
 
-/* 실습 목표: 애노테이션 적용
- */
-@Component("/board/add.do") 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/* 실습 목표: 스프링 애노테이션 적용 */
+
+@Controller("/board/add.do") 
 public class BoardAddController {
-  //의존 객체 주입을 위한 변수와 셋터 선언
+  @Autowired
   BoardDao boardDao;
-  
-  public void setBoardDao(BoardDao boardDao) {
-    this.boardDao = boardDao;
-  }
   
   @RequestMapping
   public String add(BoardVo board) throws Exception {

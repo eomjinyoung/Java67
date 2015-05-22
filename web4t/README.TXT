@@ -25,6 +25,43 @@ org.springframework.web.filter.CharacterEncodingFilter
 
 4. 스프링 프레임워크 설정 파일 작성
 - application-context.xml 파일 생성
+- DataSource 객체 설정
+- Transaction 객체 설정
+- SqlSessionFactory 객체 생성
+
+5. DAO와 페이지 컨트롤러에 애노테이션을 지정한다.
+- DAO는 @Repository 애노테이션을 붙인다. 
+  물론, @Component를 붙여도 된다. 
+- 페이지 컨트롤러는 요청을 처리하는 객체임을 표시하기 위해 
+  @Controller 애노테이션을 붙인다.
+- 참고!
+  @Component  
+     - 스프링이 관리하는 객체를 상세하게 분류할 때는 다음의 애노테이션을 사용한다.
+     @Controller : 페이지 컨트롤러
+     @Service    : 서비스 클래스 
+     @Repository : DAO 클래스 
+
+
+6. @RequestMapping 애노테이션을 처리하는 객체를 스프링 설정 파일에 추가한다.
+- 만약 추가하지 않는다면 요청이 들어왔을 때 @RequestMapping 애노테이션이 붙은 
+  메서드를 호출하지 않는다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
