@@ -36,7 +36,30 @@ eclipse {
   }
 }
 
+// 의존 라이브러리를 가져올 서버 지정
+repositories {
+  // 메이븐 중앙서버(https://repo1.maven.org/maven2/)에서 다운로드 받는다. 
+  mavenCentral() 
+}
 
+// 가져올 의존 라이브러리를 지정
+// 참고! 
+// - 의존 라이브러리 이름은 www.mvnrepository.com에서 검색해보라!
+dependencies {
+  // providedCompile : 컴파일 할 때만 사용하고, 배치에 포함하지 않는다.
+  //                   /WEB-INF/lib 폴더에 배치하지 않는다.
+  // 문법
+  // providedCompile '그룹명:라이브러리명:버전'
+  providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+
+  // compile : 컴파일 할 때도 사용하고 배치할 때도 함께 복사된다.
+  //           /WEB-INF/lib 폴더에 복사된다.
+  compile 'org.reflections:reflections:0.9.10'
+  compile 'org.mybatis:mybatis:3.2.8'
+  compile 'javax.servlet:jstl:1.2'
+  compile 'mysql:mysql-connector-java:5.1.35'
+
+}
 
 
 

@@ -106,6 +106,13 @@ src / main
 6. web3 프로젝트 소스를 web4로 옮긴다.
 - 특히 dao 패키지에 있는 xml 파일은 resources 폴더로 옮겨라!
 
+7. 의존 라이브러리 가져오기
+- 의존 라이브러리를 가져올 서버를 지정한다.
+  repositories {...}
+- 라이브러리 지정
+  dependencies {...}
+  
+8. 서버 실행 테스트  
 
 
 
