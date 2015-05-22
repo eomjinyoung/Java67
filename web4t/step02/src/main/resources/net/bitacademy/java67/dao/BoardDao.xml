@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 변경 사항: resultMap 적용 -->
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java67.dao.BoardDao">
+  
+  <resultMap type="BoardVo" id="BoardVoMap">
+    <id     column="bno"      property="no" />
+    <result column="title"    property="title" />
+    <result column="content"  property="content" />
+    <result column="cre_date" property="createDate" />
+    <result column="views"    property="views" />
+  </resultMap>
+  
+  
+  <insert id="insert" parameterType="BoardVo">
+      INSERT INTO board2 (title,content,cre_date) 
+      VALUES (#{title},#{content},now())
+  </insert>
+  
+  <select id="selectList" parameterType="map" resultMap="BoardVoMap">
+      SELECT bno, title, cre_date, views 
+      FROM board2
+    <if test="word != null and word != ''">
+      WHERE title like CONCAT('%', #{word}, '%') OR
+            content like CONCAT('%', #{word}, '%')
+    </if>
+    <choose>
+      <when test="order == 'title'">ORDER BY title ASC</when>
+      <when test="order == 'createDate'">ORDER BY cre_date ASC</when>
+      <when test="order == 'views'">ORDER BY views DESC</when>
+      <otherwise>ORDER BY bno DESC</otherwise>
+    </choose>
+      LIMIT #{startIndex}, #{pageSize}
+  </select>
+  
+  <select id="countAll" parameterType="string" resultType="int">
+      SELECT count(bno)  
+      FROM board2
+    <if test="value != null and value != ''">
+      WHERE title like CONCAT('%', #{value}, '%') OR
+            content like CONCAT('%', #{value}, '%')
+    </if>
+  </select>
+  
+  <select id="selectOne" parameterType="int" resultMap="BoardVoMap">
+      SELECT bno, title, content, cre_date, views 
+      FROM board2 
+      WHERE bno=#{no}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+      DELETE FROM board2 WHERE bno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="BoardVo">
+      UPDATE board2 SET 
+        title=#{title} 
+        ,content=#{content}
+      WHERE bno=#{no}
+  </update>
+  
+</mapper>
+
+
+
+
+
+
+
+
+

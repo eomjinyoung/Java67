@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+
+	<!-- @Component, @Controller, @Service, @Repository 애노테이션이 붙은 클래스를 어느 패키지에서 
+		찾아야 하는지 지정한다. => net.bitacademy.java67 패키지 및 그 하위 패키지를 모두 뒤져라! -->
+	<context:component-scan base-package="net.bitacademy.java67" />
+
+  <!-- @RequestMapping, @ExceptionHandler 애노테이션을 처리하려면, 
+       다음 태그를 선언해야 한다.
+       다음 태그는 이런 애노테이션을 처리하는 RequestMappingHandlerMapping, 
+       RequestMappingHandlerAdapter, ExceptionHandlerExceptionResolver 등의
+       객체를 등록하는 기능을 수행한다.
+  -->
+  <mvc:annotation-driven />
+	
+	
+	<!-- DB 커넥션풀(DataSource)의 객체를 지정한다. -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/java67db" />
+	</bean>
+
+	<!-- 객체를 직접 지정하는 대신 아래와 같이 단축 설정을 사용할 수 있다. -->
+	<!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/java67db"/> -->
+
+	<!-- 트랜잭션 관리자 객체를 지정한다. -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- SqlSessionFactory 객체를 지정한다. -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		
+		<!-- 지정한 패키지에 있는 클래스에 대해 단축 이름(클래스명)을 자동으로 지정한다. -->
+		<property name="typeAliasesPackage" 
+		          value="net.bitacademy.java67.domain" />
+		
+		<!-- mybatis에서 사용하는 SQL 파일의 위치 정보를 지정한다. -->
+		<property name="mapperLocations" 
+		          value="classpath*:net/bitacademy/java67/dao/*Dao.xml" />
+	</bean>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
