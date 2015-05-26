@@ -1,5 +1,6 @@
 package step03;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Car {
@@ -7,11 +8,13 @@ public class Car {
   int     capacity;
   Date    outDate;
   Engine  engine;
+  Tire[]  tires;
   
   @Override
   public String toString() {
     return "Car [model=" + model + ", capacity=" + capacity + ", outDate="
-        + outDate + ", engine=" + engine + "]";
+        + outDate + ", engine=" + engine + ", tires=" + Arrays.toString(tires)
+        + "]";
   }
 
   public Car() {
@@ -58,7 +61,21 @@ public class Car {
     System.out.println("setEngine() 호출됨.");
     this.engine = engine;
   }
-  
-  
-  
+  public Tire[] getTires() {
+    return tires;
+  }
+  public void setTires(Tire[] tires) {
+    System.out.println("setTires() 호출됨.");
+    this.tires = tires;
+  }
 }
+
+
+
+
+
+
+
+
+
+

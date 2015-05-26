@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean id="tire1" class="step03.Tire"
+          p:maker="넥센" p:radius="16" p:width="16"/>
+
+   <bean id="car1" class="step03.Car">
+      <property name="model" value="티코"/>
+      <property name="capacity" value="5"/>
+      
+      <property name="engine">
+        <bean id="engine1" class="step03.Engine"
+          p:maker="현대자동차" p:cc="800" p:valve="16"/>
+      </property>
+      
+      <!-- 배열을 프로퍼티에 넣기 -->
+      <property name="tires">
+        <array>
+          <bean class="step03.Tire"
+              p:maker="금호타이어" p:radius="16" p:width="28"/>
+          <bean class="step03.Tire"
+              p:maker="금호타이어" p:radius="16" p:width="28"/>
+          <bean class="step03.Tire"
+              p:maker="한국타이어" p:radius="16" p:width="22"/>
+          <bean class="step03.Tire"
+              p:maker="한국타이어" p:radius="16" p:width="22"/>
+          <ref bean="tire1"/>                
+        </array>
+      </property>      
+   </bean>
+   
+   <bean id="car2" class="step03.Car">
+      <property name="model" value="티코"/>
+      <property name="capacity" value="5"/>
+      
+      <property name="engine">
+        <bean id="engine1" class="step03.Engine"
+          p:maker="현대자동차" p:cc="800" p:valve="16"/>
+      </property>
+      
+      <!-- 배열 프로퍼티에 값을 넣을 때 <array> 대신 <list>를 써도 된다. -->
+      <property name="tires">
+        <list>
+          <bean class="step03.Tire"
+              p:maker="금호타이어" p:radius="16" p:width="28"/>
+          <bean class="step03.Tire"
+              p:maker="금호타이어" p:radius="16" p:width="28"/>
+          <bean class="step03.Tire"
+              p:maker="한국타이어" p:radius="16" p:width="22"/>
+          <bean class="step03.Tire"
+              p:maker="한국타이어" p:radius="16" p:width="22"/>
+          <ref bean="tire1"/>                
+        </list>
+      </property>      
+   </bean>
+   
+</beans>
+
+
+
+
+
+
