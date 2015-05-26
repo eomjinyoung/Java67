@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- 1. 팩토리 메서드를 호출하여 객체를 준비하기 -->
+   
+   <!-- obj1이 가리키는 객체는 CarFactory 객체이다. -->
+   <bean id="obj1" class="step04.CarFactory"/>
+   
+   <!-- obj2가 가리키는 객체는 createCar() 리턴 값이다. 
+        factory-method="스태틱 메서드의 이름"
+   -->
+   <bean id="obj2" class="step04.CarFactory" factory-method="createCar">
+      <!-- 팩토리 메서드의 파라미터 값을 지정하는 방법은
+           생성자의 파라미터 값을 지정하는 방법과 같다. -->
+      <!-- creatCar()를 호출할 때 파라미터로 "c2"를 넘길 것이다. -->
+      <constructor-arg value="c2"/>
+   </bean> 
+</beans>
+
+
+
+
+
+
+
+
+
