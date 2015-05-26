@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="car1" class="step05.Car">
+    <property name="model" value="티코"/>
+    <property name="capacity" value="5"/>
+    
+    <!-- 스프링은 기본적으로 java.lang.String 값을 원시 타입으로 변환해준다. 
+         그러나 다음과 같이 원시 타입이 아닌 타입으로는 자동 변환할 수 없다.
+         예외가 발생한다!-->
+    <!--  
+    <property name="outDate" value="2015-05-26"/>
+    -->
+  </bean>
+  
+  <!-- 해결책 1) 팩토리 메서드를 사용하여 문자열을 날짜 객체로 바꾸기 -->
+  <!-- 1단계. 날짜 타입 형식의 데이터를 다루는 객체를 준비한다. -->
+  <bean id="simpleDateFormat" class="java.text.SimpleDateFormat">
+     <constructor-arg value="yyyy-MM-dd"/>
+  </bean>
+  
+  <!-- 2단계. SimpleDateFormat 객체를 사용하여 yyyy-MM-dd 형식의 문자열을
+             날짜 객체로 만들어 프로퍼티에 주입한다. -->  
+  <bean id="car2" class="step05.Car">
+    <property name="model" value="티코"/>
+    <property name="capacity" value="5"/>
+    <property name="outDate">
+      <bean factory-bean="simpleDateFormat" factory-method="parse">
+        <constructor-arg value="2015-05-26"/>
+      </bean>
+    </property>
+  </bean>
+</beans>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- 해결책 2) 문자열을 지정한 형식의 값으로 변환해주는 에디터를 사용한다. -->
+  <!-- 1단계. 사용자 정의 날짜 변환 에디터를 스프링에 등록시켜주는 객체를 준비한다.
+             이 클래스는 개발자가 정의해야 한다. -->
+  <bean id="dateEditorRegistrar" class="step05.MyDateEditorRegistrar"/>
+           
+  <!-- 2단계. 스프링에서 제공하는 등록기 설정 마법사를 가동한다. -->
+  <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+    <!-- setPropertyEditorRegistrar()를 호출하여 커스텀 에디터 등록기를 설정한다.
+         파라미터 타입이 배열이기 때문에 <array>나 <list>를 사용하여
+         커스텀 에디터 등록기를 설정하라! -->
+    <property name="propertyEditorRegistrars">
+      <list> <!-- 현재는 한 개 밖에 없으니까 한 개만 등록한다. -->
+        <ref bean="dateEditorRegistrar"/>
+      </list>
+    </property>
+  </bean>
+  
+  
+  <!-- 3단계. 사용자 정의 날짜 변환 에디터를 사용하여 문자열을 java.util.Date 객체로 바꾼다. -->  
+  <bean id="car1" class="step05.Car">
+    <property name="model" value="티코"/>
+    <property name="capacity" value="5"/>
+    <property name="outDate" value="2015-05-27"/>
+  </bean>
+</beans>
+
+
+
+
+
+
+
+
+
