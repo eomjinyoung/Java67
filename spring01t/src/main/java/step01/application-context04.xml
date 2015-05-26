@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- 이름없이 빈 생성하기 -->
+   <bean class="step01.Car"/> <!-- step01.Car#0, step01.Car(별명) -->
+   <bean class="step01.Car"/> <!-- step01.Car#1 -->
+   <bean class="step01.Car"/> <!-- step01.Car#2 -->
+</beans>
+
+
+
+
+
+
+
+

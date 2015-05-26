@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- id 대신 name 사용 가능
+        => id 속성이 없으면 name 속성을 빈의 이름을 사용한다. -->
+   <bean name="car1" class="step01.Car"/> 
+
+   <!-- id 와 name을 모두 사용 -->
+   <bean id="car2" name="car2" class="step01.Car"/>
+   
+   <!-- id 와 name 다르게  -->
+   <bean id="car3" name="car4" class="step01.Car"/>
+   
+   <!-- name을 여러 개 지정하기 
+        첫 번째 이름은 id로 사용하고 나머지는 별명으로 사용한다.-->
+   <bean name="car5,car6,car7" class="step01.Car"/>
+   <bean name="car8;car9;car10" class="step01.Car"/>
+   <bean name="car11 car12 car13" class="step01.Car"/>
+</beans>
+
+
+
+
+
+
+
+
