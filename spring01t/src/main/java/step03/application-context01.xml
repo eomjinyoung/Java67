@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean id="engine1" class="step03.Engine"
+         p:maker="현대자동차" p:cc="3000" p:valve="16"/>
+   
+   <bean id="car1" class="step03.Car">
+      <property name="model" value="티코"/>
+      <property name="capacity" value="5"/>
+      
+      <!-- 객체 주입하기 -->
+      <property name="engine">
+        <ref bean="engine1"/>
+      </property>      
+   </bean>
+   
+   <bean id="car2" class="step03.Car">
+      <property name="model" value="아반테"/>
+      <property name="capacity" value="5"/>
+      
+      <!-- 객체 주입하기: <ref> 태그 대신 ref 속성 사용하기 -->
+      <property name="engine" ref="engine1"/>
+   </bean>
+   
+   
+</beans>
+
+
+
+
+
+
+
+
+
