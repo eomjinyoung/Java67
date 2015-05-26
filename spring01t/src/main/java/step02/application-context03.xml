@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- 빈의 속성으로 생성자의 파라미터 값을 지정하기
+        "c" 네임스페이스를 사용하여 파라미터 변수의 이름을 지정한다. 
+        "c" 네임스페이스를 사용하려면, 다음과 같이 <beans> 태그에 xmlns 속성을 추가하라!
+               xmlns:c="http://www.springframework.org/schema/c"
+        -->
+   <bean id="car1" class="step02.Car"
+         c:model="티코" c:capacity="5"/>
+   
+   <bean id="car2" class="step02.Car"
+         c:capacity="5" c:model="아반테" />
+   
+   <!-- 파라미터 이름 대신 index를 지정하는 방법: 밑줄(_) + 인덱스 -->      
+   <bean id="car3" class="step02.Car"
+         c:_0="5" c:_1="소나타" />            
+   
+</beans>
+
+
+
+
+
+
+
+
+

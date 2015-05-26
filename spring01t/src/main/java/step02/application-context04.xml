@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- <property> 사용: <value type=""> 
+           name 속성에는 프로퍼티 이름이 와야한다. 인스턴스 변수명은 안 된다. 
+        자바 코드:
+        step02.Car car1 = new step02.Car();
+        car1.setModel("티코");
+        car1.setCapacity(5);   
+           -->
+   <bean id="car1" class="step02.Car">
+      <property name="model">
+        <value type="java.lang.String">티코</value>
+      </property>
+      <property name="capacity">
+        <value type="int">5</value>
+      </property>
+   </bean> 
+   
+   <!-- <value>의 타입을 생략해도 된다. 
+        타입을 생략하면, 자동으로 셋터 메서드의 파라미터 타입으로 변환한다.
+        단, 원시 타입만 가능하다.-->
+   <bean id="car2" class="step02.Car">
+      <property name="model"><value>아반테</value></property>
+      <property name="capacity"><value>5</value></property>
+   </bean> 
+   
+   <!-- <property>의 value 속성을 사용하여 값 설정하기 -->
+   <bean id="car3" class="step02.Car">
+      <property name="model" value="소나타"/>
+      <property name="capacity" value="5"/>
+   </bean> 
+   
+   <!-- <bean>의 "p" 네임스페이스와 속성을 사용하여 프로퍼티 값 설정하기
+        다음 네임스페이스를 <beans>태그에 선언해야 한다.
+            xmlns:p="http://www.springframework.org/schema/p"
+   -->
+   <bean id="car4" class="step02.Car"
+         p:model="그랜저" p:capacity="5"/>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
