@@ -41,7 +41,8 @@
 	</bean>
 
 	<!-- SqlSessionFactory 객체를 지정한다. -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" 
+	       class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		
 		<!-- 지정한 패키지에 있는 클래스에 대해 단축 이름(클래스명)을 자동으로 지정한다. -->
