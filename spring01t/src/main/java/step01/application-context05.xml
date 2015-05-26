@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- singleton인 경우 scope 속성을 생략해도 된다. -->
+   <bean id="car1" class="step01.Car" scope="singleton" />
+   
+   <!-- 객체를 요청할 때마다 새로운 객체를 생성하고 싶다면, 
+        scope을 prototype으로 설정하라! -->
+   <bean id="car2" class="step01.Car" scope="prototype" />
+   
+</beans>
+
+
+
+
+
+
+
+
