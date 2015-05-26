@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- 생성할 자바 객체 정보를 지정한다. 
+        자바 코드:
+        step01.Car car1 = new step01.Car();
+   -->
+   <bean id="car1" class="step01.Car"/> 
+   
+   
+</beans>
