@@ -2,6 +2,8 @@ package step03;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class Car {
   String  model;
@@ -9,12 +11,14 @@ public class Car {
   Date    outDate;
   Engine  engine;
   Tire[]  tires;
+  List<CompactDisc> jukebox;
+  Map<String,String> options;
   
   @Override
   public String toString() {
     return "Car [model=" + model + ", capacity=" + capacity + ", outDate="
         + outDate + ", engine=" + engine + ", tires=" + Arrays.toString(tires)
-        + "]";
+        + ", jukebox=" + jukebox + ", options=" + options + "]";
   }
 
   public Car() {
@@ -67,6 +71,20 @@ public class Car {
   public void setTires(Tire[] tires) {
     System.out.println("setTires() 호출됨.");
     this.tires = tires;
+  }
+  public List<CompactDisc> getJukebox() {
+    return jukebox;
+  }
+  public void setJukebox(List<CompactDisc> jukebox) {
+    System.out.println("setJukebox() 호출됨.");
+    this.jukebox = jukebox;
+  }
+  public Map<String, String> getOptions() {
+    return options;
+  }
+  public void setOptions(Map<String, String> options) {
+    System.out.println("setOptions() 호출됨.");
+    this.options = options;
   }
 }
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean id="cd1" class="step03.CompactDisc">
+      <property name="artist" value="김광석"/>
+      <property name="title" value="김광석 히트곡 모음집"/>
+      <property name="musics">
+        <list> <!-- List 객체 주입 -->
+          <value>서른즈음에</value>
+          <value>사랑했지만</value>
+          <value>거리에서</value>
+          <value>이등병의 편지</value>
+        </list>
+      </property>
+   </bean>
+   
+   <bean id="cd2" class="step03.CompactDisc">
+      <property name="artist" value="이문세"/>
+      <property name="title" value="이문세 히트곡 모음집"/>
+      <property name="musics">
+        <array> <!-- List 객체 주입. array 태그로도 가능하다. -->
+          <value>옛사랑</value>
+          <value>광화문연가</value>
+          <value>붉은노을</value>
+          <value>가로수그늘아래서면</value>
+        </array>
+      </property>
+   </bean>
+          
+   <!-- Map 객체 주입하기 -->
+   <bean id="car1" class="step03.Car">
+      <property name="model" value="티코"/>
+      <property name="capacity" value="5"/>
+      
+      <property name="options">
+        <map>
+	        <entry>
+	          <key><value>썬루프</value></key>
+	          <value>YES</value>
+	        </entry>
+	        <entry key="전방에어백" value="YES"/>
+        </map>
+      </property>
+   </bean>
+   
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
