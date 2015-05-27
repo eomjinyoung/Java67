@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <!-- @Component 애노테이션이 붙은 빈을 찾아서 자동 생성하도록 설정하기 -->
+  <context:component-scan base-package="step06">
+  
+      <!-- 특정 조건의 해당하는 객체를 제외하고 싶을 때는 다음의 태그를 사용하라! -->
+      <context:exclude-filter type="regex" expression="step06.ex1.*"/>
+      <context:exclude-filter type="regex" expression="step06.ex2.*"/>
+      <context:exclude-filter type="regex" expression="step06.ex3.*"/>
+      <context:exclude-filter type="regex" expression="step06.ex4.*"/>
+      <context:exclude-filter type="regex" expression="step06.ex5.*"/>
+  </context:component-scan>
+</beans>
+
+
+
+
+
+
+
+
+
