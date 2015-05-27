@@ -11,16 +11,18 @@
 
   <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
   
-  <bean id="car1" class="step06.ex2.Car">
+  <bean id="car1" class="step06.ex3.Car">
     <property name="model" value="티코"/>
     <property name="capacity" value="5"/>
   </bean>
   
-  <bean id="engine1" class="step06.ex2.Engine">
+  <!--  
+  <bean id="engine1" class="step06.ex3.Engine">
     <property name="maker" value="현대자동차"/>
     <property name="cc" value="3000"/>
     <property name="valve" value="16"/>
   </bean>
+  -->
 </beans>
 
 

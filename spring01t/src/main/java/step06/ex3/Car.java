@@ -11,7 +11,8 @@ public class Car {
   String  model;
   int     capacity;
   Date    outDate;
-  @Autowired Engine  engine;
+  //@Autowired Engine  engine; // 필수 값
+  @Autowired(required=false) Engine  engine; // 선택 값
   
   @Override
   public String toString() {
