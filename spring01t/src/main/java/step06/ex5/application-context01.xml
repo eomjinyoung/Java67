@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <!-- @Qualifier, @Autowired 등의 애노테이션을 처리할 BeanPostProcessor를 등록한다. -->
+  <context:annotation-config/>
+  
+  <bean id="car1" class="step06.ex5.Car">
+    <property name="model" value="티코"/>
+    <property name="capacity" value="5"/>
+  </bean>
+  
+  <bean id="engine1" class="step06.ex5.Engine">
+    <property name="maker" value="현대자동차"/>
+    <property name="cc" value="3000"/>
+    <property name="valve" value="16"/>
+  </bean>
+  
+  <bean id="engine2" class="step06.ex5.Engine">
+    <property name="maker" value="현대자동차"/>
+    <property name="cc" value="800"/>
+    <property name="valve" value="16"/>
+  </bean>
+</beans>
+
+
+
+
+
+
+
+
+
