@@ -1,4 +1,4 @@
-package step06;
+package step06.ex3;
 
 public class Engine {
   String  maker;

@@ -1,17 +1,17 @@
-package step06;
+package step06.ex3;
 
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 /* @Autowired 애노테이션을 사용하여 의존 객체 주입 설정하기
- * - setEngine() 메서드에 선언하기 
+ * - 인스턴스 변수에 붙이기 
  */
 public class Car {
   String  model;
   int     capacity;
   Date    outDate;
-  Engine  engine;
+  @Autowired Engine  engine;
   
   @Override
   public String toString() {
@@ -59,11 +59,6 @@ public class Car {
   public Engine getEngine() {
     return engine;
   }
-  
-  /* 스프링 빈 컨테이너에게 이 셋터 메서드의 파라미터 타입과 일치하는 객체를 찾아서
-   * 주입해 줄 것을 요청한다.
-   */
-  @Autowired
   public void setEngine(Engine engine) {
     System.out.println("setEngine() 호출됨.");
     this.engine = engine;

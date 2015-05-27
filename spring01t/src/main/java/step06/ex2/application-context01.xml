@@ -9,21 +9,14 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <!-- @Autowired 애노테이션 BeaPostProcessor 구현체 등록하기 
-       이 객체를 스프링 빈 컨테이너에 등록해야만 @Autowired 애노테이션을 처리할 수 있다.-->
   <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
   
-  <bean id="car1" class="step06.Car">
+  <bean id="car1" class="step06.ex2.Car">
     <property name="model" value="티코"/>
     <property name="capacity" value="5"/>
-    <!-- 의존 객체를 주입할 때 다음과 같이 <property>를 사용할 수 있지만,
-         @Autowired 애노테이션을 사용할 수도 있다. -->
-    <!--  
-    <property name="engine" ref="engine1"/>
-    -->
   </bean>
   
-  <bean id="engine1" class="step06.Engine">
+  <bean id="engine1" class="step06.ex2.Engine">
     <property name="maker" value="현대자동차"/>
     <property name="cc" value="3000"/>
     <property name="valve" value="16"/>
