@@ -14,7 +14,7 @@ public class BoardAddController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping("/board/add.do")
+  @RequestMapping("/board/add")
   public String add(BoardVo board) throws Exception {
     boardDao.insert(board);
     

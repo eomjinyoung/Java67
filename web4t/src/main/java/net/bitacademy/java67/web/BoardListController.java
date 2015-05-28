@@ -19,7 +19,7 @@ public class BoardListController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping("/board/list.do")
+  @RequestMapping("/board/list")
   public String list(
       @RequestParam(required=false,defaultValue="1") int pageNo, 
       @RequestParam(required=false,defaultValue="3") int pageSize, 
@@ -44,7 +44,7 @@ public class BoardListController {
     }
     request.setAttribute("maxPage", maxPage);
     
-    return "/board/BoardList.jsp";
+    return "board/BoardList";
   }
 
 }

@@ -14,7 +14,7 @@ public class BoardChangeController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping("/board/change.do")
+  @RequestMapping("/board/change")
   public String change(BoardVo board) throws Exception {
     boardDao.update(board);
     

@@ -13,7 +13,7 @@ public class BoardDeleteController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping("/board/delete.do")
+  @RequestMapping("/board/delete")
   public String delete(int no) throws Exception {
     boardDao.delete(no);
     

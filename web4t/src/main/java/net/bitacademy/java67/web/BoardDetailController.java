@@ -15,11 +15,11 @@ public class BoardDetailController {
   @Autowired
   BoardDao boardDao;
   
-  @RequestMapping("/board/detail.do")
+  @RequestMapping("/board/detail")
   public String detail(int no, HttpServletRequest request) throws Exception {
     request.setAttribute("board", boardDao.select(no));
     
-    return "/board/BoardDetail.jsp";
+    return "board/BoardDetail";
   }
 }
 

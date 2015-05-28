@@ -19,6 +19,13 @@
   <!-- @RequestMapping 등의 애노테이션을 처리할 BeanPostProcessor를 등록하라! -->
   <mvc:annotation-driven />
 
+  <!-- View Resolver 설정하기 -->
+  <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    <!-- 다음은 페이지 컨트롤러가 리턴한 JSP URL 앞, 뒤로 붙이는 값이다. -->
+    <property name="prefix" value="/WEB-INF/views/"/>
+    <property name="suffix" value=".jsp"/>
+  </bean>
 </beans>
 
 
