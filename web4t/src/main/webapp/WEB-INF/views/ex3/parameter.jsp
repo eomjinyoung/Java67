@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>/ex2/test02.jsp</p>
+이름: ${param.name}<br>
+나이: ${param.age}<br>
+
 </body>
 </html>

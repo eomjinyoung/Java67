@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>test02의 view 컴포넌트이다.</p>
+<p>GET 요청 처리</p>
 </body>
 </html>

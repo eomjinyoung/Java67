@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>${path}</p> 
+<p>POST 요청 처리</p>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package net.bitacademy.java67.web.ex2;
+package net.bitacademy.java67.web;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
