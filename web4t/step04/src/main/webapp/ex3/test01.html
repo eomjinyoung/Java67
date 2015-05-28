@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div>
+  <h1>1. GET/POST 요청 구분하기</h1>
+  <a href="test01.do">GET 요청 보내기</a><br>
+
+	<form action="test01.do" method="post">
+	  <button>POST 요청 보내기</button>
+  </form>
+</div>
+
+<div>
+  <h1>2. 요청 파라미터의 존재 유무로 구분하기</h1>
+  <a href="test02.do?name=aaa&age=22">요청 파라미터 있는 경우</a><br>
+  <a href="test02.do">요청 파라미터 없는 경우</a><br>
+</div>
+
+<div>
+  <h1>3. 헤더의 존재 유무로 구분하기</h1>
+  <button type="button" onclick="send1()">"bit" 헤더가 있는 요청</button><br>
+  <button type="button" onclick="send2()">"bit" 헤더가 없는 요청</button><br>
+  <textarea id="result" cols="50" rows="5"></textarea><br>
+  <script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+  <script>
+  function send1() {
+	  $.ajax({
+		  url:"test03.do",
+		  method: "GET",
+		  headers: {
+			  bit: "okok^^"
+		  },
+		  success: function(data) {
+			  $('#result').val(data);
+		  }
+	  });
+  }
+  
+  function send2() {
+	  $.get("test03.do", function(data) {
+        $('#result').val(data);
+    }).fail(function(){
+    	  alert("요청 실패함!");
+    });
+  }
+  </script>
+</div>
+
+<div>
+  <h1>4. 요청할 때 Accept 헤더 값 지정하기</h1>
+  <button type="button" onclick="send3()">text/csv 콘텐츠 요청</button><br>
+  <textarea id="result2" cols="50" rows="5"></textarea><br>
+  <script>
+    function send3() {
+    	  $.ajax("test04.do", {
+    		  method: "GET",
+    		  headers: {
+    			  Accept: "text/csv"
+    		  },
+    		  success: function(data) {
+    			  $('#result2').val(data);
+    		  },
+    		  error: function() {
+    			  alert("요청 오류 발생!");
+    		  }
+    	  });
+    }
+  </script>
+</div>
+
+<div>
+  <h1>5. 폼 데이터 보내기</h1>
+  <form action="test05.do" method="post">
+    <input type="text" name="message" value="홍길동,30,111-1111"><br>
+    <button>보내기</button>
+  </form>
+  <button type="button" onclick="send4()">text/csv 콘텐츠를 보내기</button><br>
+  <textarea id="result3" cols="50" rows="5"></textarea><br>
+  <script>
+    function send4() {
+        $.ajax("test05.do", {
+          method: "POST",
+          data: {message: "홍길동,30,111-1111"},
+          headers: {
+            "Content-Type": "text/csv"
+          },
+          success: function(data) {
+            $('#result3').val(data);
+          },
+          error: function() {
+            alert("요청 오류 발생!");
+          }
+        });
+    }
+  </script>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
