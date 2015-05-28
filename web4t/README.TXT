@@ -18,7 +18,10 @@
 3. InternalResourceViewResolver 도입에 맞추어 
    페이지 컨트롤러가 리턴하는 JSP URL을 수정하라!     
 
-
+[CRUD를 하나의 클래스로 묶는다]
+- CRUD 각각의 코드 크기가 작다면 하나의 클래스로 묶는 것이 유지보수에 좋다.
+- BoardListController, BoardDetailController, BoardXxxController
+  => BoardController 
 
 
 
