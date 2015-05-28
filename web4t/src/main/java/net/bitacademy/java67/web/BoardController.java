@@ -1,7 +1,5 @@
 package net.bitacademy.java67.web;
 
-import javax.servlet.http.HttpServletRequest;
-
 import net.bitacademy.java67.dao.BoardDao;
 import net.bitacademy.java67.domain.BoardVo;
 
@@ -72,8 +70,8 @@ public class BoardController {
   }
   
   @RequestMapping("/detail")
-  public String detail(int no, HttpServletRequest request) throws Exception {
-    request.setAttribute("board", boardDao.select(no));
+  public String detail(int no, Model model) throws Exception {
+    model.addAttribute("board", boardDao.select(no));
     
     return "board/BoardDetail";
   }
