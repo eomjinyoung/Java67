@@ -45,7 +45,25 @@ public class PageController01 {
     return "ex3/header"; 
   }
   
- 
+  //4) Accept 요청 헤더가 지정된 값을 가질 때만 호출한다.
+  // - 서버 입장에서 클라이언트에게 보낼 데이터를 생성한다는 의미로 produces이다.
+  @RequestMapping(
+      value="/test04",
+      produces="text/csv")
+  public String produces() {
+    return "ex3/produces"; 
+  }
+  
+  //5) Context-Type 요청 헤더가 지정된 값을 가질 때만 호출한다.
+  // - 클라이언트는 POST 방식으로 데이터를 보낼 때 
+  //   Content-Type 헤더 값으로 보내는 콘텐츠의 형식을 알려준다. 
+  // - 서버 입장에서 클라이언트가 보낸 데이터를 소비한다는 의미로 consumes이다.
+  @RequestMapping(
+      value="/test05",
+      consumes="text/csv")
+  public String consumes() {
+    return "ex3/consumes"; 
+  }
 }
 
 

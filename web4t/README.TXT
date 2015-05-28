@@ -23,6 +23,11 @@
 - BoardListController, BoardDetailController, BoardXxxController
   => BoardController 
 
+[@RequestMapping 애노테이션 속성]
+1. method 속성 (예제: ...web.ex3.PageController01)
+- 요청 방식을 구분할 때 사용한다.
+- 설정하지 않으면 모든 요청 방식에 대해 메서드가 호출된다.
+
 
 
 

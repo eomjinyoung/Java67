@@ -49,6 +49,55 @@
   }
   </script>
 </div>
+
+<div>
+  <h1>4. 요청할 때 Accept 헤더 값 지정하기</h1>
+  <button type="button" onclick="send3()">text/csv 콘텐츠 요청</button><br>
+  <textarea id="result2" cols="50" rows="5"></textarea><br>
+  <script>
+    function send3() {
+    	  $.ajax("test04.do", {
+    		  method: "GET",
+    		  headers: {
+    			  Accept: "text/csv"
+    		  },
+    		  success: function(data) {
+    			  $('#result2').val(data);
+    		  },
+    		  error: function() {
+    			  alert("요청 오류 발생!");
+    		  }
+    	  });
+    }
+  </script>
+</div>
+
+<div>
+  <h1>5. 폼 데이터 보내기</h1>
+  <form action="test05.do" method="post">
+    <input type="text" name="message" value="홍길동,30,111-1111"><br>
+    <button>보내기</button>
+  </form>
+  <button type="button" onclick="send4()">text/csv 콘텐츠를 보내기</button><br>
+  <textarea id="result3" cols="50" rows="5"></textarea><br>
+  <script>
+    function send4() {
+        $.ajax("test05.do", {
+          method: "POST",
+          data: {message: "홍길동,30,111-1111"},
+          headers: {
+            "Content-Type": "text/csv"
+          },
+          success: function(data) {
+            $('#result3').val(data);
+          },
+          error: function() {
+            alert("요청 오류 발생!");
+          }
+        });
+    }
+  </script>
+</div>
 </body>
 </html>
 
