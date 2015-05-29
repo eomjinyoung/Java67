@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  */
 @WebServlet("/step17/cookie01")
-public class CookieServlet extends HttpServlet {
+public class CookieServlet01 extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
   @Override
@@ -47,6 +47,7 @@ Date: Fri, 29 May 2015 05:58:41 GMT
     
     /* 클라이언트 측 행동 
      * - 서버로부터 쿠키를 받으면, 타임아웃 시간이 설정되었는지 조사한다.
+     * 1) timeout
      * - 만약 타임아웃 시간이 설정되지 않았다면,
      *   => 메모리에 쿠키 값을 보관한다.
      *   => 웹 브라우저가 종료되면 메모리에 보관된 쿠키 값도 삭제된다.
@@ -57,6 +58,13 @@ Date: Fri, 29 May 2015 05:58:41 GMT
      *   => 웹 브라우저를 종료했다가 다시 실행하더라도 쿠키 정보를 유지된다.
      *   => 웹 브라우저는 서버에 요청할 때,
      *      쿠키의 타임아웃을 조사하여 시간이 경과된 쿠키는 삭제한다.
+     *      
+     * 2) path
+     * - 만약 쿠키에 경로를 설정하지 않는다면,
+     *   => 클라이언트는 같은 경로의 서블릿을 요청할 때만 쿠키를 보낸다.
+     *   => 물론 같은 경로의 하위 경로인 경우에도 쿠키를 보낸다.
+     * - 만약 쿠키에 경로를 설정했다면,
+     *   => 설정한 경로로 요청할 때만 쿠키를 보낸다.
      */
     
   }
