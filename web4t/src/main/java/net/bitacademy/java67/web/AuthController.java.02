@@ -39,15 +39,7 @@ public class AuthController {
       response.addCookie(emailCookie);
     }
     
-    // 사용자 검증
-    UserVo user = userDao.selectOne(email, password);
-    
-    if (user != null) { // 이메일과 암호가 일치하는 사용자를 찾았다면,
-      return "redirect:../board/list.do";
-      
-    } else { // 찾지 못했다면, 다시 로그인 폼을 요청하라고 응답한다.
-      return "redirect:login.do";
-    }
+    return "redirect:login.do";
   }
 }
 

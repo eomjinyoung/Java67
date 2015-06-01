@@ -18,5 +18,23 @@
   header a:link {
     color: white;
   }
+  header a:visited {
+    color: white;
+  }
   
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

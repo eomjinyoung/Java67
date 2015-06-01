@@ -10,6 +10,8 @@
   <jsp:include page="/CommonStyle.jsp"/>
 </head>
 <body>
+  <jsp:include page="/header.jsp"/>
+
 	<h1>게시물 상세정보</h1>
 	<form action="change.do" method="post">
 	번호: <input type='text' name='no' readonly value='${board.no}'><br>

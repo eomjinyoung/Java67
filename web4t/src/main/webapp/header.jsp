@@ -3,4 +3,3 @@
 <header>
   <a href="${pageContext.servletContext.contextPath}/auth/login.do">로그인</a>
 </header>
-    

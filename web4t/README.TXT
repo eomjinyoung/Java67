@@ -60,7 +60,15 @@ compile 'commons-fileupload:commons-fileupload:1.3.1'
   1) 서버쪽에 생성되는 객체이기 때문에, 서버가 종료되면 세션 객체도 삭제된다.
   2) 세션을 사용하는 시점에 타임아웃 되었는지 검사하여, 타임아웃 되었으면 삭제한다.   
 
-[로그인 폼 만들기]
+[로그인,로그아웃 처리]
+1) 로그인 폼 만들기
+- /WEB-INF/views/auth/login.jsp
+
+2) 로그인,로그아웃 처리 페이지 컨트롤러 만들기
+- ...web.AuthController.java
+
+3) 로그인,로그아웃 DAO 만들기
+- ...dao.UserDao.java
 
 
 

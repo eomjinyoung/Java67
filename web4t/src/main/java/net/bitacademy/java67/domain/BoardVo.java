@@ -1,8 +1,11 @@
 package net.bitacademy.java67.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class BoardVo {
+public class BoardVo implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   protected int     no;
   protected String  title;
   protected String  content;
