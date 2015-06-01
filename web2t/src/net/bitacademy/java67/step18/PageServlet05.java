@@ -34,7 +34,6 @@ public class PageServlet05 extends HttpServlet {
     out.printf("%s(%s,%s)님 정보를 저장했습니다.\n", name, age, tel);
     out.println("</body></html>");
   }
-  
 }
 
 
