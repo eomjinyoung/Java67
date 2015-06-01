@@ -10,4 +10,13 @@
     padding: 10px;
     background-color: yellow;
   }
+  header {
+    padding: 10px;
+    background-color: navy;
+    color: white;
+  }
+  header a:link {
+    color: white;
+  }
+  
 </style>

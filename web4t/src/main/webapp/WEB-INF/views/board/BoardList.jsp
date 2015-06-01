@@ -11,6 +11,8 @@
   <jsp:include page="/CommonStyle.jsp"/>
 </head>
 <body>
+  <jsp:include page="/header.jsp"/>
+  
   <h1>게시물 목록</h1>
   <p>
     <form action='list.do' method='get'>
