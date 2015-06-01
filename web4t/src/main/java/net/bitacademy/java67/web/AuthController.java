@@ -1,5 +1,7 @@
 package net.bitacademy.java67.web;
 
+import java.util.HashMap;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -41,7 +43,11 @@ public class AuthController {
     }
     
     // 사용자 검증
-    UserVo user = userDao.selectOne(email, password);
+    HashMap<String,String> sqlParams = new HashMap<String,String>();
+    sqlParams.put("email", email);
+    sqlParams.put("password", password);
+    
+    UserVo user = userDao.selectOne(sqlParams);
     
     if (user != null) { // 이메일과 암호가 일치하는 사용자를 찾았다면,
       session.setAttribute("user", user); // 로그인 성공 => 사용자 정보를  세션에 보관한다.

@@ -1,5 +1,7 @@
 package net.bitacademy.java67.web;
 
+import java.util.HashMap;
+
 import net.bitacademy.java67.dao.BoardDao;
 import net.bitacademy.java67.domain.BoardVo;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+  // 이제 BoardDao는 인터페이스이다.
+  // boardDao에 주입되는 것은 mybatis가 만든 BoardDao 구현체이다.
   @Autowired
   BoardDao boardDao;
   
@@ -25,9 +29,15 @@ public class BoardController {
       @RequestParam(required=false) String order, 
       Model model) throws Exception {
 
-    model.addAttribute("list", boardDao.selectList(
-              getStartIndexOfPage(pageNo, pageSize), 
-              pageSize, word, order));
+    // BoardDao 인터페이스의 selectList()는 한 개의 파라미터를 요구한다.
+    // 따라서 SQL 파라미터 값을 맵 객체에 담아서 넘겨야 한다.
+    HashMap<String,Object> sqlParams = new HashMap<String,Object>();
+    sqlParams.put("startIndex", getStartIndexOfPage(pageNo, pageSize));
+    sqlParams.put("pageSize", pageSize);
+    sqlParams.put("word", word);
+    sqlParams.put("order", order);
+    
+    model.addAttribute("list", boardDao.selectList(sqlParams));
     model.addAttribute("pageNo", pageNo);
     model.addAttribute("pageSize", pageSize);
     model.addAttribute("maxPage", countTotalPage(pageSize, 
@@ -71,7 +81,7 @@ public class BoardController {
   
   @RequestMapping("/detail")
   public String detail(int no, Model model) throws Exception {
-    model.addAttribute("board", boardDao.select(no));
+    model.addAttribute("board", boardDao.selectOne(no));
     
     return "board/BoardDetail";
   }
