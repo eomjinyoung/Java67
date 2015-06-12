@@ -1,14 +1,17 @@
-[8단계:  ContentNegotiatingViewResolver 사용하기]
-- 리턴 값에 따라 ViewResolver를 선택한다.
-1) 프론트 컨트롤러의 스프링 설정 파일 변경
-- 다음 빈 설정을 추가한다.
-<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-    ...
-</bean>
+[9단계: 트랜잭션 다루기]
+1. 게시글의 변경 내역을 저장할 테이블을 생성한다.
+create table board_log (
+  blno INT NOT NULL,
+  ip VARCHAR(20) NOT NULL,
+  up_date DATETIME NOT NULL 
+);
 
-2) 페이지 컨트롤러 변경
-- 각 메서드의 리턴 값을 Object로 바꾼다.
-- 데이터를 저장한 객체를 바로 리턴한다.
+ALTER TABLE board_log
+  ADD CONSTRAINT board_log_pk PRIMARY KEY(blno);
 
-3) Access-Control-Allow-Origin 헤더 추가
-- JsonFilter 클래스를 작성한다.
+ALTER TABLE board_log
+  MODIFY COLUMN blno INT NOT NULL AUTO_INCREMENT;  
+  
+  
+  
+
