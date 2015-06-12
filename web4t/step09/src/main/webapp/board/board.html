@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-theme.css">
+<style>
+body {
+  font-size: small;
+}
+
+.container {
+  /* border: 1px red solid; */
+  width: 600px;
+}
+
+.detail-items {
+  display: none;
+}
+</style>
+</head>
+<body>
+<!-- 실습 목표: 부트스트랩 적용 -->
+<div class="container">
+<h1>게시글</h1>
+<table id="boardTable" class="table table-hover">
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>등록일</th>
+</tr>
+</table>
+
+<hr>
+
+<h2>게시물 상세정보</h2>
+<form id="boardForm" class="form-horizontal">
+  <div class="form-group detail-items">
+    <label for="bno" class="col-sm-2 control-label">번호</label>
+    <div class="col-sm-10">
+      <p id="bno" class="form-control-static"></p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">제목</label>
+    <div class="col-sm-10">
+      <input id="title" type="text" class="form-control" 
+             placeholder="제목을 입력하세요.">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="content" class="col-sm-2 control-label">내용</label>
+    <div class="col-sm-10">
+      <textarea id="content" class="form-control" rows="5"
+                placeholder="내용을 입력하세요."></textarea>
+    </div>
+  </div>
+  <div class="form-group detail-items">
+    <label for="cdate" class="col-sm-2 control-label">등록일</label>
+    <div class="col-sm-10">
+      <p id="cdate" class="form-control-static"></p>
+    </div>
+  </div>
+  <div class="form-group detail-items">
+    <label for="views" class="col-sm-2 control-label">조회수</label>
+    <div class="col-sm-10">
+      <p id="views" class="form-control-static"></p>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="addBtn" type="button" 
+              class="btn btn-primary btn-sm new-items">등록</button>
+      <button id="changeBtn" type="button" 
+              class="btn btn-primary btn-sm detail-items">변경</button>
+      <button id="deleteBtn" type="button" 
+              class="btn btn-primary btn-sm detail-items">삭제</button>
+      <button id="cancelBtn" type="reset" 
+              class="btn btn-primary btn-sm detail-items">취소</button>
+    </div>
+  </div>
+</form>
+</div> <!-- container -->
+
+<script type="text/javascript" src="../js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="board.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
