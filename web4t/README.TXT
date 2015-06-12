@@ -15,13 +15,26 @@ ALTER TABLE board_log
   MODIFY COLUMN blno INT NOT NULL AUTO_INCREMENT;  
 
 2. SQL 준비
-- BoardLogDao.xml 파일   
-  
+- BoardLogDao.xml 파일 작성
+- BoardDao.xml 파일 변경
+  => INSERT 후에 자동 생성된 번호를 리턴하도록 한다.   
+  => useGeneratedKeys 속성의 값을 true로 설정하면,
+    INSERT 할 때 자동 생성된 bno 값을 파라미터 객체에 꺼꾸로 설정해 준다.
+  <insert id="insert" parameterType="BoardVo"
+        keyColumn="bno" keyProperty="no" useGeneratedKeys="true">
+      INSERT INTO board2 (title,content,cre_date) 
+      VALUES (#{title},#{content},now())
+  </insert>
+    
 3. Value Object 작성
 - BoardLogVo 클래스 작성  
 
 4. DAO 인터페이스 작성
 - BoardLogDao 인터페이스 작성
+
+5. Service 클래스 작성
+- BoardService 클래스 작성
+- BoardController 클래스의 코드 중에서 비즈니스 로직 관련 코드를 BoardService로 옮긴다.
 
 
 

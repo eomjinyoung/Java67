@@ -6,6 +6,10 @@ import java.sql.Date;
 public class BoardLogVo implements Serializable {
   private static final long serialVersionUID = 1L;
   
+  public static final String ACTION_INSERT = "I";
+  public static final String ACTION_UPDATE = "U";
+  public static final String ACTION_DELETE = "D";
+  
   protected int     no;
   protected String  ip;
   protected Date    actionDate;

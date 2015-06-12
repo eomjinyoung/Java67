@@ -15,8 +15,11 @@
     <result column="views"    property="views" />
   </resultMap>
   
-  
-  <insert id="insert" parameterType="BoardVo">
+  <!-- useGeneratedKeys 속성의 값을 true로 설정하면,
+    INSERT 할 때 자동 생성된 bno 값을 파라미터 객체에 꺼꾸로 설정해 준다.
+   -->
+  <insert id="insert" parameterType="BoardVo"
+        keyColumn="bno" keyProperty="no" useGeneratedKeys="true">
       INSERT INTO board2 (title,content,cre_date) 
       VALUES (#{title},#{content},now())
   </insert>
