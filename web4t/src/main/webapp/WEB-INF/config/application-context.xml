@@ -39,9 +39,8 @@
          <tx:method name="get*"  propagation="NOT_SUPPORTED"/>
          <tx:method name="list*"  propagation="NOT_SUPPORTED"/>
          <tx:method name="size*"  propagation="NOT_SUPPORTED"/>
-         <tx:method name="log*"  propagation="SUPPORTS" />
          <tx:method name="*" propagation="REQUIRED" 
-                    rollback-for="java.lang.Exception"/>
+               no-rollback-for="net.bitacademy.java67.exception.LogException" />
      </tx:attributes>
   </tx:advice>
     

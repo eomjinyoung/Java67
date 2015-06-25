@@ -32,7 +32,7 @@ public class BoardService {
   
   public int add(BoardVo board, String ip) {
     int count = boardDao.insert(board); 
-    logDataAction(board.getNo(), BoardLogVo.ACTION_INSERT, ip);
+    logDataAction(board.getNo(), BoardLogVo.ACTION_INSERT, ip); 
     return count;
   }
 
@@ -40,7 +40,7 @@ public class BoardService {
     try {
       BoardLogVo boardLog = new BoardLogVo();
       boardLog.setIp(ip);
-      boardLog.setActionType(actionType);
+      boardLog.setActionType(actionType + "aaaaa");
       boardLog.setBoardNo(no);
       boardLogDao.insert(boardLog);
     } catch (Exception e) {
@@ -65,25 +65,19 @@ public class BoardService {
   }
   
   public BoardVo get(int no, String ip) {
-    try {logDataAction(no, BoardLogVo.ACTION_SELECT, ip);} 
-    catch (Exception e) {}
-    
+    try {logDataAction(no, BoardLogVo.ACTION_SELECT, ip);} catch (Exception e) {}
     return boardDao.selectOne(no);
   }
   
   public int remove(int no, String ip) {
     int count = boardDao.delete(no);
-    
     logDataAction(no, BoardLogVo.ACTION_DELETE, ip);
-    
     return count;
   }
   
   public int change(BoardVo board, String ip) {
     int count = boardDao.update(board);
-    
     logDataAction(board.getNo(), BoardLogVo.ACTION_UPDATE, ip);
-    
     return count;
   }
 }
