@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        
+
+  <!-- 페이지 컨트롤러를 찾아서 생성한다. -->
+	<context:component-scan base-package="net.bitacademy.java67.web" />
+
+  <!-- @RequestMapping 등의 애노테이션을 처리할 BeanPostProcessor를 등록하라! -->
+  <mvc:annotation-driven />
+
+  <!-- View Resolver 설정하기 -->
+  <!-- 
+    ViewResolver 선택하는 방법:
+    1) URL의 확장자를 보고 선택하기
+       예) .../list.pdf   ===> PDF를 출력하는 view resolver에 위임한다.
+       예) .../list.xml   ===> XML을 출력하는 view resolver에 위임한다.
+    2) 클라이언트의 HTTP 요청 헤더의 값을 보고 선택하기
+       예) Accept: text/html   ===> JSP를 실행하는 view resolver에 위임한다.
+       예) Accept: application/json  ===> JSON 문자열을 출력하는 view resolver에 위임한다.
+       예) Accept: application/pdf  ===> PDF를 출력하는 view resolver에 위임한다.
+   -->
+  <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <property name="mediaTypes">
+        <map>
+            <entry key="atom" value="application/atom+xml"/>
+            <entry key="html" value="text/html"/>
+            <entry key="json" value="application/json"/>
+        </map>
+    </property>
+    <property name="viewResolvers">
+        <list>
+            <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+            <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+                <property name="prefix" value="/WEB-INF/views/"/>
+                <property name="suffix" value=".jsp"/>
+            </bean>
+        </list>
+    </property>
+    <property name="defaultViews">
+        <list>
+            <!-- 페이지 컨트롤러가 리턴하는 객체를 JSON 문자열로 만들어 클라이언트로 보낸다. -->
+            <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+        </list>
+    </property>
+</bean>
+  
+  <!-- 멀티파트 데이터를 처리하는 객체 설정하기 -->
+  <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="10000000"/>
+  </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

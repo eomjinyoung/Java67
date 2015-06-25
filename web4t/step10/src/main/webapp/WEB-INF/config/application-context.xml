@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://mybatis.org/schema/mybatis-spring 
+        http://mybatis.org/schema/mybatis-spring.xsd">
+        
+  <!-- DataSource, DAO, SqlSessionFactory, Transaction 객체를 준비하기 위해
+       빈을 찾는 장소를 지정한다.
+       단, 페이지 컨트롤러는 제외한다. -->
+	<context:component-scan base-package="net.bitacademy.java67">
+	   <context:exclude-filter type="regex" expression="net.bitacademy.java67.web.*"/>
+	</context:component-scan>
+
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/java67db"/>
+
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" 
+	       class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" 
+		          value="net.bitacademy.java67.domain" />
+		<property name="mapperLocations" 
+		          value="classpath*:net/bitacademy/java67/dao/*Dao.xml" />
+	</bean>
+	
+	<!-- DAO 인터페이스를 분석하여 DAO 구현체를 자동으로 만들고,
+	     SQL 파일에 연결해주는 관리자 등록하기 -->
+	<!-- 등록방법1. 직접 관리 객체 등록하기 -->   
+	<!--    
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="net.bitacademy.java67.dao" />
+  </bean>
+  -->
+  
+  <!-- 등록방법1. mybatis 전용 태그를 사용하기 -->
+  <mybatis:scan base-package="net.bitacademy.java67.dao" />
+  
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
