@@ -9,7 +9,7 @@
 1) REQUIRED             tx1             new(tx1)
 2) REQUIRES_NEW         new(tx2)        new(tx1)
 3) SUPPORTS             tx1             트랜잭션 없이 실행
-4) NOT_SUPPORTED        사용 안함         트랜잭션 없이 실행
+4) NOT_SUPPORTED        트랜잭션 없이 실행  트랜잭션 없이 실행
 5) MANDATORY            tx1             예외 발생!
 6) NEVER                예외 발생!        트랜잭션 없이 실행 
 
