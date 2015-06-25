@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java67.dao.BoardLogDao">
+  
+  <resultMap type="BoardLogVo" id="BoardLogVoMap">
+    <id     column="blno"     property="no" />
+    <result column="ip"       property="ip" />
+    <result column="act_dt"   property="actionDate" />
+    <result column="act_type" property="actionType" />
+    <result column="bno"      property="boardNo" />
+  </resultMap>
+  
+  
+  <insert id="insert" parameterType="BoardLogVo">
+      INSERT INTO board_log (ip,act_dt,act_type,bno) 
+      VALUES (#{ip},now(),#{actionType},#{boardNo})
+  </insert>
+  
+  <select id="selectList" parameterType="int" resultMap="BoardLogVoMap">
+      SELECT blno,ip,act_dt,act_type,bno
+      FROM board_log
+      WHERE blno = #{value}
+  </select>
+  
+  
+</mapper>
+
+
+
+
+
+
+
+
+
